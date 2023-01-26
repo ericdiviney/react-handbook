@@ -1,39 +1,50 @@
 import { Guides } from '@/components/Guides'
-import { Resources } from '@/components/Resources'
-import { HeroPattern } from '@/components/HeroPattern'
+import { QuickNavigation } from '@/components/QuickNavigation'
 
 export const description =
-  'Learn everything there is to know about the Protocol API and integrate Protocol into your product.'
+  'Explore today\'s best practices in the React ecosystem.'
 
 export const sections = [
-  { title: 'Guides', id: 'guides' },
-  { title: 'Resources', id: 'resources' },
+  { title: 'Our Mission', id: 'introduction' },
 ]
 
-<HeroPattern />
+<QuickNavigation /> 
 
-# API Documentation
+## Introduction
 
-Use the Protocol API to access contacts, conversations, group messages, and more and seamlessly integrate your product into the workflows of dozens of devoted Protocol users. {{ className: 'lead' }}
+React Handbook is for web developers building React applications to quickly digest the React ecosystem and learn what they need to. {{ className: 'lead' }}
 
-<div className="not-prose mb-16 mt-6 flex gap-3">
-  <Button href="/quickstart" arrow="right" children="Quickstart" />
-  <Button href="/sdks" variant="outline" children="Explore SDKs" />
-</div>
+## "What they need to?" {{ anchor: false }}
 
-## Getting started {{ anchor: false }}
+That's right. Think of this website as a collection of best practices and widely used libraries that you can depend on for your applications. The main point is to help web developers learn/research only what they need to learn while building React applications. Maybe that's the whole kitchen sink, maybe that's just a particular subject like writing unit tests. {{ className: 'lead' }}
 
-To get started, create a new application in your [developer settings](#), then read about how to make requests for the resources you need to access using our HTTP APIs or dedicated client SDKs. When your integration is ready to go live, publish it to our [integrations directory](#) to reach the Protocol community. {{ className: 'lead' }}
+## Oh no. Another React course? {{ anchor: false }}
+
+Whoa whoa, let's slow down. This is not meant to be a "course". Perhaps this could be used as a guide of some sorts to help developers find the gaps in their knowledge... but this is not a course in the sense of "follow this linear path of tutorials and you'll know React at an expert level". It's more about pointing you in the right direction when you encounter something in the React ecosystem that you'd like to learn more about.
+
+## Ok, so why should you bookmark this website? {{ anchor: false }}
+
+React is the most popular frontend/UI framework in the world as of this moment. According to various sources React is very likely to continue it's growth trajectory:
+- [State of JS](https://2022.stateofjs.com/en-US/libraries/)
+- [Stack Overflow](https://survey.stackoverflow.co/2022/#section-most-popular-technologies-web-frameworks-and-technologies)
+- [GitHub](https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190)
+- [Statista](https://www.statista.com/statistics/1124699/worldwide-developer-survey-most-used-frameworks-web/)
+
+<Note>
+  Why is React the most popular framework? Read my thoughts on that [here](#).
+</Note>
+
+The baggage that comes with being the most popular UI framework in the world, is that there is a ton of low-quality learning content out there on the internet.
+
+I want to help you avoid spending countless hours wondering through outdated, low-effort, and sometimes outright *wrong* articles/videos/courses.
+
+My goal is by using this site, you'll spend less time searching the internet for good learning resources and instead spend more time shipping your React applications in a way that will scale.
 
 <div className="not-prose">
   <Button
     href="/sdks"
     variant="text"
     arrow="right"
-    children="Get your API key"
+    children="Read more about the inspiration for this website"
   />
 </div>
-
-<Guides />
-
-<Resources />

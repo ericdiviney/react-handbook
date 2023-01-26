@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion'
 
-import { Button } from '@/components/Button'
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
 import { Tag } from '@/components/Tag'
@@ -20,7 +19,7 @@ function TopLevelNavItem({ href, children }) {
     <li className="md:hidden">
       <Link
         href={href}
-        className="block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="block py-1 text-sm transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
       </Link>
@@ -96,7 +95,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute left-2 h-6 w-px bg-emerald-500"
+      className="absolute w-px h-6 left-2 bg-sky-500"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -126,7 +125,7 @@ function NavigationGroup({ group, className }) {
       >
         {group.title}
       </motion.h2>
-      <div className="relative mt-3 pl-2">
+      <div className="relative pl-2 mt-3">
         <AnimatePresence initial={!isInsideMobileNavigation}>
           {isActiveGroup && (
             <VisibleSectionHighlight group={group} pathname={router.pathname} />
@@ -134,7 +133,7 @@ function NavigationGroup({ group, className }) {
         </AnimatePresence>
         <motion.div
           layout
-          className="absolute inset-y-0 left-2 w-px bg-zinc-900/10 dark:bg-white/5"
+          className="absolute inset-y-0 w-px left-2 bg-zinc-900/10 dark:bg-white/5"
         />
         <AnimatePresence initial={false}>
           {isActiveGroup && (
@@ -185,36 +184,57 @@ function NavigationGroup({ group, className }) {
 
 export const navigation = [
   {
-    title: 'Guides',
+    title: 'Home',
     links: [
       { title: 'Introduction', href: '/' },
-      { title: 'Quickstart', href: '/quickstart' },
-      { title: 'SDKs', href: '/sdks' },
-      { title: 'Authentication', href: '/authentication' },
-      { title: 'Pagination', href: '/pagination' },
-      { title: 'Errors', href: '/errors' },
-      { title: 'Webhooks', href: '/webhooks' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Guides',
     links: [
-      { title: 'Contacts', href: '/contacts' },
-      { title: 'Conversations', href: '/conversations' },
-      { title: 'Messages', href: '/messages' },
-      { title: 'Groups', href: '/groups' },
-      { title: 'Attachments', href: '/attachments' },
+      { title: 'Choosing a (React) Framework', href: '#' },
+      { title: 'Bundlers & Build Tools', href: '#' },
+      { title: 'Maintaining Documentation', href: '#' },
+      { title: 'Folder Structure', href: '#' },
+      { title: 'Writing Components', href: '#' },
+      { title: 'Hooks', href: '#' },
+      { title: 'Popular Utility Libraries', href: '#' },
+      { title: 'Accessibility & Semantics', href: '#' },
+      { title: 'Styling & UI Libraries', href: '#' },
+      { title: 'Global State Management', href: '#' },
+      { title: 'Server-Side React', href: '#' },
+      { title: 'Automated Testing', href: '#' },
+      { title: 'Error Handling', href: '#' },
+      { title: 'CI/CD Pipelines', href: '#' },
+      { title: 'Analytics', href: '#' },
     ],
   },
+  {
+    title: 'Misc',
+    links: [
+      { title: 'Common UI Logic & Patterns', href: '#' },
+      { title: 'Production Release Checklists', href: '#' },
+      { title: 'Integrating with a CMS', href: '#' },
+      { title: 'Publishing NPM packages and libraries', href: '#' },
+      { title: 'Uncommon Networking Problems', href: '#' },
+    ],
+  },
+  // {
+  //   title: 'Expertise Levels',
+  //   links: [
+  //     { title: 'Beginner', href: '/beginner-topics' },
+  //     { title: 'Intermediate', href: '/intermediate-topics' },
+  //     { title: 'Advanced', href: '/advanced-topics' },
+  //     { title: 'All', href: '/all-topics' },
+  //   ],
+  // },
 ]
 
 export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="/">API</TopLevelNavItem>
-        <TopLevelNavItem href="#">Documentation</TopLevelNavItem>
-        <TopLevelNavItem href="#">Support</TopLevelNavItem>
+        <TopLevelNavItem href="/">Home</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}
@@ -222,11 +242,6 @@ export function Navigation(props) {
             className={groupIndex === 0 && 'md:mt-0'}
           />
         ))}
-        <li className="sticky bottom-0 z-10 mt-6 min-[416px]:hidden">
-          <Button href="#" variant="filled" className="w-full">
-            Sign in
-          </Button>
-        </li>
       </ul>
     </nav>
   )
