@@ -1,0 +1,209 @@
+export const description = 'How to structure your React project and format your components.'
+
+# Project Standards for High-Quality Code
+
+When it comes to organizing my React projects and choosing the philosophies that will lead to the best experience while maintaining the project, I love to reference this amazing github repository:
+
+- [alan2207/bulletproof-react](https://github.com/alan2207/bulletproof-react)
+
+It is a goldmine of great ideas to help you keep your React project as simple and clean as possible (while also scaling well for very large applications). I tend to refer to this repo after I’ve determined I need a particular feature/technology, when I’m asking “how/where” should I put these features/technology in my project. Not the “why” - but the “where”.
+
+## Folder Structure
+
+As someone who’s fallen victim to analysis paralysis in this area, here is some great advice: don’t spend more than 5 minutes trying to plan a folder structure that will meet all of your future project needs. It’s usually better to simply organize as you go. If you don’t know what to do yet - just keep everything in the same flat folder (`src`). Seriously, as soon as you get 10+ files in there that each have their own concern, you’ll start to see the patterns that should dictate your folder structure.
+
+If you are interested in a scalable folder structure, I recommend this one from [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md).
+
+```tsx
+src
+|
++-- assets            # assets folder can contain all the static files such as images, fonts, etc.
+|
++-- components        # shared components used across the entire application
+|
++-- config            # all the global configuration, env variables etc. get exported from here and used in the app
+|
++-- features          # feature based modules
+
+    /awesome-feature
+    |
+    +-- api         # exported API request declarations and api hooks related to a specific feature
+    |
+    +-- assets      # assets folder can contain all the static files for a specific feature
+    |
+    +-- components  # components scoped to a specific feature
+    |
+    +-- hooks       # hooks scoped to a specific feature
+    |
+    +-- routes      # route components for a specific feature pages
+    |
+    +-- stores      # state stores for a specific feature
+    |
+    +-- types       # typescript types for TS specific feature domain
+    |
+    +-- utils       # utility functions for a specific feature
+    |
+    +-- index.ts    # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
+
+|
++-- hooks             # shared hooks used across the entire application
+|
++-- lib               # re-exporting different libraries preconfigured for the application
+|
++-- providers         # all of the application providers
+|
++-- routes            # routes configuration
+|
++-- stores            # global state stores
+|
++-- test              # test utilities and mock server
+|
++-- types             # base types used across the application
+|
++-- utils             # shared utility functions
+```
+
+You might be tempted to create a `pages` folder - but I think it makes more sense to move those files into the `features` folder. Calling things “features” is more generic and allows us to decouple our app’s code from browser-inspired naming conventions (e.g. “pages” = “webpages”).
+
+## Component Format
+
+- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) - advice for writting clear, concise code in javascript
+- [Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet) - naming things consistently gets easier with this advice
+
+***Writing Functional React Components***
+
+In general, you should think of the file contents in your React components as appearing in this order:
+
+1. Imports and constants
+2. Prop type definition
+3. Component State
+4. Other hooks
+5. Effects
+6. Helper functions (scoped)
+7. JSX (return statement)
+8. Abstracted JSX only used in this file
+
+Here’s a sample component to help you understand:
+
+```tsx
+/**
+ * 1. Imports and constants (might as well try to alphabetize either by the named import, or by the import path)
+ */
+import { blahblahblah } from '@/features/blah'
+import { UserContext } from '@/contexts/user'
+
+const operations = {
+  '+': (left: number, right: number): number => left + right,
+  '-': (left: number, right: number): number => left - right,
+  '*': (left: number, right: number): number => left * right,
+  '/': (left: number, right: number): number => left / right,
+}
+
+/**
+ * 2. Prop type definition, use types in general unless you need interface features (like inheritance/extension)
+ */
+type CalculatorProps = {
+  left: number
+  operator: keyof typeof operations
+  right: number
+}
+
+// Prefer simple function definition over const Calculator: React.FC<Props> = () => {}
+export function Calculator({left, operator, right}: CalculatorProps) {
+  /**
+   * 3. Component State
+   */
+  const { user } = useContext(UserContext);
+  const [someState, setSomeState] = useState();
+  const [someOtherState, setSomeOtherState] = useState();
+  const result = operations[operator](left, right)
+  const someCondition = true;
+
+  /**
+   * 4. Other hooks
+   */
+  const cachedValue = useMemo(calculateValue, dependencies)
+  const cachedFn = useCallback(fn, dependencies)
+
+  /**
+   * 5. Effects
+   */
+  useEffect(() => {
+    // your effect code
+    
+    return () => {
+      // your effect cleanup code
+    }
+  }, dependencies);
+
+  /**
+   * 6. Helper functions (if possible, extract domain utility functions not reliant on component state to /src/features/awesome-feature/utils or /src/utils)
+   */
+  function helperFunctionThatReliesOnComponentState() {
+    cachedFn(cachedValue);
+  }
+
+  /**
+   * JSX / Return statement
+   * Advice: you can keep your return statements clean by moving static JSX to their own micro-components at the bottom of this file in step 8.
+   */
+  return (
+    {someCondition ? <ShortenedMarkup /> : (
+      <div>
+        <code>
+          {left} {operator} {right} = <output>{result}</output>
+        </code>
+      </div>
+    )}
+  );
+}
+
+/**
+ * 8. Abstracted JSX used only in this file
+ */
+function ShortenedMarkup() {
+  return (
+    <div>
+      <div>
+        <div>
+          <div>
+            <div>
+              Some UI content that doesn't rely on the props/state of the component above
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+[Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) can also be very effective at enforcing project standards and consistency. I typically start with the examples provided in the bulletproof-react repo:
+
+- [.eslintrc.js](https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js) (eslint config file)
+- [.prettierrc](https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc) (prettier config file)
+
+At minimum, I always have an eslint configuration in my projects, but I recommend running both (eslint is more for catching code smells and potential bugs, prettier is for opinionated formatting).
+
+## Maintaining Documentation
+
+Engineers don’t typically think of their job as a documentation author, but that couldn’t be further from the truth. Usually, the person best suited to write documentation is the same person working on the code/feature they are documenting. 
+
+The question typically isn’t “how can we convince our team and stakeholders that well-written documentation is worth it”. The right question to ask is “how can we make writing and maintaining documentation easier for our developers”. Everyone knows great docs are worth their weight in gold. The hard part is writing the great docs.
+
+1. Use [TypeScript](https://www.typescriptlang.org/) - I know I know, another chance for me to push it on you. But seriously, TypeScript can create all sorts of documentation that your IDE (like [Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript)) can relay to you while coding. Using TypeScript properly means that all the engineers on your team can:
+    1. analyze function signatures, parameters, and their return types without leaving the file you are working in
+    2. see auto-complete on objects with many properties or methods while typing
+    3. And more features!
+2. [Storybook](https://storybook.js.org/) for components and UI libraries - leveraging something like Storybook makes it easier for team-members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
+    1. [Storybook for React Tutorial](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)
+3. Commenting systems like [JSDoc](https://jsdoc.app/index.html) - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. I think if you did BOTH of the above options (1 and 2) this would really be not necessary, but if one or both of the options above isn’t viable for you then this may be helpful. 
+
+You should at minimum be picking 1 option above. My favorite approach mixes all 3:
+
+- Using TypeScript
+    - Prevents an entire class of bugs from arising, and gives my IDE more capabilities (intellisense, auto-complete, etc.)
+- Using Storybook for all atomic/reusable components
+    - This would make it easy for engineers AND non-engineers peripheral to the project to browse the various components and their different states (centralized interactive design system)
+- Writing jsdoc-like comments above non-react functions that you define in your codebase
+    - I would probably only write jsdoc comments on functions I define that are NOT react components or something that returns JSX (utility functions, functions that are business/domain logic, etc.)

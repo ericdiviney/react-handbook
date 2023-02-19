@@ -184,41 +184,44 @@ function NavigationGroup({ group, className }) {
 
 export const navigation = [
   {
-    title: 'Home',
+    title: 'Getting Started',
     links: [
-      { title: 'Introduction', href: '/' },
+      { title: 'The React Handbook', href: '/' },
+      { title: 'Intro to JavaScript', href: '/intro-javascript' },
+      { title: 'Intro to React', href: '/intermediate-javascript' },
     ],
   },
   {
     title: 'Guides',
     links: [
-      { title: 'Choosing a (React) Framework', href: '#' },
-      { title: 'Bundlers & Build Tools', href: '#' },
-      { title: 'Maintaining Documentation', href: '#' },
-      { title: 'Folder Structure', href: '#' },
-      { title: 'Writing Components', href: '#' },
-      { title: 'Hooks', href: '#' },
-      { title: 'Popular Utility Libraries', href: '#' },
-      { title: 'Accessibility & Semantics', href: '#' },
-      { title: 'Styling & UI Libraries', href: '#' },
-      { title: 'Global State Management', href: '#' },
-      { title: 'Server-Side React', href: '#' },
-      { title: 'Automated Testing', href: '#' },
-      { title: 'Error Handling', href: '#' },
-      { title: 'CI/CD Pipelines', href: '#' },
-      { title: 'Analytics', href: '#' },
+      { title: 'Frameworks & Build Tools', href: '/frameworks' },
+      { title: 'Project Structure', href: '/project-structure' },
+      { title: 'Ecosystem', href: '/ecosystem' },
+      { title: 'Accessibility & Semantics', href: '/semantics' },
+      { title: 'Styling / UI Libraries', href: '/styling' },
     ],
   },
   {
-    title: 'Misc',
+    title: 'Coming Soon',
     links: [
-      { title: 'Common UI Logic & Patterns', href: '#' },
-      { title: 'Production Release Checklists', href: '#' },
-      { title: 'Integrating with a CMS', href: '#' },
-      { title: 'Publishing NPM packages and libraries', href: '#' },
-      { title: 'Uncommon Networking Problems', href: '#' },
-    ],
-  },
+      { title: 'Hooks', href: '#' },
+      { title: 'Data & State Management', href: '#' },
+      { title: 'Performance', href: '#' },
+      { title: 'Server-Side Rendering', href: '#' },
+      { title: 'Automated Testing', href: '#' },
+      { title: 'Planning for Errors', href: '#' },
+      { title: 'CI/CD Pipelines', href: '#' },
+      { title: 'Analytics', href: '#' },
+    ]
+  }
+  // {
+  //   title: 'Misc',
+  //   links: [
+  //     { title: 'Production Release Checklists', href: '#' },
+  //     { title: 'Integrating with a CMS', href: '#' },
+  //     { title: 'Publishing NPM packages & libraries', href: '#' },
+  //   ],
+  // },
   // {
   //   title: 'Expertise Levels',
   //   links: [

@@ -1,0 +1,90 @@
+import { Avatar } from '@/components/Avatar'
+import { Guides } from '@/components/Guides'
+import { QuickNavigation } from '@/components/QuickNavigation'
+
+export const description =
+  'Start here if you\'ve never worked with JavaScript or TypeScript before.'
+
+# 👋  Hey, devs
+
+If you want to build web applications with React, this is the guide to get you there. {{ className: 'lead' }}
+
+We don't author much original in-depth content ourselves, but we have worked to find the highest quality material to build this guide.
+
+What we'll cover here is typically high-level, the basics, or only a preview of what you can expect when working with a feature/library. After exposing you to the basics, we'll provide some links to other writers/material to explain the concepts you need to learn, in depth.
+
+This all began as a need at the company I worked for, which was the need to bring a group of software engineers (of varying backgrounds) closer to a common baseline standard of React. Not everyone had to work on React projects — but if and when they did, we needed a more formal way to teach fundamentals and modern standards of writing React. 
+
+In order to provide what we believe is a “good” learning resource, we had to make some judgement calls. We are always open to discussion in our GitHub repository about better methods of implementation or new ideas.
+
+It may be hard to avoid arguments over ideologies, clashes in opinions, or disagreements of philosophy, but we're going to try and keep this civil! The main idea is to surface the best ideas.
+
+
+## TypeScript
+
+The basics of TypeScript can be [picked up by a javascript developer](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html) in about 10 minutes. But I want to stress that learning TS is more than just adding “types” to your variables here and there. It's really about removing the possibility of an entire class of (common) bugs that you'll likely run into if you wrote an application in pure JavaScript. It's likely you already have an internal mental model of “data structures” when you're coding in JavaScript - TypeScript just solidifies those mental models (in your head) into actual “rules” that can be applied to your code and how it is used. 
+
+The class of bugs you're getting rid of, are all of those pesky (…cannot read… ‘undefined') errors in the console. If you're ready to get started, check out some of the links below:
+
+- [No BS TS](https://www.youtube.com/playlist?list=PLNqp92_EXZBJYFrpEzdO2EapvU0GOJ09n) - A TS Video Course by Jack Herrington
+- [TS for the New Programmer](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) - TypeScript explained (in the official documentation) for beginners
+- [Beginner's TypeScript](https://www.totaltypescript.com/tutorials/beginners-typescript) - A (free) interactive video tutorial to learn the foundations of TypeScript, by Matt Pocock
+
+It is not an exaggeration to call TypeScript an entire programming language of its own… but even the most simplest TypeScript can compile to JS. So the good news is you have the option to adopt complexity only as it aids you. Sometimes you might have to temporarily level up or step outside your level of expertise to complete a feature (for example, if a public library gives you code to work with and it's more advanced TS than you are capable of ordinarily writing, thats fine to use it). But in most cases, it's very easy to incrementally adopt it in your own JS projects and code.
+
+Again, we recommend TypeScript and will create most code samples in our guides with valid TS code - but you can do as you please. 
+
+## Why React?
+
+At the very core of React is a great idea I try to strive for when creating software: *simplicity*. While there are some not-so-simple concepts to learn before truly mastering React as a tool, IMO it truly is the simplest API available today that helps web engineers build UI's.
+
+Many developers might claim that React's simplicity (or flexibility) make it ripe for misuse and lead to spaghetti-filled codebases (especially on large teams).
+
+Perhaps this is a valid critique. I've seen some pretty bad code in my days as an engineer.
+
+And maybe some people aren't wrong when they say something like “A more opinionated and rigid framework like Angular gives less room for chaotic code and provides guardrails to the team”. 
+
+But even acknowledging all of that - in all of my 8 years building for the web, my most memorable & delightful work experiences were on applications built with React. It made building UI's and frontends so much fun and simple. I want to help other engineering teams feel that same delight when working on their React codebase.
+
+## React Basics
+
+To give you a quick idea of the current state of React, check out this 2 minute clip by Fireship titled [React in 100 Seconds](https://www.youtube.com/watch?v=Tn6-PIqc4UM). While it barely scratches the surface, it quickly communicates the reasons that React is so popular today (which is important context to keep in mind). 
+
+Before diving into React, you should have a pretty solid grasp of these technologies:
+
+__Fundamentals you'll need:__
+
+- [An Interactive Guide to JavaScript Events](https://www.aleksandrhovhannisyan.com/blog/interactive-guide-to-javascript-events/) - a great article and tutorial that explains the complexity of events step-by-step. Created by Aleksandr Hovhannisyan.
+- [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous) - MDN resource explaining asynchronous concepts in JavaScript
+    - [Promises](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises) - MDN
+- [Arrays in JavaScript](https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/) - the most useful array functions (along with examples)
+
+__Learning React Basics:__
+
+- [React is Declarative](https://ui.dev/imperative-vs-declarative-programming) - An article discussing “imperative vs declarative programming” by Tyler McGinnis
+- JSX
+    - [Writing Markup with JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx) - React Documentation
+    - [Writing JavaScript Inside JSX With Curly Braces](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces) - React Documentation
+    - [JSX for React 101](https://www.codecademy.com/learn/react-101/modules/react-101-jsx-u/cheatsheet) - Codecademy.com
+- [React Documentation](https://beta.reactjs.org/learn)
+    - [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react)
+    - [Responding to Events](https://beta.reactjs.org/learn/responding-to-events) (clicking, typing, etc.)
+    - [Describing the UI](https://beta.reactjs.org/learn/describing-the-ui)
+    - [Managing State](https://beta.reactjs.org/learn/managing-state) (components)
+    - [Built-In React Hooks](https://beta.reactjs.org/reference/react)
+        - [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/) - a very detailed article on the nuance of useEffect (read this as many times you need until it clicks)
+        - [Myths about useEffect](https://epicreact.dev/myths-about-useeffect/) - learn the 'gotchas' of hooks
+    - [(Advanced) Escape Hatches](https://beta.reactjs.org/learn/escape-hatches)
+- [Rendering in React](https://beta.reactjs.org/learn/render-and-commit)
+    - [Why React Re-Renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
+    - [A (mostly) complete guide to react rendering behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/)
+- [The Beginner's Guide to React](https://egghead.io/courses/the-beginner-s-guide-to-react) - a free video course by Kent C. Dodds
+
+__Misc:__
+
+- [Egghead.io (react lessons - free tier)](https://egghead.io/q/react?access_state=free) - high quality react tutorials
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (Mozilla Developer Network) JavaScript / Browser API documentation- you'll reference this frequently while building software with JavaScript
+
+## Ready for more?
+
+Once you're comfortable with all of the topics presented above, read about all of the [topics](/topics) we try to cover.

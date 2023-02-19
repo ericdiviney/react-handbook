@@ -7,24 +7,24 @@ import { UserIcon } from '@/components/icons/UserIcon'
 
 const resources = [
   {
-    href: '/beginner',
-    name: 'Beginner',
+    href: '/intro-javascript',
+    name: 'Beginner to JavaScript',
     description:
       'Starting points for developers not familiar with Javascript or Typescript.',
     icon: UserIcon,
   },
   {
-    href: '/intermediate',
-    name: 'Intermediate',
+    href: '/intermediate-javascript',
+    name: 'Intermediate Web Dev',
     description:
       'For developers familiar with web development technologies (HTML, CSS, JS/TS) but not familiar with React.',
     icon: ChatBubbleIcon,
   },
   {
-    href: '/advanced',
-    name: 'Advanced',
+    href: '/topics',
+    name: 'Experienced Engineer',
     description:
-      'For React developers, a place to dive in and seewhat material we cover on this site.',
+      'For experienced React developers, dive in and see what material we cover on this site.',
     icon: AcademicCapIcon,
   },
 ]
@@ -32,17 +32,14 @@ const resources = [
 export function QuickNavigation() {
   return (
     <div className="my-16 xl:max-w-none">
-      <div className="flex items-center justify-start">
-        <h3 className="mb-4">Quick Start</h3>
-      </div>
       <div className="grid grid-cols-1 gap-8 not-prose xl:grid-cols-3">
         {resources.map((resource) => (
           <Card key={resource.href} resource={resource} />
         ))}
       </div>
-      <div className="mt-5 not-prose">
+      <div className="justify-end mt-4 text-right">
         <Button
-          href="/sdks"
+          href="/topics"
           variant="text"
           arrow="right"
         >

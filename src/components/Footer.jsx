@@ -57,7 +57,7 @@ function PageNavigation() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex mb-24">
       {previousPage && (
         <div className="flex flex-col items-start gap-3">
           <PageLink label="Previous" page={previousPage} previous />
@@ -103,19 +103,22 @@ function SocialLink({ href, icon: Icon, children }) {
 
 function SmallPrint() {
   return (
-    <div className="flex flex-col items-center justify-between gap-5 pt-8 border-t border-zinc-900/5 dark:border-white/5 sm:flex-row">
-      <p className="text-xs text-zinc-600 dark:text-zinc-400">
-        &copy; Copyright {new Date().getFullYear()}. All rights reserved.
-      </p>
-      <div className="flex gap-4">
-        <SocialLink href="https://twitter.com/EricDiviney" icon={TwitterIcon}>
-          Follow us on Twitter
-        </SocialLink>
-        <SocialLink href="https://github.com/ericdiviney/react-handbook/" icon={GitHubIcon}>
-          Follow us on GitHub
-        </SocialLink>
+    <>
+      <Feedback />
+      <div className="flex flex-col items-center justify-between gap-5 pt-4 border-t border-zinc-900/5 dark:border-white/5 sm:flex-row">
+        <p className="text-xs text-zinc-600 dark:text-zinc-400">
+          &copy; Copyright {new Date().getFullYear()}. All rights reserved.
+        </p>
+        <div className="flex gap-4">
+          <SocialLink href="https://twitter.com/EricDiviney" icon={TwitterIcon}>
+            Follow us on Twitter
+          </SocialLink>
+          <SocialLink href="https://github.com/ericdiviney/react-handbook/" icon={GitHubIcon}>
+            Follow us on GitHub
+          </SocialLink>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -123,8 +126,7 @@ export function Footer() {
   let router = useRouter()
 
   return (
-    <footer className="max-w-2xl pb-16 mx-auto space-y-10 lg:max-w-5xl">
-      <Feedback />
+    <footer className="max-w-2xl pb-16 mx-auto space-y-5 lg:max-w-5xl">
       <PageNavigation />
       <SmallPrint />
     </footer>
