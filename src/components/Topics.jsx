@@ -38,7 +38,7 @@ const topics = [
 	},
 	{
 		name: 'Data & State Management (coming soon)',
-		description: 'We’ll help you choose the right data-fetching & state-management library for your use-case.',
+		description: 'Choose the right data-fetching & state-management library for your use-case.',
 		href: '#',
 	},
 	{

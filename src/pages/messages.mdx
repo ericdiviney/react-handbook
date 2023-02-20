@@ -1,5 +1,5 @@
 export const description =
-  'On this page, we’ll dive into the different message endpoints you can use to manage messages programmatically.'
+  'On this page, we'll dive into the different message endpoints you can use to manage messages programmatically.'
 
 # Messages
 
@@ -112,7 +112,7 @@ The message model contains all the information about the messages and attachment
             "last_active_at": 705103200,
             "created_at": 692233200
           },
-          "message": "It’s a nice night for a neck injury.",
+          "message": "It's a nice night for a neck injury.",
           "reactions": [],
           "attachments": [],
           "read_at": 705103200,
@@ -167,7 +167,7 @@ The message model contains all the information about the messages and attachment
     curl https://api.protocol.chat/v1/messages \
       -H "Authorization: Bearer {token}" \
       -d conversation_id="xgQQXg3hrtjh7AvZ" \
-      -d message="You’re what the French call ‘les incompetents.’"
+      -d message="You're what the French call ‘les incompetents.'"
     ```
 
     ```js
@@ -177,7 +177,7 @@ The message model contains all the information about the messages and attachment
 
     await client.messages.send({
       conversation_id: 'xgQQXg3hrtjh7AvZ',
-      message: 'You’re what the French call ‘les incompetents.’',
+      message: 'You're what the French call ‘les incompetents.'',
     })
     ```
 
@@ -188,7 +188,7 @@ The message model contains all the information about the messages and attachment
 
     client.messages.send(
       conversation_id="xgQQXg3hrtjh7AvZ",
-      message="You’re what the French call ‘les incompetents.’",
+      message="You're what the French call ‘les incompetents.'",
     )
     ```
 
@@ -197,7 +197,7 @@ The message model contains all the information about the messages and attachment
 
     $client->messages->send([
       'conversation_id' => 'xgQQXg3hrtjh7AvZ',
-      'message' => 'You’re what the French call ‘les incompetents.’',
+      'message' => 'You're what the French call ‘les incompetents.'',
     ]);
     ```
 
@@ -215,7 +215,7 @@ The message model contains all the information about the messages and attachment
         "last_active_at": 705103200,
         "created_at": 692233200
       },
-      "message": "You’re what the French call ‘les incompetents.’",
+      "message": "You're what the French call ‘les incompetents.'",
       "reactions": [],
       "attachments": [],
       "read_at": null,
@@ -282,7 +282,7 @@ The message model contains all the information about the messages and attachment
         "last_active_at": 705103200,
         "created_at": 692233200
       },
-      "message": "I’m traveling with my dad. He’s at a meeting. I hate meetings.",
+      "message": "I'm traveling with my dad. He's at a meeting. I hate meetings.",
       "reactions": [],
       "attachments": [],
       "read_at": 705103200,
