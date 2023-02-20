@@ -1,39 +1,36 @@
 import { Guides } from '@/components/Guides'
-import { Resources } from '@/components/Resources'
-import { HeroPattern } from '@/components/HeroPattern'
+import { QuickNavigation } from '@/components/QuickNavigation'
 
 export const description =
-  'Learn everything there is to know about the Protocol API and integrate Protocol into your product.'
+  'Explore today\'s best practices in the React ecosystem.'
 
 export const sections = [
-  { title: 'Guides', id: 'guides' },
-  { title: 'Resources', id: 'resources' },
+  { title: 'Our Mission', id: 'our-mission' },
 ]
 
-<HeroPattern />
+<QuickNavigation /> 
 
-# API Documentation
+## Our Mission
 
-Use the Protocol API to access contacts, conversations, group messages, and more and seamlessly integrate your product into the workflows of dozens of devoted Protocol users. {{ className: 'lead' }}
+React Handbook is for web developers building React applications to quickly digest the React ecosystem and learn what they need to. {{ className: 'lead' }}
 
-<div className="not-prose mb-16 mt-6 flex gap-3">
-  <Button href="/quickstart" arrow="right" children="Quickstart" />
-  <Button href="/sdks" variant="outline" children="Explore SDKs" />
-</div>
+## "What they need to?" {{ anchor: false }}
 
-## Getting started {{ anchor: false }}
+That's right. Think of this website as a collection of best practices and widely used libraries that you can depend on for your applications. The main point is to help web developers learn/research only what they need to learn while building React applications. Maybe that's the whole kitchen sink, maybe that's just a particular subject like writing unit tests. {{ className: 'lead' }}
 
-To get started, create a new application in your [developer settings](#), then read about how to make requests for the resources you need to access using our HTTP APIs or dedicated client SDKs. When your integration is ready to go live, publish it to our [integrations directory](#) to reach the Protocol community. {{ className: 'lead' }}
+## Another React course? {{ anchor: false }}
+
+This isn't really meant to be a course that you start and finish... It's a bookmark, meant to point you in the right direction when you encounter something in the React ecosystem that you'd like to learn more about.
+
+I want to help you avoid spending countless hours wondering through stale, low-effort, and sometimes outright *wrong* articles/videos/courses.
+
+My goal is by using this site, you'll spend less time searching the internet for good learning resources and instead spend more time shipping your React applications in a way that will scale.
 
 <div className="not-prose">
   <Button
     href="/sdks"
     variant="text"
     arrow="right"
-    children="Get your API key"
+    children="Read more about the inspiration for this website"
   />
 </div>
-
-<Guides />
-
-<Resources />

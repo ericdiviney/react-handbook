@@ -1,2 +1,2 @@
-# react-handbook
-Discover what you need to build and ship maintainable React applications.
+# React Handbook
+Discover the best resources for building and shipping maintainable React applications.

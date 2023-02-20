@@ -1,0 +1,47 @@
+export const description = 'The best ways to style your React application.'
+
+# Styling & UI Libraries
+
+\* Helpful tip: before using any libraries below, you should check your IDE for plugins that might improve the developer experience of using it. For example, I love to use Tailwind in my projects, so I use the [Tailwind IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) plugin (recommends classnames in the auto-complete dropdown) and the [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind) plugin (enforces consistent ordering of classnames in my markup) in Visual Studio Code.
+
+Small things like the consistent ordering of utility classnames are hard to think of ahead of time, but can greatly improve the readability of a codebase (as well as enforce code consistency without requiring any extra effort from the engineers). Always be on the lookout for small plugins like these that make the entire teams' life easier.
+
+## Styling Solutions
+
+- utility approach
+    - [tailwindcss](https://tailwindcss.com/)
+    - [tachyons](https://tachyons.io/)
+- Write your own
+    - [stitches](https://stitches.dev/)
+    - [styled-components](https://styled-components.com/)
+    - [vanilla-extract](https://github.com/seek-oss/vanilla-extract)
+    - [emotion](https://emotion.sh/docs/introduction)
+    - [CSS modules](https://github.com/css-modules/css-modules)
+    - [linaria](https://github.com/callstack/linaria)
+
+## Component Libraries
+
+Most UI libraries will come with a “theme” or global way to configure certain things like colors, fonts, etc. — but in general, the components render with opinionated styles already applied. If you need a lot of customization or control over the presentation of the UI, you might prefer a headless solution. Many times its easier to style a few needed components from scratch than try to override the styles provided by the underlying library (this also results in excess CSS code being sent to the browser probably resulting in slower load times in your app).
+
+- [MUI](https://mui.com/)
+- [Twitter Bootstrap](https://getbootstrap.com/)
+- [Chakra UI](https://chakra-ui.com/)
+- [AntDesign](https://ant.design/)
+- [Blueprint](https://blueprintjs.com/)
+- [FluentUI](https://react.fluentui.dev/?path=/docs/concepts-introduction--page)
+- [Mantine](https://mantine.dev/)
+- [pico](https://picocss.com/)
+
+## Headless Component Libraries
+
+- [radix-ui](https://www.radix-ui.com/)
+- [headless-ui](https://headlessui.com/)
+- [react-aria](https://react-spectrum.adobe.com/react-aria/)
+- [reakit](https://reakit.io/)
+
+## Recommended Combinations
+
+- [Radix UI](https://www.radix-ui.com/) + [tailwind](https://tailwindcss.com/)
+- [Headless UI](https://headlessui.dev/) + [tailwind](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/) + [stitches](https://stitches.dev/)
+- [Chakra UI](https://chakra-ui.com/) + [emotion](https://emotion.sh/docs/introduction)
