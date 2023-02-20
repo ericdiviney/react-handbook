@@ -1,2 +1,3 @@
 # React Handbook
-Discover the best resources for building and shipping maintainable React applications.
+
+If you want to build web applications with React, this is the guide to get you there. 
