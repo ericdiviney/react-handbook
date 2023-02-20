@@ -17,7 +17,6 @@ const nextConfig = {
   basePath: '/react-handbook',
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  target: 'serverless',
   experimental: {
     scrollRestoration: true,
   },
