@@ -7,22 +7,22 @@ import { UserIcon } from '@/components/icons/UserIcon'
 
 const resources = [
   {
-    href: '/intro-javascript',
-    name: 'Beginner to JavaScript',
+    href: '/javascript-basics',
+    name: 'JavaScript Basics',
     description:
       'Starting points for developers not familiar with Javascript or Typescript.',
     icon: UserIcon,
   },
   {
-    href: '/intermediate-javascript',
-    name: 'Intermediate Web Dev',
+    href: '/react-basics',
+    name: 'React Basics',
     description:
       'For developers familiar with web development technologies (HTML, CSS, JS/TS) but not familiar with React.',
     icon: ChatBubbleIcon,
   },
   {
     href: '/topics',
-    name: 'Experienced Engineer',
+    name: 'Advanced React',
     description:
       'For experienced React developers, dive in and see what material we cover on this site.',
     icon: AcademicCapIcon,

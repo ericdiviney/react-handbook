@@ -187,8 +187,9 @@ export const navigation = [
     title: 'Getting Started',
     links: [
       { title: 'The React Handbook', href: '/' },
-      { title: 'Intro to JavaScript', href: '/intro-javascript' },
-      { title: 'Intro to React', href: '/intermediate-javascript' },
+      { title: 'JavaScript Basics', href: '/javascript-basics' },
+      { title: 'React Basics', href: '/react-basics' },
+      { title: 'Advanced React', href: '/topics' }
     ],
   },
   {
