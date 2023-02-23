@@ -208,6 +208,11 @@ export const navigation = [
       { title: 'Hooks', href: '#' },
       { title: 'Data & State Management', href: '#' },
       { title: 'Performance', href: '#' },
+    ]
+  },
+  {
+    title: 'Later',
+    links: [
       { title: 'Server-Side Rendering', href: '#' },
       { title: 'Automated Testing', href: '#' },
       { title: 'Planning for Errors', href: '#' },
