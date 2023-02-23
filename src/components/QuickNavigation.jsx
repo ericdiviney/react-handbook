@@ -1,7 +1,7 @@
 import { AcademicCapIcon } from '@/components/icons/AcademicCapIcon'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
-import { ChatBubbleIcon } from '@/components/icons/ChatBubbleIcon'
+import { BookIcon } from '@/components/icons/BookIcon'
 import { UserIcon } from '@/components/icons/UserIcon'
 
 
@@ -18,7 +18,7 @@ const resources = [
     name: 'React Basics',
     description:
       'For developers familiar with web development technologies (HTML, CSS, JS/TS) but not familiar with React.',
-    icon: ChatBubbleIcon,
+    icon: BookIcon,
   },
   {
     href: '/topics',
