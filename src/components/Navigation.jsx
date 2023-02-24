@@ -215,7 +215,7 @@ export const navigation = [
     links: [
       { title: 'Server-Side Rendering', href: '#' },
       { title: 'Automated Testing', href: '#' },
-      { title: 'Planning for Errors', href: '#' },
+      { title: 'Error Handling & Boundaries', href: '#' },
       { title: 'CI/CD Pipelines', href: '#' },
       { title: 'Analytics', href: '#' },
     ]
