@@ -2,75 +2,116 @@ export const description = 'Popular plugins and libraries to use in your React p
 
 # Ecosystem
 
+React boasts a vast ecosystem of open-source libraries, plugins, and features that can help your team rapidly develop UIs and applications.
+
+Generally, to make our list below, the library in question needs to have support and active development/maintenance. The rules are not strict, something like 100K+ weekly downloads on npm and a release within the last 18-24 months.
+
 ---
-
-## Utils / General
-
-- [date-fns](https://date-fns.org/)
-- [lodash](https://lodash.com/)
-- [tanstack-query](https://tanstack.com/query/latest)
-
-## Routing
-
-- [react-router](https://reactrouter.com/en/main)
-- [tanstack-router](https://tanstack.com/router/v1)
-- [reach-router](https://reach.tech/router/)
-- [wouter](https://www.npmjs.com/package/wouter)
-
-## Headless UI
-
-- [tanstack-table](https://tanstack.com/table/v8)
-- [tanstack-virtual](https://tanstack.com/virtual/v3)
-- [radix-ui](https://www.radix-ui.com/)
-- [headless-ui](https://headlessui.com/)
-- [react-aria](https://react-spectrum.adobe.com/react-aria/)
-- [reakit](https://reakit.io/)
-
-## Animations
-
-- [framer/motion](https://github.com/framer/motion)
-- [react-spring](https://github.com/pmndrs/react-spring)
 
 ## Hooks
 
 - [usehooks.com](https://usehooks.com/)
 - [usehooks-ts.com](https://usehooks-ts.com/)
 
-## Components / DOM
+## Utility Libraries
 
-- [react-select](https://github.com/JedWatson/react-select) - The Select Component for React
-- [react-hook-form](https://github.com/react-hook-form/react-hook-form) - React Hooks for forms validation
-- [react-final-form](https://github.com/final-form/react-final-form) - High performance subscription-based form state management for React
-- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - Beautiful and accessible drag and drop for lists with React
-- [react-dnd](https://github.com/react-dnd/react-dnd) - Drag and Drop for React
-- [react-draggable](https://github.com/mzabriskie/react-draggable) - React draggable component
-- [react-resizable](https://github.com/strml/react-resizable) - A simple React component that is resizable with a handle
-- [react-grid-layout](https://github.com/strml/react-grid-layout) - A draggable and resizable grid layout with responsive breakpoints
-- [vx](https://github.com/airbnb/visx) - Visualization components
-- [victory](https://github.com/FormidableLabs/victory) - A collection of composable React components for building interactive data visualizations
-- [react-vis](https://github.com/uber/react-vis) - Data Visualization Components
-- [recharts](https://github.com/recharts/recharts) - Redefined chart library built with React and D3
-- [nivo](https://github.com/plouc/nivo) - Provides a rich set of data visualization components, built on top of the D3 and React libraries
-- [react-table](https://github.com/tannerlinsley/react-table/) - A lightweight, fast and extendable datagrid for React
-- [react-data-grid](https://github.com/adazzle/react-data-grid) - Excel-like grid component built with React
-- [react-dates](https://github.com/airbnb/react-dates) - An easily internationalizable, mobile-friendly datepicker library for the web
-- [react-datepicker](https://github.com/Hacker0x01/react-datepicker/) - ReactJS Datepicker
-- [react-intl](https://github.com/yahoo/react-intl) - Internationalize React apps
-- [react-i18next](https://github.com/i18next/react-i18next) - Internationalization for React done right
-- [react-joyride](https://github.com/gilbarbara/react-joyride) - Create guided tours for your apps
-- [react-virtualized](https://github.com/bvaughn/react-virtualized) - React components for efficiently rendering large lists and tabular data
-- [react-window](https://github.com/bvaughn/react-window) - React components for efficiently rendering large lists and tabular data
-- [react-text-mask](https://github.com/text-mask/text-mask) - Input mask for React
-- [react-loading-skeleton](https://github.com/dvtng/react-loading-skeleton) - Create skeleton screens that automatically adapt to your app
-- [react-archer](https://github.com/pierpo/react-archer) - Draw arrows between React elements
-- [react-pdf-viewer](https://github.com/phuoc-ng/react-pdf-viewer) - A PDF viewer made for React
-- [react-device-detect](https://github.com/duskload/react-device-detect) - Detect device for React
-- [react-advanced-cropper](https://github.com/Norserium/react-advanced-cropper) - An advanced React component for image cropping
-- [swiper](https://github.com/nolimits4web/swiper) - modern mobile touch slider
+Utility libraries typically bring an array of functions at your disposal, either all around a single domain (such as dates/timezones) or more generic (array sorting, object cloning, deep comparisons, etc.)
 
-(todo: split into)
-- form componenets (datepickers, dropdowns, buttons, form libraries, input masking etc.)
-- interactive (drag-n-drop, table, visualizations, resizable, grid-layout, guided tours, pdf viewer, cropper, carousels/swipers)
-- passive (loading states, virtualization, internationalization, device detection, polyfills,)
+- [date-fns](https://date-fns.org/)
+- [use-local-storage-state](https://www.npmjs.com/package/use-local-storage-state)
+- [react-cookie](https://www.npmjs.com/package/@shopify/react-cookie)
+- [lodash](https://lodash.com/)
 
-View more [here](https://github.com/enaqx/awesome-react#react-awesome-components) and [here](https://github.com/brillout/awesome-react-components)
+## Forms & Inputs
+
+The form libraries below can help you build complex forms, and the input components can bring non-standard browser input types (such as datepickers, multi-select dropdowns, etc.) into your application.
+
+- [react-hook-form](https://github.com/react-hook-form/react-hook-form)
+- [react-final-form](https://github.com/final-form/react-final-form)
+- [rc-field-form](https://www.npmjs.com/package/rc-field-form)
+- [formik](https://github.com/jaredpalmer/formik)
+
+### Form UI & Inputs
+
+For basic form elements like dropdowns, radio groups, checkboxes, we recommend [Radix](https://www.radix-ui.com/).
+
+Input masking
+
+- [react-number-format](https://www.npmjs.com/package/react-number-format)
+- [react-text-mask](https://www.npmjs.com/package/react-text-mask)
+- [react-imask](https://www.npmjs.com/package/react-imask)
+
+Select / Multi-Select
+
+- [react-select](https://github.com/JedWatson/react-select)
+- [rc-tree-select](https://www.npmjs.com/package/rc-tree-select)
+
+Datepickers
+
+- [react-dates](https://github.com/airbnb/react-dates)
+- [react-datepicker](https://github.com/Hacker0x01/react-datepicker/)
+- [react-calendar](https://www.npmjs.com/package/react-calendar)
+- [react-day-picker](https://www.npmjs.com/package/react-day-picker)
+
+## Advanced UI
+
+Headless UI Libraries
+
+- [radix-ui](https://www.radix-ui.com/)
+- [headless-ui](https://headlessui.com/)
+- [react-aria](https://react-spectrum.adobe.com/react-aria/)
+- [reakit](https://reakit.io/)
+
+Animations / Loading States
+
+- [framer/motion](https://github.com/framer/motion)
+- [react-spring](https://github.com/pmndrs/react-spring)
+
+Drag & Drop / Resizing Elements / Drawing
+
+- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd) - Beautiful and accessible drag and drop for lists with React
+- [react-dnd](https://github.com/react-dnd/react-dnd) - Drag and Drop for React
+- [react-draggable](https://github.com/mzabriskie/react-draggable) - React draggable component
+- [react-resizable](https://github.com/strml/react-resizable) - A simple React component that is resizable with a handle
+- [react-grid-layout](https://github.com/strml/react-grid-layout) - A draggable and resizable grid layout with responsive breakpoints
+- [react-advanced-cropper](https://github.com/Norserium/react-advanced-cropper) - An advanced React component for image cropping
+- [react-archer](https://github.com/pierpo/react-archer) - Draw arrows between React elements
+
+Charts & Data Visualization
+
+- [vx](https://github.com/airbnb/visx) - Visualization components
+- [victory](https://github.com/FormidableLabs/victory) - A collection of composable React components for building interactive data visualizations
+- [react-vis](https://github.com/uber/react-vis) - Data Visualization Components
+- [recharts](https://github.com/recharts/recharts) - Redefined chart library built with React and D3
+- [nivo](https://github.com/plouc/nivo) - Provides a rich set of data visualization components, built on top of the D3 and React libraries
+
+Tables / Data-Grids / Spreadsheets
+
+- [react-table](https://github.com/tannerlinsley/react-table/) - A lightweight, fast and extendable datagrid for React
+- [react-data-grid](https://github.com/adazzle/react-data-grid) - Excel-like grid component built with React
+
+Spotlight / File Viewers / Carousels
+
+- [react-joyride](https://github.com/gilbarbara/react-joyride) - Create guided tours for your apps
+- [react-pdf-viewer](https://github.com/phuoc-ng/react-pdf-viewer) - A PDF viewer made for React
+- [swiper](https://github.com/nolimits4web/swiper) - modern mobile touch slider
+
+## Misc
+
+Virtualization
+
+- [react-window](https://www.npmjs.com/package/react-window)
+- [tanstack-virtual](https://tanstack.com/virtual/v3)
+- [react-virtuoso](https://www.npmjs.com/package/react-virtuoso)
+
+Routing
+
+- [react-router](https://reactrouter.com/en/main)
+- [tanstack-router](https://tanstack.com/router/v1)
+- [reach-router](https://reach.tech/router/)
+- [wouter](https://www.npmjs.com/package/wouter)
+
+Internationalization (I18N)
+
+- [react-i18next](https://www.npmjs.com/package/react-i18next)
+- [react-intl](https://www.npmjs.com/package/react-intl)
