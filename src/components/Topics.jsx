@@ -32,9 +32,9 @@ const topics = [
 		href: '/styling',
 	},
 	{
-		name: 'Hooks (coming soon)',
+		name: 'Hooks',
 		description: 'Jump ahead of the learning curve by reading outside opinions on using the React API (like useState and useEffect effectively.',
-		href: '/understanding-hooks',
+		href: '/hooks',
 	},
 	{
 		name: 'Data & State Management (coming soon)',
