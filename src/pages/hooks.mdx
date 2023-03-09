@@ -49,9 +49,9 @@ Tips:
 
 `useRef` - this is very similar to useState, except updates to the state value (like setState()) do NOT trigger re-renders
 
-`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared EVERY single render-cycle
+`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle
 
-`useReducer` - we especially recommend this if there are many calls to UPDATE state from your component. When to reach for useReducer over useState is very nuanced, but I tend to relate it to how many values I'm tracking and how often they are updating. As the number of values and number of updates to those values in my component increase, the more likely I am to consider useReducer instead of plain useState.
+`useReducer` - we especially recommend this if there are many calls to update state from your component. When to reach for useReducer over useState is very nuanced, but I tend to relate it to how many values I'm tracking and how often they are updating. As the number of values and number of updates to those values in my component increase, the more likely I am to consider useReducer instead of plain useState.
 
 ## Ready to Use Hooks
 
