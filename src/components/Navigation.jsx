@@ -200,12 +200,12 @@ export const navigation = [
       { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
       { title: 'Styling / UI Libraries', href: '/styling' },
+      { title: 'Hooks', href: '/hooks' },
     ],
   },
   {
     title: 'Coming Soon',
     links: [
-      { title: 'Hooks', href: '#' },
       { title: 'Data & State Management', href: '#' },
       { title: 'Performance', href: '#' },
     ]
