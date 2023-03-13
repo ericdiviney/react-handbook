@@ -3,7 +3,7 @@ import { Card } from '@/components/Card'
 const topics = [
 	{
 		name: 'React Frameworks & Build Tools',
-		description: 'What to consider when starting a new react project (or potential migration). Dive into the world of React meta-frameworks and the tools that power them.',
+		description: 'What to consider when starting a new React project (or potential migration). Dive into the world of React meta-frameworks and the tools that power them.',
 		href: '/frameworks',
 	},
 	{
@@ -33,7 +33,7 @@ const topics = [
 	},
 	{
 		name: 'Hooks',
-		description: 'Jump ahead of the learning curve by reading outside opinions on using the React API (like useState and useEffect effectively.',
+		description: 'Get ahead of the learning curve on using the React API (like useState and useEffect).',
 		href: '/hooks',
 	},
 	{

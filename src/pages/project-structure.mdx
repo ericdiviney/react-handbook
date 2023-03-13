@@ -1,16 +1,16 @@
 export const description = 'How to structure your React project and format your components.'
 
-# **Project Standards for High-Quality Code**
+# Project Standards for High-Quality Code
 
 When it comes to organizing React SPAs a great reference is:
 
-- **[alan2207/bulletproof-react](https://github.com/alan2207/bulletproof-react)**
+- [alan2207/bulletproof-react](https://github.com/alan2207/bulletproof-react)
 
-It is a goldmine of great ideas to help you keep your codebase simple and clean (while also scaling well for very large applications). I tend to refer to this repo after I've determined I need a particular feature/technology when I'm asking “how/where” I should put these features/technology in my project. Not the “why” - but the “where”.
+It is a goldmine of great ideas to help you keep your codebase simple and clean (while also scaling well for very large applications). I tend to refer to this repo after I've determined I need a particular feature/technology when I'm asking "how/where" I should put these features/technology in my project. Not the "why" - but the "where".
 
-## **Folder Structure**
+## Folder Structure
 
-If you need a scalable folder structure for your React SPA, I recommend this one from **[bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md)**. If you use a meta-framework, these conventions will likely still work fine (keep in mind server-side rendering of React components might require a tweak to this). Having said that, there are some slightly unique things to be aware of when building with [Next.js](https://github.com/alan2207/bulletproof-react/issues/21) or [Remix](https://remix.run/docs/en/1.14.0/file-conventions/route-files-v2#folders-for-organization) (both frameworks are moving towards “nested routes” which is a way to avoid network request waterfalls that slow our applications down - doing this correctly might require some changes to your folder structure, but it will probably be worth it in terms of the increase in performance you'll see).
+If you need a scalable folder structure for your React SPA, I recommend this one from [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md). If you use a meta-framework, these conventions will likely still work fine (keep in mind server-side rendering of React components might require a tweak to this). Having said that, there are some slightly unique things to be aware of when building with [Next.js](https://github.com/alan2207/bulletproof-react/issues/21) or [Remix](https://remix.run/docs/en/1.14.0/file-conventions/route-files-v2#folders-for-organization) (both frameworks are moving towards "nested routes" which is a way to avoid network request waterfalls that slow our applications down - doing this correctly might require some changes to your folder structure, but it will probably be worth it in terms of the increase in performance you'll see).
 
 ```tsx
 src
@@ -37,7 +37,7 @@ src
     |
     +-- stores      # state stores for a specific feature
     |
-    +-- types       # typescript types for TS specific feature domain
+    +-- types       # TypeScript types for TS specific feature domain
     |
     +-- utils       # utility functions for a specific feature
     |
@@ -63,12 +63,12 @@ src
 
 As someone who's fallen victim to analysis paralysis in this area, here is some great advice: don't spend more than 5 minutes trying to plan a folder structure that will meet all of your future project needs. It's usually better to simply organize as you go. If you don't know what to do yet - just keep everything in the same flat folder (src). Once you get 10+ files in there that each has its own concern, you'll start to see the patterns that should dictate your folder structure.
 
-## **Component Format**
+## Component Format
 
-- **[Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript)** - advice for writing clear, concise code in javascript
-- **[Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet)** - naming things consistently gets easier with this advice
+- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) - advice for writing clear, concise code in javascript
+- [Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet) - naming things consistently gets easier with this advice
 
-***Writing Functional React Components***
+**Writing Functional React Components**
 
 In general, you should think of the file contents in your React components as appearing in this order:
 
@@ -176,26 +176,26 @@ function ShortenedMarkup() {
 }
 ```
 
-**[Eslint](https://eslint.org/)** and **[Prettier](https://prettier.io/)** can also be very effective at enforcing project standards and consistency. I typically start with the examples provided in the bulletproof-react repo:
+[Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) can also be very effective at enforcing project standards and consistency. I typically start with the examples provided in the bulletproof-react repo:
 
-- **[.eslintrc.js](https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js)** (eslint config file)
-- **[.prettierrc](https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc)** (prettier config file)
+- [.eslintrc.js](https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js) (eslint config file)
+- [.prettierrc](https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc) (prettier config file)
 
 At a minimum, I always have an eslint configuration in my projects, but I recommend running both (eslint is more for catching code smells and potential bugs, and prettier is for opinionated formatting).
 
-## **Maintaining Documentation**
+## Maintaining Documentation
 
 Getting engineers to properly document their code can sometimes be difficult (and slow down team productivity!)
 
-The question typically isn't “how can we convince our team and stakeholders that well-written documentation is worth it”. The right question to ask is “how can we make writing and maintaining documentation easier for our developers”. Everyone knows great docs are worth their weight in gold. The hard part is writing great docs.
+The question typically isn't "how can we convince our team and stakeholders that well-written documentation is worth it". The right question to ask is "how can we make writing and maintaining documentation easier for our developers". Everyone knows great docs are worth their weight in gold. The hard part is writing great docs.
 
-1. Use **[TypeScript](https://www.typescriptlang.org/)** - I know I know, another chance for me to push it on you. But seriously, TypeScript can create all sorts of documentation that your IDE (like **[Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript)**) can relay to you while coding. Using TypeScript properly means that all the engineers on your team can:
-    1. analyze function signatures, parameters, and their return types without leaving the file you are working in
-    2. see auto-complete on objects with many properties or methods while typing
-    3. And more features!
-2. **[Storybook](https://storybook.js.org/)** for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
-    1. **[Storybook for React Tutorial](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)**
-3. Commenting systems like **[JSDoc](https://jsdoc.app/index.html)** - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. I think if you did BOTH of the above options (1 and 2) this would really be not necessary, but if one or both of the options above isn't viable for you then this may be helpful.
+1. Use [TypeScript](https://www.typescriptlang.org/) - TypeScript can create all sorts of documentation that your IDE (like [Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript)) can relay to you while coding. Using TypeScript properly means that all the engineers on your team can:
+    1. Analyze function signatures, parameters, and their return types without leaving the file you are working in
+    2. Auto-complete typing
+    3. More!
+2. [Storybook](https://storybook.js.org/) for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
+    1. [Storybook for React Tutorial](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)
+3. Commenting systems like [JSDoc](https://jsdoc.app/index.html) - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. I think if you did BOTH of the above options (1 and 2) this would really be not necessary, but if one or both of the options above isn't viable for you then this may be helpful.
 
 You should at minimum be picking 1 option above. My favorite approach mixes all 3:
 
@@ -204,5 +204,5 @@ You should at minimum be picking 1 option above. My favorite approach mixes all 
 - Using Storybook for all atomic/reusable components
     - This would make it easy for engineers AND non-engineers peripheral to the project to browse the various components and their different states (centralized interactive design system)
 - Writing jsdoc-like comments above non-react functions that you define in your codebase
-    - I would probably only write jsdoc comments on functions I define that are NOT react components or something that returns JSX (utility functions, functions that are business/domain logic, data-fetching, etc.)
+    - I would probably only write jsdoc comments on functions I define that are NOT React components or something that returns JSX (utility functions, functions that are business/domain logic, data-fetching, etc.)
 
