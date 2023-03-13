@@ -8,37 +8,42 @@ export const sections = [
 
 # Accessibility & Semantics
 
-If you haven't heard of “semantic HTML” - it's a fancy way of saying you should use the right element for the job. For the elements you definitely need to worry about getting correct - descriptions of the elements are below. Other elements (like `<div>` or `<span>`) can be used more generally and flexibly (but should not be used in place of the semantically-correct alternative, again listed below).
+If you haven't heard of "semantic HTML" - it's a fancy way of saying you should use the right element for the job. For the elements you definitely need to worry about getting correct - descriptions are below. Other elements (like `<div>` or `<span>`) can be used more generally and flexibly (but should not be used in place of the semantically-correct alternative, again listed below).
 
-*A11Y = Accessibility
+- A11Y = Accessibility
 
 ## Why?
 
 To summarize: there are devices that help people with disabilities (such as blindness) navigate and use the internet - and by using the elements correctly as described below you can enable a much better user experience in your application for those people using technology like screen readers.
 
-- `<header>` used to specify the header for a web document or the header for a section of a web document. Headers usually contain a group of introductory content e.g. navigation aids, headings, logos etc.
-- `<nav>` used to enclose navigational links within a web document or to other resources.
-- `<aside>` used to represent a section of a web document with content that is indirectly related to the document's main content.
-- `<article>` used to represent content that is independent, self-contained and reusable.
+- `<header>` used to specify the header for a web document or the header for a section of a web document. Headers usually contain a group of introductory content e.g. navigation aids, headings, logos etc.
+- `<nav>` used to enclose navigational links within a web document or to other resources.
+- `<aside>` used to represent a section of a web document with content that is indirectly related to the document's main content.
+- `<article>` used to represent content that is independent, self-contained and reusable.
 - `<section>` used to define a section of standalone content within a web document. Sections can contain content as well as other HTML elements that add meaning to the content.
-- `<h1>` — `<h6>` used to represent headings of different levels within a web document. `<h1>` is used to represent the heading at the highest level, while `<h6>` is used to represent headings at the lowest level.
-- `<p>` used to define a paragraph.
-- `<button>` used to define a clickable button.
-- `<cite>` used to provide a reference to the title of a piece of cited work.
-- `<em>` used to stress the emphasis of text within a web document.
-- `<footer>` used to provide a footer to its nearest section, or the web document as a whole. Information likely to be found in a footer include information about the author, copyright information and contact information.
+- `<h1>` — `<h6>` used to represent headings of different levels within a web document. `<h1>` is used to represent the heading at the highest level, while `<h6>` is used to represent headings at the lowest level.
+- `<p>` used to define a paragraph.
+- `<button>` used to define a clickable button.
+- `<a>` used to define a link to another document. In most cases, anchor tags should be used for navigating (not buttons).
+- `<cite>` used to provide a reference to the title of a piece of cited work.
+- `<em>` used to stress the emphasis of text within a web document.
+- `<footer>` used to provide a footer to its nearest section, or the web document as a whole. Information likely to be found in a footer include information about the author, copyright information and contact information.
 
 ## Warning
 
-Do NOT treat accessibility as something you can add to your app “after” its done but before launching. You are pretty likely to either miss accessibility concerns altogether or create solutions that end up causing more headaches for people using accessibility tech.
+Do NOT treat accessibility as something you can add to your app after the development phase but before launching. You are pretty likely to either miss accessibility concerns altogether or create solutions that end up causing more trouble for people trying to access your app.
 
-Instead of thinking of A11Y as something you “sprinkle” in right before the production launch, try to make it a fundamental aspect of your code-writing process. Give your team cheatsheets like the one at the bottom of this page to make it easier for them to implement accessible interfaces, make it a point to double-check any HTML markup added in a PR review for better semantic options.
+Instead of thinking of A11Y as something you "sprinkle" in right before the production launch, try to make it a fundamental aspect of your code-writing process. Give your team cheatsheets like the one at the bottom of this page to make it easier for them to implement accessible interfaces, make it a point to double-check any HTML markup added in a PR review for better semantic options.
 
-By making accessibility a “ground up” philosophy on your team, you will be much less likely to miss gaping accessibility issues in your projects.
+By making accessibility a "ground up" philosophy on your team, you will be much less likely to miss gaping accessibility issues in your projects.
+
+Accessibility Cheatsheets:
+
+- [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/)
+- [Accessibility cheat sheet](https://learntheweb.courses/topics/accessibility-cheat-sheet/)
 
 To learn more about accessibility in your web projects, see the following:
 
 - [HTML: A good basis for accessibility](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
 - [HTML Elements Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
-- [Accessibility cheat sheet](https://learntheweb.courses/topics/accessibility-cheat-sheet/)
 - [A beginner's guide to web accessibility](https://bootcamp.uxdesign.cc/beginners-guide-to-web-accessibility-514644750b0f)
