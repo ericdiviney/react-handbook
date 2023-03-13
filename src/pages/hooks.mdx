@@ -17,8 +17,7 @@ The new React [docs](https://beta.reactjs.org/reference/react) are great materia
 
 Common questions:
 
-- [Is setState synchronous or asynchronous?](https://www.youtube.com/watch?v=RAJD4KpX8LA) (how updating state values triggers the React re-rendering process)
-- Don't try to update one property in an object or one item in an array, instead you should [replace](https://beta.reactjs.org/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a ref (useRef)
+- [Is setState synchronous or asynchronous?](https://www.youtube.com/watch?v=RAJD4KpX8LA)
 
 Tips:
 
@@ -26,6 +25,7 @@ Tips:
 - If you are updating state values (with setState()) many times throughout your component, you'd probably benefit by switching to the [reducer pattern](https://beta.reactjs.org/reference/react/useReducer) or even defining a [custom hook](https://beta.reactjs.org/learn/reusing-logic-with-custom-hooks).
 - Read the [Common Pitfalls of useState](https://profy.dev/article/react-usestate-pitfalls)
 - Store as little "state" as possible, [derive](https://kentcdodds.com/blog/dont-sync-state-derive-it) as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
+- Don't try to update one property in an object or one item in an array, instead you should [replace](https://beta.reactjs.org/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a ref (useRef)
 
 ## `useEffect` / `useLayoutEffect`
 
