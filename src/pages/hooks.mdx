@@ -35,7 +35,7 @@ You might be using effects wrong if:
 
 - You have code in an effect that "resets" all local component state when a prop changes for that component (read [You Might Not Need an Effect](https://beta.reactjs.org/learn/you-might-not-need-an-effect#resetting-all-state-when-a-prop-changes))
 - Effects are NOT "subscriptions" - try not to think of them as a way to "opt in" or [listen](https://profy.dev/article/react-usestate-pitfalls#listening-to-state-changes-via-useeffect) to changes to specific variables. Thinking this way can lead to pointless re-renders and therefore laggard performance in your apps
-- Related to the above point, if you are updating state with setState() **inside** of your effect, you [might be doing something wrong](https://profy.dev/article/react-usestate-pitfalls#updating-state-via-useeffect) (not always, but I find this more true than not). Since effects run last in the render phase, updating state from there will immediately cause your component to re-render
+- Related to the above point, if you are updating state with setState() **inside** of your effect, you [might be doing something wrong](https://profy.dev/article/react-usestate-pitfalls#updating-state-via-useeffect) (not always, but we find this more true than not). Since effects run last in the render phase, updating state from there will immediately cause your component to re-render
 
 Tips:
 
@@ -51,7 +51,7 @@ Tips:
 
 `useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle
 
-`useReducer` - we especially recommend this if there are many calls to update state from your component. When to reach for useReducer over useState is very nuanced, but we tend to relate it to how many values I'm tracking and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider useReducer instead of plain useState.
+`useReducer` - we especially recommend this if there are many calls to update state from your component. When to reach for useReducer over useState is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider useReducer instead of plain useState.
 
 ## Ready to Use Hooks
 
