@@ -80,7 +80,7 @@ function VisibleSectionHighlight({ group, pathname }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
-      className="absolute inset-x-0 top-0 bg-zinc-800/2.5 will-change-transform dark:bg-white/2.5"
+      className="absolute inset-x-0 top-0 bg-zinc-100 will-change-transform dark:bg-white/2.5"
       style={{ borderRadius: 8, height, top }}
     />
   )
@@ -187,8 +187,9 @@ export const navigation = [
     title: 'Getting Started',
     links: [
       { title: 'The React Handbook', href: '/' },
-      { title: 'Intro to JavaScript', href: '/intro-javascript' },
-      { title: 'Intro to React', href: '/intermediate-javascript' },
+      { title: 'JavaScript Basics', href: '/javascript-basics' },
+      { title: 'React Basics', href: '/react-basics' },
+      { title: 'Advanced React', href: '/topics' }
     ],
   },
   {
@@ -199,17 +200,22 @@ export const navigation = [
       { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
       { title: 'Styling / UI Libraries', href: '/styling' },
+      { title: 'Hooks', href: '/hooks' },
     ],
   },
   {
     title: 'Coming Soon',
     links: [
-      { title: 'Hooks', href: '#' },
       { title: 'Data & State Management', href: '#' },
       { title: 'Performance', href: '#' },
+    ]
+  },
+  {
+    title: 'Later',
+    links: [
       { title: 'Server-Side Rendering', href: '#' },
       { title: 'Automated Testing', href: '#' },
-      { title: 'Planning for Errors', href: '#' },
+      { title: 'Error Handling & Boundaries', href: '#' },
       { title: 'CI/CD Pipelines', href: '#' },
       { title: 'Analytics', href: '#' },
     ]
