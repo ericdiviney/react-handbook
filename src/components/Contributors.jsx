@@ -22,17 +22,6 @@ const maintainers = [
 	}
 ]
 
-
-// TODO:
-/**
-
-- add yourself as a project maintainer (woohoo!)
-- remove the duplicates in the structures above ^^ once its all tested to ensure this scales when more people join
-
-
-
-*/
-
 export function Contributors() {
 	return (
 		<div className="py-12 my-16 border-y border-zinc-400 dark:border-zinc-700">
@@ -40,9 +29,9 @@ export function Contributors() {
 				<div>
 					<span className="text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">Core Team</span>
 				</div>
-				<div class="isolate not-prose flex -space-x-2 overflow-hidden">
+				<div className="flex -space-x-2 overflow-hidden isolate not-prose">
 					{core.map((person) => (
-						<MemberCard key={person.image} person={person} />
+						<MemberCard key={person.image} person={person} large />
 					))}
 				</div>
 			</div>
@@ -51,10 +40,9 @@ export function Contributors() {
 				<div>
 					<span className="text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">Project Maintainers</span>
 				</div>
-				<div class="isolate flex -space-x-2 overflow-hidden">
+				<div className="flex -space-x-2 overflow-hidden isolate">
 					{maintainers.map((person) => (
-                        
-						<img key={person.image} class="relative z-10 inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-zinc-900" src={person.image} alt="" />
+                        <MemberCard key={person.image} person={person} />
 					))}
 				</div>
 			</div>
@@ -62,15 +50,16 @@ export function Contributors() {
 	)
 }
 
-function MemberCard({
-    person
-}) {
+function MemberCard({ person, large = false }) {
     const {
         description,
         image,
         name,
         socials,
     } = person;
+
+    const size = large ? 16 : 10;
+
     return (
         <HoverCard.Root key={image}>
             <HoverCard.Trigger asChild>
@@ -80,7 +69,7 @@ function MemberCard({
                     target="_blank"
                     rel="noreferrer noopener"
                 >
-                    <img key={image} class="relative z-10 inline-block h-16 w-16 rounded-full ring-2 ring-white dark:ring-zinc-900" src={image} alt="" />
+                    <img key={image} className={`w-${size} h-${size} relative z-10 inline-block rounded-full ring-2 ring-white dark:ring-zinc-900`} src={image} alt="" />
                 </a>
             </HoverCard.Trigger>
             <HoverCard.Portal>
