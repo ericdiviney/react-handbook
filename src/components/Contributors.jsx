@@ -1,33 +1,12 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
-
-const core = [
-	{
-		name: 'Eric Diviney',
-		description: 'Software Engineer | IMB Consulting',
-		socials: {
-			twitter: 'https://twitter.com/EricDiviney',
-			github: 'https://github.com/ericdiviney',
-            site: 'https://ericdiviney.com/'
-		},
-		image: '/eric-diviney.jpg'
-	}
-]
-
-const maintainers = [
-	{
-		name: 'Theo',
-		description: '[you can fill this in Theo]',
-		socials: {},
-		image: 'https://avatars.githubusercontent.com/u/72856939?s=120&v=4'
-	}
-]
+import { core, maintainers } from '@/config/team';
 
 export function Contributors() {
 	return (
-		<div className="py-12 my-16 border-y border-zinc-400 dark:border-zinc-700">
-			<div className="flex items-center gap-6">
+		<div className="my-6 border-y border-zinc-400 dark:border-zinc-700">
+			<div className="my-16">
 				<div>
-					<span className="text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">Core Team</span>
+					<span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">Core Team</span>
 				</div>
 				<div className="flex -space-x-2 overflow-hidden isolate not-prose">
 					{core.map((person) => (
@@ -36,11 +15,11 @@ export function Contributors() {
 				</div>
 			</div>
 
-			<div className="flex items-center gap-6">
+			<div className="my-16">
 				<div>
-					<span className="text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">Project Maintainers</span>
+					<span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">Project Maintainers</span>
 				</div>
-				<div className="flex -space-x-2 overflow-hidden isolate">
+				<div className="flex -space-x-2 overflow-hidden isolate not-prose">
 					{maintainers.map((person) => (
                         <MemberCard key={person.image} person={person} />
 					))}
@@ -58,18 +37,18 @@ function MemberCard({ person, large = false }) {
         socials,
     } = person;
 
-    const size = large ? 16 : 10;
+    const size = large ? `w-16 h-16` : `w-8 h-8`;
 
     return (
         <HoverCard.Root key={image}>
             <HoverCard.Trigger asChild>
                 <a
-                    className="inline-block cursor-pointer rounded-full shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] outline-none focus:shadow-[0_0_0_2px_white]"
+                    className="inline-block rounded-full outline-none cursor-pointer"
                     href={socials.site}
                     target="_blank"
                     rel="noreferrer noopener"
                 >
-                    <img key={image} className={`w-${size} h-${size} relative z-10 inline-block rounded-full ring-2 ring-white dark:ring-zinc-900`} src={image} alt="" />
+                    <img key={image} className={`${size} relative z-10 inline-block rounded-full ring-2 ring-white dark:ring-zinc-900`} src={image} alt="" />
                 </a>
             </HoverCard.Trigger>
             <HoverCard.Portal>
