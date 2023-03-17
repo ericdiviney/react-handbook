@@ -16,6 +16,7 @@ const withMDX = nextMDX({
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  target: 'serverless',
   experimental: {
     scrollRestoration: true,
   },
