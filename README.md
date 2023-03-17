@@ -10,4 +10,4 @@ To start a discussion about a particular idea you'd like to champion (or think w
 
 **Opening Pull Requests**
 
-Our brancing strategy is pretty basic. When making updates to the repository, please always branch from `develop` and create your pull requests (PR's) back into `develop` as well. As of now, the `develop` branch is the one we deploy to Vercel, but we will soon be coming up with a schedule for regular releases from the `main` branch.
+Our branching strategy is pretty basic. When making updates to the repository, please always branch from `develop` and create your pull requests (PR's) back into `develop` as well. As of now, the `develop` branch is the one we deploy to Vercel, but we will soon be coming up with a schedule for regular releases from the `main` branch.
