@@ -1,4 +1,5 @@
-export const description = 'How to structure your React project and format your components.'
+export const description =
+  'How to structure your React project and format your components.'
 
 # Project Standards for High-Quality Code
 
@@ -128,7 +129,7 @@ export function Calculator({left, operator, right}: CalculatorProps) {
    */
   useEffect(() => {
     // your effect code
-    
+
     return () => {
       // your effect cleanup code
     }
@@ -176,7 +177,7 @@ function ShortenedMarkup() {
 }
 ```
 
-[Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) can also be very effective at enforcing project standards and consistency. Start with the examples provided in the bulletproof-react repo:
+[Eslint](https://www.npmjs.com/package/eslint) and [Prettier](https://www.npmjs.com/package/prettier) can also be very effective at enforcing project standards and consistency. Start with the examples provided in the bulletproof-react repo:
 
 - [.eslintrc.js](https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js) (eslint config file)
 - [.prettierrc](https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc) (prettier config file)
@@ -189,19 +190,19 @@ Getting engineers to properly document their code can sometimes be difficult (an
 
 The question typically isn't "how can we convince our team and stakeholders that well-written documentation is worth it". The right question to ask is "how can we make writing and maintaining documentation easier for our developers". Everyone knows great docs are worth their weight in gold. The hard part is writing great docs.
 
-1. Use [TypeScript](https://www.typescriptlang.org/) - TypeScript can create all sorts of documentation that your IDE (like [Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript)) can display to you while coding. Using TypeScript properly means that all the engineers on your team can:
-    1. Analyze function signatures, parameters, and their return types without leaving the file you are working in
-    2. Autocomplete while typing, IntelliSense, etc.
-    3. Way more!
-2. [Storybook](https://storybook.js.org/) for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
-    - [Storybook for React Tutorial](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)
-3. Commenting systems like [JSDoc](https://jsdoc.app/index.html) - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. If you did BOTH of the above options (1 and 2) this may not be necessary, but if one or both of the options above isn't viable for you then this may be helpful.
+1. Use [TypeScript](https://www.npmjs.com/package/typescript) - TypeScript can create all sorts of documentation that your IDE (like [Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript)) can display to you while coding. Using TypeScript properly means that all the engineers on your team can:
+   1. Analyze function signatures, parameters, and their return types without leaving the file you are working in
+   2. Autocomplete while typing, IntelliSense, etc.
+   3. Way more!
+2. [Storybook](https://www.npmjs.com/package/storybook) for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
+   - [Storybook for React Tutorial](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)
+3. Commenting systems like [JSDoc](https://www.npmjs.com/package/jsdoc) - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. If you did BOTH of the above options (1 and 2) this may not be necessary, but if one or both of the options above isn't viable for you then this may be helpful.
 
 You should at minimum be picking 1 option above. Or an approach that mixes all 3:
 
 - Using TypeScript
-    - Prevents an entire class of bugs from arising, and gives IDE more capabilities (Intellisense, auto-complete, etc.)
+  - Prevents an entire class of bugs from arising, and gives IDE more capabilities (Intellisense, auto-complete, etc.)
 - Using Storybook for all atomic/reusable components
-    - This would make it easy for engineers AND non-engineers peripheral to the project to browse the various components and their different states (centralized interactive design system)
+  - This would make it easy for engineers AND non-engineers peripheral to the project to browse the various components and their different states (centralized interactive design system)
 - Writing jsdoc-like comments above non-react functions that you define in your codebase
-    - Write jsdoc comments on functions defined that are NOT react components or something that returns JSX (utility functions, functions that are business/domain logic, data-fetching, etc.)
+  - Write jsdoc comments on functions defined that are NOT react components or something that returns JSX (utility functions, functions that are business/domain logic, data-fetching, etc.)
