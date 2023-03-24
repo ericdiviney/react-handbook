@@ -3,21 +3,28 @@ export const description = 'The best ways to style your React application.'
 # Styling & UI Libraries
 
 <Note>
-    Helpful tip: before using any libraries below, you should check your IDE for plugins that might improve the developer experience of using it. For example, if you use Tailwind, the [Tailwind IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) plugin (which recommends classnames in the auto-complete dropdown) and the [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind) plugin (enforces consistent ordering of classnames in my markup) in Visual Studio Code might be useful for your team.
+  Helpful tip: before using any libraries below, you should check your IDE for
+  plugins that might improve the developer experience of using it. For example,
+  if you use Tailwind, the [Tailwind
+  IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+  plugin (which recommends classnames in the auto-complete dropdown) and the
+  [Headwind](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind)
+  plugin (enforces consistent ordering of classnames in my markup) in Visual
+  Studio Code might be useful for your team.
 </Note>
 
 ## Styling Solutions
 
 - Utility Class Libraries
-    - [tailwindcss](https://tailwindcss.com/)
-    - [tachyons](https://tachyons.io/)
+  - [tailwindcss](https://www.npmjs.com/package/tailwindcss)
+  - [tachyons](https://www.npmjs.com/package/tachyons)
 - Write Your CSS
-    - [stitches](https://stitches.dev/)
-    - [styled-components](https://styled-components.com/)
-    - [vanilla-extract](https://github.com/seek-oss/vanilla-extract)
-    - [emotion](https://emotion.sh/docs/introduction)
-    - [CSS modules](https://github.com/css-modules/css-modules)
-    - [linaria](https://github.com/callstack/linaria)
+  - [stitches](https://www.npmjs.com/package/@stitches/react)
+  - [styled-components](https://www.npmjs.com/package/styled-components)
+  - [vanilla-extract](https://www.npmjs.com/package/@vanilla-extract/css)
+  - [emotion](https://www.npmjs.com/package/@emotion/css)
+  - [CSS modules](https://www.npmjs.com/package/css-modules)
+  - [linaria](https://www.npmjs.com/package/linaria)
 
 ## Component Libraries
 
@@ -25,29 +32,30 @@ Most UI libraries will come with a "theme" or global way to configure certain th
 
 If your app is small enough, it may be simpler to reach for a headless solution (more below) and create the critical components in your app than try to overwrite or customize an entire library.
 
-- [MUI](https://mui.com/)
-- [Twitter Bootstrap](https://react-bootstrap.github.io/)
-- [Chakra UI](https://chakra-ui.com/)
-- [AntDesign](https://ant.design/)
-- [Blueprint](https://blueprintjs.com/)
-- [FluentUI](https://react.fluentui.dev/?path=/docs/concepts-introduction--page)
-- [Mantine](https://mantine.dev/)
-- [pico](https://picocss.com/)
+- [MUI](https://www.npmjs.com/package/@mui/material)
+- [Twitter Bootstrap](https://www.npmjs.com/package/react-bootstrap)
+- [Chakra UI](https://www.npmjs.com/package/@chakra-ui/react)
+- [AntDesign](https://www.npmjs.com/package/antd)
+- [Blueprint](https://www.npmjs.com/package/@blueprintjs/core/)
+- [FluentUI](https://www.npmjs.com/package/@fluentui/react-components)
+- [Mantine](https://www.npmjs.com/package/@mantine/core)
+- [pico](https://www.npmjs.com/package/@picocss/pico)
 
 <Note>
-If you need a lot of customization or control over the presentation of the UI, you should consider a headless solution.
+  If you need a lot of customization or control over the presentation of the UI,
+  you should consider a headless solution.
 </Note>
 
 ## Headless Component Libraries
 
-- [radix-ui](https://www.radix-ui.com/)
-- [headless-ui](https://headlessui.com/)
+- [radix-ui](https://www.npmjs.com/package/@radix-ui/primitive)
+- [headless-ui](https://www.npmjs.com/package/@headlessui/react)
 - [react-aria](https://react-spectrum.adobe.com/react-aria/)
-- [reakit](https://reakit.io/)
+- [ariakit](https://www.npmjs.com/package/ariakit)
 
 ## Recommended Combinations
 
-- [Radix UI](https://www.radix-ui.com/) + [tailwind](https://tailwindcss.com/)
-- [Headless UI](https://headlessui.dev/) + [tailwind](https://tailwindcss.com/)
-- [Radix UI](https://www.radix-ui.com/) + [stitches](https://stitches.dev/)
-- [Chakra UI](https://chakra-ui.com/) + [emotion](https://emotion.sh/docs/introduction)
+- [Radix UI](https://www.npmjs.com/package/@radix-ui/primitive) + [tailwind](https://www.npmjs.com/package/tailwindcss)
+- [Headless UI](https://www.npmjs.com/package/@headlessui/react) + [tailwind](https://www.npmjs.com/package/tailwindcss)
+- [Radix UI](https://www.npmjs.com/package/@radix-ui/primitive) + [stitches](https://www.npmjs.com/package/@stitches/react)
+- [Chakra UI](https://www.npmjs.com/package/@chakra-ui/react) + [emotion](https://www.npmjs.com/package/@emotion/css)
