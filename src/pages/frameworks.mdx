@@ -5,11 +5,19 @@ export const description =
 
 Today there are plenty of variants of React, some that will suit your use case better than others. Read below to see the current state of each of these, what they offer, and why you might pick them when starting a new React app.
 
-![ouch hot take](/ouch-hot-take.png)
+<img
+  className="max-w-[600px]"
+  src="/framework-tweet.png"
+  alt="framework recommendation on twitter"
+/>
+[_Andrew Clark_](https://twitter.com/acdlite) is a core contributor to React whose
+recent work includes Hooks, Server Components, and Suspense.
 
 This debate/conversation is definitely still being played out in the open-source community - but at this point, it is mainly recommended to be using frameworks when building your apps. Some valuable advice when working with these frameworks is **don't fight the frameworks' choices**. If you disagree philosophically enough with React or the framework - just choose another one. Inventing and managing your own internal framework, or bastardizing a meta-framework to fit your needs is only going to cause you headaches and lots of effort.
 
 Read more [from the official react documentation](https://beta.reactjs.org/learn/start-a-new-react-project#building-with-a-full-featured-framework) on their endorsement of framework usage.
+
+---
 
 ## Vanilla React
 
@@ -29,7 +37,7 @@ Everything in the rest of this article builds on top of React. Given today’s o
 
 For building mobile (iOS and Android) applications.
 
-You can also use a framework like [Expo](https://expo.dev/) to build an application that will run natively on Android, iOS, AND modern web browsers using the same codebase.
+You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build an application that will run natively on Android, iOS, AND modern web browsers using the same codebase.
 
 ## Next.js, Remix, Gatsby
 
@@ -44,24 +52,24 @@ Before you dive in below, you may benefit by watching [this video](https://www.y
 - Best for: static websites with infrequent content updates, fast content-driven websites, SEO-friendly sites
 - Not good if you need: dynamically generated pages (search results, user-generated feeds/content, application dashboards, etc.)
 - Tutorials
-    - [Official Gatsby Documentation](https://www.gatsbyjs.com/docs/tutorial/)
+  - [Official Gatsby Documentation](https://www.gatsbyjs.com/docs/tutorial/)
 
 **Next.js**
 
 - Best for: static websites, performant dynamic web apps/websites, SEO-friendly sites
 - Not good if you need: absolutely no requirement for server-side react or if your team has opinionated stances on functionality like routing, data fetching, etc.
 - Tutorials
-    - [Create a Next.js app - Official Next.js Documentation](https://nextjs.org/learn/basics/create-nextjs-app)
-    - [Introduction to Next.js 9](https://egghead.io/courses/introduction-to-next-js-9-9c01) - by Xiaoru Li
+  - [Create a Next.js app - Official Next.js Documentation](https://nextjs.org/learn/basics/create-nextjs-app)
+  - [Introduction to Next.js 9](https://egghead.io/courses/introduction-to-next-js-9-9c01) - by Xiaoru Li
 
 **Remix**
 
 - Best for: performant dynamic web apps/websites, SEO-friendly websites, progressive web features, BFFE (backend for front end)
 - Not good if you need: ??, framework maturity (TODO: honest breakdown of the fallbacks and negatives of Remix)
 - Tutorials:
-    - [Up and Running with Remix](https://egghead.io/courses/up-and-running-with-remix-b82b6bb6) - Kent C. Dodds
-    - [Remix Tutorial Livestream](https://www.youtube.com/watch?v=hsIWJpuxNj0) - Kent C. Dodds
-    - [Jokes App Tutorial](https://remix.run/docs/en/v1/tutorials/jokes) - Official Remix Documentation
+  - [Up and Running with Remix](https://egghead.io/courses/up-and-running-with-remix-b82b6bb6) - Kent C. Dodds
+  - [Remix Tutorial Livestream](https://www.youtube.com/watch?v=hsIWJpuxNj0) - Kent C. Dodds
+  - [Jokes App Tutorial](https://remix.run/docs/en/v1/tutorials/jokes) - Official Remix Documentation
 
 ## Framework Comparison
 
@@ -79,7 +87,7 @@ Further reading
 
 **Next vs Remix**
 
-Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: *Remix really tries to make your app fast out of the box*. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
+Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
 
 - Both use file-system-based routing
 - Both take advantage of HTTP caching to deliver results to users as fast as possible
