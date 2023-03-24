@@ -9,7 +9,6 @@ import { Prose } from '@/components/Prose'
 import { SectionProvider } from '@/components/SectionProvider'
 
 export function Layout({ children, sections = [] }) {
-
   const defaultSidebar = (
     <>
       <div className="hidden lg:flex">
@@ -21,7 +20,7 @@ export function Layout({ children, sections = [] }) {
       <Navigation className="hidden lg:mt-10 lg:block" />
     </>
   )
-  
+
   return (
     <SectionProvider sections={sections}>
       <div className="lg:ml-72 xl:ml-80">
