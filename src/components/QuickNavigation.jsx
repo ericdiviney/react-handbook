@@ -4,7 +4,6 @@ import { Card } from '@/components/Card'
 import { BookIcon } from '@/components/icons/BookIcon'
 import { UserIcon } from '@/components/icons/UserIcon'
 
-
 const resources = [
   {
     href: '/javascript-basics',
@@ -32,17 +31,13 @@ const resources = [
 export function QuickNavigation() {
   return (
     <div className="my-16 xl:max-w-none">
-      <div className="grid grid-cols-1 gap-8 not-prose xl:grid-cols-3">
+      <div className="not-prose grid grid-cols-1 gap-8 xl:grid-cols-3">
         {resources.map((resource) => (
           <Card key={resource.href} resource={resource} />
         ))}
       </div>
-      <div className="justify-end mt-4 text-right">
-        <Button
-          href="/topics"
-          variant="text"
-          arrow="right"
-        >
+      <div className="mt-4 justify-end text-right">
+        <Button href="/topics" variant="text" arrow="right">
           View all topics
         </Button>
       </div>

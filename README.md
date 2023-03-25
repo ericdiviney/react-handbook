@@ -2,12 +2,14 @@
 
 Modern approaches to architecture and feature development for production-ready React apps.
 
-## Contributing
+### Come chat with us on [discord](https://discord.gg/SbDwke7wpy).
 
-**Suggestions**
+## Suggestions
 
-To start a discussion about a particular idea you'd like to champion (or think we should be covering), please open an issue in our GitHub repository with the label `Question`. We will try to respond within 24 hours.
+To start a discussion about a particular idea you'd like to champion (or think we should be covering), please open an issue in our GitHub repository with the label `Question` or join us on Discord and start the conversation there.
 
-**Opening Pull Requests**
+## Opening Pull Requests
 
-Our branching strategy is pretty basic. When making updates to the repository, please always branch from `develop` and create your pull requests (PR's) back into `develop` as well. When releases are ready, we will merge `develop` into `main` which gets deployed via our Vercel account. 
+Fork the repo, open your PR's into `develop`. We plan releases on an ad-hoc basis, but generally they happen everytime we make content changes.
+
+In general, we'll look at just about any pull request opened, but we'd really appreciate PR's that tackle [bugs/issues](https://github.com/ericdiviney/react-handbook/labels/good%20first%20issue).

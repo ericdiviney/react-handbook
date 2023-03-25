@@ -5,7 +5,11 @@ export const description =
 
 ## I want to help you build React apps.
 
-<img className="rounded-full max-w-[170px]" src="/eric-diviney.jpg" alt="eric diviney" />
+<img
+  className="max-w-[170px] rounded-full"
+  src="/eric-diviney.jpg"
+  alt="eric diviney"
+/>
 
 The React Handbook is a website primarily maintained by me, [Eric Diviney](https://twitter.com/EricDiviney). I'm a software engineer building things at [Dialexa, an IBM company](https://www.dialexa.com/) (we've been [acquired](https://newsroom.ibm.com/2022-09-22-IBM-Acquires-Dialexa-to-Speed-Digital-Innovation)). {{ className: 'lead' }}
 
@@ -18,7 +22,7 @@ In my opinion, before diving deep into React + Frontend Technologies it might he
 1. The internet, HTML, and CSS were all invented. Rad!
 2. MPA (Multi Page App) phase - Web apps were mostly static HTML pages that simply reflected the state of an external system (some backend, database, etc.). The only way to manipulate data in that backend system was by submitting `<forms>` and redirecting the user after the form handling was complete. Since each static HTML page generated is a separate "page" (document), this architecture is commonly known as MPA.
 3. MPA's with sprinkles phase - Along came jQuery. While the underlying mechanism for manipulating data in the external system didn't change (submitting forms), we got more functionality in our HTML web pages. jQuery allowed for all kinds of user interactions and dynamic functionality on a webpage. It even somewhat changed the paradigm for manipulating data, as jQuery.ajax() method became very popular during this time (but submitting forms remained a very common and practical way to allow users to submit data to the external backend system).
-4. SPA's phase - Along came React. We truly had it all in the days of jQuery. But suddenly, we had a fresh, unique way to express our UI's as reusable chunks ("components") *declaratively*. This gave us more than just fancy buttons, animations, and dropdowns. This gave us the ability to truly control much more of the experience that we wanted for our users (instead of being beholden to default browser behavior). Unfortunately, while we gained a lot of control, we had to make some controversial sacrifices - mainly that we moved functionality traditionally responsible for the server (state management, routing, data fetching, etc.) to the front end. Our backend used to handle these problems, now it was an expectation that the front end would handle them. This is probably the primary approach for building new applications today.
+4. SPA's phase - Along came React. We truly had it all in the days of jQuery. But suddenly, we had a fresh, unique way to express our UI's as reusable chunks ("components") _declaratively_. This gave us more than just fancy buttons, animations, and dropdowns. This gave us the ability to truly control much more of the experience that we wanted for our users (instead of being beholden to default browser behavior). Unfortunately, while we gained a lot of control, we had to make some controversial sacrifices - mainly that we moved functionality traditionally responsible for the server (state management, routing, data fetching, etc.) to the front end. Our backend used to handle these problems, now it was an expectation that the front end would handle them. This is probably the primary approach for building new applications today.
 5. ??? (the next phase) - I'm not sure what exactly you'd call the next generation of meta-frameworks being released today, but it's definitely not an SPA. In the context of React, the frameworks pushing the bounds for these types of apps are Next, Remix, Gatsby, etc.
 
 ## 2) Why do I like React? Why is React so popular?
@@ -26,7 +30,7 @@ In my opinion, before diving deep into React + Frontend Technologies it might he
 So, this is just my perspective, far from the complete history. If you want to really understand the history of React, I recommend this [documentary](https://www.youtube.com/watch?v=8pDqJVdNa44) (it's fantastic, seriously). Here's why I think React is great:
 
 - React was invented at the perfect time - JavaScript was evolving so quickly, and new tools were being invented all the time. There was strong demand for a generic library that was easily approachable and simplified building UIs. React fit this need perfectly at the time.
-- React was (and still is) simpler than other frameworks - while this may be a controversial point for some, React's simple-but-flexible API is not a very steep learning curve. I don't want to call it *easy*, but the API is much simpler than its counterparts (Angular for example - but some frameworks like Solid have a very react-like feel).
+- React was (and still is) simpler than other frameworks - while this may be a controversial point for some, React's simple-but-flexible API is not a very steep learning curve. I don't want to call it _easy_, but the API is much simpler than its counterparts (Angular for example - but some frameworks like Solid have a very react-like feel).
 - JSX is awesome - At first, it was demonized, but now it's loved. Granted, JSX is nothing react-specific (you can use JSX in just about any modern framework). JSX is a declarative way to define your UI and its hierarchy and feels naturally intuitive to web developers because of its XML/HTML-like syntax.
 - React focused on the right things (at the time) - Instead of shipping the entire kitchen sink (routing, data fetching, styling, etc.) it just focused on the rendering of HTML. This allowed the ecosystem to develop around the library and surfaced the right tools needed by developers. This early (but critical) choice to focus on the right set of features is, in my opinion, what truly unlocked the ecosystem that we enjoy today. Of course, meta-frameworks all ship with opinionated methods of routing, data-fetching, and styling nowadays, but that's because now we see React can definitely still shine if decisions like those are made for us. It lets us focus more on our application.
 
@@ -38,21 +42,21 @@ First, some great (free) resources
 - [Typescript for new programmers](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html)
 - [JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - Subreddits (interesting libraries are posted and discussions by library maintainers are fruitful)
-    - [https://www.reddit.com/r/javascript/](https://www.reddit.com/r/javascript/)
-    - [https://www.reddit.com/r/learnjavascript/](https://www.reddit.com/r/learnjavascript/)
-    - [https://www.reddit.com/r/reactjs/](https://www.reddit.com/r/reactjs/)
-    - https://www.reddit.com/r/react/
+  - [https://www.reddit.com/r/javascript/](https://www.reddit.com/r/javascript/)
+  - [https://www.reddit.com/r/learnjavascript/](https://www.reddit.com/r/learnjavascript/)
+  - [https://www.reddit.com/r/reactjs/](https://www.reddit.com/r/reactjs/)
+  - https://www.reddit.com/r/react/
 - My favorite twitter accounts:
-    - [Dan Abramov](https://twitter.com/dan_abramov)
-    - [Andrew Clark](https://twitter.com/acdlite)
-    - [Kent C. Dodds](https://twitter.com/kentcdodds)
-    - [Jenna Smith](https://twitter.com/jjenzz)
-    - [Lee Robinson](https://twitter.com/leeerob)
-    - [Ryan Florence](https://twitter.com/ryanflorence)
-    - [Michael Jackson](https://twitter.com/mjackson)
-    - [Theo (T3)](https://twitter.com/t3dotgg)
-    - [Cassidy Williams](https://twitter.com/cassidoo)
-    - [Sébastien Lorber (this week in React)](https://twitter.com/sebastienlorber)
+  - [Dan Abramov](https://twitter.com/dan_abramov)
+  - [Andrew Clark](https://twitter.com/acdlite)
+  - [Kent C. Dodds](https://twitter.com/kentcdodds)
+  - [Jenna Smith](https://twitter.com/jjenzz)
+  - [Lee Robinson](https://twitter.com/leeerob)
+  - [Ryan Florence](https://twitter.com/ryanflorence)
+  - [Michael Jackson](https://twitter.com/mjackson)
+  - [Theo (T3)](https://twitter.com/t3dotgg)
+  - [Cassidy Williams](https://twitter.com/cassidoo)
+  - [Sébastien Lorber (this week in React)](https://twitter.com/sebastienlorber)
 
 Here are the rare paid courses/tutorials I've paid for that I would 100% recommend to anyone looking to further their career in front-end development.
 
@@ -75,24 +79,24 @@ Here are the rare paid courses/tutorials I've paid for that I would 100% recomme
 ## 5) Arguments I Care To Make
 
 - Philosophies to live by:
-    - KISS (Keep It Simple, Stupid)
-        - "Great advice, hurts my feelings every time"
-    - Strong Opinions, Loosely Held
-        - "When the facts change, I change my mind. What do you do, sir?"
-    - Simple Code > Clever One-Liner that requires a comment to understand
-    - Everybody loves a good TODO left in the code. But you're truly a hero if you also put it in the backlog
+  - KISS (Keep It Simple, Stupid)
+    - "Great advice, hurts my feelings every time"
+  - Strong Opinions, Loosely Held
+    - "When the facts change, I change my mind. What do you do, sir?"
+  - Simple Code > Clever One-Liner that requires a comment to understand
+  - Everybody loves a good TODO left in the code. But you're truly a hero if you also put it in the backlog
 - Frontend preferences
-    - TypeScript > JavaScript
-        - Don't use any or unknown in TypeScript unless you have good reason
-            - "I can't get it to work" is not a good reason (most of the time)
-    - In general, too many things are SPA's
-    - Always require semicolons at the end of statements. Ya'll are getting ridiculous
-    - Tailwind > Traditional CSS (because I don't spend time having to name everything)
+  - TypeScript > JavaScript
+    - Don't use any or unknown in TypeScript unless you have good reason
+      - "I can't get it to work" is not a good reason (most of the time)
+  - In general, too many things are SPA's
+  - Always require semicolons at the end of statements. Ya'll are getting ridiculous
+  - Tailwind > Traditional CSS (because I don't spend time having to name everything)
 
 ## 6) Arguments I Don't Care About
 
 - Tabs vs spaces (just pick one so everyone is consistent)
 - camelCase vs snake_case (same reason above, but honestly I do prefer camelCase)
 - Sass vs Styled Components vs Post CSS (if we're writing CSS, I care little how we do it, as long as we all do it consistently)
-- NeVeR uSe PHP (PHP is awesome) (and WordPress is *alright*)
+- NeVeR uSe PHP (PHP is awesome) (and WordPress is _alright_)
 - Anything that results in [bike-shedding](https://en.wikipedia.org/wiki/Law_of_triviality)
