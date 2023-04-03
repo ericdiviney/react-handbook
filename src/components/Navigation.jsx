@@ -19,7 +19,7 @@ function TopLevelNavItem({ href, children }) {
     <li className="md:hidden">
       <Link
         href={href}
-        className="block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="block py-1 text-sm transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
       </Link>
@@ -95,7 +95,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute left-2 h-6 w-px bg-sky-500"
+      className="absolute w-px h-6 left-2 bg-sky-500"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -125,7 +125,7 @@ function NavigationGroup({ group, className }) {
       >
         {group.title}
       </motion.h2>
-      <div className="relative mt-3 pl-2">
+      <div className="relative pl-2 mt-3">
         <AnimatePresence initial={!isInsideMobileNavigation}>
           {isActiveGroup && (
             <VisibleSectionHighlight group={group} pathname={router.pathname} />
@@ -133,7 +133,7 @@ function NavigationGroup({ group, className }) {
         </AnimatePresence>
         <motion.div
           layout
-          className="absolute inset-y-0 left-2 w-px bg-zinc-900/10 dark:bg-white/5"
+          className="absolute inset-y-0 w-px left-2 bg-zinc-900/10 dark:bg-white/5"
         />
         <AnimatePresence initial={false}>
           {isActiveGroup && (
@@ -187,8 +187,8 @@ export const navigation = [
     title: 'Getting Started',
     links: [
       { title: 'The React Handbook', href: '/' },
-      { title: 'JavaScript Basics', href: '/javascript-basics' },
-      { title: 'React Basics', href: '/react-basics' },
+      { title: 'JavaScript Fundamentals', href: '/javascript-basics' },
+      { title: 'React Fundamentals', href: '/react-basics' },
       { title: 'Advanced React', href: '/topics' },
     ],
   },

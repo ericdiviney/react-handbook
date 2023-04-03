@@ -3,7 +3,7 @@ import { QuickNavigation } from '@/components/QuickNavigation'
 export const description =
   "Start here if you've never worked with JavaScript or TypeScript before."
 
-export const title = 'Basics of React'
+export const title = 'Fundamentals of React'
 
 ## 👋 Hey, web devs
 
@@ -14,19 +14,6 @@ This guide is a compilation of the best quality material on the internet for lea
 What's covered here is typically high-level, the basics, or only a preview of what you can expect when working with a feature/library. After exposing you to the basics, off-site links will be recommended to explain the concepts you need to learn in more detail.
 
 It may be hard to avoid arguments over ideologies, clashes in opinions, or disagreements of philosophy, but this website will keep things civil! The main point is to surface the best ideas.
-
-## TypeScript
-
-A JavaScript (JS) developer can pick up the basics of TypeScript (TS) in about 10 minutes. But learning TS is more than just adding "types" to your variables here and there. It's about removing the possibility of a bug you'll probably run into if you wrote an application in pure JS. It's likely you already have an internal mental model of "data structures" when you're coding in JS - TypeScript just solidifies those mental models (in your head) into actual "rules" that can apply to your code and how it gets used.
-
-The class of bugs you're getting rid of are all those pesky (…cannot read… ‘undefined') errors in the console. If you're ready to get started, check out some of the links below:
-
-- [TS for the New Programmer](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html) - TypeScript explained for beginners
-- [Beginner's TypeScript](https://www.totaltypescript.com/tutorials/beginners-typescript) - A (free) interactive video tutorial by Matt Pocock
-- [No BS TS](https://www.youtube.com/playlist?list=PLNqp92_EXZBJYFrpEzdO2EapvU0GOJ09n) - A (free) video course by Jack Herrington
-- [TS cheatsheet](https://react-typescript-cheatsheet.netlify.app) - A Cheatsheet for experienced React developers getting started with TypeScript
-
-It is not an exaggeration to call TypeScript an entire programming language, but even the simplest TypeScript can compile to JS. So the good news is you can adopt complexity only as it aids you. Sometimes you might have to temporarily level up or step outside your level of expertise to complete a feature. For example, if a library gives you code to work with and it's more advanced TS than you can ordinarily write, that's acceptable to use it. In most cases, adopting it incrementally in your JS projects and code is pretty painless.
 
 ## Why React?
 
@@ -46,40 +33,32 @@ But even acknowledging all that - in my eight years building for the web, my mos
 
 To give you a quick idea of the current state of React, check out this 2-minute clip by Fireship titled [React in 100 Seconds](https://www.youtube.com/watch?v=Tn6-PIqc4UM). While it barely scratches the surface, it quickly communicates why React is so popular today (an important context to keep in mind).
 
-**JavaScript Fundamentals**
-
-**Events** drive interactivity in web applications. Understanding events at their core and how they propagate through the DOM (in the correct hierarchy and order) is critical to understanding browser behavior. To understand events, you should start by reading [An Interactive Guide to JavaScript Events](https://www.aleksandrhovhannisyan.com/blog/interactive-guide-to-javascript-events/) by Aleksandr Hovhannisyan.
+Some JS fundamentals you'll want to brush up on are **Events, Promises, Arrays**. Events drive interactivity in web applications. Understanding events at their core and how they propagate through the DOM (in the correct hierarchy and order) is critical to understanding browser behavior. To understand events, you should start by reading [An Interactive Guide to JavaScript Events](https://www.aleksandrhovhannisyan.com/blog/interactive-guide-to-javascript-events/) by Aleksandr Hovhannisyan.
 
 [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous) allows us to write UIs and apps with non-blocking interactivity. At the same time, potentially long-running processes run in the background, which helps us defer behavior until those processes have been completed. [Promises](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises) are the primary way of dealing with asynchronous processes and the information carried.
 
 Arrays have developed as of es6 and now provide rich means of manipulating data and information streams. Read more about the functions of [Arrays in JavaScript](https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/).
 
-**React Fundamentals**
+Now, moving onto the **React API**, JSX is a [declarative](https://ui.dev/imperative-vs-declarative-programming) way to describe our UI. React allows us to ignore the chaos of browser DOM APIs for rendering our apps (or mobile rendering in the case of react-native). You're [really](https://beta.reactjs.org/learn/writing-markup-with-jsx) going to [want](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces) to know [JSX](https://www.codecademy.com/learn/react-101/modules/react-101-jsx-u/cheatsheet).
 
-The React API, especially JSX, is a [declarative](https://ui.dev/imperative-vs-declarative-programming) way to describe our UI. React allows us to ignore the chaos of browser DOM APIs for rendering our apps (or mobile rendering in the case of react-native). You're [really](https://beta.reactjs.org/learn/writing-markup-with-jsx) going to [want](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces) to know [JSX](https://www.codecademy.com/learn/react-101/modules/react-101-jsx-u/cheatsheet).
-
-Some specific articles in the docs help you to "think" like React and can be very helpful to help build the mental model of how React works:
+Below are some specific recommended articles both in the docs and from various sources to help you "think" like a React developer. We recommend them precisely because they help you build the mental model of how React works:
 
 - [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react)
 - [Responding to Events](https://beta.reactjs.org/learn/responding-to-events) (like clicking, typing, scrolling, etc.)
 - [Describing the UI](https://beta.reactjs.org/learn/describing-the-ui)
-- [Managing State](https://beta.reactjs.org/learn/managing-state) (in components)
-- [Built-In React Hooks](https://beta.reactjs.org/reference/react)
+- [Managing State](https://beta.reactjs.org/learn/managing-state) (locally, in components)
+- [Built-In React Hooks](https://beta.reactjs.org/reference/react) (hooks reference)
   - [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/) - a very detailed article on the nuance of useEffect by core-team member Dan Abramov
   - [Myths about useEffect](https://epicreact.dev/myths-about-useeffect/)
 - [Escape Hatches](https://beta.reactjs.org/learn/escape-hatches)
 - [Rendering in React](https://beta.reactjs.org/learn/render-and-commit)
+  - [Why React Re-Renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
+  - [A (mostly) complete guide to react rendering behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/)
 - [Common Beginner Mistakes with React](https://www.joshwcomeau.com/react/common-beginner-mistakes/)
-
-**Misc:**
-
-- [Egghead.io (react lessons - free tier)](https://egghead.io/q/react?access_state=free) - high-quality react tutorials
-- [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (Mozilla Developer Network) JavaScript / Browser API documentation
-- [Why React Re-Renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
-- [A (mostly) complete guide to react rendering behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/)
 
 **Free React Courses & Tutorials**
 
+- [Egghead.io (react lessons - free tier)](https://egghead.io/q/react?access_state=free) - catalog of React tutorials/lessons
 - [The Beginner's Guide to React](https://egghead.io/courses/the-beginner-s-guide-to-react) - video course by Kent C. Dodds
 - [Interactive React Tutorial](https://react-tutorial.app/) - build React projects with Jad Joubran
 

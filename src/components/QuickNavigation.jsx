@@ -7,14 +7,14 @@ import { UserIcon } from '@/components/icons/UserIcon'
 const resources = [
   {
     href: '/javascript-basics',
-    name: 'JavaScript Basics',
+    name: 'JS / TS Fundamentals',
     description:
       'Starting points for developers not familiar with Javascript or Typescript.',
     icon: UserIcon,
   },
   {
     href: '/react-basics',
-    name: 'React Basics',
+    name: 'React Fundamentals',
     description:
       'For developers familiar with web development technologies (HTML, CSS, JS/TS) but not familiar with React.',
     icon: BookIcon,
