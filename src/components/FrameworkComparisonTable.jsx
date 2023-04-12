@@ -7,7 +7,7 @@ export function FrameworkComparisonTable() {
 					<div className='flex basis-3/4'>
 						<div className='w-1/3 px-2'>
 							<div className='flex items-center gap-4'>
-								<svg className='w-[48px] lg:w-11' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" focusable="false">
+								<svg className='w-[48px]' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" focusable="false">
 									<circle cx="14" cy="14" r="14" fill="#639"/>
 									<path fill="#fff" d="M6.2 21.8C4.1 19.7 3 16.9 3 14.2L13.9 25c-2.8-.1-5.6-1.1-7.7-3.2zm10.2 2.9L3.3 11.6C4.4 6.7 8.8 3 14 3c3.7 0 6.9 1.8 8.9 4.5l-1.5 1.3C19.7 6.5 17 5 14 5c-3.9 0-7.2 2.5-8.5 6L17 22.5c2.9-1 5.1-3.5 5.8-6.5H18v-2h7c0 5.2-3.7 9.6-8.6 10.7z"/>
 								</svg>
@@ -16,13 +16,13 @@ export function FrameworkComparisonTable() {
 						</div>
 						<div className='w-1/3 px-2'>
 							<div className='flex items-center gap-4'>
-								<svg className='w-[48px] lg:w-11' aria-label="Next.js logomark" class="next-mark_root__wLeec" role="img" viewBox="0 0 180 180" width="80"><mask height="180" id="mask0_408_134" maskUnits="userSpaceOnUse" style={{ maskType: 'alpha' }} width="180" x="0" y="0"><circle cx="90" cy="90" fill="black" r="90"></circle></mask><g mask="url(#mask0_408_134)"><circle cx="90" cy="90" data-circle="true" fill="black" r="90"></circle><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_408_134)"></path><rect fill="url(#paint1_linear_408_134)" height="72" width="12" x="115" y="54"></rect></g><defs><linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_408_134" x1="109" x2="144.5" y1="116.5" y2="160.5"><stop stop-color="white"></stop><stop offset="1" stop-color="white" stop-opacity="0"></stop></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_408_134" x1="121" x2="120.799" y1="54" y2="106.875"><stop stop-color="white"></stop><stop offset="1" stop-color="white" stop-opacity="0"></stop></linearGradient></defs></svg>
+								<svg className='w-[48px]' aria-label="Next.js logomark" class="next-mark_root__wLeec" role="img" viewBox="0 0 180 180" width="80"><mask height="180" id="mask0_408_134" maskUnits="userSpaceOnUse" style={{ maskType: 'alpha' }} width="180" x="0" y="0"><circle cx="90" cy="90" fill="black" r="90"></circle></mask><g mask="url(#mask0_408_134)"><circle cx="90" cy="90" data-circle="true" fill="black" r="90"></circle><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_408_134)"></path><rect fill="url(#paint1_linear_408_134)" height="72" width="12" x="115" y="54"></rect></g><defs><linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_408_134" x1="109" x2="144.5" y1="116.5" y2="160.5"><stop stop-color="white"></stop><stop offset="1" stop-color="white" stop-opacity="0"></stop></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_408_134" x1="121" x2="120.799" y1="54" y2="106.875"><stop stop-color="white"></stop><stop offset="1" stop-color="white" stop-opacity="0"></stop></linearGradient></defs></svg>
 								<span className='hidden text-sm font-bold tracking-widest uppercase lg:block'>Next.js</span>
 							</div>
 						</div>
 						<div className='w-1/3 px-2'>
 							<div className='flex items-center gap-4'>
-								<svg className='w-[48px] lg:w-12' viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<svg className='w-[48px]' viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
 									<rect width="800" height="800" fill="#212121"/>
 									<path fill-rule="evenodd" clip-rule="evenodd" d="M587.947 527.768C592.201 582.418 592.201 608.036 592.201 636H465.756C465.756 629.909 465.865 624.337 465.975 618.687C466.317 601.123 466.674 582.807 463.828 545.819C460.067 491.667 436.748 479.634 393.871 479.634H355.883H195V381.109H399.889C454.049 381.109 481.13 364.633 481.13 321.011C481.13 282.654 454.049 259.41 399.889 259.41H195V163H422.456C545.069 163 606 220.912 606 313.42C606 382.613 563.123 427.739 505.201 435.26C554.096 445.037 582.681 472.865 587.947 527.768Z" fill="white"/>
 									<path d="M195 636V562.553H328.697C351.029 562.553 355.878 579.116 355.878 588.994V636H195Z" fill="white"/>
