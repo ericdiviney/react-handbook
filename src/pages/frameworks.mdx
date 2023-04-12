@@ -1,30 +1,43 @@
+import { FrameworkComparisonTable } from '@/components/FrameworkComparisonTable'
+
 export const description =
-  'Explore the React meta-frameworks and build tools that run behind them.'
+  'Explore React meta-frameworks and the tools that bundle them.'
 
 # Frameworks & Build Tools
 
-Today there are plenty of variants of React, some that will suit your use case better than others. Read below to see the current state of each of these, what they offer, and why you might pick them when starting a new React app.
+There are many variants of React to choose from today. While optionality is excellent, it can also bring confusion when it's time to decide on your tech stack.
+
+We wrote this guide to bring clarity to the framework discussion.
+
+Each framework will have unique selling points on why you would choose them for your project. Read below to investigate those features a little deeper.
+
+### But first, a hot take
 
 <img
-  className="max-w-[600px]"
+  className="w-full lg:max-w-[600px]"
   src="/framework-tweet.png"
   alt="framework recommendation on twitter"
 />
-[_Andrew Clark_](https://twitter.com/acdlite) is a core contributor to React whose
-recent work includes Hooks, Server Components, and Suspense.
 
-This debate/conversation is definitely still being played out in the open-source community - but at this point, it is mainly recommended to be using frameworks when building your apps. Some valuable advice when working with these frameworks is **don't fight the frameworks' choices**. If you disagree philosophically enough with React or the framework - just choose another one. Inventing and managing your own internal framework, or bastardizing a meta-framework to fit your needs is only going to cause you headaches and lots of effort.
+For anyone that doesn't already know, [Andrew Clark](https://twitter.com/acdlite) (above) is a core contributor to React whose recent work includes Hooks, Server Components, and Suspense.
+
+Don't overanalyze what Andrew is saying above. You're not losing any "cool points" if your project is still a React SPA. In fact, if your entire app is hidden behind authentication (like a dashboard) - SPAs are still a perfectly valid way to ship it.
+
+This whole framework debate/conversation is still being played out in the open-source community. In general, over the past few years, the pendulum has swung back towards SSR (server-side rendering) because of the [benefits](#the-shift-towards-ssr) it brings to certain types of applications. A lot of developers have realized that SSR can result in a better experience of their product (app OR site), and thats 100% the reason why this pendulum is swinging back in this direction. No one has an agenda, there's no conspiracy. Sometimes, SSR just seems to work really well for certain use cases.
+
+Some valuable advice when working with these frameworks is **don't fight the frameworks' choices**. If you disagree philosophically enough with React or the framework at hand - just choose another. Inventing and managing your own internal framework, or bastardizing a meta-framework to fit your needs is likely only going to cause you headaches and lots of effort spent maintaining your app as opposed to improving it.
 
 Read more [from the official react documentation](https://beta.reactjs.org/learn/start-a-new-react-project#building-with-a-full-featured-framework) on their endorsement of framework usage.
 
 ---
 
-## Vanilla React
+## Vanilla React (SPAs)
 
-Everything in the rest of this article builds on top of React. Given today’s options, it is less likely that you should start a React project from scratch. React without a framework might not be a bad choice if:
+Given today's options, it is less likely that you should start a React project from scratch and more likely you should reach for a framework. A React SPA could be a good choice for you if:
 
 - The scope of your app is very lightweight and a relatively simple SPA that doesn't need the advantages of server-side rendering. This scope is very unlikely to change anytime soon.
 - Your app is not lightweight or straightforward, and your team will diligently manage all dependencies and technical choices you'll likely need to make for the project to succeed (things like routing, data fetching, client vs server rendering, etc.). Note, this is more of a warning than it is a viable option for your project
+- Either of the above is true and practically the entire application lives behind authentication
 
 **Whatever you do, don't start with CRA (Create-React-App)**
 
@@ -32,85 +45,68 @@ Everything in the rest of this article builds on top of React. Given today’s o
 - It ignores the advice of picking a framework instead of just React
 - The authors [themselves have said](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) they don't intend on adding new features or maintaining it much further
 - [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) is the current recommended alternative
-  - Read this guide on [migrating your app from CRA to Vite](https://www.robinwieruch.de/vite-create-react-app/)
+    - Read this guide on [migrating your app from CRA to Vite](https://www.robinwieruch.de/vite-create-react-app/)
 
 ## React Native
 
 For building mobile (iOS and Android) applications.
 
-You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build an application that will run natively on Android, iOS, AND modern web browsers using the same codebase.
+You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build an application that will run natively on Android, iOS, AND modern web browsers using the same codebase. We plan on building this section out a little more in the future, providing learning resources and common tips for React Native projects. Have ideas? Help us out and [pitch them](https://docs.google.com/document/d/10n5LQH_8VZFMzngMWhY74WrvzqFKF3v-9iUPpiMxMDQ/edit#) in our git repository.
 
-## Next.js, Remix, Gatsby
+## The Shift Towards SSR
 
-**What these frameworks have in common**  
-All 3 frameworks lay the foundations of an application/website built with React. Each framework provides some tooling out-of-the-box for you when starting a new project, and this tooling is meant to make your life easier as a developer. If you embrace what each framework offers, taking advantage of the vast react ecosystem will be much easier.
+Before jumping into the frameworks below, it can help to understand *why* this shift has happened:
+
+1. SEO (Search Engine Optimization) - Many [articles](https://medium.com/@badams/another-very-late-response-youre-confusing-googlebot-the-crawler-with-caffeine-google-s-b9ef24d81524) claim that client-side rendering hurts SEO performance. Google even [recommends moving away](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering) from "dynamic content rendering" which tells a server to give a different response depending on the user-agent of the request (bots get different content than users do). While the official position is that client-side rendering is treated the same as server-side rendering, the results speak for themselves. Most companies do not possess the resources or knowledge to properly assess if client-side rendering is hurting their SEO. Therefore the best option for many companies is to take an approach that's tried and true and that does not present un-necessary risk for search engine bots. That option is server-side rendering. Simply put: bots can parse server-rendered content much easier than client-rendered content.
+    - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
+2. Faster initial render/content paint - This is a particularly useful point to consider if you know your users might be using your application on slow internet connections. Faster load times will be easier to achieve in the near future with features like Remix's [Nested Routes](https://remix.run/docs/en/main/guides/routing#what-is-nested-routing) (Next.js equivalent is the [App Router](https://beta.nextjs.org/docs/app-directory-roadmap))
+3. Meaningful HTTP error codes - Returning 400/500 codes isn't really possible with a client-side router
+4. App will run better with JS disabled - Not sure how many people run their browsers with JS disabled by default - but perhaps this is your audience! If so, SSR is probably exactly what you need
+
+## About Next.js, Remix, Gatsby
+
+All 3 frameworks lay the foundations for an application/website built with React. Some things to note:
+
+- Each framework provides some tooling out-of-the-box for you when starting a new project, and this tooling is meant to make your life easier as a developer
+- If you embrace what each framework offers, taking advantage of the vast react ecosystem will be much easier
+- Each framework will be better suited for some use-cases, and ill suited for other use-cases
 
 Before you dive in below, you may benefit by watching [this video](https://www.youtube.com/watch?v=bfLFHp7Sbkg) by Ryan Florence explaining the differences in approach from a server and cache perspective of the frameworks below. After you've watched it, you'll be heading into the next section with a strong understanding of SSG (static site generation) vs SSR (server-side rendering), as well as caching strategies that can decrease the load you put on your server while still serving your users dynamic content that will lead to a positive experience.
 
-**Gatsby**
-
-- Best for: static websites with infrequent content updates, fast content-driven websites, SEO-friendly sites
-- Not good if you need: dynamically generated pages (search results, user-generated feeds/content, application dashboards, etc.)
-- Tutorials
-  - [Official Gatsby Documentation](https://www.gatsbyjs.com/docs/tutorial/)
-
-**Next.js**
-
-- Best for: static websites, performant dynamic web apps/websites, SEO-friendly sites
-- Not good if you need: absolutely no requirement for server-side react or if your team has opinionated stances on functionality like routing, data fetching, etc.
-- Tutorials
-  - [Create a Next.js app - Official Next.js Documentation](https://nextjs.org/learn/basics/create-nextjs-app)
-  - [Introduction to Next.js 9](https://egghead.io/courses/introduction-to-next-js-9-9c01) - by Xiaoru Li
-
-**Remix**
-
-- Best for: performant dynamic web apps/websites, SEO-friendly websites, progressive web features, BFFE (backend for front end)
-- Not good if you need: ??, framework maturity (TODO: honest breakdown of the fallbacks and negatives of Remix)
-- Tutorials:
-  - [Up and Running with Remix](https://egghead.io/courses/up-and-running-with-remix-b82b6bb6) - Kent C. Dodds
-  - [Remix Tutorial Livestream](https://www.youtube.com/watch?v=hsIWJpuxNj0) - Kent C. Dodds
-  - [Jokes App Tutorial](https://remix.run/docs/en/v1/tutorials/jokes) - Official Remix Documentation
-
 ## Comparison
 
-**Vanilla React vs Meta-Frameworks**
+<FrameworkComparisonTable />
 
-CRA (Create React App) is a [bad](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) starting point and you also probably shouldn't be starting with vanilla React for your next production application. However, if flexibility is one of your highest concerns, that might be a good reason to start with just React alone. Otherwise, you should probably try Next or Remix.
+---
 
-**Gatsby vs Next**
+**React SPA vs. React Frameworks**
 
-At this point, other than DX (developer experience) - you're pretty much getting the same end result picking between Next.js and Gatsby. With Next being the more flexible option (without sacrificing performance) there aren’t many reasons to recommend Gatsby. Again, you should consider the DX of everyone that will be working on the project, but as far as functionality - Next gets you everything Gatsby does and more. Gatsby does support server-side generated responses at runtime, but in general, Next has better support for this feature. If your project has any potential to grow beyond the current spec/scope - we recommend Next. Traditionally, some arguments favoring Gatsby might have referenced integrating GraphQL easily, or the [plugin library](https://www.gatsbyjs.com/plugins) - Next.js has since [closed](https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/) the GraphQL gap, and it’s likely you’d be able to find plugin alternatives given the vast React ecosystem.
+CRA (Create React App) is a [bad](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) starting point for your next production application. Next.js and Remix are great options for web applications, or you could go with a SPA if [it fits your requirements](/frameworks#vanilla-react-spas).
+
+**Gatsby vs. Next (for websites)**
+
+If you're looking to build a website (potentially with some simple features hidden behind authentication), other than developer experience (dx) you're getting the same end-result picking between Next.js and Gatsby. With Next being the more flexible option (without sacrificing performance) there aren't many reasons to recommend Gatsby. Again, you should consider the DX of everyone that will be working on the project, but as far as functionality - Next.js gets you everything Gatsby does and more. Gatsby can support server-side generated responses at runtime, but in general, Next has better support for this feature. If your project has any potential to grow beyond the current spec/scope - we recommend Next.js. Traditionally, some arguments favoring Gatsby might have referenced integrating GraphQL easily, or the [plugin library](https://www.gatsbyjs.com/plugins) - Next.js has since [closed](https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/) the GraphQL gap, and it's likely you'd be able to find plugin alternatives given the vast React ecosystem.
 
 Further reading
 
-- [Gatsby vs Next.js](https://www.gatsbyjs.com/features/jamstack/gatsby-vs-nextjs) - Official Gatsby.js
+- [Gatsby vs Next.js](https://www.gatsbyjs.com/features/jamstack/gatsby-vs-nextjs) - Official Gatsby.js comparison
 
-**Next vs Remix**
+**Next vs. Remix (for webapps)**
 
-Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
+Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: *Remix really tries to make your app fast out of the box*. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
 
-- Both use file-system-based routing
+- Both use the folder/file structure to setup the "routes" of your app
 - Both take advantage of HTTP caching to deliver results to users as fast as possible
-- Both provide built-in mechanisms for data fetching
-- Next is the more battle-tested library in production
-- Next does not support “nested routes” ([yet](https://nextjs.org/blog/layouts-rfc?ref=hackernoon.com)), which in general lead to better load times for users
-- Remix is built on top of standard Web APIs, Next incentivizes a Node.js approach (for now)
-- Relying less on node.js means Remix is more portable to non-node environments like Cloudflare Workers or Deno Deploy and also makes it easier to run “on the edge”
-- Remix doesn't support SSG (which in a lot of cases is probably fine if your goals are simply to deliver a fast user experience)
-- Remix apps will tend to “work” quicker - since their underlying fundamentals are based on web standards (like forms for mutating data). Remix makes it so users don’t have to wait for a large js bundle (04.chunk.js) to finish loading before they can interact with the page
-- Remix (in general) encourages you to move your typical client-side state management to the server
+- Both provide built-in mechanisms for data fetching in your components
+- When compared to Next.js - in most cases its probably more affordable to ship a Remix app via cloudflare workers than it is to ship a Next.js app on Vercel
+- When compared to Next.js - The way it "blends" server and client-side code / components receives a lot of positive feedback
+- Remix is built on top of standard Web APIs, Next encourages a Node.js approach (for now)
+- Remix relies less on node.js, meaning Remix is more portable to non-node environments like Cloudflare Workers or Deno Deploy and also makes it easier to run "on the edge"
+- Remix apps will tend to "work" quicker - since their underlying fundamentals are based on web standards (like forms for mutating data). In other words: Remix makes it so your users don't have to wait for a large JS bundle (04.chunk.js) to finish loading before they can interact with the page
 
 Further reading:
 
-- [Remix vs Next.js](https://remix.run/blog/remix-vs-next) - Official Remix Documentation
-
-In any case, each of the 3 frameworks above is supported not only by a fantastic open-source community but also by commercial funding/investment from 3 companies:
-
-- Remix (acquired by Shopify)
-- Next.js (from the team behind Vercel)
-- Gatsby (acquired by Netlify)
-
-The future of open-source React is looking very bright!
+- [Remix vs Next.js](https://remix.run/blog/remix-vs-next) - Official Remix comparison
 
 ## High-Performance Websites
 
