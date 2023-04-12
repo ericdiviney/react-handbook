@@ -116,7 +116,7 @@ export function FrameworkComparisonTable() {
 					</div>
 				</div>
 				<div className='flex justify-between p-6 my-2 bg-rose-50 dark:bg-transparent rounded-xl'>
-					<div className='basis-1/4'>Cons</div>
+					<div className='basis-1/4'>Cons:</div>
 					<div className='flex w-3/4'>
 						<div className='w-1/3 px-2'>
 							Serving dynamic content in way that scales is a bit of a pain. Otherwise, you&apos;re mostly left with doing fetch() inside useEffect() and then rendering like you normally would in a simple SPA.	
