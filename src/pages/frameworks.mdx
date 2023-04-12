@@ -14,7 +14,7 @@ Each framework will have unique selling points on why you would choose them for 
 ### But first, a hot take
 
 <img
-  className="max-w-[600px]"
+  className="w-full lg:max-w-[600px]"
   src="/framework-tweet.png"
   alt="framework recommendation on twitter"
 />
@@ -58,12 +58,12 @@ You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to 
 Before jumping into the frameworks below, it can help to understand *why* this shift has happened:
 
 1. SEO (Search Engine Optimization) - Many [articles](https://medium.com/@badams/another-very-late-response-youre-confusing-googlebot-the-crawler-with-caffeine-google-s-b9ef24d81524) claim that client-side rendering hurts SEO performance. Google even [recommends moving away](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering) from "dynamic content rendering" which tells a server to give a different response depending on the user-agent of the request (bots get different content than users do). While the official position is that client-side rendering is treated the same as server-side rendering, the results speak for themselves. Most companies do not possess the resources or knowledge to properly assess if client-side rendering is hurting their SEO. Therefore the best option for many companies is to take an approach that's tried and true and that does not present un-necessary risk for search engine bots. That option is server-side rendering. Simply put: bots can parse server-rendered content much easier than client-rendered content.
-    1. In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
+    - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
 2. Faster initial render/content paint - This is a particularly useful point to consider if you know your users might be using your application on slow internet connections. Faster load times will be easier to achieve in the near future with features like Remix's [Nested Routes](https://remix.run/docs/en/main/guides/routing#what-is-nested-routing) (Next.js equivalent is the [App Router](https://beta.nextjs.org/docs/app-directory-roadmap))
 3. Meaningful HTTP error codes - Returning 400/500 codes isn't really possible with a client-side router
 4. App will run better with JS disabled - Not sure how many people run their browsers with JS disabled by default - but perhaps this is your audience! If so, SSR is probably exactly what you need
 
-## Next.js, Remix, Gatsby
+## About Next.js, Remix, Gatsby
 
 All 3 frameworks lay the foundations for an application/website built with React. Some things to note:
 
@@ -77,13 +77,15 @@ Before you dive in below, you may benefit by watching [this video](https://www.y
 
 <FrameworkComparisonTable />
 
+---
+
 **React SPA vs. React Frameworks**
 
-CRA (Create React App) is a [bad](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) starting point and you also probably shouldn't be starting with vanilla React for your next production application. However, if flexibility is one of your highest concerns, that might be a good reason to start with just React alone. Otherwise, you should probably try Next or Remix.
+CRA (Create React App) is a [bad](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) starting point for your next production application. Next.js and Remix are great options for web applications, or you could go with a SPA if [it fits your requirements](/frameworks#vanilla-react-spas).
 
 **Gatsby vs. Next (for websites)**
 
-If you're looking to build a website with minimal features hidden behind authentication, other than DX (developer experience), you're getting the same end-result picking between Next.js and Gatsby. With Next being the more flexible option (without sacrificing performance) there aren't many reasons to recommend Gatsby. Again, you should consider the DX of everyone that will be working on the project, but as far as functionality - Next gets you everything Gatsby does and more. Gatsby does support server-side generated responses at runtime, but in general, Next has better support for this feature. If your project has any potential to grow beyond the current spec/scope - we recommend Next. Traditionally, some arguments favoring Gatsby might have referenced integrating GraphQL easily, or the [plugin library](https://www.gatsbyjs.com/plugins) - Next.js has since [closed](https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/) the GraphQL gap, and it's likely you'd be able to find plugin alternatives given the vast React ecosystem.
+If you're looking to build a website (potentially with some simple features hidden behind authentication), other than developer experience (dx) you're getting the same end-result picking between Next.js and Gatsby. With Next being the more flexible option (without sacrificing performance) there aren't many reasons to recommend Gatsby. Again, you should consider the DX of everyone that will be working on the project, but as far as functionality - Next.js gets you everything Gatsby does and more. Gatsby can support server-side generated responses at runtime, but in general, Next has better support for this feature. If your project has any potential to grow beyond the current spec/scope - we recommend Next.js. Traditionally, some arguments favoring Gatsby might have referenced integrating GraphQL easily, or the [plugin library](https://www.gatsbyjs.com/plugins) - Next.js has since [closed](https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/) the GraphQL gap, and it's likely you'd be able to find plugin alternatives given the vast React ecosystem.
 
 Further reading
 
@@ -105,14 +107,6 @@ Remix is something newer, attempting to take advantage of many current browser s
 Further reading:
 
 - [Remix vs Next.js](https://remix.run/blog/remix-vs-next) - Official Remix comparison
-
-In any case, each of the 3 frameworks above is supported not only by a fantastic open-source community but also by commercial funding/investment from 3 companies:
-
-- Remix (acquired by Shopify)
-- Next.js (from the team behind Vercel)
-- Gatsby (acquired by Netlify)
-
-The future of open-source React is looking very bright!
 
 ## High-Performance Websites
 
