@@ -119,7 +119,7 @@ export function FrameworkComparisonTable() {
 					<div className='basis-1/4'>Cons:</div>
 					<div className='flex w-3/4'>
 						<div className='w-1/3 px-2'>
-							Serving dynamic content in way that scales is a bit of a pain. Otherwise, you&apos;re mostly left with doing fetch() inside useEffect() and then rendering like you normally would in a simple SPA.	
+							Serving dynamic content in way that scales is a bit of a pain. Very limited SSR support, for dynamic content you&apos;re otherwise left with fetch() in a component and then rendering the data like you normally would in a simple SPA.
 						</div>
 						<div className='w-1/3 px-2'>
 							<div>Devs using Remix tend to rave about <a href="https://remix.run/blog/lazy-loading-routes" target='_blank' rel="noreferrer">Nested Routes</a>, while devs using the new (beta) <a target='_blank' href="https://beta.nextjs.org/docs/app-directory-roadmap" rel="noreferrer">App Router</a> in Next.js report many bugs.</div>
