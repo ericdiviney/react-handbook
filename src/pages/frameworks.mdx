@@ -101,7 +101,7 @@ It is advised that you default to using packages created by the React Native Com
 
 ### Imports
 
-Creating aliases for cleaner imports is amazing. Consider using `babel-plugin-module-resolver`. To avoid long-nested imports (e.g., `import Component from '../../long/nested/import/direcotry/components/Component'`) which can make this into a much cleaner import such as `import { MyComponent } from '@components'`.
+Creating aliases for cleaner imports is amazing. Consider using `babel-plugin-module-resolver`. To avoid long-nested imports (e.g., `import Component from '../../long/nested/import/direcotry/components/Component'`) which can make this into a much cleaner import such as `import { Component } from '@components'`.
 
 ### Platform-specific Handling Code
 Occasioanlly you will run into scenarios where Platform-specific styles or operations need to occur. React Native provides a `Platform` object to help with this.
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
    }),
  },
 });
-
 ```
 
 You may also access the `Platform.OS` property to see if the platoform is `ios`, `android`, `macos`, `windows`, or `web`.
@@ -171,14 +170,14 @@ With React Native being a leader in producing mobile applications, it is imperat
 Image performance is a crucial when working with a native application as memory constraints means unoptimized image use could lead to crashes, especially when using static image resources. Here are a number of ways to handle for this.
 
 - [**react-native-fast-image package**](https://www.npmjs.com/package/react-native-fast-image?activeTab=readme) - Provides a `FastImage` component that integrates with the `SDWebImage`(iOS) and `Glide` (Android) objects which, as you guessed, loads images much faster.
-- **Proper image Formats** - You may want to consider using formats like PNG or WEBP format for reducing binary size of images for both platforms. This can reduce images to $\frac{1}{3}$ of the original size.
+- **Proper image Formats** - You may want to consider using formats like PNG or WEBP format for reducing binary size of images for both platforms. This can reduce images to 1/3 of the original size.
 
 - **`FlatList`** **is your friend**. You may be tempted to use a `ScrollView` for loading a large list of items. Do not. `FlatList` uses lazy-loading for better memory performance.
 
 ### **App Production**
 
 **RAM Format** - For iOS, you can produce your application in RAM format for a single indexed file. As  [the docs](https://reactnative.dev/docs/ram-bundles-inline-requires) state:
-> "If you have a large app you may want to consider the Random Access Modules (RAM) bundle format, and using inline requires. This is useful for apps that have a large number of screens which may not ever be opened during a typical usage of the app. Generally it is useful to apps that have large amounts of code that are not needed for a while after startup. For instance the app includes complicated profile screens or lesser used features, but most sessions only involve visiting the main screen of the app for updates. We can optimize the loading of the bundle by using the RAM format and requiring those features and screens inline (when they are actually used)."
+> If you have a large app you may want to consider the Random Access Modules (RAM) bundle format, and using inline requires. This is useful for apps that have a large number of screens which may not ever be opened during a typical usage of the app. Generally it is useful to apps that have large amounts of code that are not needed for a while after startup. For instance the app includes complicated profile screens or lesser used features, but most sessions only involve visiting the main screen of the app for updates. We can optimize the loading of the bundle by using the RAM format and requiring those features and screens inline (when they are actually used).
 
 With use of `Hermes`, this is enabled by default.
 
