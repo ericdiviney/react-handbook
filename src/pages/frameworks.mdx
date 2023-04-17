@@ -85,13 +85,15 @@ CRA (Create React App) is a [bad](https://github.com/reactjs/reactjs.org/pull/54
 
 **Gatsby vs. Next (for websites)**
 
+Gatsby is not ideal for web applications that are dependent on user interactions changing data or dynamically rendering data fetched from an external source (like a DB).
+
 If you're looking to build a website (potentially with some simple features hidden behind authentication), other than developer experience (dx) you're getting the same end-result picking between Next.js and Gatsby. With Next being the more flexible option (without sacrificing performance) there aren't many reasons to recommend Gatsby. Again, you should consider the DX of everyone that will be working on the project, but as far as functionality - Next.js gets you everything Gatsby does and more. Gatsby can support server-side generated responses at runtime, but in general, Next has better support for this feature. If your project has any potential to grow beyond the current spec/scope - we recommend Next.js. Traditionally, some arguments favoring Gatsby might have referenced integrating GraphQL easily, or the [plugin library](https://www.gatsbyjs.com/plugins) - Next.js has since [closed](https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/) the GraphQL gap, and it's likely you'd be able to find plugin alternatives given the vast React ecosystem.
 
 Further reading
 
 - [Gatsby vs Next.js](https://www.gatsbyjs.com/features/jamstack/gatsby-vs-nextjs) - Official Gatsby.js comparison
 
-**Next vs. Remix (for webapps)**
+**Next vs. Remix (for web apps)**
 
 Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: *Remix really tries to make your app fast out of the box*. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
 
