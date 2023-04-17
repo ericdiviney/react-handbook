@@ -125,7 +125,7 @@ export function FrameworkComparisonTable() {
 							<div>Devs using Remix tend to rave about <a href="https://remix.run/blog/lazy-loading-routes" target='_blank' rel="noreferrer">Nested Routes</a>, while devs using the new (beta) <a target='_blank' href="https://beta.nextjs.org/docs/app-directory-roadmap" rel="noreferrer">App Router</a> in Next.js report many bugs.</div>
 						</div>
 						<div className='w-1/3 px-2'>
-							As the new framework on the block, Remix has to compete with the incumbents (Gatsby and Next.js). The API seems stable for now.
+							As the new framework on the block, Remix has to compete with the incumbents (Gatsby and Next.js).
 						</div>
 					</div>
 				</div>
