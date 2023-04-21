@@ -9,7 +9,7 @@ export const sections = [
 
 # Hooks
 
-The new React [docs](https://beta.reactjs.org/reference/react) are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
+The new React [docs](https://react.dev/reference/react) are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
 
 ![hook flow chart](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
 
@@ -22,10 +22,10 @@ Common questions:
 Tips:
 
 - If the initial value for your state is computationally expensive, consider [lazy state initialization](https://kentcdodds.com/blog/use-state-lazy-initialization-and-function-updates) to ensure it only runs once per component mount
-- If you are updating state values (with setState()) many times throughout your component, you'd probably benefit by switching to the [reducer pattern](https://beta.reactjs.org/reference/react/useReducer) or even defining a [custom hook](https://beta.reactjs.org/learn/reusing-logic-with-custom-hooks).
+- If you are updating state values (with setState()) many times throughout your component, you'd probably benefit by switching to the [reducer pattern](https://react.dev/reference/react/useReducer) or even defining a [custom hook](https://react.dev/learn/reusing-logic-with-custom-hooks).
 - Read the [Common Pitfalls of useState](https://profy.dev/article/react-usestate-pitfalls)
 - Store as little "state" as possible, [derive](https://kentcdodds.com/blog/dont-sync-state-derive-it) as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
-- Don't try to update one property in an object or one item in an array, instead you should [replace](https://beta.reactjs.org/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a ref (useRef)
+- Don't try to update one property in an object or one item in an array, instead you should [replace](https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a ref (useRef)
 
 ## `useEffect` / `useLayoutEffect`
 
@@ -33,7 +33,7 @@ Effects are code that run last during the rendering cycle. You may hear that eff
 
 You might be using effects wrong if:
 
-- You have code in an effect that "resets" all local component state when a prop changes for that component (read [You Might Not Need an Effect](https://beta.reactjs.org/learn/you-might-not-need-an-effect#resetting-all-state-when-a-prop-changes))
+- You have code in an effect that "resets" all local component state when a prop changes for that component (read [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect#resetting-all-state-when-a-prop-changes))
 - Effects are NOT "subscriptions" - try not to think of them as a way to "opt in" or [listen](https://profy.dev/article/react-usestate-pitfalls#listening-to-state-changes-via-useeffect) to changes to specific variables. Thinking this way can lead to pointless re-renders and therefore laggard performance in your apps
 - Related to the above point, if you are updating state with setState() **inside** of your effect, you [might be doing something wrong](https://profy.dev/article/react-usestate-pitfalls#updating-state-via-useeffect) (not always, but we find this more true than not). Since effects run last in the render phase, updating state from there will immediately cause your component to re-render
 
