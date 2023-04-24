@@ -5,30 +5,18 @@ export const description =
 
 There's no reason you can't or shouldn't follow an organization template like we describe on our normal [Project Structure](/project-structure) page.
 
-`[Questionable advice below???]`
-
-In general though, there is a better way to write React pages/components. You can think of your components as data-layers and view-layers.
-
-It sounds like the way to think about building RN apps is in terms of "containers" and "components" as you've mentioned. Is there a way we can condense the ideas of that into a code-snippet with a folder structure?
-
-Also, is there a performance gain to setting it this way? Or is it just cleaner way to organize logic from view?
-
-Is this the right line of thinking? I guess I'm just looking for the most compelling reason WHY to do this. Not just thats it what people have done so we'll do it too. What's the core argument behind doing it this way?
-
-`[/ End questionable advice???]`
-
 ## Ecosystem / Packages
 
 A very useful directory for browsing open source packages and functionality you should consider using is the [React Native Directory](https://reactnative.directory/). You can filter by the platform you're deploying to as well.
 
 Furthermore, there will be times you need to use "Native Modules" to interact with device-specific APIs that JavaScript cannot provide. At the time of writing, `Native Modules` and `Native Components` are deprecated and will eventually transfer to the new and improved `Turbo Native Modules` and `Fabric Native Components`. For more info, visit the [Native Modules Intro](https://reactnative.dev/docs/native-modules-intro) from the docs.
 
-## Component Format
+## Component Tips
 
 - [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) - advice for writing clear, concise code in JavaScript
 - [Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet) - naming things consistently gets easier with this advice
 
-**Writing UI / View Components**
+**Writing Components**
 
 In general, you should think of the file contents in your React Native View-like components as appearing in this order:
 
@@ -41,26 +29,14 @@ In general, you should think of the file contents in your React Native View-like
 7. JSX (return statement)
 8. Abstracted JSX only used in this file
 
-Here's a sample component to help you understand:
+For organizing your individual component files in a consistent manner - check out the sample component we present on the [Project Structure](/project-structure#component-format) page.
 
 ```tsx
-/**
- * 1. Imports and constants
- * You can configure an alias in your typescript/project config that allows you to reference a root or specific folder
- * This leads to cleaner imports and not nested spaghetti code like import {} from '../../../../some/random/folder/far/away'
- */
-import { blahblahblah } from '@/features/blah'
-import { UserContext } from '@/contexts/user'
-
-```
-
-## Common Tools & Tips
-
-**Platform-Specific Code** - Occasionally you will run into scenarios where Platform-specific styles or operations need to occur. React Native provides a Platform object to help with this.
-
-```tsx
+// Occasionally you will run into scenarios where Platform-specific code is required.
+// You can use the Platform import for these purposes.
 import { Platform, StyleSheet } from 'react-native';
 
+// Conditionally apply styles depending on platform of user
 const styles = StyleSheet.create({
  container: {
    flex: 1,
@@ -75,7 +51,7 @@ const styles = StyleSheet.create({
  },
 });
 
-// or, reference the Platform.OS property to conditionally run code in your components
+// or, reference the Platform.OS property directly to conditionally run code in your components
 switch (Platform.OS) {
 	case 'ios':
 	case 'android':
@@ -87,29 +63,33 @@ switch (Platform.OS) {
 if (Platform.OS === 'ios') {
 	// iOS-only
 }
+
+
+// <SafeViewArea> & <Flatlist> are two critical components you should frequently use
+
+// SafeViewArea - To ensure your views don't get cut off by odd iPhone screen shapes (wrap your View layer in this)
+import { SafeAreaView } from 'react-native';
+
+// FlatList - an extremely performant method of rendering list-like components. Uses virtualization under the hood.
+import { FlatList } from 'react-native';
+
 ```
 
-`<SaveViewArea>` - To ensure consistency across device generations, and to limit the amount of visual handling, always include the [SafeViewArea](https://reactnative.dev/docs/safeareaview) to parent your views.
+## Common Tips
 
-## **Performance & Optimization**
+**Holistic Security Approaches** - Before setting off you should probably read the [Security](https://reactnative.dev/docs/security) guidelines provided by the React Native docs.
+
+## Performance & Optimization Tips
 
 With React Native being a leader in producing mobile applications, it is imperative to consider performance caveats and best practices. For more, please refer to the [React Native Performance Overview Docs](https://reactnative.dev/docs/performance). Below are some misc tips for optimization.
 
-### Images
-
-Image performance is a crucial when working with a native application as memory constraints means unoptimized image use could lead to crashes, especially when using static image resources. Here are a number of ways to handle for this.
+**Image performance** is a crucial when working with a native application as memory constraints means unoptimized image use could lead to crashes, especially when using static image resources. Here are a number of ways to handle for this.
 
 - [react-native-fast-image package](https://www.npmjs.com/package/react-native-fast-image?activeTab=readme) - Provides a `FastImage` component that integrates with the `SDWebImage`(iOS) and `Glide` (Android) objects which, as you guessed, loads images much faster.
 - **Proper image Formats** - You may want to consider using formats like PNG or WEBP format for reducing binary size of images for both platforms. This can reduce images to 1/3 of the original size.
 
-### App Production
-
 **RAM Format** - For iOS, you can produce your application in RAM format for a single indexed file. As [the docs](https://reactnative.dev/docs/ram-bundles-inline-requires) state:
-
-The docs tell you if it would fit your use-case:
 
 > "... This is useful for apps that have a large number of screens which may not ever be opened during a typical usage of the app. Generally it is useful to apps that have large amounts of code that are not needed for a while after startup..."
 
-With use of `Hermes`, this is enabled by default.
-
-[Hermes](https://hermesengine.dev/) - While only available for specific version ranges of iOS and Android, it is an open-source JavaScript Engine tool that aids in reducing the memory size of the APK. This means your Time to Interact (TTI) speeds may also improve as result. [Click here](https://reactnative.dev/docs/hermes) for installation instructions.
+With use of [Hermes](https://hermesengine.dev/), this is enabled by default.

@@ -204,10 +204,10 @@ export const navigation = [
     ],
   },
   {
-    title: 'React Native',
+    title: 'Framework Tips',
     links: [
       {
-        title: 'RN Project Structure',
+        title: 'React Native',
         href: '/react-native-project-structure',
       },
     ],
