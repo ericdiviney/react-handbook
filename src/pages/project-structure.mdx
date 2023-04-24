@@ -68,7 +68,7 @@ If you're not a fan of the approach above, you might like this [alternative fold
 
 ## Component Format
 
-- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) - advice for writing clear, concise code in javascript
+- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) - advice for writing clear, concise code in JavaScript
 - [Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet) - naming things consistently gets easier with this advice
 
 **Writing Functional React Components**
@@ -89,6 +89,8 @@ Here's a sample component to help you understand:
 ```tsx
 /**
  * 1. Imports and constants
+ * You can configure an alias in your build tool that allow you to reference a root or specific folder
+ * leads to cleaner imports and not nested spaghetti code like ../../../../some/random/folder/far/away
  */
 import { blahblahblah } from '@/features/blah'
 import { UserContext } from '@/contexts/user'
