@@ -45,20 +45,20 @@ Given today's options, it is less likely that you should start a React project f
 - It ignores the advice of picking a framework instead of just React
 - The authors [themselves have said](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) they don't intend on adding new features or maintaining it much further
 - [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) is the current recommended alternative
-    - Read this guide on [migrating your app from CRA to Vite](https://www.robinwieruch.de/vite-create-react-app/)
+  - Read this guide on [migrating your app from CRA to Vite](https://www.robinwieruch.de/vite-create-react-app/)
 
 ## React Native
 
-For building mobile (iOS and Android) applications.
+For building native (iOS, Android, Windows, MacOS) and web applications.
 
-You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build an application that will run natively on Android, iOS, AND modern web browsers using the same codebase. We plan on building this section out a little more in the future, providing learning resources and common tips for React Native projects. Have ideas? Help us out and [pitch them](https://docs.google.com/document/d/10n5LQH_8VZFMzngMWhY74WrvzqFKF3v-9iUPpiMxMDQ/edit#) in our git repository.
+You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the [Reactive Framework Framework Tips](/react-native-project-structure).
 
 ## The Shift Towards SSR
 
-Before jumping into the frameworks below, it can help to understand *why* this shift has happened:
+Before jumping into the frameworks below, it can help to understand _why_ this shift has happened:
 
 1. SEO (Search Engine Optimization) - Many [articles](https://medium.com/@badams/another-very-late-response-youre-confusing-googlebot-the-crawler-with-caffeine-google-s-b9ef24d81524) claim that client-side rendering hurts SEO performance. Google even [recommends moving away](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering) from "dynamic content rendering" which tells a server to give a different response depending on the user-agent of the request (bots get different content than users do). While the official position is that client-side rendering is treated the same as server-side rendering, the results speak for themselves. Most companies do not possess the resources or knowledge to properly assess if client-side rendering is hurting their SEO. Therefore the best option for many companies is to take an approach that's tried and true and that does not present un-necessary risk for search engine bots. That option is server-side rendering. Simply put: bots can parse server-rendered content much easier than client-rendered content.
-    - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
+   - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
 2. Faster initial render/content paint - This is a particularly useful point to consider if you know your users might be using your application on slow internet connections. Faster load times will be easier to achieve in the near future with features like Remix's [Nested Routes](https://remix.run/docs/en/main/guides/routing#what-is-nested-routing) (Next.js equivalent is the [App Router](https://beta.nextjs.org/docs/app-directory-roadmap))
 3. Meaningful HTTP error codes - Returning 400/500 codes isn't really possible with a client-side router
 4. App will run better with JS disabled - Not sure how many people run their browsers with JS disabled by default - but perhaps this is your audience! If so, SSR is probably exactly what you need
@@ -95,7 +95,7 @@ Further reading
 
 **Next vs. Remix (for web apps)**
 
-Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: *Remix really tries to make your app fast out of the box*. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
+Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
 
 - Both use the folder/file structure to setup the "routes" of your app
 - Both take advantage of HTTP caching to deliver results to users as fast as possible

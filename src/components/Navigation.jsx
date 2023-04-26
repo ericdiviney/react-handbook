@@ -204,6 +204,15 @@ export const navigation = [
     ],
   },
   {
+    title: 'Framework Tips',
+    links: [
+      {
+        title: 'React Native',
+        href: '/react-native-project-structure',
+      },
+    ],
+  },
+  {
     title: 'Coming Soon',
     links: [
       { title: 'Data & State Management', href: '#' },
