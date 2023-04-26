@@ -5,6 +5,14 @@ export const description =
 
 There's no reason you can't or shouldn't follow an organization template like we describe on our normal [Project Structure](/project-structure) page.
 
+## UX Standards
+
+### Action Handling
+
+**Cancellation** - Give your user an exit strategy while in the middle of performing an unintended action. This can be done by handling a mid-touch gesture as the user drags their finger away from the action space.
+
+**Stick to Buttons With Visual Feedback** - Various buttons provided by React Native have their own feedback controls which provides visual aid to the user. It is [recommended best practice](https://reactnative.dev/docs/gesture-responder-system) to implement visual feedback for a gesture touch to keep the user informed of action results. This generally can be performed with simple animations. There are better alternatives like `TouchableHighlight`, `TouchableOpacity`, and `TouchableNativeFeedback`. `TouchableWithoutFeedback` is to be avoided if you truly do not want to trigger an animation.
+
 ## Ecosystem / Packages
 
 A very useful directory for browsing open source packages and functionality you should consider using is the [React Native Directory](https://reactnative.directory/). You can filter by the platform you're deploying to as well.
@@ -13,52 +21,52 @@ Furthermore, there will be times you need to use "Native Modules" to interact wi
 
 ## Component Tips
 
-There's nothing particularly unique in React Native that would keep you from implementing the same general project practices we recommend on our [Project Structure](/project-structure#component-format) page. So for organizing your component files and folder structure we do recommend the same approach. 
+There's nothing particularly unique in React Native that would keep you from implementing the same general project practices we recommend on our [Project Structure](/project-structure#component-format) page. So for organizing your component files and folder structure we do recommend the same approach.
 
 However, there are some particular catches when developing with React-Native, so we'll try to explain those below:
 
 ```tsx
 // Occasionally you will run into scenarios where Platform-specific code is required.
 // You can use the Platform import for these purposes.
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native'
 
 // Conditionally apply styles depending on platform of user
 const styles = StyleSheet.create({
- container: {
-   flex: 1,
-   ...Platform.select({
-     ios: {
-       // iOS-only styles
-     },
-     android: {
-       // Android-only styles
-     },
-   }),
- },
-});
+  container: {
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        // iOS-only styles
+      },
+      android: {
+        // Android-only styles
+      },
+    }),
+  },
+})
 
 // or, reference the Platform.OS property directly to conditionally run code in your components
 switch (Platform.OS) {
-	case 'ios':
-	case 'android':
-	case 'macos':
-	case 'windows':
-	case 'web':
+  case 'ios':
+  case 'android':
+  case 'macos':
+  case 'windows':
+  case 'web':
 }
 
 if (Platform.OS === 'ios') {
-	// iOS-only
+  // iOS-only
 }
+```
 
-
+```jsx
 // <SafeViewArea> & <Flatlist> are two critical components you should frequently use
 
 // SafeViewArea - To ensure your views don't get cut off by odd iPhone screen shapes (wrap your View layer in this)
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native'
 
 // FlatList - an extremely performant method of rendering list-like components. Uses virtualization under the hood.
-import { FlatList } from 'react-native';
-
+import { FlatList } from 'react-native'
 ```
 
 ## Common Tips

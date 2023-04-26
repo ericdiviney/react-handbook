@@ -45,158 +45,20 @@ Given today's options, it is less likely that you should start a React project f
 - It ignores the advice of picking a framework instead of just React
 - The authors [themselves have said](https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741) they don't intend on adding new features or maintaining it much further
 - [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) is the current recommended alternative
-    - Read this guide on [migrating your app from CRA to Vite](https://www.robinwieruch.de/vite-create-react-app/)
+  - Read this guide on [migrating your app from CRA to Vite](https://www.robinwieruch.de/vite-create-react-app/)
 
 ## React Native
 
-For building mobile (iOS and Android) applications.
+For building native (iOS, Android, Windows, MacOS) and web applications.
 
-You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build an application that will run natively on Android, iOS, AND modern web browsers using the same codebase. We plan on building this section out a little more in the future, providing learning resources and common tips for React Native projects.
-
-### **Best Practices**
-
-### Responsiveness
-When it comes to responsiveness, you can use `react-native-normalize` to calculate your responsive units. Example:
-
-```jsx
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import normalize from 'react-native-normalize';
- 
-export default function MyComponent() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.box}>
-          <Text style={styles.text}>React Native Normalize</Text>
-        </View>
-      </View>
-    );
-}
- 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  box: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    top: normalize(180, 'height'),
-    left: normalize(40),
-    width: normalize(300),
-    height: normalize(300),
-    borderRadius: normalize(150),
-  },
-  text: {
-    fontSize: normalize(60),
-    color: 'white',
-  },
-});
-```
-
-### Stateless is best
-Stateless React components have a much small memory footprint than stateful ones. Tracking memory usage in React Native is crucial, so structuring around this approach where `useState` is defined as low as possible within the component tree is best for local-only changes.
-
-### Package Considerations
-It is advised that you default to using packages created by the React Native Community. For a list of community-developed packages consider using the [React Native Directory](https://reactnative.directory/).
-
-### Imports
-
-Creating aliases for cleaner imports is amazing. Consider using `babel-plugin-module-resolver`. To avoid long-nested imports (e.g., `import Component from '../../long/nested/import/direcotry/components/Component'`) which can make this into a much cleaner import such as `import { Component } from '@components'`.
-
-### Platform-specific Handling Code
-Occasioanlly you will run into scenarios where Platform-specific styles or operations need to occur. React Native provides a `Platform` object to help with this.
-
-**Platform Handling** - Consider the following scenario where we can use `Platform` to handle font styles which are native to their platform.
-
-```jsx
-import { Platform, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
- container: {
-   flex: 1,
-   ...Platform.select({
-     ios: {
-       fontFamily: 'Arial',
-     },
-     android: {
-       fontFamily: 'Roboto',
-     },
-   }),
- },
-});
-```
-
-You may also access the `Platform.OS` property to see if the platoform is `ios`, `android`, `macos`, `windows`, or `web`.
-
-**Native Modules** - Furthermore, there will be times you need to use `Native Modules` to interact with device-specific APIs that JavaScript cannot provide. At the time of writing, `Native Modules` and `Native Components` are deprecated and will eventually transfer to the new and improved `Turbo Native Modules` and `Fabric Native Components`. For more info, visit the [Native Modules Intro](https://reactnative.dev/docs/native-modules-intro) from the docs.
-
-### File Structure
- Creating a divided component folder structure into two different directories: `/containers/` and `/components/`.
-
- **Containers** - They generally are used as Higher-Order Components (HOCs) to access to global state entities such as Redux actions or hooks. They do not contain react-native imports that you would use in JSX (e.g., View, Text). They also may contain anything `react-navigation` or a library unique to the project outside of the usual react-native ecosystem.
-
- ```jsx
-import React from 'react'
-import type { Element } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Formik } from 'formik'
- ```
- *<sup>Container import code</sup>*
-
- **Components** - This is more in line with a traditional React structure. These are children to Containers and generally speaking receive data from those Cotainers. This is where most of your JSX code is intended to live with react-native specific code. Any other code for reuse like styles and components make sense here. This is also the best opportunity space for using hooks.
-
- ```jsx
-import React, { useRef, useState } from 'react'
-import { View, Text } from 'react-native'
-import MyCustomComponent from './MyCustomComponent'
-import type { CustomComponentType } from 'types/custom/components'
-import { customComponentStyles as styles } from './styles'
-```
-*<sup>Component import code</sup>*
-
-### Rely on `SafeViewArea`
-
-Devices have a tendency to change how the screen is layed out, be it iOS or Android. To ensure consistency across device generations, and to limit the amount of visual handling, always include the `SafeViewArea` to parent your views.
-
-### Action Handling
- **Cancellation** - Give your user an exit strategy while in the middle of performing an unintended action. This can be done by handling a mid-touch gesture as the user is dragging their finger away from the action space.
- 
-**Stick to Buttons With Visual Feedback** - Various buttons provided by React Native have their own feedback controls which provide visual aid to the user. It is [recommended best practice](https://reactnative.dev/docs/gesture-responder-system) to implement visual feedback for a gesture touch to keep the user informed of action results. This generally can be performed with a simple animation. There are better alternatives like `TouchableHighlight`, `TouchableOpacity`, and `TouchableNativeFeedback`. `TouchableWithoutFeedback` is to be avoided if you truly do not want to trigger an animation.
-
-### **Performance & Optimization**
-With React Native being a leader in producing mobile applications, it is imperative to consider performance caveats and best practices. For more, please refer to the [React Native Performance Overview Docs](https://reactnative.dev/docs/performance). Below are some neat tricks for optimization.
-
-### Images
-Image performance is a crucial when working with a native application as memory constraints means unoptimized image use could lead to crashes, especially when using static image resources. Here are a number of ways to handle for this.
-
-- [**react-native-fast-image package**](https://www.npmjs.com/package/react-native-fast-image?activeTab=readme) - Provides a `FastImage` component that integrates with the `SDWebImage`(iOS) and `Glide` (Android) objects which, as you guessed, loads images much faster.
-- **Proper image Formats** - You may want to consider using formats like PNG or WEBP format for reducing binary size of images for both platforms. This can reduce images to 1/3 of the original size.
-
-- **`FlatList`** **is your friend**. You may be tempted to use a `ScrollView` for loading a large list of items. Do not. `FlatList` uses lazy-loading for better memory performance.
-
-### **App Production**
-
-**RAM Format** - For iOS, you can produce your application in RAM format for a single indexed file. As  [the docs](https://reactnative.dev/docs/ram-bundles-inline-requires) state:
-> If you have a large app you may want to consider the Random Access Modules (RAM) bundle format, and using inline requires. This is useful for apps that have a large number of screens which may not ever be opened during a typical usage of the app. Generally it is useful to apps that have large amounts of code that are not needed for a while after startup. For instance the app includes complicated profile screens or lesser used features, but most sessions only involve visiting the main screen of the app for updates. We can optimize the loading of the bundle by using the RAM format and requiring those features and screens inline (when they are actually used).
-
-With use of `Hermes`, this is enabled by default.
-
-[**Hermes**](https://hermesengine.dev/) - While only available for specific version ranges of iOS and Android, it is an open-source JavaScript Engine tool that aids in reducing the memory size of the APK. This means your Time to Interact (TTI) speeds may also improve as result. [Click here](https://reactnative.dev/docs/hermes) for installation instructions.
-
-### **State**
-**Global State Libraries** - Using a global state management library like `redux-toolkit` is highly recommend to optimize for performance and limit re-renders.
-
-### **Security**
-You can create very scary scenarios with an insecure app, and in many sectors like Health, Financial, and E-commerce it is critical that protections are in place.
-
-**Storing Sensitive Information** - While Async Storage is great in most situations, for secure storage of data that may be Personally Identifying Information (PII) or access tokens, it is best to use a package like [Encrypted Storage Package](https://github.com/emeraldsanto/react-native-encrypted-storage) which interacts with `EncryptedSharedPreferences` (Android) and `Keychain` (iOS) for storing data in an encryted format to keep attackers out and your users safe. 
+You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the [Reactive Framework Framework Tips](/react-native-project-structure).
 
 ## The Shift Towards SSR
 
-Before jumping into the frameworks below, it can help to understand *why* this shift has happened:
+Before jumping into the frameworks below, it can help to understand _why_ this shift has happened:
 
 1. SEO (Search Engine Optimization) - Many [articles](https://medium.com/@badams/another-very-late-response-youre-confusing-googlebot-the-crawler-with-caffeine-google-s-b9ef24d81524) claim that client-side rendering hurts SEO performance. Google even [recommends moving away](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering) from "dynamic content rendering" which tells a server to give a different response depending on the user-agent of the request (bots get different content than users do). While the official position is that client-side rendering is treated the same as server-side rendering, the results speak for themselves. Most companies do not possess the resources or knowledge to properly assess if client-side rendering is hurting their SEO. Therefore the best option for many companies is to take an approach that's tried and true and that does not present un-necessary risk for search engine bots. That option is server-side rendering. Simply put: bots can parse server-rendered content much easier than client-rendered content.
-    - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
+   - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
 2. Faster initial render/content paint - This is a particularly useful point to consider if you know your users might be using your application on slow internet connections. Faster load times will be easier to achieve in the near future with features like Remix's [Nested Routes](https://remix.run/docs/en/main/guides/routing#what-is-nested-routing) (Next.js equivalent is the [App Router](https://beta.nextjs.org/docs/app-directory-roadmap))
 3. Meaningful HTTP error codes - Returning 400/500 codes isn't really possible with a client-side router
 4. App will run better with JS disabled - Not sure how many people run their browsers with JS disabled by default - but perhaps this is your audience! If so, SSR is probably exactly what you need
@@ -233,7 +95,7 @@ Further reading
 
 **Next vs. Remix (for web apps)**
 
-Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: *Remix really tries to make your app fast out of the box*. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
+Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
 
 - Both use the folder/file structure to setup the "routes" of your app
 - Both take advantage of HTTP caching to deliver results to users as fast as possible
