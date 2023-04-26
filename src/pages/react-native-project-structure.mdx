@@ -5,13 +5,11 @@ export const description =
 
 There's no reason you can't or shouldn't follow an organization template like we describe on our normal [Project Structure](/project-structure) page.
 
-## UX Standards
+## Common UX Standards
 
-### Action Handling
+**Cancellation** - Give your users the ability to "cancel" a touch/gesture right in the middle of it (for example, by dragging their finger away). Read more about gesture best practices [here](https://reactnative.dev/docs/gesture-responder-system).
 
-**Cancellation** - Give your user an exit strategy while in the middle of performing an unintended action. This can be done by handling a mid-touch gesture as the user drags their finger away from the action space.
-
-**Stick to Buttons With Visual Feedback** - Various buttons provided by React Native have their own feedback controls which provides visual aid to the user. It is [recommended best practice](https://reactnative.dev/docs/gesture-responder-system) to implement visual feedback for a gesture touch to keep the user informed of action results. This generally can be performed with simple animations. There are better alternatives like `TouchableHighlight`, `TouchableOpacity`, and `TouchableNativeFeedback`. `TouchableWithoutFeedback` is to be avoided if you truly do not want to trigger an animation.
+**Stick to Buttons With Visual Feedback** - Various buttons provided by React Native have their own feedback controls which provides visual aid to the user. It is [recommended best practice](https://reactnative.dev/docs/gesture-responder-system) to implement visual feedback for a gesture touch to keep the user informed of action results. Traditionally, this would've been implemented with things like `TouchableOpacity` - but the recommended component to use for future apps would be the [Pressable](https://reactnative.dev/docs/pressable).
 
 ## Ecosystem / Packages
 
