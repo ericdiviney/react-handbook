@@ -8,15 +8,9 @@ const topics = [
     href: '/frameworks',
   },
   {
-    name: 'Project Documentation',
+    name: 'Project Structure',
     description:
-      'These tools and techniques will keep your code on the right path and produce excellent documentation.',
-    href: '/documentation',
-  },
-  {
-    name: 'Folder & Component Structure',
-    description:
-      'In React you can do just about anything you want. But, what *should* you do?',
+      'In React you can do just about anything you want. But, what *should* you do with your folders and components?',
     href: '/project-structure',
   },
   {
