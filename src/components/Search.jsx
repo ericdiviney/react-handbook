@@ -11,7 +11,7 @@ const searchClient = algoliasearch(
   process.env.NEXT_PUBLIC_DOCSEARCH_API_KEY
 )
 
-const searchPlaceholderText = 'Find something... (coming soon)'
+const searchPlaceholderText = 'Find something...'
 
 function useAutocomplete() {
   let id = useId()
@@ -202,13 +202,14 @@ function SearchResult({ result, resultIndex, autocomplete, collection }) {
 }
 
 function SearchResults({ autocomplete, query, collection }) {
+  console.log(collection)
   if (collection.items.length === 0) {
     return (
       <div className="p-6 text-center">
-        <NoResultsIcon className="mx-auto h-5 w-5 stroke-zinc-900 dark:stroke-zinc-600" />
+        <NoResultsIcon className="w-5 h-5 mx-auto stroke-zinc-900 dark:stroke-zinc-600" />
         <p className="mt-2 text-xs text-zinc-700 dark:text-zinc-400">
           Nothing found for{' '}
-          <strong className="break-words font-semibold text-zinc-900 dark:text-white">
+          <strong className="font-semibold break-words text-zinc-900 dark:text-white">
             &lsquo;{query}&rsquo;
           </strong>
           . Please try again.
@@ -239,8 +240,8 @@ const SearchInput = forwardRef(function SearchInput(
   let inputProps = autocomplete.getInputProps({})
 
   return (
-    <div className="group relative flex h-12">
-      <SearchIcon className="pointer-events-none absolute top-0 left-3 h-full w-5 stroke-zinc-500" />
+    <div className="relative flex h-12 group">
+      <SearchIcon className="absolute top-0 w-5 h-full pointer-events-none left-3 stroke-zinc-500" />
       <input
         ref={inputRef}
         className={clsx(
@@ -265,8 +266,8 @@ const SearchInput = forwardRef(function SearchInput(
         }}
       />
       {autocompleteState.status === 'stalled' && (
-        <div className="absolute inset-y-0 right-3 flex items-center">
-          <LoadingIcon className="h-5 w-5 animate-spin stroke-zinc-200 text-zinc-900 dark:stroke-zinc-800 dark:text-sky-400" />
+        <div className="absolute inset-y-0 flex items-center right-3">
+          <LoadingIcon className="w-5 h-5 animate-spin stroke-zinc-200 text-zinc-900 dark:stroke-zinc-800 dark:text-sky-400" />
         </div>
       )}
     </div>
@@ -308,7 +309,7 @@ function SearchButton(props) {
         className="hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 dark:bg-white/5 dark:text-zinc-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none"
         {...props}
       >
-        <SearchIcon className="h-5 w-5 stroke-current" />
+        <SearchIcon className="w-5 h-5 stroke-current" />
         searchPlaceholderText{' '}
         <kbd className="ml-auto text-2xs text-zinc-400 dark:text-zinc-500">
           <kbd className="font-sans">{modifierKey}</kbd>
@@ -321,7 +322,7 @@ function SearchButton(props) {
         aria-label={searchPlaceholderText}
         {...props}
       >
-        <SearchIcon className="h-5 w-5 stroke-zinc-900 dark:stroke-white" />
+        <SearchIcon className="w-5 h-5 stroke-zinc-900 dark:stroke-white" />
       </button>
     </>
   )
@@ -429,7 +430,7 @@ function SearchDialog({ open, setOpen, className }) {
                           query={autocompleteState.query}
                           collection={autocompleteState.collections[0]}
                         />
-                        <p className="flex items-center justify-end gap-2 border-t border-zinc-100 px-4 py-2 text-xs text-zinc-400 dark:border-zinc-800 dark:text-zinc-500">
+                        <p className="flex items-center justify-end gap-2 px-4 py-2 text-xs border-t border-zinc-100 text-zinc-400 dark:border-zinc-800 dark:text-zinc-500">
                           Search by{' '}
                           <AlgoliaLogo className="h-4 fill-[#003DFF] dark:fill-zinc-400" />
                         </p>
@@ -486,7 +487,7 @@ export function Search() {
         className="hidden h-8 w-full items-center gap-2 rounded-full bg-white pl-2 pr-3 text-sm text-zinc-500 ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 dark:bg-white/5 dark:text-zinc-400 dark:ring-inset dark:ring-white/10 dark:hover:ring-white/20 lg:flex focus:[&:not(:focus-visible)]:outline-none"
         {...buttonProps}
       >
-        <SearchIcon className="h-5 w-5 stroke-current" />
+        <SearchIcon className="w-5 h-5 stroke-current" />
         {searchPlaceholderText}
         <kbd className="ml-auto text-2xs text-zinc-400 dark:text-zinc-500">
           <kbd className="font-sans">{modifierKey}</kbd>
@@ -509,7 +510,7 @@ export function MobileSearch() {
         aria-label={searchPlaceholderText}
         {...buttonProps}
       >
-        <SearchIcon className="h-5 w-5 stroke-zinc-900 dark:stroke-white" />
+        <SearchIcon className="w-5 h-5 stroke-zinc-900 dark:stroke-white" />
       </button>
       <SearchDialog className="lg:hidden" {...dialogProps} />
     </div>

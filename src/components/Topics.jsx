@@ -44,13 +44,13 @@ const topics = [
     href: '/hooks',
   },
   {
-    name: 'Data & State Management (coming soon)',
+    name: 'Data & State Management (coming 5/2023)',
     description:
       'Choose the right data-fetching & state-management library for your use case.',
     href: '#',
   },
   {
-    name: 'React Performance (coming soon)',
+    name: 'React Performance (coming 7/2023)',
     description:
       'Ship fast and performant UIs, nailing that UX for your users.',
     href: '#',
@@ -60,7 +60,7 @@ const topics = [
 export function Topics() {
   return (
     <div className="my-16 xl:max-w-none">
-      <div className="not-prose grid grid-cols-1 gap-8 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 not-prose xl:grid-cols-3">
         {topics.map((resource) => (
           <Card key={resource.href} resource={resource} />
         ))}
