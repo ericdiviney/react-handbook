@@ -194,19 +194,19 @@ export const navigation = [
     ],
   },
   {
-    title: 'Guides',
+    title: 'Application Guides',
     links: [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
       { title: 'Project Structure', href: '/project-structure' },
-      { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
       { title: 'Styling / UI Libraries', href: '/styling' },
+      { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Hooks', href: '/hooks' },
       { title: 'Data & State Management', href: '/state-management' },
     ],
   },
   {
-    title: 'Framework Tips',
+    title: 'Framework Guides',
     links: [
       {
         title: 'React Native',
@@ -216,16 +216,13 @@ export const navigation = [
   },
   {
     title: 'Coming Soon',
-    links: [{ title: 'Performance', href: '#' }],
-  },
-  {
-    title: 'Later',
     links: [
+      { title: 'Performance', href: '#' },
       { title: 'Server-Side Rendering', href: '#' },
       { title: 'Automated Testing', href: '#' },
       { title: 'Error Handling & Boundaries', href: '#' },
+      { title: 'Analytics & Monitoring', href: '#' },
       { title: 'CI/CD Pipelines', href: '#' },
-      { title: 'Analytics', href: '#' },
     ],
   },
   // {

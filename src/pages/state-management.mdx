@@ -8,10 +8,10 @@ In this guide, I explain my overall approach to thinking about state management 
 If you don't want to read about philosophy behind managing state in an application, feel free to skim my recommendations with the summary below.
 
 1. **Build It As You Go**
-    1. Start building your application without introducing a global store, [lifting local state](https://docs.google.com/document/d/13GgrM6UqrjMuum9YWBSHIbtvGGakeWdIN-75PF1l3YA/edit#) upwards as much as possible along the way
+    1. Start building your application without introducing a global store, [lifting local state](#first-maximize-local-state) as much as possible along the way
     2. If your app requires data-fetching from an API, bring in [tanstack-query](https://www.npmjs.com/package/@tanstack/react-query) (Rest APIs) or [apollo](https://www.npmjs.com/package/@apollo/client) (GraphQL)
     3. Start with simple contexts for global values/props, and move to [Zustand](https://www.npmjs.com/package/zustand) / [Jotai](https://www.npmjs.com/package/jotai) when your state grows large/complicated (these 2 are hook-friendly so they will mix nicely with the other libraries here)
-2. **You know you need everything up front**. [RTK](https://www.npmjs.com/package/@reduxjs/toolkit) to the rescue.
+2. **You know you need everything up front**. [RTK (Redux)](https://www.npmjs.com/package/@reduxjs/toolkit) to the rescue.
     1. [Data-fetching](https://redux-toolkit.js.org/rtk-query/overview) in components
     2. [Global Stores](https://redux-toolkit.js.org/api/configureStore) w/ optimized rendering
     3. [Middleware](https://redux-toolkit.js.org/api/configureStore#middleware)
@@ -30,19 +30,19 @@ If you don't want to read about philosophy behind managing state in an applicati
 
 ## Term Definitions
 
-Before explaining my approach to State Management, I think it is useful for us to be on the same page regarding certain words. I use the following terms very frequently throughout this guide, so I define them here for your sake. This way you have an understanding of what I'm referring to when I say these words.
+Before explaining my approach to State Management, I think it is useful for us to be on the same page regarding certain words. I use the following terms very frequently throughout this guide, defined here so you have an understanding of what I'm referring to.
 
-**State** - A broad term we frequently use, meaning encompassing the general "data" and "info" you have to keep track of for your application to function correctly to users
+**State** - A broad term, meaning the general "data" and "info" you keep track of for your application to function correctly
 
 **Client State** - State data that is managed on the client side of 2 networking applications (IE, the browser and a server)
 
-**Server State** - State data managed server-side (database, APIs, etc.)
+**Server State** - State data that is managed server-side (database, APIs, etc.)
 
-**Local / Local state** - When we say "local state" we mean one of two things:
+**Local / Local state** - "local state" here means one of two things:
 - State data that is local by its use - for example, state that is encompassed in a React component and not available externally of said component (commonly done with useState)
 - State data that is *intended* for or that *obviously* should be local (such as the open/closed status of a dropdown menu)
 
-**Global / Global state** - The opposite of "local" (above), when we say "global" we mean one of two things:
+**Global / Global state** - The opposite of "local" (above), "global" means one of two things:
 - State data that is global by configuration (regardless of what the state data is representing or if it ideally would be better as local state). If the data has been configured in a way that it's globally accessible in your React component tree without having to pass as props, then it shall be called "global state"
 - State data *intended* to be global or state data that should *obviously* be managed globally (trivial examples might be the currently authenticated user, the user-session access token, application theme data like light/dark mode, etc.)
 
@@ -52,13 +52,13 @@ Before explaining my approach to State Management, I think it is useful for us t
 
 ## Categories of State In Web Apps
 
-Next, we focus on the various categories of information and data your application might need to manage. This is crucial because some state-management tools are better suited for different types of state than others. It can be helpful to plan your application features if you have a detailed understanding of the information you will be managing.
+Next, you'll read about the various categories of information and data your application might need to manage. This is crucial because some state-management tools are better suited for different types of state than others. It can be helpful to plan your application features if you have a detailed understanding of the information you will be managing.
 
 If you&apos;re interested in a more detailed definition of each state category below, we recommend reading [The 5 Types of React Application State](https://jamesknelson.com/5-types-react-application-state/). Again, think of these categories as out of your control; this is simply the nature of the web and how the industry has decided to categorize information.
 
 **1. UI state** (other names: "Control State")
 
-Local state is just what it sounds like: state that doesn&apos;t leave your container. "Container" is a pretty generic word, but to give it some definition, it&apos;s typically interchangeable with "component" in React projects. Some examples of what we mean by "local state" are form values, expanded menus or sidebars, opened accordions or modals, etc. One thing about local state is you can typically discard it until the "container" renders again, initiating the state with a default value. Most of the time, you should use native React hooks (useState, useReducer, useContext) to manage this type of state.
+Local state is just what it sounds like: state that doesn&apos;t leave your container. "Container" is a pretty generic word, but to give it some definition, it&apos;s typically interchangeable with "component" in React projects. Some examples of what is meant by "local state" are form values, expanded menus or sidebars, opened accordions or modals, etc. One thing about local state is you can typically discard it until the "container" renders again, initiating the state with a default value. Most of the time, you should use native React hooks (useState, useReducer, useContext) to manage this type of state.
 
 **2. Communication state** (other names: "Fetch State", "Async State")
 
@@ -76,11 +76,11 @@ Session state is all about managing information about the user currently using y
 
 **5. Location state** (other names: "URL", "Browser History State", "Navigation State")
 
-Unless you are building a router or doing some very complex work with browser location APIs - managing the location state of your app will typically be handled natively by the browser or a library like react-router. Commonly, the behavior of your application will rely on the URL (like using an id in a URL such as /invoice?id=1234). However, it is very uncommon for you to need to manage the location state yourself. Typically you would let the browser&apos;s native functionality or a solution like react-router manage this state for you.  We don&apos;t focus on managing this type of state in this guide.
+Unless you are building a router or doing some very complex work with browser location APIs - managing the location state of your app will typically be handled natively by the browser or a library like react-router. Commonly, the behavior of your application will rely on the URL (like using an id in a URL such as /invoice?id=1234). However, it is very uncommon for you to need to manage the location state yourself. Typically you would let the browser&apos;s native functionality or a solution like react-router manage this state for you. We don&apos;t focus on managing that type of state in this guide.
 
 ## Local or Global: You Must Choose
 
-Categorically speaking, ALL state we manage in applications can be written as either "local" or "global" state - a piece of state *becomes* global based on if we expose it to the rest of our application for access in other components. *None* of the client-state types above (1-5) are inherently local or global. For some, it may seem obvious - perhaps a trivial example of this is the UI state - of which you should use React hooks (like useState and useReducer) to manage almost always. Technically you *could* configure some UI state (that commonly should be localized to components) to be in a global store such as Redux. Still, in most applications, there&apos;s no need for that type of state information to be accessible globally (everywhere).
+Categorically speaking, ALL state we manage in applications can be written as either "local" or "global" state - a piece of state *becomes* global based on if its exposed to and consumed by the rest of the application (in other components). *None* of the client-state types above (1-5) are inherently local or global. For some, it may seem obvious - a trivial example of this is the UI state - of which you should use React hooks (like useState and useReducer) to manage almost always. Technically you *could* configure some UI state (that commonly should be localized to components) to be in a global store such as Redux. Still, in most applications, there&apos;s no need for that type of state information to be accessible globally.
 
 You, **the developer**, must decide what state data should be local vs. global. The "localness" or "globalness" of any state data your application manages is defined by how it is accessed from other components. More specifically, to finish what we&apos;re saying here:
 
@@ -95,7 +95,7 @@ This guide will focus on only those three types because the others (4. Session S
 
 It&apos;s infrequent that you should write a custom location state manager when plenty of better options already exist for managing navigation history (like [react-router-dom](https://www.npmjs.com/package/react-router-dom)).
 
-And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in [Typical State Decisions You&apos;ll Need to Make](https://docs.google.com/document/d/13GgrM6UqrjMuum9YWBSHIbtvGGakeWdIN-75PF1l3YA/edit#) below), so we&apos;ll summarize our typical approach in this section as follows:
+And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in [Typical State Decisions You&apos;ll Need to Make](#common-overlap) below), so here's a summary:
 
 In almost all situations regarding React apps that need authentication, we will recommend using access tokens for communicating with APIs, and tokens can be stored easily in localStorage to persist across page refreshes. If you are implementing access tokens that can be [refreshed](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them) (as is common today), your session state management will be a little more hands-on, but typically you can reach for an open-source solution to get you pretty far. In many enterprise apps that use SSO solutions or third-party authentication services, you could utilize these libraries to help with managing tokens client-side:
 
@@ -122,7 +122,7 @@ Again, these are just tools for managing state. There&apos;s no silver bullet or
 - React APIs: can handle local state AND global state
     - Ex: useState for a local toggle in a component, useContext for global dependency injection into components throughout your React tree
 - Data-fetching libraries: can handle local state AND some global state
-    - Ex: using an API endpoint response in only one component (local by definition, because that data is only accessed in one container) or re-using the cached response data from that same API endpoint in another component (globalish now, because it is shared - we use the same underlying data for rendering two components without passing that data as children or props)
+    - Ex: using an API endpoint response in only one component (local by definition, because that data is only accessed in one container) or re-using the cached response data from that same API endpoint in another component (globalish now, because it is shared - using the same underlying data for rendering two components without passing that data as children or props)
 - Global stores: for handling exclusively global state
     - Ex: The most common use for global stores are when many components need to access the same information. Even if a global store is used (improperly) to manage some local state, it is configured so that the state data is still globally accessible in all other components. The takeaway is that even if the state is only consumed in 1 component, it is set up so that all other components *could* access that if they want to. Disclaimer: managing the "UI/Control" state in a global store is almost never recommended.
 
@@ -137,6 +137,7 @@ Now that you understand the differences between local and global state - you nee
     - [Update the State of a Sibling Component by Lifting State](https://alexsidorenko.com/blog/react-siblings/)
     - [Avoiding Prop-Drilling by Lifting State](https://alexsidorenko.com/blog/react-prop-drilling-composition/)
 - [Extracting State into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer)
+- [State Co-Location](https://kentcdodds.com/blog/application-state-management-with-react) - how co-location can make your app [faster](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)
 
 ## Second, A Global Approach
 
@@ -155,7 +156,7 @@ If you&apos;ve realized you need a global state - the next question you need to 
 
 **1. "Smart" Data Fetching (tanstack-query, rtk-query, swr)**
 
-Before we talk about global stores - we want to talk about a common situation in a lot of apps where people *think they need a global store - but don&apos;t actually. Picture this React app: a dashboard behind authentication with only several routes (pages). One of the routes simply fetches a dataset from an API and renders a bar graph based on that dataset. Then, a second route also fetches some data from an API, but has a `<form />` on the same page that allows the user to update or mutate that data. After the user submits the form, the application should re-fetch the data from the API to have the new data instead of the old stale data the user previously saw.
+Before exploring global stores - you should be aware of a common situation in a lot of apps where people *think they need a global store - but don&apos;t actually. Picture this React app: a dashboard behind authentication with only several routes (pages). One of the routes simply fetches a dataset from an API and renders a bar graph based on that dataset. Then, a second route also fetches some data from an API, but has a `<form />` on the same page that allows the user to update or mutate that data. After the user submits the form, the application should re-fetch the data from the API to have the new data instead of the old stale data the user previously saw.
 
 If you can step back and observe this at a high level… often, this basic CRUD behavior (fetching data, mutating data, then re-fetching data because we know it&apos;s stale now) is the majority of an application&apos;s state.
 
@@ -191,9 +192,9 @@ Let&apos;s dig into that a little more. Contexts can lead to performance issues 
 
 Unfortunately, this means when updates are made to the state object from the reducer, each update will cause every context-consuming component to re-render - regardless of which property is changing between renders or not.
 
-From the perspective of the component, assume we have a `user` object we receive from our context. That user object also has a `name` property we&apos;re using to display a "Welcome, [Name]" in a custom component. Every update to this `user` object (regardless of whether the specific `user.name` property is changing or not) will force a re-render of our component.
+From the perspective of the component, assume we have a `user` object consumed from a context. That user object also has a `name` property used to display a "Welcome, [Name]" in a custom component. Every update to this `user` object (regardless of whether the specific `user.name` property is changing or not) will force a re-render of our component.
 
-The limitation with contexts is that you cannot make *precise* updates to particular state values and limit re-renders to the components consuming that same particular state value (like a specific property in your state object). This [article](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/) explains how the popular Redux library alleviates that problem - and you can rest assured that nearly all of the libraries we recommend later in this guide also solve this re-render problem in their implementation so that you don&apos;t have to worry about this.
+The limitation with contexts is that you cannot make *precise* updates to particular state values and limit re-renders to the components consuming that same particular state value (like a specific property in your state object). This [article](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/) explains how the popular Redux library alleviates that problem - and you can rest assured that nearly all of the libraries we recommend later in this guide also solve this re-render problem in their implementation so that you don&apos;t have to worry about this.
 
 If you want to learn more about this subject, please read the section below. But if you are not interested in the details of this re-rendering React characteristic, you can skip to the questions below this explanation.
 
@@ -212,7 +213,7 @@ To answer if you need an external global store or if a simple one can work by ro
 - Are you noticing performance issues due to unnecessary re-rendering from frequent updates to the application state?
 - Is your team/project large enough that a more consistent structure/pattern to global state management would help the codebase scale successfully?
 
-If you answered YES to any of the above, you should *absolutely* consider implementing your global state using one of the 3rd party libraries we discuss in the next section.
+If you answered YES to any of the above, you should *absolutely* consider implementing your global state using one of the 3rd party libraries discussed in the next section.
 
 **3. Global Stores (Redux, Jotai, Recoil, etc.)**
 
@@ -231,11 +232,9 @@ The different options you have for global stores in the ecosystem are:
 | Proxy | [mobx](https://www.npmjs.com/package/mobx) | 4 MB | 1 million |
 | Proxy | [valtio](https://www.npmjs.com/package/valtio) | 315 KB | 230k |
 
-In the next section we do a deeper dive on each architecture and provide a comparison of each.
-
 ## FLUX vs. Atomic vs. Proxy
 
-Ok, so we&apos;re out of the land of context and moving on to the solutions meant to replace contexts as global stores in your application. Next, you&apos;ll learn about my 3 main approaches to managing global application state in React apps. You&apos;ll understand the philosophies of many libraries and contrast them against one another (comparing the tradeoffs of each approach). Ok, so first, the three approaches:
+Ok, so we&apos;re moving on from Context to global stores in your application. When implementing global stores, there are 3 popular approaches to managing global application state in React apps. You&apos;ll understand the philosophies of many libraries and contrast them against one another (comparing the tradeoffs of each approach). Ok, so first, the three approaches:
 
 1. Flux - a very popular architecture in the React ecosystem - originally developed by Facebook to address scaling/complexity challenges, it complements React&apos;s unidirectional data flow and enforces strict separation of concerns via concepts such as Stores, Dispatchers, and Actions. Flux also adopts "immutability" as a core tenet.
 2. Atomic - this pattern focuses on breaking down the application state into the smallest possible units or "atoms". The idea is that by breaking the state down into very small chunks, components that rely on state values for rendering will performantly only compute a re-render when the "atom" changes. You can also combine atoms to form larger atoms.
@@ -277,28 +276,24 @@ We do that by "spreading" the original state object and then specifying our upda
 
 There are 2 main reasons I love this concept, if you&apos;re wondering why this extra cognitive overhead is worth it. It comes with good intentions and tradeoffs.
 
-1. Immutability helps enforce "unidirectional" (one-way) data flow, which makes the application state much simpler to debug and understand. We have tools in place to monitor where state changes are coming from (what&apos;s trying to update the state and how) and to ensure only one state update happens at a time (in an orderly fashion), which provides a lot of order and predictability
-2. Additionally - there is a huge performance benefit to how this influences the way we code things. For example, in state actions, when we return the original `state` vs returning `{ …state }` with an update - it's because of "object referential equality". In JavaScript, if an object is big enough - trying to deep-compare to determine equality becomes very very slow. It&apos;s much faster to compare if two objects have changed by checking their *references* instead of every single property that exists inside of the objects. This is a fundamental choice that makes state management approaches like Redux (one-way) pretty performant by default because object referential comparisons are very cheap.
+1. Immutability helps enforce "unidirectional" (one-way) data flow, which makes the application state much simpler to debug and understand. There are tools in place to monitor where state changes are coming from (what&apos;s trying to update the state and how) and to ensure only one state update happens at a time (in an orderly fashion), which provides a lot of order and predictability
+2. Additionally - there is a huge performance benefit to how this influences the way code is written. For example, in state actions, when returning the original `state` vs returning `{ …state }` with an update - it's because of "object referential equality". In JavaScript, if an object is big enough - trying to deep-compare to determine equality becomes very very slow. It&apos;s much faster to compare if two objects have changed by checking their *references* instead of every single property that exists inside of the objects. This is a fundamental choice that makes state management approaches like Redux (one-way) pretty performant by default because object referential comparisons are very cheap.
 
 ### Atomic: Still Flux, but "bottom-up"
 
-In Atomic, you really only have atoms and selectors, so compared to Flux you leave the dispatcher behind (and the "single" store of truth, as now your global store is really the combination of your "atoms"). Both of the Atomic libraries mentioned in this guide (Recoil and Jotai) take a Flux-like approach to updating state, which makes debugging much simpler when your state starts getting complex. The atomic pattern doesn&apos;t necessarily contradict the Flux pattern described above. But, to differentiate it from Redux or Zustand (the other FLUX libraries we recommend in this guide) and the key reason to pick an Atomic approach, is that your global state data is better described as isolated atoms that require sharing all over your application UI tree. The equivalent of the global store in Redux/Zustand is like having one giant atom of state. If your state data is disjointed, random pieces of information that just happen to be saved together because they&apos;re all global - an *atomic* global state structure might make your application easier to reason about and organize while still keeping the architectural characteristics of immutability and one-way data flow.
+Both of the Atomic libraries mentioned in this guide (Recoil and Jotai) take a Flux-like approach to updating state, which makes debugging much simpler when your state starts getting complex. The atomic pattern doesn&apos;t necessarily contradict the Flux pattern described above. But, to differentiate it from Redux or Zustand (the other FLUX libraries we recommend in this guide) and the key reason to pick an Atomic approach, is that your global state data is better described as isolated atoms that require sharing all over your application UI tree. The equivalent of the global store in Redux/Zustand is like having one giant atom of state. If your state data is disjointed, random pieces of information that just happen to be saved together because they&apos;re all global - an *atomic* global state structure might make your application easier to reason about and organize while still keeping the architectural characteristics of immutability and one-way data flow.
 
 ### Proxy: Reactivity the right way
 
-Finally, with the proxy architecture, this approach works by exposing a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) of the global store, of which the proxy contains some custom behavior like intercepting your assignments/mutations to the object and performing additional actions on the underlying state to complete the activity loop. The Proxy architecture is the most flexible option of the 3 mentioned here - immutability has no authority when using a Proxy and you are free to assign/mutate your state objects in your code however you want. The objects that the proxy state libraries expose to developers.
+Finally, with the proxy architecture, this approach works by exposing a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) of the global store, of which the proxy contains some custom behavior like intercepting your assignments/mutations to the object and performing additional actions on the underlying state to complete the activity loop. The Proxy architecture is the most flexible option of the 3 mentioned here - immutability has no authority when using a Proxy and you are free to assign/mutate your state objects in your code however you want.
 
 Vue.js [reactivity concept](https://vuejs.org/guide/extras/reactivity-in-depth.html#how-reactivity-works-in-vue) is also built on the Proxy functionality.
 
 Just be aware that the additional flexibility you have updating your application state throughout your codebase could make a detailed analysis of state updates in your application more difficult. You should seriously consider your application's complexity, browser [support](https://caniuse.com/proxy) requirements, and your team&apos;s size/cohesion before moving forward with this for the long term.
 
-### State Machines: [Needs Help]
-
-I have never worked with state machine libraries in my career building web apps. I used Chat GPT to help me generate some of the following notes, but if you think improvements could be made please open an issue or a pull request in our repository.
-
 ## Common Overlap
 
-As we&apos;ve just been through many state solutions - undoubtedly there&apos;s some "overlap" between what they&apos;re able to do. When there&apos;s overlap, it can be confusing as to which direction you should take. We try to make some recommendations below for questions we frequently run into while deciding the best ways to manage the application state.
+As we&apos;ve just been through many state solutions - undoubtedly there&apos;s some "overlap" between what they&apos;re able to do. When there&apos;s overlap, it can be confusing as to which direction you should take. There are some recommendations below for questions you'll frequently run into while deciding the best ways to manage application state.
 
 The Overlaps Between Each Approach to Global State
 
@@ -310,6 +305,6 @@ Specific common overlaps between "App" State and "Session" State
 
 - Keep things like tokens in localStorage, and the actual data those tokens receive in your contexts/stores. The reason is: the token rarely plays a role in the logic/views of your app. It's usually just included in API requests.
     - INFO: The performant way to store tokens would be to configure your requests globally to use the same API token retrieved from localStorage (just once) instead of constantly retrieving the token from localStorage and then including it in your requests as an HTTP header in each component (this is massive duplication of code and easily avoidable)
-- Secondly: do we put "user" info in a store or a context, like a UserContext/AuthContext or something?
+- Secondly: should you put "user" info in a store or a context, like a UserContext/AuthContext or something?
     - If the auth is handled by the same system/API that you&apos;re getting your app data from - just throw it all in the store. Arbitrarily mixing contexts with global stores isn&apos;t necessary and could lead to confusing divisions of data
     - If the auth is handled by a 3rd party system like Okta, Clerk, OAuth, etc. you could probably just wrap the user/profile info provided back by those parties in a context (since that data will rarely change) and then keep the rest of your business/app data in stores or caches
