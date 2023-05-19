@@ -201,8 +201,8 @@ export const navigation = [
       { title: 'Accessibility & Semantics', href: '/semantics' },
       { title: 'Styling / UI Libraries', href: '/styling' },
       { title: 'Ecosystem', href: '/ecosystem' },
-      { title: 'Hooks', href: '/hooks' },
-      { title: 'Data & State Management', href: '/state-management' },
+      { title: 'Tips for Using Hooks', href: '/hooks' },
+      { title: 'State Management', href: '/state-management' },
     ],
   },
   {

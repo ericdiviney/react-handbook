@@ -38,8 +38,8 @@ const topics = [
     href: '/hooks',
   },
   {
-    name: 'Data & State Management',
-    description: 'Manage your application state with confidence.',
+    name: 'State Management',
+    description: 'Manage your SPA application state with confidence.',
     href: '/state-management',
   },
   {

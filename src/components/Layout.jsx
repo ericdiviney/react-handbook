@@ -30,10 +30,10 @@ export function Layout({ children, sections = [] }) {
                 <Navigation className="hidden lg:block" />
               </ScrollArea.Viewport>
               <ScrollArea.Scrollbar
-                className="flex touch-none select-none bg-zinc-900 p-0.5 transition-colors duration-[160ms] ease-out data-[orientation=horizontal]:h-2.5 data-[orientation=vertical]:w-2 data-[orientation=horizontal]:flex-col"
+                className="flex touch-none select-none bg-zinc-100 p-0.5 transition-colors duration-[160ms] ease-out data-[orientation=horizontal]:h-2.5 data-[orientation=vertical]:w-2 data-[orientation=horizontal]:flex-col dark:bg-zinc-800"
                 orientation="vertical"
               >
-                <ScrollArea.Thumb className="hover:bg-zinc relative flex-1 cursor-pointer rounded-[10px] bg-zinc-800 before:absolute before:top-1/2 before:left-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']" />
+                <ScrollArea.Thumb className="relative flex-1 cursor-pointer rounded-[10px] bg-zinc-200/80 before:absolute before:top-1/2 before:left-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] dark:bg-zinc-700" />
               </ScrollArea.Scrollbar>
             </ScrollArea.Root>
           </div>
