@@ -38,7 +38,7 @@ If you&apos;re interested in a more detailed definition of each state category b
 
 **1. UI state** <span className='text-[.75rem]'>(other names: "Control State")</span> <br/> Local state is just what it sounds like: state that doesn&apos;t leave your container. "Container" is a pretty generic word, but to give it some definition, it&apos;s typically interchangeable with "component" in React projects. Some examples of what is meant by "local state" are form values, expanded menus or sidebars, opened accordions or modals, etc. One thing about local state is you can typically discard it until the "container" renders again, initiating the state with a default value. Most of the time, you should use native React hooks (useState, useReducer, useContext) to manage this type of state.
 
-**2. Communication state** <span className='text-[.75rem]'>(other names: "Fetch State", "Async State")</span> <br/> Communication state is less about storing data/responses of processes happening - and more about storing the *status of those processes. In modern apps, the need to deal with complex asynchronous behavior is normal. We need ways to keep our app functional/responsive while things are happening in the background. Storing when processes are loading, complete, or have encountered an error while running is what we are interested in with the "communication" state. Managing this properly allows us to show loading animations, optimistic UIs, feedback, errors, etc., leading to a better user experience. It will be up to you to decide how much of your "communication state" needs to live globally in a store vs. locally in containers like pages or components. Some examples of this type of state could be (loading, complete, or error).
+**2. Communication state** <span className='text-[.75rem]'>(other names: "Fetch State", "Async State")</span> <br/> Communication state is less about storing data and more about storing the *status* of processes. In modern apps, we deal with asynchronous functionality constantly (HTTP requests, background tasks running on server, etc.) We need to keep our app responsive while things are happening in the background. Storing when processes are loading, complete, or have encountered an error is the "communication" state we want. Managing this properly allows us to show loading animations, optimistic UIs, feedback, errors, etc., all leading to a better user experience. It will be up to you to decide how much of your "communication state" needs to live globally in a store vs. locally in containers like pages or components.
 
 **3. Application state** <span className='text-[.75rem]'>(other names: "Business Data", "App Data", "Server State")</span> <br/> Data state is the easiest to define of all these types. It&apos;s any data that powers your application! It's all the data the users need to use the application; it usually comes from external applications (like servers, databases, REST APIs, etc.).
 
@@ -77,22 +77,22 @@ The reason we want to focus less on token management and routing in this guide i
 
 ## State Tools & When To Use Each
 
-I am going to describe (in depth) the three different approaches I take to managing state, each listed below:
+The three approaches to managing application state are:
 
-- React APIs (useState, useReducer, useContext)
+- Internal React APIs (useState, useReducer, useContext)
 - "Smart" Data-fetching libraries (tanstack-query, rtk-query, swr, etc.)
 - Global stores (Redux, Zustand, Jotai, etc.)
 
 INFO: Due to a lack of experience with State Machines (like xState), this approach is not covered. I still listed it here to show that other options exist. We are working to add more information to this topic, and if you are interested in helping us, please contact [Eric](https://reacthandbook.dev/team/eric-diviney).
 
-There&apos;s no silver bullet or "always use `X` library for `Y` requirement". Here are some immediate examples of how you might manage various types of state data (there is some overlap between what each approach is capable of, which is not a bad thing)
+There&apos;s no silver bullet, and it's never as simple as "always use `X` library for `Y` requirement". Here are some immediate examples of how you might manage various types of state data. You should note that there is *some* overlap between what each approach is capable of, which is not necessarily a bad thing.
 
 - React APIs: can handle local state AND global state
     - Ex: useState for a local toggle in a component, useContext for global dependency injection into components throughout your React tree
-- Data-fetching libraries: can handle local state AND some global state
-    - Ex: using an API endpoint response in only one component (local by definition, because that data is only accessed in one container) or re-using the cached response data from that same API endpoint in another component (globalish now, because it is shared - using the same underlying data for rendering two components without passing that data as children or props)
+- Data-fetching libraries: a blend of local &amp; global state
+    - Ex: using an API endpoint response in only one component (localish, because that data is only accessed in one container) or re-using the cached response data from that same API endpoint in another component (globalish now, because the data is accessed via a selector, the url, instead of as a prop)
 - Global stores: for handling exclusively global state
-    - Ex: The most common use for global stores are when many components need to access the same information. Even if a global store is used (improperly) to manage some local state, it is configured so that the state data is still globally accessible in all other components. The takeaway is that even if the state is only consumed in 1 component, it is set up so that all other components *could* access that if they want to. Disclaimer: managing the "UI/Control" state in a global store is almost never recommended.
+    - Ex: The most common use for global stores are when many components need to access the same information. Even if a global store is used to manage some UI state (which you shouldn't do), it is configured so that the state data is still globally accessible in all other components. The takeaway is that even if the state is only consumed in 1 component, it is set up so that all other components *could* access that if they want to.
 
 Before you decide that your application will need a global store, let&apos;s talk about some practical methods you can apply to keep your state management as minimal as possible.
 
