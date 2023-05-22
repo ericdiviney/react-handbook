@@ -1,12 +1,19 @@
 import { StateTldr } from '@/components/StateTldr'
+import { StateRequest } from '@/components/StateRequest' 
 
-# My Approach to State Management in React
-
-This guide will explain a very high-level approach to thinking about state management in React applications. If you have improvements you'd recommend, please feel free to propose changes to this guide so that others may benefit.
+# State Management in React Applications
 
 ## TLDR
 
 <StateTldr />
+
+## Intro / Who This Is For
+
+This is a guide outlining a very flexible approach to managing application state in React apps. Specifically, this is applicable to the SPA (Single-Page Application) build architecture.
+
+The **target audience** for this guide are React engineers and architects, non-beginners either looking for guidance building a new application or understanding the decisions that others have made for applications they've worked on.
+
+<StateRequest />
 
 ## Term Definitions
 
@@ -82,8 +89,6 @@ The three approaches to managing application state are:
 - Internal React APIs (useState, useReducer, useContext)
 - "Smart" Data-fetching libraries (tanstack-query, rtk-query, swr, etc.)
 - Global stores (Redux, Zustand, Jotai, etc.)
-
-INFO: Due to a lack of experience with State Machines (like xState), this approach is not covered. I still listed it here to show that other options exist. We are working to add more information to this topic, and if you are interested in helping us, please contact [Eric](https://reacthandbook.dev/team/eric-diviney).
 
 There&apos;s no silver bullet, and it's never as simple as "always use `X` library for `Y` requirement". Here are some immediate examples of how you might manage various types of state data. You should note that there is *some* overlap between what each approach is capable of, which is not necessarily a bad thing.
 

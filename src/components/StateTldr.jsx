@@ -876,7 +876,7 @@ export function TabTrigger({ tabName, title, children }) {
           {title}
         </span>
         <span className="flex items-center mt-1 text-sm">{children}</span>
-        <svg
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
@@ -888,7 +888,7 @@ export function TabTrigger({ tabName, title, children }) {
             strokeLinejoin="round"
             d="M15.75 17.25L12 21m0 0l-3.75-3.75M12 21V3"
           />
-        </svg>
+        </svg> */}
       </div>
     </Tabs.Trigger>
   )
