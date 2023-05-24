@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion'
+import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
@@ -40,7 +41,7 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
       )}
     >
-      <span className="truncate">{children}</span>
+      <span className="text-xs truncate">{children}</span>
       {tag && (
         <Tag variant="small" color="zinc">
           {tag}
@@ -80,7 +81,7 @@ function VisibleSectionHighlight({ group, pathname }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
-      className="absolute inset-x-0 top-0 bg-zinc-100 will-change-transform dark:bg-white/2.5"
+      className="absolute inset-x-0 top-0 bg-zinc-100 will-change-transform dark:bg-white/[0.04]"
       style={{ borderRadius: 8, height, top }}
     />
   )
@@ -193,18 +194,19 @@ export const navigation = [
     ],
   },
   {
-    title: 'Guides',
+    title: 'Application Guides',
     links: [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
       { title: 'Project Structure', href: '/project-structure' },
-      { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
       { title: 'Styling / UI Libraries', href: '/styling' },
-      { title: 'Hooks', href: '/hooks' },
+      { title: 'Ecosystem', href: '/ecosystem' },
+      { title: 'Tips for Using Hooks', href: '/hooks' },
+      { title: 'State Management', href: '/state-management' },
     ],
   },
   {
-    title: 'Framework Tips',
+    title: 'Framework Guides',
     links: [
       {
         title: 'React Native',
@@ -215,18 +217,12 @@ export const navigation = [
   {
     title: 'Coming Soon',
     links: [
-      { title: 'Data & State Management', href: '#' },
       { title: 'Performance', href: '#' },
-    ],
-  },
-  {
-    title: 'Later',
-    links: [
       { title: 'Server-Side Rendering', href: '#' },
       { title: 'Automated Testing', href: '#' },
       { title: 'Error Handling & Boundaries', href: '#' },
+      { title: 'Analytics & Monitoring', href: '#' },
       { title: 'CI/CD Pipelines', href: '#' },
-      { title: 'Analytics', href: '#' },
     ],
   },
   // {
