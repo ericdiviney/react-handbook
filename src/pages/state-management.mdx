@@ -153,7 +153,7 @@ If you can step back and observe this at a high level… often, this basic CRUD 
 
 Looking at an application this way, managing "globalish" state in a simple CRUD app is very straightforward. 
 
-The way these data-fetching libraries work is they cache the response of each API endpoint that's getting requests from your app. So when you have multiple components consuming the same endpoint data - it only gets hit once instead of 3 times (once for each component). 
+The way these data-fetching libraries work is they cache the response of each API endpoint that's getting requests from your app. The basic idea is when you have multiple components consuming the same endpoint data - the API only gets hit once instead of 3 times (once when each component is rendered). 
 
 The library only needs you to pass the URL string and some options that dictate when the cache should be cleared + refetched. The cache provides you a global store to consume data from in your components, albeit, a pretty simple one that expects all of your data is coming from an API.
 
