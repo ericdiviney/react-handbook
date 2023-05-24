@@ -38,10 +38,9 @@ const topics = [
     href: '/hooks',
   },
   {
-    name: 'Data & State Management (coming 5/2023)',
-    description:
-      'Choose the right data-fetching & state-management library for your use case.',
-    href: '#',
+    name: 'State Management',
+    description: 'Manage your SPA application state with confidence.',
+    href: '/state-management',
   },
   {
     name: 'React Performance (coming 7/2023)',
