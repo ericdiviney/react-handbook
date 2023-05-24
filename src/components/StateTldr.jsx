@@ -30,9 +30,10 @@ const AccordionTrigger = React.forwardRef(
     <Accordion.Header className="flex">
       <Accordion.Trigger
         className={clsx(
-          'group relative flex w-full cursor-pointer flex-col rounded-lg border pl-9 text-left',
-          'border-slate-300 transition duration-150 hover:border-zinc-600 data-[state=open]:text-sky-400 dark:border-zinc-800 dark:hover:border-zinc-600',
-          'data-[state=open]:border-sky-400 '
+          'group relative flex w-full cursor-pointer flex-col rounded-lg border pl-9 text-left my-1',
+          'border-slate-300 transition duration-150',
+          'data-[state=closed]:dark:border-zinc-800 data-[state=closed]:dark:hover:border-zinc-600 data-[state=closed]:hover:border-zinc-600',
+          'data-[state=open]:border-sky-400'
         )}
         {...props}
         ref={forwardedRef}
