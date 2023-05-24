@@ -13,7 +13,7 @@ export const sections = [
     { title: 'When Do You Need Global State?', id: 'when-do-you-need-global-state' },
     { title: '1) "Smart" Data-Fetching', id: '1-smart-data-fetching' },
     { title: '2) Contexts', id: '2-contexts' },
-    { title: '3) Flux vs. Proxy', id: '3-flux-vs-proxy-direction-of-data-flow' },
+    { title: '3) Global Stores - Flux vs. Proxy', id: '3-global-stores-flux-vs-proxy' },
     { title: 'Common Overlaps', id: 'common-overlaps' },
 ]
 
@@ -136,9 +136,7 @@ Now that you understand the differences between local and global state - you nee
 - [Extracting State into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer)
 - [State Co-Location](https://kentcdodds.com/blog/application-state-management-with-react) - what is co-location & how it can make your app [faster](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)
 
-## When Do You Need Global State
-
-Start thinking about a global state solution if:
+## When Do You Need Global State?
 
 1. If you&apos;re still prop drilling a lot (after trying the above approaches to lifting state) or feel you&apos;re headed in that direction and want to avoid it
 2. If you have some type of state/store that lives outside of your React application, but you need to consume it in your React app
@@ -224,7 +222,7 @@ To answer if you need an external global store or if a simple one can work by ro
 
 If you answered YES to any of the above, you should *absolutely* consider implementing your global state using one of the 3rd party libraries discussed in the next section.
 
-## 3) Flux vs. Proxy - Direction of Data Flow
+## 3) Global Stores | Flux vs. Proxy
 
 Ok, so we&apos;re moving on from Context to global stores in your application. The different recommended approaches for global stores are:
 
