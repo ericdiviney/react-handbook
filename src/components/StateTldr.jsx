@@ -214,7 +214,7 @@ export function StateTldr() {
                         For{' '}
                         <a
                           className="text-sky-400 hover:underline"
-                          href="#3-flux-vs-atomic-vs-proxy"
+                          href="#3-global-stores-flux-vs-proxy"
                         >
                           Global Stores
                         </a>{' '}

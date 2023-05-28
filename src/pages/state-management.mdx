@@ -94,7 +94,7 @@ Those specific 3 types are the focus because the other types (4. Session State a
 
 It&apos;s infrequent that you should write a custom location state manager when plenty of better options already exist for managing navigation history (like [react-router-dom](https://www.npmjs.com/package/react-router-dom) or [reactnavigation](https://reactnavigation.org/) for React-Native apps).
 
-And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in [Typical State Decisions You&apos;ll Need to Make](#common-overlap) below), so here's a summary:
+And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in the [Overlaps](#common-overlaps) section below), so here's a summary:
 
 In almost all React apps that need authentication - the recommendation is to use access tokens for communicating with APIs, and tokens can be stored easily in localStorage to persist across page refreshes. If you are implementing access tokens that can be [refreshed](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them) (as is common today), your session state management will be a little more hands-on, but typically you can reach for an open-source solution to get you pretty far. In many enterprise apps that use SSO solutions or third-party authentication services, you could utilize these libraries to help with managing tokens client-side:
 
@@ -188,7 +188,7 @@ To summarize: `useContext` + `useReducer` can be used for an elementary global s
 
 But also, beware: `useContext` for too large/complex a global store [might](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/#context-and-usereducer) lead to performance issues.
 
-If you'd like to read more about how Contexts can lead to performance problems, continue reading through this section - otherwise, you can skip ahead to <a href="#3-module-vs-atomic-vs-proxy">Global Stores</a>. 
+If you'd like to read more about how Contexts can lead to performance problems, continue reading through this section - otherwise, you can skip ahead to <a href="#3-global-stores-flux-vs-proxy">Global Stores</a>. 
 
 Contexts can lead to performance issues because of how often their updates trigger re-renders. When a context provider has any mutation to its current value - ALL consumers of the context must re-render with the new value, even if only a specific part (for example: a property in an object) was updated and isn&apos;t used in each component that consumes the context (which will have to re-render).
 
@@ -252,14 +252,16 @@ Vue.js [reactivity concept](https://vuejs.org/guide/extras/reactivity-in-depth.h
 
 Just be aware that the additional flexibility you have updating your application state throughout your codebase could make a detailed analysis of state updates in your application more difficult. You should seriously consider your application's complexity, browser [support](https://caniuse.com/proxy) requirements, and your team&apos;s size/cohesion before moving forward with this for the long term.
 
-| Pattern | Library | Size (unpacked**) | Popularity (weekly downloads) |
+Links are provided to bundlejs.com to demonstrate what the bundle size might result in (using latest versions).
+
+| Pattern | Library | Links to Bundle Size | Popularity (weekly downloads) |
 | --- | --- | --- | --- |
-| Flux Module | [redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) | 12 MB | 2 million |
-| Flux Module | [zustand](https://www.npmjs.com/package/zustand) | 300 KB | 1.5 million |
-| Flux Atomic | [recoil](https://www.npmjs.com/package/recoil) | 2.2 MB | 400k |
-| Flux Atomic | [jotai](https://www.npmjs.com/package/jotai) | 400 KB | 450k |
-| Proxy | [mobx](https://www.npmjs.com/package/mobx) | 4 MB | 1 million |
-| Proxy | [valtio](https://www.npmjs.com/package/valtio) | 315 KB | 230k |
+| Flux Module | [redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) | [bundlejs.com](https://bundlejs.com/?q=%40reduxjs%2Ftoolkit%2Creact-redux) | 2 million |
+| Flux Module | [zustand](https://www.npmjs.com/package/zustand) | [bundlejs.com](https://bundlejs.com/?q=zustand) | 1.5 million |
+| Flux Atomic | [recoil](https://www.npmjs.com/package/recoil) | [bundlejs.com](https://bundlejs.com/?q=recoil) | 400k |
+| Flux Atomic | [jotai](https://www.npmjs.com/package/jotai) | [bundlejs.com](https://bundlejs.com/?q=jotai) | 450k |
+| Proxy | [mobx](https://www.npmjs.com/package/mobx) | [bundlejs.com](https://bundlejs.com/?q=mobx) | 1 million |
+| Proxy | [valtio](https://www.npmjs.com/package/valtio) | [bundlejs.com](https://bundlejs.com/?q=valtio) | 230k |
 
 ## Common Overlaps
 
