@@ -1,8 +1,8 @@
 export function FrameworkComparisonTable() {
 	return (
-    <div className="mx-auto max-w-screen-xl overflow-x-auto pr-2">
+    <div className="max-w-screen-xl pr-2 mx-auto overflow-x-auto">
       <div className="min-w-[600px]">
-        <div className="my-2 flex justify-between p-6">
+        <div className="flex justify-between p-6 my-2">
           <div className="basis-1/4"></div>
           <div className="flex basis-3/4">
             <div className="w-1/3 px-2">
@@ -19,7 +19,7 @@ export function FrameworkComparisonTable() {
                     d="M6.2 21.8C4.1 19.7 3 16.9 3 14.2L13.9 25c-2.8-.1-5.6-1.1-7.7-3.2zm10.2 2.9L3.3 11.6C4.4 6.7 8.8 3 14 3c3.7 0 6.9 1.8 8.9 4.5l-1.5 1.3C19.7 6.5 17 5 14 5c-3.9 0-7.2 2.5-8.5 6L17 22.5c2.9-1 5.1-3.5 5.8-6.5H18v-2h7c0 5.2-3.7 9.6-8.6 10.7z"
                   />
                 </svg>
-                <span className="hidden text-sm font-bold uppercase tracking-widest lg:block">
+                <span className="hidden text-sm font-bold tracking-widest uppercase lg:block">
                   Gatsby
                 </span>
               </div>
@@ -96,7 +96,7 @@ export function FrameworkComparisonTable() {
                     </linearGradient>
                   </defs>
                 </svg>
-                <span className="hidden text-sm font-bold uppercase tracking-widest lg:block">
+                <span className="hidden text-sm font-bold tracking-widest uppercase lg:block">
                   Next.js
                 </span>
               </div>
@@ -126,14 +126,14 @@ export function FrameworkComparisonTable() {
                     strokeOpacity="0.8"
                   />
                 </svg>
-                <span className="hidden text-sm font-bold uppercase tracking-widest lg:block">
+                <span className="hidden text-sm font-bold tracking-widest uppercase lg:block">
                   Remix
                 </span>
               </div>
             </div>
           </div>
         </div>
-        <div className="my-2 flex justify-between rounded-xl bg-slate-100 p-6 dark:bg-zinc-800">
+        <div className="flex justify-between p-6 my-2 rounded-xl bg-slate-100 dark:bg-zinc-800">
           <div className="basis-1/4">The gist</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">Fast, non-dynamic sites</div>
@@ -141,7 +141,7 @@ export function FrameworkComparisonTable() {
             <div className="w-1/3 px-2">Indie Products / SaaS Startups</div>
           </div>
         </div>
-        <div className="my-2 flex justify-between p-6">
+        <div className="flex justify-between p-6 my-2">
           <div className="basis-1/4">Good for:</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
@@ -159,7 +159,7 @@ export function FrameworkComparisonTable() {
             </div>
           </div>
         </div>
-        <div className="my-2 flex justify-between p-6">
+        <div className="flex justify-between p-6 my-2">
           <div className="basis-1/4">Not Good for:</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
@@ -184,7 +184,7 @@ export function FrameworkComparisonTable() {
             </div>
           </div>
         </div>
-        <div className="my-2 flex justify-between rounded-xl bg-slate-100 p-6 dark:bg-zinc-800">
+        <div className="flex justify-between p-6 my-2 rounded-xl bg-slate-100 dark:bg-zinc-800">
           <div className="basis-1/4">Learning Resources</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
@@ -267,7 +267,7 @@ export function FrameworkComparisonTable() {
             </div>
           </div>
         </div>
-        <div className="my-2 flex justify-between rounded-xl bg-emerald-50 p-6 dark:bg-transparent">
+        <div className="flex justify-between p-6 my-2 rounded-xl bg-emerald-50 dark:bg-transparent">
           <div className="basis-1/4">Pros:</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
@@ -306,7 +306,7 @@ export function FrameworkComparisonTable() {
             </div>
           </div>
         </div>
-        <div className="my-2 flex justify-between rounded-xl bg-rose-50 p-6 dark:bg-transparent">
+        <div className="flex justify-between p-6 my-2 rounded-xl bg-rose-50 dark:bg-transparent">
           <div className="basis-1/4">Cons:</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
@@ -338,11 +338,13 @@ export function FrameworkComparisonTable() {
             </div>
             <div className="w-1/3 px-2">
               As the new framework on the block, Remix has to compete with the
-              incumbents (Gatsby and Next.js). The API seems stable for now.
+              incumbents (Gatsby and Next.js). <br/><br/>
+              
+              More: <a href="https://redd.one/blog/my-struggle-with-remix">My Struggle With Remix</a>
             </div>
           </div>
         </div>
-        <div className="my-2 flex justify-between p-6">
+        <div className="flex justify-between p-6 my-2">
           <div className="basis-1/4">Neutral Points To Be Aware Of</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">Mostly for SSG only.</div>
@@ -378,7 +380,7 @@ export function FrameworkComparisonTable() {
           </div>
         </div>
 
-        <div className="my-2 flex justify-between rounded-xl bg-slate-100 p-6 dark:bg-zinc-800">
+        <div className="flex justify-between p-6 my-2 rounded-xl bg-slate-100 dark:bg-zinc-800">
           <div className="basis-1/4">Commercially Backed By:</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">

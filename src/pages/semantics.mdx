@@ -1,35 +1,42 @@
 export const description =
   'Learn to write semantically valid markup in your React apps.'
 
-export const sections = [
-  { title: 'Why is Semantic HTML Important?', id: 'why' },
-  { title: 'Bad Practices to Avoid', id: 'warning' },
-]
-
 # Accessibility & Semantics
 
-If you haven't heard of "semantic HTML" - it's a fancy way of saying you should use the right element for the job. For the elements you definitely need to worry about getting correct - descriptions are below. Other elements (like `<div>` or `<span>`) can be used more generally and flexibly (but should not be used in place of the semantically-correct alternative, again listed below).
+## What is Semantic HTML
 
-- A11Y = Accessibility
+<img
+  className="w-full lg:max-w-[600px] mb-0 rounded border border-zinc-900/10 dark:border-white/10"
+  src="https://static.semrush.com/blog/uploads/media/cc/85/cc85d452a743e27f68d426df35e4da7d/EN-Semantic-Search-Non-Semantic.webp"
+  alt="what is semantic HTML"
+/>
+<small>image and description provided by [semrush.com](https://www.semrush.com/blog/semantic-html5-guide/)</small>
+
+"Semantic HTML, also known as semantic markup, refers to the use of HTML tags that convey the meaning—or semantics—of the content contained within them. {{ className: 'lead' }}
+
+By adding semantic HTML tags to your pages, you provide additional information that helps define the roles and relative importance of the different parts of your page." {{ className: 'lead' }}
+
+**Misc**
+- `A11Y` is an acronym for "Accessibility"
+- Introduction to [ARIA (Accessible Rich Internet Applications)](https://web.dev/learn/accessibility/aria-html/#introduction-to-aria).
+  - If you would like to adhere to WAI-ARIA in your application, we recommend some headless UI libraries on the ecosystem page that follow the WAI-ARIA [design patterns](https://www.w3.org/WAI/ARIA/apg/patterns/). 
+  - Take caution when adding/implementing ARIA manually in your project, as it is frequently implemented incorrectly and can actually make your application LESS usable.
+
+**Accessibility Cheatsheet:**
+- [Accessibility cheat sheet](https://learntheweb.courses/topics/accessibility-cheat-sheet/)
+
+**Learn more:**
+- [HTML: A good basis for accessibility](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+- [HTML Elements Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [A beginner's guide to web accessibility](https://bootcamp.uxdesign.cc/beginners-guide-to-web-accessibility-514644750b0f)
+- [10 Blunt Things I Wish I Could Tell Clients](https://karlgroves.com/ten-blunt-things-i-wish-i-could-tell-clients/) - Karl Groves, Web Accessibility Expert
+
 
 ## Why is Semantic HTML Important?
 
-To summarize: there are devices that help people with disabilities (such as blindness) navigate and use the internet - and by using the elements correctly as described below you can enable a much better user experience in your application for those people using technology like screen readers.
-
-- `<header>` used to specify the header for a web document or the header for a section of a web document. Headers usually contain a group of introductory content e.g. navigation aids, headings, logos etc.
-- `<nav>` used to enclose navigational links within a web document or to other resources.
-- `<aside>` used to represent a section of a web document with content that is indirectly related to the document's main content.
-- `<article>` used to represent content that is independent, self-contained and reusable.
-- `<section>` used to define a section of standalone content within a web document. Sections can contain content as well as other HTML elements that add meaning to the content.
-- `<h1>` — `<h6>` used to represent headings of different levels within a web document. `<h1>` is used to represent the heading at the highest level, while `<h6>` is used to represent headings at the lowest level.
-- `<p>` used to define a paragraph.
-- `<button>` used to define a clickable button.
-- `<a>` used to define a link to another document. In most cases, anchor tags should be used for navigating (not buttons).
-- `<cite>` used to provide a reference to the title of a piece of cited work.
-- `<em>` used to stress the emphasis of text within a web document.
-- `<footer>` used to provide a footer to its nearest section, or the web document as a whole. Information likely to be found in a footer include information about the author, copyright information and contact information.
-
-You may also want to brush up on [ARIA](https://web.dev/learn/accessibility/aria-html/#introduction-to-aria) (Accessible Rich Internet Applications). If you would like to adhere to WAI-ARIA in your application, we recommend some headless UI libraries on the ecosystem page that follow the WAI-ARIA [design patterns](https://www.w3.org/WAI/ARIA/apg/patterns/). Take caution when adding/implementing ARIA manually in your project, as it is very frequently misused or implemented incorrectly.
+1. Make Your Website / Web App Accessible
+2. Search Engine Optimization (SEO)
+3. Clearer Code / Maintainability
 
 ## Bad Practices to Avoid
 
@@ -38,12 +45,3 @@ Do NOT treat accessibility as something you can add to your app after the develo
 Instead of thinking of A11Y as something you "sprinkle" in right before the production launch, try to make it a fundamental aspect of your code-writing process. Give your team cheatsheets like the one at the bottom of this page to make it easier for them to implement accessible interfaces, make it a point to double-check any HTML markup added in a PR review for better semantic options.
 
 By making accessibility a "ground up" philosophy on your team, you will be much less likely to miss gaping accessibility issues in your projects.
-
-Accessibility Cheatsheet:
-- [Accessibility cheat sheet](https://learntheweb.courses/topics/accessibility-cheat-sheet/)
-
-Learn more about accessibility:
-
-- [HTML: A good basis for accessibility](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
-- [HTML Elements Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
-- [A beginner's guide to web accessibility](https://bootcamp.uxdesign.cc/beginners-guide-to-web-accessibility-514644750b0f)
