@@ -12,8 +12,8 @@ export const sections = [
     { title: 'Maximize Local State Best Practices', id: 'maximize-local-state-best-practices' },
     { title: 'When Do You Need Global State?', id: 'when-do-you-need-global-state' },
     { title: '1) "Smart" Data-Fetching', id: '1-smart-data-fetching' },
-    { title: '2) Global Stores - Singleton | Atomic | Proxy', id: '2-global-stores-singleton-vs-atomic-vs-proxy' },
-    { title: '3) Global Store Libraries', id: 'table-comparison', indent: true },
+    { title: '2) Singleton | Atomic | Proxy', id: '2-global-stores-singleton-vs-atomic-vs-proxy' },
+    { title: '3) Global State Libraries', id: 'table-comparison', indent: true },
     { title: 'Common Overlaps', id: 'common-overlaps' },
 ]
 
@@ -186,21 +186,46 @@ If you answered "Yes" to any of the questions above, you should consider a more 
 
 The different recommended approaches for global stores are:
 
-1. Singleton - 
-2. Atomic - 
+1. Singleton - the singleton (AKA "module") architectural approach typically means a single instance of the state (called a "store") that is shared across the entire application. Typically this means one large object that holds ALL state values in your application.
+2. Atomic - the atomic pattern (often associated with Recoil &amp; Jotai) all centers around the idea of an "atom" - an isolated piece of state. Atoms are consumed &amp; mutated from anywhere in your application. This pattern differs from the singleton approach above by splitting your state into smaller related groups of data that allow more granular interactions with global state data. Atoms can also be grouped together to derive state.
 3. Proxy - this architecture pattern introduces a proxy object for you to interact with, while that proxy communicates with the source of truth (the store). This approach is intended to make modifying the application state simpler by allowing any assignment/mutation and the proxy forwarding those updates back to the central store (this is the antithesis or opposite of "immutability", really)
 
-So what are the tradeoffs between each architecture? Let&apos;s find out 👇
+Next, let's explore the tradeoffs and benefits each architecture offers 👇
 
 ### Singleton / Module
 
+Benefits
+- Consistency: all state updates being made to the same object ensures a consistent single source of truth
+- Middleware: side effects (commonly called "middleware") are simple to implement on a centralized store
+- Debugging: debugging a timeline of state updates and events is easy when all updates go through the same process
+
+Tradeoffs
+- Once your state-update frequency passes a threshold (~hundreds of changes per minute) this pattern might end up costing you performance
+- State trees that become very large can lead to performance issues
+- Difficulties in code-splitting
+
+
 ### Atomic
+
+Benefits
+- Granularity: splitting global state into smaller chunks allows for faster updates and easier memoization for accessing as well
+- Efficient: since updates can be made to each "atom" independently, in the context of a React app this leads to a very optimized number of re-renders
+- Flexibility: atoms allow you to keep your base state as simple as possible and derive any complex state as necessary
+- Simplicity: in general, tends to involve less boilerplate/configuration
+
+Tradeoffs
+- Proper Coordination: properly cascading global state changes across atoms can involve more complexity than a singleton approach
+- Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
+- Limited middleware and devtools - is this true? Ask Josh about both of these?
 
 ### Proxy: Simple Reactivity
 
-Finally, we'll explore the proxy architecture. This approach works by exposing a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) of the global store, of which the proxy contains some custom behavior like intercepting your assignments/mutations to the object and performing additional actions on the underlying state to complete the activity loop. The Proxy architecture is the most flexible option of the 3 mentioned here - immutability has no authority when using a Proxy and you are free to assign/mutate your state objects in your code however you want.
+Benefits
+- Simplicity: state updates are as simple as assignments/mutations to any other variables. Updates get magically "synced".
+- 
 
-Vue.js [reactivity concept](https://vuejs.org/guide/extras/reactivity-in-depth.html#how-reactivity-works-in-vue) is also built on the Proxy functionality.
+Tradeoffs
+- Heavily reliant on browser support for the [Proxy]((https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)) API
 
 Just be aware that the additional flexibility you have updating your application state throughout your codebase could make a detailed analysis of state updates in your application more difficult. You should seriously consider your application's complexity, browser [support](https://caniuse.com/proxy) requirements, and your team&apos;s size/cohesion before moving forward with this for the long term.
 
