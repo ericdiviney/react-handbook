@@ -208,36 +208,40 @@ Tradeoffs
 ### Atomic
 
 Benefits
-- Granularity: splitting global state into smaller chunks allows for faster updates and easier memoization for accessing as well
-- Efficient: since updates can be made to each "atom" independently, in the context of a React app this leads to a very optimized number of re-renders
+- Granular Reactivity: since updates can be made to any atom independently, this leads to a very optimized number of re-renders
 - Flexibility: atoms allow you to keep your base state as simple as possible and derive any complex state as necessary
 - Simplicity: in general, tends to involve less boilerplate/configuration
 
 Tradeoffs
-- Proper Coordination: properly cascading global state changes across atoms can involve more complexity than a singleton approach
 - Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
 - Limited middleware and devtools - is this true? Ask Josh about both of these?
 
 ### Proxy: Simple Reactivity
 
 Benefits
+- Granular Reactivity: proxies can allow for very accurate observation of state changes to limit the triggering of re-renders where it's not needed
 - Simplicity: state updates are as simple as assignments/mutations to any other variables. Updates get magically "synced".
-- 
+- DX: there's no new syntax/functions to learn. Simply "import" an value/variable and start consuming it (or mutating it). Updates get synced globally.
+
 
 Tradeoffs
+- Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
 - Heavily reliant on browser support for the [Proxy]((https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)) API
-
-Just be aware that the additional flexibility you have updating your application state throughout your codebase could make a detailed analysis of state updates in your application more difficult. You should seriously consider your application's complexity, browser [support](https://caniuse.com/proxy) requirements, and your team&apos;s size/cohesion before moving forward with this for the long term.
 
 ## Table Comparison
 
-FLUX: Immutability & Unidirectional Data-Flow {{ className: 'lead' }}
+Before diving into the recommendations below, it will help to clarify what "FLUX" means and why it is included in the descriptions of each library.
 
-***DESCRIPTION OF FLUX, HOW ITS USED IN A LOT OF LIBRARIES HERE, BUT THESE ARE ALL INDEPENDENT ARCHITECTURES ON THEIR OWN***
+The [FLUX architecture](https://medium.com/swlh/the-case-for-flux-379b7d1982c6) is very intricate with many details, but to sum it up here: `unidirectional (one-way) data-flow, implemented with` [immutability](https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310).
 
-To understand Flux, you also really need to understand its underlying concept of [immutability](https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310).
+Whoa, lots of fancy words there. Let's simplify:
 
-Links are provided to bundlejs.com to demonstrate what the bundle size might result in (using latest versions).
+- `unidirectional data-flow` - "actions" get "dispatched" to update the "store" in a [predictable, consistent manner](https://medium.com/@grover.vinayak0611/what-is-flux-architecture-why-facebook-used-it-and-the-comparison-with-mvc-architecture-49c01ed5d2e1)
+- `implemented with immutability` - the way that update operations are performed on the store (the literal code that changes the data when an update happens). Read more about [immutability](https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/) and [update patterns](https://redux.js.org/usage/structuring-reducers/immutable-update-patterns)
+
+FLUX is just a design pattern for updating stores of data, nothing more. You'll notice that nearly every non-proxy library recommended implements FLUX principles in some way - so its important to understand Flux outside the context of any specific one of these libraries.
+
+The links below take you to bundlejs.com to demonstrate what the bundle size might result in (using latest versions).
 
 | Pattern | Library | Links to Bundle Size | Popularity (weekly downloads) |
 | --- | --- | --- | --- |
