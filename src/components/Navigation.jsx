@@ -202,7 +202,7 @@ export const navigation = [
       { title: 'Styling / UI Libraries', href: '/styling' },
       { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Tips for Using Hooks', href: '/hooks' },
-      { title: 'State Management', href: '/state-management' },
+      { title: 'State Management Fundamentals', href: '/state-management' },
     ],
   },
   {
