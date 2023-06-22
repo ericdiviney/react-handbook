@@ -35,9 +35,9 @@ The **target audience** for this guide are for both React beginners and architec
 
 ## Does any of this apply to SSR (Next.js / Remix)
 
-We wanted to get a seasoned opinion on managing state in SSR React frameworks, so we asked <a href="https://twitter.com/shadcn">@shadcdn</a>, maintainer of <a href="https://www.getstaticprops.com/">getstaticprops.com</a> their thoughts on managing state in Next.js applications:
-
-> I like to think of state as server state (permanent) and client state (temporary). <br/><br />So in SPA (even with Next.js), I still use Zustand to handle client state in a UI heavy app, say a designer, before they are persisted. <br /><br />If the app is simple forms (CRUD-like), server state works and is easier to manage.
+In general, this guide applies to managing state on the client (browser). Since the entire premise of SSR is SERVER-side, this guide doesn't really apply to managing any state on the server. To summarize:
+- Even apps that use SSR might also need to manage state on the client
+- Simple CRUD-like applications often means you can shift/move some of your client state to the server
 
 ## Term Definitions
 
@@ -145,9 +145,9 @@ If you&apos;ve come this far and now you know you need a global state - the next
 
 ### Why Not Context?
 
-While many React educators on the web and even the React docs recommend [Context](https://react.dev/learn/passing-data-deeply-with-context) for global-like state management - we find that unless your application is very simple and will remain very simple - context is a very limiting state management solution.
+The [React docs](https://react.dev/learn/passing-data-deeply-with-context) explain how to use React Context for some global state management. While this can be a suitable solution for simple applications, we find that using Context correctly is more difficult and limiting than using the tools suggested in this guide.
 
-Read more in our upcoming advanced State Management Guide why we think there are better options, but also when Context IS the best tool for the job.
+Our upcoming advanced State Management Guide will explain how to use Context correctly, when it's a good choice, and why we think there are [better options](https://blog.testdouble.com/posts/2021-03-19-react-context-for-dependency-injection-not-state/). The takeaway here is that an efficient (optimized for re-renders) solution for global state management is not an easy task with Context.
 
 ## 1) "Smart" Data Fetching
 
@@ -213,8 +213,8 @@ Benefits
 - Simplicity: in general, tends to involve less boilerplate/configuration
 
 Tradeoffs
-- Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
-- Limited middleware and devtools - is this true? Ask Josh about both of these?
+- Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures 
+- Lacks "Middleware": The singleton model being so popular for a long time led to the standardization of "middleware" (a big ecosystem benefit)
 
 ### Proxy: Simple Reactivity
 
@@ -226,6 +226,7 @@ Benefits
 
 Tradeoffs
 - Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
+- Blackbox: the proxy can feel a little magical at times, and may prove difficult to debug in very complex scenarios
 - Heavily reliant on browser support for the [Proxy]((https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)) API
 
 ## Table Comparison
