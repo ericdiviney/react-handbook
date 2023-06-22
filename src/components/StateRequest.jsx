@@ -12,7 +12,7 @@ export function StateRequest() {
 					</div>
 					<div>
 						<p className="m-0 text-sm leading-6">
-							Due to lack of experience, we currently cannot cover approaches like state machines or signals. If you have experience with these architectures we would love to have you as a <a href="https://github.com/ericdiviney/react-handbook" className="font-semibold text-sky-400">contributor</a>.
+							We are authoring another guide for more advanced approaches to state management. The approach in this guide is best applied to CRUD-like SPAs (Single-Page Applications) built with React.
 
 							We are looking for writers that can contribute material for:
 						</p>

@@ -12,8 +12,8 @@ export const sections = [
     { title: 'Maximize Local State Best Practices', id: 'maximize-local-state-best-practices' },
     { title: 'When Do You Need Global State?', id: 'when-do-you-need-global-state' },
     { title: '1) "Smart" Data-Fetching', id: '1-smart-data-fetching' },
-    { title: '2) Contexts', id: '2-contexts' },
-    { title: '3) Global Stores - Flux vs. Proxy', id: '3-global-stores-flux-vs-proxy' },
+    { title: '2) Singleton | Atomic | Proxy', id: '2-global-stores-singleton-vs-atomic-vs-proxy' },
+    { title: '3) Global State Libraries', id: 'table-comparison' },
     { title: 'Common Overlaps', id: 'common-overlaps' },
 ]
 
@@ -23,9 +23,9 @@ export const sections = [
 
 ## Intro / Who This Is For / TLDR
 
-This is a guide outlining a very flexible approach to managing application state in React apps. Specifically, this is applicable to the SPA (Single-Page Application) build architecture.
+This is a guide outlining a very flexible approach to managing application state in [CRUD-like](https://www.codecademy.com/article/what-is-crud) React apps. Specifically, this is applicable to the SPA (Single-Page Application) build architecture.
 
-The **target audience** for this guide are React engineers and architects, non-beginners either looking for guidance building a new application or understanding the decisions that others have made for applications they've worked on.
+The **target audience** for this guide are for both React beginners and architects either looking for guidance building a new application or understanding the decisions that others have made for applications they've worked on. Having said that - you should have a **strong grasp of React** if you want to understand this material presented in this article.
 
 <StateRequest />
 
@@ -35,9 +35,9 @@ The **target audience** for this guide are React engineers and architects, non-b
 
 ## Does any of this apply to SSR (Next.js / Remix)
 
-We wanted to get a seasoned opinion on managing state in SSR React frameworks, so we asked <a href="https://twitter.com/shadcn">@shadcdn</a>, maintainer of <a href="https://www.getstaticprops.com/">getstaticprops.com</a> their thoughts on managing state in Next.js applications:
-
-> I like to think of state as server state (permanent) and client state (temporary). <br/><br />So in SPA (even with Next.js), I still use Zustand to handle client state in a UI heavy app, say a designer, before they are persisted. <br /><br />If the app is simple forms (CRUD-like), server state works and is easier to manage.
+In general, this guide applies to managing state on the client (browser). Since the entire premise of SSR is SERVER-side, this guide doesn't really apply to managing any state on the server. To summarize:
+- Even apps that use SSR might also need to manage state on the client
+- Simple CRUD-like applications often means you can shift/move some of your client state to the server
 
 ## Term Definitions
 
@@ -128,22 +128,26 @@ However, developers often do reach for global state manager libraries too soon. 
 Now that you understand the differences between local and global state - you need to understand how far you can take local state before introducing a global store in your application.
 
 - [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure) - Advice for how to structure the specific data you will be managing
+- [Extracting State into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer)
 - [Lifting State](https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example) - Lifting state to a parent can sometimes alleviate the need for global stores
     - [Update the State of a Sibling Component by Lifting State](https://alexsidorenko.com/blog/react-siblings/)
     - [Avoiding Prop-Drilling by Lifting State](https://alexsidorenko.com/blog/react-prop-drilling-composition/)
-- [Extracting State into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer)
-- [State Co-Location](https://kentcdodds.com/blog/application-state-management-with-react) - what is co-location & how it can make your app [faster](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)
 
 ## When Do You Need Global State?
 
 1. If you&apos;re still prop drilling a lot (after trying the above approaches to lifting state) or feel you&apos;re headed in that direction and want to avoid it
 2. If you have some type of state/store that lives outside of your React application, but you need to consume it in your React app
 
-If you&apos;ve come this far and now you know you need a global state - the next question is - what are your options? Here are three popular approaches you can take (in order of complexity):
+If you&apos;ve come this far and now you know you need a global state - the next question is - what are your options? Here are the two popular approaches you can take:
 
-1. "Smart" Data Fetching (tanstack-query, rtk-query, swr)
-2. Contexts (`useContext` + `useReducer`)
-3. Global Stores (Redux, Recoil, etc.)
+1. Data Fetching & Server Cache (tanstack-query, rtk-query, swr)
+2. Global Stores (Redux, Recoil, etc.)
+
+### Why Not Context?
+
+The [React docs](https://react.dev/learn/passing-data-deeply-with-context) explain how to use React Context for some global state management. While this can be a suitable solution for simple applications, we find that using Context correctly is more difficult and limiting than using the tools suggested in this guide.
+
+Our upcoming advanced State Management Guide will explain how to use Context correctly, when it's a good choice, and why we think there are [better options](https://blog.testdouble.com/posts/2021-03-19-react-context-for-dependency-injection-not-state/). The takeaway here is that an efficient (optimized for re-renders) solution for global state management is not an easy task with Context.
 
 ## 1) "Smart" Data Fetching
 
@@ -172,87 +176,73 @@ When you're unsure if smart data-fetching will be enough or if you'll need a "st
 
 - Will the data in your React app go for extended periods without the need for re-fetching from the API?
 - Will the state/data in your React app likely get out-of-sync with the server state, intentional or not, during regular application usage?
-- Will your application state be updating data frequently enough that its unreasonable for EVERY change to be persisted to the server immediately as they occur?
+- Will your application state be updating data frequently enough that its unreasonable for EVERY change to be persisted to the server immediately when they occur?
 - Will your server state update frequently enough that your React app might not know when the cache is stale and data should be re-fetched?
 - Is it mission-critical that your application shows the latest (uncached) reflection of server state at all times?
 
-If you answered "Yes" to any of the questions above, you should consider a more centralized global state as a potential solution (Contexts or State Manager) for your more complex data-flow requirements.
+If you answered "Yes" to any of the questions above, you should consider a more centralized global state as a potential solution for more complex requirements.
 
-## 2) Contexts
+## 2) Global Stores | Singleton vs. Atomic vs. Proxy
 
-First lets discuss a primitive way (that doesn't require external dependencies) to implement a global store, which would be with React&apos;s [useContext](https://react.dev/reference/react/useContext) hook. Contexts are most useful for avoiding [prop drilling](https://react.dev/learn/passing-data-deeply-with-context#the-problem-with-passing-props) and managing basic global stores that *don&apos;t frequently change*. A great way to use contexts effectively is to think of them as "hidden props" for your components.
+The different recommended approaches for global stores are:
 
-Examined closely, contexts are technically not a state-management solution but a transmission means. It is a form of "dependency injection" for those who know their software design patterns. The actual management of the state (storing values, updating values, etc.) is done by the developers implementing state logic with `useReducer` / `useState` and then applying `useContext` in their components to get those state values for rendering.
-
-To summarize: `useContext` + `useReducer` can be used for an elementary global store.
-
-But also, beware: `useContext` for too large/complex a global store [might](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/#context-and-usereducer) lead to performance issues.
-
-If you'd like to read more about how Contexts can lead to performance problems, continue reading through this section - otherwise, you can skip ahead to <a href="#3-global-stores-flux-vs-proxy">Global Stores</a>. 
-
-Contexts can lead to performance issues because of how often their updates trigger re-renders. When a context provider has any mutation to its current value - ALL consumers of the context must re-render with the new value, even if only a specific part (for example: a property in an object) was updated and isn&apos;t used in each component that consumes the context (which will have to re-render).
-
-Unfortunately, this means when updates are made to the state object from the reducer, each update will cause every context-consuming component to re-render - regardless of which property is changing between renders or not.
-
-From the perspective of the component, assume we have a `user` object consumed from a context. That user object also has a `name` property used to display a "Welcome, [Name]" in a custom component. Every update to this `user` object (regardless of whether the specific `user.name` property is changing or not) will force a re-render of our component.
-
-The limitation with contexts is that you cannot make *precise* updates to particular state values and limit re-renders to the components consuming that same particular state value (like a specific property in your state object). This [article](https://blog.isquaredsoftware.com/2021/01/context-redux-differences/) explains how the popular Redux library alleviates that problem - and you can rest assured that nearly all of the libraries recommended later in this guide also solve this re-render problem in their implementation so that you don&apos;t have to worry about this.
-
-To provide more material on this topic:
-
-- This specific problem is why many people recommend using Context for passing props that are "static" values. Static means they rarely change, meaning you&apos;ll rarely encounter this re-rendering phenomenon that can impact performance.
-- Many online tutorials claim that [react.memo](https://react.dev/reference/react/memo) in your components can alleviate this (which is not entirely accurate), but the [react docs](https://react.dev/reference/react/memo#updating-a-memoized-component-using-a-context) do bring some additional clarity. The correct way to use memo() to your advantage is to structure parent components to consume the context and then pass the context values down via props to memo()&apos;d child components (memo() makes it so a child would not re-render if the props don&apos;t change) By default, any child-component of a parent that is re-rendering will also re-render (unless `memo()`-ized).
-- The only true way to fix this render-performance issue completely while using contexts for all global state is to create an entirely new context for EVERY unique value in your state. For small apps with only a handful (< 15) of values needed globally - this might be fine. But it&apos;s also acceptable to skip the complexity that would be required with this approach and instead use a 3rd party tool as soon as you know you need a global state - especially if you predict that your global state will eventually become larger.
-- There may be a [future feature](https://github.com/facebook/react/pull/20890) that allows us to select values from a context object in an optimized way, but for now we have to assume Context will only work for simple stores
-
-### When Contexts Aren't Enough
-
-To answer if you need an external global store or if a simple one can work by rolling your own mini-store with `useContext` + `useReducer`, ask yourself each of the following:
-
-- Will your app have **many** components that need to stay in sync and share state?
-- Will your app manage more than ~10-15 state values (**not** objects with nested values) that need to propagate globally to all components in the tree of your app? Answer yes to this question if you easily predict your state will grow to ~15+ values
-- Will your app have complex (`useReducer` becoming hard to manage) asynchronous state logic or very frequent updates to the application state with new data that is then consumed in some way by your React app?
-- Will your app consume frontend-app state from any store/source outside of your React app (such as a React app/widget inside a webpage where jQuery can also manipulate the same state of an overall application)?
-- Will your state be complex enough that you would want a straightforward way to visualize/debug state updates along a timeline (AKA "time-travel") and how/when updates were being made?
-- Will your state need custom logic between dispatching actions and reducers, such as logging, crash reporting, or asynchronous API calls (commonly known as "middleware")
-- Are you noticing performance issues due to unnecessary re-rendering from frequent updates to the application state?
-- Is your team/project large enough that a more consistent structure/pattern to global state management would help the codebase scale successfully?
-
-If you answered YES to any of the above, you should *absolutely* consider implementing your global state using one of the 3rd party libraries discussed in the next section.
-
-## 3) Global Stores | Flux vs. Proxy
-
-Ok, so we&apos;re moving on from Context to global stores in your application. The different recommended approaches for global stores are:
-
-1. Flux - a very popular architecture in the React ecosystem - originally developed by Facebook to address scaling/complexity challenges, it complements React&apos;s unidirectional data flow and enforces strict separation of concerns via concepts such as Stores, Dispatchers, and Actions. Flux also adopts "immutability" as a core tenet.
+1. Singleton - the singleton (AKA "module") architectural approach typically means a single instance of the state (called a "store") that is shared across the entire application. Typically this means one large object that holds ALL state values in your application.
+2. Atomic - the atomic pattern (often associated with Recoil &amp; Jotai) all centers around the idea of an "atom" - an isolated piece of state. Atoms are consumed &amp; mutated from anywhere in your application. This pattern differs from the singleton approach above by splitting your state into smaller related groups of data that allow more granular interactions with global state data. Atoms can also be grouped together to derive state.
 3. Proxy - this architecture pattern introduces a proxy object for you to interact with, while that proxy communicates with the source of truth (the store). This approach is intended to make modifying the application state simpler by allowing any assignment/mutation and the proxy forwarding those updates back to the central store (this is the antithesis or opposite of "immutability", really)
 
-So what are the tradeoffs between each architecture? Let&apos;s find out 👇
+Next, let's explore the tradeoffs and benefits each architecture offers 👇
 
-### FLUX: Immutability & Unidirectional Data-Flow
+### Singleton / Module
 
-To understand Flux, you also really need to understand its underlying concept of [immutability](https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310).
+Benefits
+- Consistency: all state updates being made to the same object ensures a consistent single source of truth
+- Middleware: side effects (commonly called "middleware") are simple to implement on a centralized store
+- Debugging: debugging a timeline of state updates and events is easy when all updates go through the same process
 
-There are 2 main reasons this concept is great for state management:
+Tradeoffs
+- Once your state-update frequency passes a threshold (~hundreds of changes per minute) this pattern might end up costing you performance
+- State trees that become very large can lead to performance issues
+- Difficulties in code-splitting
 
-1. Immutability helps enforce "unidirectional" (one-way) data flow, which makes the application state much simpler to debug and understand. There are tools in place to monitor where state changes are coming from (what&apos;s trying to update the state and how) and to ensure only one state update happens at a time (in an orderly fashion), which provides a lot of order and predictability
-2. Additionally - there is a huge performance benefit to how this influences the way code is written. For example, in state actions, when returning the original `state` vs returning `{ …state }` with an update - the performance benefit is because of "object referential equality". In JavaScript, if an object is big enough - trying to deep-compare to determine equality becomes very very slow. It&apos;s much faster to compare if two objects have changed by checking their *references* instead of every single property that exists inside of the objects. This is a fundamental choice that makes FLUX approaches pretty performant by default - because object referential comparisons are very cheap.
 
-Within the FLUX architecture, there are 2 approaches to organizing your state data.
+### Atomic
 
-**Module** - "Top-Down" flux, this architecture groups related state functionality into "modules" based on the domain or feature they relate to (for example: separate modules for user data, product data, and so on). Each module has its own state and actions (like in Redux) or mutations (like in Zustand)
+Benefits
+- Granular Reactivity: since updates can be made to any atom independently, this leads to a very optimized number of re-renders
+- Flexibility: atoms allow you to keep your base state as simple as possible and derive any complex state as necessary
+- Simplicity: in general, tends to involve less boilerplate/configuration
 
-**Atomic**: "Bottom-up" flux, this architecture organizes state as smaller, independent pieces known as "atoms". Atoms can allow for more fine-tuned updates to your state, therefore decreasing the number of re-renders state-updates might cause. You can also easily create derived state ("selectors" in Recoil &amp; Jotai) which can be powerful in creating complex state relationships while minimizing re-renders.
+Tradeoffs
+- Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures 
+- Lacks "Middleware": The singleton model being so popular for a long time led to the standardization of "middleware" (a big ecosystem benefit)
 
 ### Proxy: Simple Reactivity
 
-Finally, we'll explore the proxy architecture. This approach works by exposing a [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) of the global store, of which the proxy contains some custom behavior like intercepting your assignments/mutations to the object and performing additional actions on the underlying state to complete the activity loop. The Proxy architecture is the most flexible option of the 3 mentioned here - immutability has no authority when using a Proxy and you are free to assign/mutate your state objects in your code however you want.
+Benefits
+- Granular Reactivity: proxies can allow for very accurate observation of state changes to limit the triggering of re-renders where it's not needed
+- Simplicity: state updates are as simple as assignments/mutations to any other variables. Updates get magically "synced".
+- DX: there's no new syntax/functions to learn. Simply "import" an value/variable and start consuming it (or mutating it). Updates get synced globally.
 
-Vue.js [reactivity concept](https://vuejs.org/guide/extras/reactivity-in-depth.html#how-reactivity-works-in-vue) is also built on the Proxy functionality.
 
-Just be aware that the additional flexibility you have updating your application state throughout your codebase could make a detailed analysis of state updates in your application more difficult. You should seriously consider your application's complexity, browser [support](https://caniuse.com/proxy) requirements, and your team&apos;s size/cohesion before moving forward with this for the long term.
+Tradeoffs
+- Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
+- Blackbox: the proxy can feel a little magical at times, and may prove difficult to debug in very complex scenarios
+- Heavily reliant on browser support for the [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) API
 
-Links are provided to bundlejs.com to demonstrate what the bundle size might result in (using latest versions).
+## Table Comparison
+
+Before diving into the recommendations below, it will help to clarify what "FLUX" means and why it is included in the descriptions of each library.
+
+The [FLUX architecture](https://medium.com/swlh/the-case-for-flux-379b7d1982c6) is very intricate with many details, but to sum it up here: `unidirectional (one-way) data-flow, implemented with` [immutability](https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310).
+
+Whoa, lots of fancy words there. Let's simplify:
+
+- `unidirectional data-flow` - "actions" get "dispatched" to update the "store" in a [predictable, consistent manner](https://medium.com/@grover.vinayak0611/what-is-flux-architecture-why-facebook-used-it-and-the-comparison-with-mvc-architecture-49c01ed5d2e1)
+- `implemented with immutability` - the way that update operations are performed on the store (the literal code that changes the data when an update happens). Read more about [immutability](https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/) and [update patterns](https://redux.js.org/usage/structuring-reducers/immutable-update-patterns)
+
+FLUX is just a design pattern for updating stores of data, nothing more. You'll notice that nearly every non-proxy library recommended implements FLUX principles in some way - so its important to understand Flux outside the context of any specific one of these libraries.
+
+The links below take you to bundlejs.com to demonstrate what the bundle size might result in (using latest versions).
 
 | Pattern | Library | Links to Bundle Size | Popularity (weekly downloads) |
 | --- | --- | --- | --- |
