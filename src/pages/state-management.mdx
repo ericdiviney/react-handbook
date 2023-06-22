@@ -13,7 +13,7 @@ export const sections = [
     { title: 'When Do You Need Global State?', id: 'when-do-you-need-global-state' },
     { title: '1) "Smart" Data-Fetching', id: '1-smart-data-fetching' },
     { title: '2) Singleton | Atomic | Proxy', id: '2-global-stores-singleton-vs-atomic-vs-proxy' },
-    { title: '3) Global State Libraries', id: 'table-comparison', indent: true },
+    { title: '3) Global State Libraries', id: 'table-comparison' },
     { title: 'Common Overlaps', id: 'common-overlaps' },
 ]
 
@@ -141,7 +141,7 @@ Now that you understand the differences between local and global state - you nee
 If you&apos;ve come this far and now you know you need a global state - the next question is - what are your options? Here are the two popular approaches you can take:
 
 1. Data Fetching & Server Cache (tanstack-query, rtk-query, swr)
-3. Global Stores (Redux, Recoil, etc.)
+2. Global Stores (Redux, Recoil, etc.)
 
 ### Why Not Context?
 
@@ -227,7 +227,7 @@ Benefits
 Tradeoffs
 - Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
 - Blackbox: the proxy can feel a little magical at times, and may prove difficult to debug in very complex scenarios
-- Heavily reliant on browser support for the [Proxy]((https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)) API
+- Heavily reliant on browser support for the [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) API
 
 ## Table Comparison
 
