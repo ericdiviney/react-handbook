@@ -203,6 +203,7 @@ export const navigation = [
       { title: 'Ecosystem', href: '/ecosystem' },
       { title: 'Tips for Using Hooks', href: '/hooks' },
       { title: 'State Management Fundamentals', href: '/state-management' },
+      { title: 'Performance & Optimization', href: '/react-performance-optimization' },
     ],
   },
   {
@@ -217,7 +218,6 @@ export const navigation = [
   {
     title: 'Coming Soon',
     links: [
-      { title: 'Performance', href: '#' },
       { title: 'Server-Side Rendering', href: '#' },
       { title: 'Automated Testing', href: '#' },
       { title: 'Error Handling & Boundaries', href: '#' },
