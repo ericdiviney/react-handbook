@@ -266,7 +266,7 @@ The Overlaps Between Each Approach to Global State
 Specific common overlaps between "App" State and "Session" State
 
 - Keep things like tokens in localStorage, and the actual data those tokens receive in your contexts/stores. The reason is: the token rarely plays a role in the logic/views of your app. It's usually just included in API requests.
-    - INFO: The performant way to store tokens would be to configure your requests globally to use the same API token retrieved from localStorage (just once) instead of constantly retrieving the token from localStorage and then including it in your requests as an HTTP header in each component (this is massive duplication of code and easily avoidable)
+    - The performant way to store tokens would be to configure your requests globally to use the same API token retrieved from localStorage (just once) instead of constantly retrieving the token from localStorage and then including it in your requests as an HTTP header in each component (this is massive duplication of code and easily avoidable)
 - Secondly: should you put "user" info in a store or a context, like a UserContext/AuthContext or something?
     - If the auth is handled by the same system/API that you&apos;re getting your app data from - just throw it all in the store. Arbitrarily mixing contexts with global stores isn&apos;t necessary and would be a confusing division of data
     - If the auth is handled by a 3rd party system like Okta, Clerk, OAuth, etc. you could probably just wrap the user/profile info provided back by those parties in a context (since that data will rarely change) and then keep the rest of your business/app data in stores/caches
