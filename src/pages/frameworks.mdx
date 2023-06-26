@@ -23,7 +23,7 @@ For anyone that doesn't already know, [Andrew Clark](https://twitter.com/acdlite
 
 Don't overanalyze what Andrew is saying above. You're not losing any "cool points" if your project is still a React SPA. In fact, if your entire app is hidden behind authentication (like a dashboard) - SPAs are still a perfectly valid way to ship it.
 
-This whole framework debate/conversation is still being played out in the open-source community. In general, over the past few years, the pendulum has swung back towards SSR (server-side rendering) because of the [benefits](#the-shift-towards-ssr) it brings to certain types of applications. A lot of developers have realized that SSR can result in a better experience of their product (app OR site), and thats 100% the reason why this pendulum is swinging back in this direction. No one has an agenda, there's no conspiracy. Sometimes, SSR just seems to work really well for certain use cases.
+This whole framework debate/conversation is still being played out in the open-source community. In general, over the past few years, the pendulum has swung back towards SSR (server-side rendering) because of the [benefits](#the-shift-towards-ssr) it brings to certain types of applications. A lot of developers have realized that SSR can result in a better experience of their product (app OR site), and thats the reason why this pendulum is swinging back in this direction. No one has an agenda, there's no conspiracy.
 
 Some valuable advice when working with these frameworks is **don't fight the frameworks' choices**. If you disagree philosophically enough with React or the framework at hand - just choose another. Inventing and managing your own internal framework, or bastardizing a meta-framework to fit your needs is likely only going to cause you headaches and lots of effort spent maintaining your app as opposed to improving it.
 
@@ -36,7 +36,7 @@ Read more [from the official react documentation](https://react.dev/learn/start-
 Given today's options, it is less likely that you should start a React project from scratch and more likely you should reach for a framework. A React SPA could be a good choice for you if:
 
 - The scope of your app is very lightweight and a relatively simple SPA that doesn't need the advantages of server-side rendering. This scope is very unlikely to change anytime soon.
-- Your app is not lightweight or straightforward, and your team will diligently manage all dependencies and technical choices you'll likely need to make for the project to succeed (things like routing, data fetching, client vs server rendering, etc.). Note, this is more of a warning than it is a viable option for your project
+- Your app is not lightweight or straightforward, and your team will manage all dependencies and technical choices you'll likely need to make for the project to succeed (routing, data fetching, etc.).
 - Either of the above is true and practically the entire application lives behind authentication
 
 **Whatever you do, don't start with CRA (Create-React-App)**
@@ -51,7 +51,7 @@ Given today's options, it is less likely that you should start a React project f
 
 For building native (iOS, Android, Windows, MacOS) and web applications.
 
-You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the [Reactive Framework Framework Tips](/react-native-project-structure).
+You can also use a framework like [Expo](https://www.npmjs.com/package/expo) to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the [React Native Framework Framework Tips](/react-native-project-structure).
 
 ## The Shift Towards SSR
 
