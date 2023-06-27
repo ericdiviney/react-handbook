@@ -50,16 +50,18 @@ Tips:
 
 `useRef` 
 - useRef is very similar to useState, except updates to the state value (like setState()) do NOT trigger re-renders.
-- It returns an object that has a property called “current” that we can access as we do with objects.
+- It returns an object that has a property called `current` that we can access as we do with objects.
 
-`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle
+`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
 
 `useMemo` 
-- The fundamental idea with useMemo is that it allows us to “remember” a computed value between renders.
+- Read more about the performance benefits of `useMemo()` on our [Performance](/react-performance-optimization) guide
+- The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
 - It takes two arguments: a chunk of work to be performed, wrapped up in a function and a list of dependencies.
-- useMemo is essentially like a lil’ cache, and the dependencies are the cache invalidation strategy.
+- useMemo is essentially like a little cache, and the dependencies are the cache invalidation strategy.
 
 `useCallback` 
+- Read more about the performance benefits of `useCallback()` on our [Performance](/react-performance-optimization) guide
 - useCallback serves the same purpose as useMemo, but it's built specifically for functions.
 - We hand it a function directly, and it memoizes that function, threading it between renders.
 - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
