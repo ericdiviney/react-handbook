@@ -17,16 +17,17 @@ The new React [docs](https://react.dev/reference/react) are great material for u
 
 Common questions:
 
-- [Is setState synchronous or asynchronous?](https://www.youtube.com/watch?v=RAJD4KpX8LA)
+- [Is updating hook-state synchronous or asynchronous?](https://www.youtube.com/watch?v=RAJD4KpX8LA)
 - [How to process multiple state updates to a variable before re-rendering](https://react.dev/learn/queueing-a-series-of-state-updates)
 
 Tips:
 
 - If the initial value for your state is computationally expensive, consider [lazy state initialization](https://kentcdodds.com/blog/use-state-lazy-initialization-and-function-updates) to ensure it only runs once per component mount
-- If you are updating state values (with setState()) many times throughout your component, you'd probably benefit by switching to the [reducer pattern](https://react.dev/reference/react/useReducer) or even defining a [custom hook](https://react.dev/learn/reusing-logic-with-custom-hooks).
-- Read the [Common Pitfalls of useState](https://profy.dev/article/react-usestate-pitfalls)
+- If you are updating/setting state values profusely throughout your component, you would probably benefit by switching to the [reducer pattern](https://react.dev/reference/react/useReducer) or even defining a [custom hook](https://react.dev/learn/reusing-logic-with-custom-hooks).
+- Read the [Common Pitfalls of `useState`](https://profy.dev/article/react-usestate-pitfalls)
 - Store as little "state" as possible, [derive](https://kentcdodds.com/blog/dont-sync-state-derive-it) as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
-- Don't try to update one property in an object or one item in an array, instead you should [replace](https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a ref (useRef)
+- Avoid state-effect [Ping-Pong](https://twitter.com/asidorenko_/status/1622904907954094080?s=20), just like above, derive your values as part of the render function. Trying to keep too much info in state/hooks is somewhat of an anti-pattern that can get you into trouble.
+- Don't try to update one property in an object or one item in an array, instead you should [replace](https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a [ref (`useRef`)](#advanced-hooks)
 
 ## `useEffect` / `useLayoutEffect`
 
@@ -49,24 +50,26 @@ Tips:
 ## Advanced Hooks
 
 `useRef` 
-- useRef is very similar to useState, except updates to the state value (like setState()) do NOT trigger re-renders.
-- It returns an object that has a property called “current” that we can access as we do with objects.
+- `useRef` is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
+- It returns an object that has a property called `current` that we can access as we do with objects.
 
-`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle
+`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
 
 `useMemo` 
-- The fundamental idea with useMemo is that it allows us to “remember” a computed value between renders.
+- Read more about the performance benefits of `useMemo` on our [Performance](/react-performance-optimization) guide
+- The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
 - It takes two arguments: a chunk of work to be performed, wrapped up in a function and a list of dependencies.
-- useMemo is essentially like a lil’ cache, and the dependencies are the cache invalidation strategy.
+- `useMemo` is essentially like a little cache, and the dependencies are the cache invalidation strategy.
 
 `useCallback` 
-- useCallback serves the same purpose as useMemo, but it's built specifically for functions.
+- Read more about the performance benefits of `useCallback` on our [Performance](/react-performance-optimization) guide
+- `useCallback` serves the same purpose as `useMemo`, but it's built specifically for functions.
 - We hand it a function directly, and it memoizes that function, threading it between renders.
 - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
 
 `useReducer` 
 - We especially recommend this if there are many calls to update state from your component. 
-- When to reach for useReducer over useState is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider useReducer instead of plain useState.
+- When to reach for `useReducer` over `useState` is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider `useReducer` instead of plain `useState`.
 
 ## Ready to Use Hooks
 

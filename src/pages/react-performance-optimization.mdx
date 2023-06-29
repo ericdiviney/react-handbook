@@ -1,0 +1,93 @@
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+
+# React Performance & Optimization
+
+Performance in React apps can be thought of in ***2 ways***:
+
+1. Browser (Loading) Performance - Compressing &amp; loading code/assets (mostly *Non-React* things)
+2. Runtime Performance - CPU &amp; rendering issues (mostly *React-specific* things)
+
+## Loading vs. Runtime
+
+Loading Performance - This is a measure of how fast the content is loaded when a user visits your webpage. Some specific metrics are First Contentful Paint (FCP), Largest Contentful Paint (LCP), First Input Delay (FID), TTI (Time to Interactive), and maybe a "Speed Index".
+
+Runtime Performance - This is a measure of how "smooth" your application runs and functions after the initial load. Some specific metrics for this might be "frame rate", "CPU", and "Memory Usage".
+
+## Loadtimes (Measure)
+
+- [PageSpeed Insights](https://pagespeed.web.dev/)
+- [WebPageTest.org](https://webpagetest.org/)
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
+
+## Loadtimes (Optimize)
+
+Send as little code/media as possible over the network, and optimize everything 
+	- Utilize [GZip compression](https://developer.mozilla.org/en-US/docs/Glossary/GZip_compression) server-side to compress all in-flight HTTP requests
+	- Optimize all [images](https://kinsta.com/blog/optimize-images-for-web/) and [videos](https://www.keycdn.com/blog/video-optimization) included in the bundle
+		- Lazy load [images](https://web.dev/browser-level-image-lazy-loading/)
+	- [Building](https://vitejs.dev/config/build-options.html) and [Minifying](https://vitejs.dev/config/build-options.html#build-minify) all project assets to CSS / JavaScript
+	- Various Methods of Code Splitting
+		- Vite bundles will have some code-splitting done by [default](https://vitejs.dev/guide/features.html)
+		- What is [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) & how to use [lazy](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) to [lazy-load](https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c) components or routes in your React app
+	- [Server-Side Rendering (SSR)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) and [Static Site Generation (SSG)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) can improve the First Contentful Paint and Time to Interactive metrics, as they allow the browser to render the page more quickly (and are accessible by search engines).
+		- Adding SSR / SSG to an existing project is no small feat. Try to evaluate early on if your application would benefit from these technologies so you can configure your project the right way from the start.
+
+## Runtimes (Measure)
+
+Modern React is pretty fast by default. Unless you're building complex components/features - you don't need to reach for optimization tactics until you notice a component/feature behaving slowly. The best advice to follow:
+
+1. Don't optimize too soon 
+2. Know what to measure 
+
+In modern React apps, most of the performance issues you'll run into can probably be simplified down to to rendering problems (either too slow, or too much). The visual in the tweet below explains how rendering can cause cascading effects across a large application.
+
+<TwitterTweetEmbed tweetId={'1649711882142461952'} />
+
+Read more from Alex Sidorenko in his series [A Visual Guide to React Rendering](https://alexsidorenko.com/blog/react-render-always-rerenders/).
+
+Other helpful resources for understanding how to measure runtime performance in React apps: 
+
+- [Measuring Performance in Chrome](https://developer.chrome.com/docs/devtools/performance/)
+- [Debugging in the Browser](https://javascript.info/debugging-chrome)
+- [Devtools Coverage](https://developer.chrome.com/docs/devtools/coverage/) - shows how much of your code is being shipped but then NOT running (while session is recording)
+- Use the [Profiler](https://react.dev/reference/react/Profiler) to measure rendering performance of a React tree programatically
+- [How to Detect Slow Renders in React?](https://alexsidorenko.com/blog/react-performance-slow-renders/)
+- [How many re-renders are too many?](https://alexsidorenko.com/blog/react-how-many-rerenders/)
+
+## Runtimes (Optimize)
+
+Runtime performance issues usually boil down to two types of issues:
+
+1. Fixing Slow Renders 
+
+- [Fix the slow render before you fix the re-render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render)
+- Understand that ES6 is [single-threaded](https://javascript.info/event-loop), therefore laggy behavior can happen easily
+	- Offload expensive work that shouldn't block rendering to [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+
+2. Fixing Profuse Re-Renders 
+
+- Use [Refs](https://react.dev/learn/referencing-values-with-refs) for state & values that [shouldn't cause re-renders](https://www.smashingmagazine.com/2020/11/react-useref-hook/) (or that aren't rendered at all)
+- Be careful of setting state in an effect or outside of event-handlers / conditions
+
+
+***Memoization & Virtualization*** can solve slow renders or profuse re-renders in different ways:
+
+- use [memo](https://react.dev/reference/react/memo) to memoize components and cut down pointless re-renders of child components when their props aren't changing
+	- You should probably use `memo()` around any component immediately under [Context Provider](https://alexsidorenko.com/blog/react-render-context/)
+	- See `memo()` in action with a [visual example](https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx)
+- use [useMemo()](https://react.dev/reference/react/useMemo#usememo) to memoize specific work *within* your components, cutting down the render time by skipping it if the recalculation isn't needed
+	- [A Visual Guide to React Rendering - useMemo](https://alexsidorenko.com/blog/react-render-usememo/)
+- use [useCallback()](https://react.dev/reference/react/useCallback) to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the recalculation isn't needed
+	- [A Visual Guide to React Rendering - useCallback](https://alexsidorenko.com/blog/react-render-usecallback/)
+- use [virtualization](https://www.patterns.dev/posts/virtual-lists) for efficiently rendering [large lists of datasets](https://www.npmjs.com/package/react-window), cutting down render time
+	
+## Misc
+
+More resources about optimizing JavaScript/React performance
+
+- [Improving React Interaction Times by 4x](https://www.causal.app/blog/react-perf)
+- [Improve the Performance of your React Forms](https://epicreact.dev/improve-the-performance-of-your-react-forms/)
+- [Speeding up the JavaScript ecosystem - one library at a time](https://marvinh.dev/blog/speeding-up-javascript-ecosystem/)
+- [Making Tanstack Table 1000x faster with a 1 line change](https://jpcamara.com/2023/03/07/making-tanstack-table.html)
+- [Optimizing React performance without refs and memo](https://alexsidorenko.com/blog/react-optimize-rerenders-without-refs-memo/)
+- [React Performance Checklist - Cory House](https://github.com/coryhouse/reactjsconsulting/issues/77)

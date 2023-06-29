@@ -43,10 +43,10 @@ const topics = [
     href: '/state-management',
   },
   {
-    name: 'React Performance (coming 7/2023)',
+    name: 'React Performance & Optimization',
     description:
       'Ship fast and performant UIs, nailing that UX for your users.',
-    href: '#',
+    href: '/react-performance-optimization',
   },
 ]
 

@@ -75,8 +75,8 @@ export function FrameworkComparisonTable() {
                       <stop stop-color="white"></stop>
                       <stop
                         offset="1"
-                        stop-color="white"
-                        stop-opacity="0"
+                        stopColor="white"
+                        stopOpacity="0"
                       ></stop>
                     </linearGradient>
                     <linearGradient
@@ -90,8 +90,8 @@ export function FrameworkComparisonTable() {
                       <stop stop-color="white"></stop>
                       <stop
                         offset="1"
-                        stop-color="white"
-                        stop-opacity="0"
+                        stopColor="white"
+                        stopOpacity="0"
                       ></stop>
                     </linearGradient>
                   </defs>
