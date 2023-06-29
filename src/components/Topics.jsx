@@ -45,7 +45,7 @@ const topics = [
   {
     name: 'React Performance & Optimization',
     description:
-      'Ship fast and performant UIs, nailing that UX for your users.',
+      'Ship fast and performant UIs, a great start to positive UX.',
     href: '/react-performance-optimization',
   },
 ]
