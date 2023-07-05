@@ -1,15 +1,12 @@
 export const description = 'React hooks and all their happy little nuances.'
 
-export const sections = [
-  { title: 'useState', id: 'use-state' },
-  { title: 'useEffect', id: 'use-effect-use-layout-effect' },
-  { title: 'Advanced', id: 'advanced-hooks' },
-  { title: 'Ready to Use Hooks', id: 'ready-to-use-hooks' },
-]
+# Proficiency with the Hooks API
 
-# Hooks
+## Hooks at a High-Level
 
 The new React [docs](https://react.dev/reference/react) are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
+
+In my experience, the use of hooks follows the 80/20 rule (assuming you are importing a UI library): approximately `80%` of the time your components will only need the mixed use of `useState` / `useEffect` to solve your problems (maybe more, this isn't a bad thing). When components get large/complex enough (the remaining `20%` of the time), you'll start to bring in `useRef`, `useMemo`, `useCallback`, and `useLayoutEffect` to help with the problems in your components.
 
 ![hook flow chart](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
 
@@ -29,7 +26,7 @@ Tips:
 - Avoid state-effect [Ping-Pong](https://twitter.com/asidorenko_/status/1622904907954094080?s=20), just like above, derive your values as part of the render function. Trying to keep too much info in state/hooks is somewhat of an anti-pattern that can get you into trouble.
 - Don't try to update one property in an object or one item in an array, instead you should [replace](https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a [ref (`useRef`)](#advanced-hooks)
 
-## `useEffect` / `useLayoutEffect`
+## `useEffect`
 
 Effects are code that run last during the rendering cycle. You may hear that effects actually run AFTER rendering is complete. What matters is that you know effect code runs last, whether you actually consider it part of the rendering phase or it's own step that happens AFTER rendering phase probably doesn't matter.
 
@@ -47,33 +44,41 @@ Tips:
   - `useEffect(() ⇒ {}, [])` - will run only after the first render of a component
   - `useEffect(() ⇒ {}, [deps])` - will run after renders, but only when deps change
 
-## Advanced Hooks
+## Other Hooks
 
 `useRef` 
 - `useRef` is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
 - It returns an object that has a property called `current` that we can access as we do with objects.
+- [Understanding React Refs and `forwardRef`](https://degreat.co.uk/blog/react-refs/)
+  - `forwardRef` really just adds a ref "prop" to your component, and forwards the ref you are sending along to it (since references can't and shouldn't be passed as regular `props` to your components)
+  - One very common reason to use refs is for DOM interactions that are abstracted away inside a component. For example, a ref passed from parent ➡️ child might be a `<Form>` (parent) with an `<Input>` (child) component of some kind where you want to `focus()` the actual `<input />` element inside the child component
 
 `useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
-
-`useMemo` 
-- Read more about the performance benefits of `useMemo` on our [Performance](/react-performance-optimization) guide
-- The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
-- It takes two arguments: a chunk of work to be performed, wrapped up in a function and a list of dependencies.
-- `useMemo` is essentially like a little cache, and the dependencies are the cache invalidation strategy.
-
-`useCallback` 
-- Read more about the performance benefits of `useCallback` on our [Performance](/react-performance-optimization) guide
-- `useCallback` serves the same purpose as `useMemo`, but it's built specifically for functions.
-- We hand it a function directly, and it memoizes that function, threading it between renders.
-- It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
+- `useMemo` 
+  - Read more about the performance benefits of `useMemo` on our [Performance](/react-performance-optimization) guide
+  - The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
+  - It takes two arguments: a chunk of work to be performed, wrapped up in a function and a list of dependencies.
+  - `useMemo` is essentially like a little cache, and the dependencies are the cache invalidation strategy.
+- `useCallback` 
+  - Read more about the performance benefits of `useCallback` on our [Performance](/react-performance-optimization) guide
+  - `useCallback` serves the same purpose as `useMemo`, but it's built specifically for functions.
+  - We hand it a function directly, and it memoizes that function, threading it between renders.
+  - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
 
 `useReducer` 
 - We especially recommend this if there are many calls to update state from your component. 
 - When to reach for `useReducer` over `useState` is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider `useReducer` instead of plain `useState`.
 
-## Ready to Use Hooks
+`useLayoutEffect`
+- Notice in the [first section](#hooks-at-a-high-level) that `useLayoutEffect` occurs before the DOM updates calculated during a re-render are actually painted on the screen
+- Very similar to useEffect, but use this one specifically when you need to run an "effect" that will affect/alter the DOM in some way
+  - hence, if you did this in a normal `useEffect`, you would get a flicker-like experience due to the fact `useEffect` would trigger a re-render for what you actually wanted
+  - this hook is good for things like positioning and dimension alterations without a flicker on the screen
+  - this is a bad hook to do anything computationally heavy as that will drastically slow your render function down
+
+## Custom Hook Examples
 
 You can also copy+paste hooks from the websites below into your own projects. If you prefer to keep npm dependencies as light as possible, you could copy over only the ones you need.
 
-- [usehooks.com](https://www.npmjs.com/package/use-hooks)
-- [usehooks-ts.com](https://www.npmjs.com/package/usehooks-ts)
+- [usehooks.com](https://usehooks.com/ )
+- [usehooks-ts.com](https://usehooks-ts.com/)

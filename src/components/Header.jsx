@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 import { Logo } from '@/components/Logo'
+import { SocialLinksList } from '@/components/Footer'
 import {
   MobileNavigation,
   useIsInsideMobileNavigation,
@@ -17,7 +18,7 @@ function TopLevelNavItem({ href, children }) {
     <li>
       <Link
         href={href}
-        className="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="text-sm leading-5 transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
       </Link>
@@ -67,9 +68,10 @@ export const Header = forwardRef(function Header({ className }, ref) {
       <div className="flex items-center gap-5">
         <nav className="hidden md:block">
           <ul role="list" className="flex items-center gap-8">
-            <TopLevelNavItem href="/">Home</TopLevelNavItem>
-            <TopLevelNavItem href="/about">About</TopLevelNavItem>
-            <TopLevelNavItem href="/contribute">Contribute</TopLevelNavItem>
+            <TopLevelNavItem href="/about">About / Contribute</TopLevelNavItem>
+            <li>
+              <SocialLinksList />
+            </li>
           </ul>
         </nav>
         <div className="hidden md:block md:h-5 md:w-px md:bg-zinc-900/10 md:dark:bg-white/15" />

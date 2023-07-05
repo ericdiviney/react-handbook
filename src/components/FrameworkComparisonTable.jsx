@@ -72,7 +72,7 @@ export function FrameworkComparisonTable() {
                       y1="116.5"
                       y2="160.5"
                     >
-                      <stop stop-color="white"></stop>
+                      <stop stopColor="white"></stop>
                       <stop
                         offset="1"
                         stopColor="white"
@@ -87,7 +87,7 @@ export function FrameworkComparisonTable() {
                       y1="54"
                       y2="106.875"
                     >
-                      <stop stop-color="white"></stop>
+                      <stop stopColor="white"></stop>
                       <stop
                         offset="1"
                         stopColor="white"

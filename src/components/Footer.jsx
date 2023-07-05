@@ -7,7 +7,7 @@ import { navigation } from '@/components/Navigation'
 function Feedback() {
   return (
     <div className="relative h-8">
-      <p className="prose text-sm text-zinc-600 dark:text-zinc-400">
+      <p className="text-sm prose text-zinc-600 dark:text-zinc-400">
         Have recommendations?{' '}
         <a
           target="_blank"
@@ -37,7 +37,7 @@ function PageLink({ label, page, previous = false }) {
         href={page.href}
         tabIndex={-1}
         aria-hidden="true"
-        className="text-base font-semibold text-zinc-900 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
+        className="text-base font-semibold transition text-zinc-900 hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"
       >
         {page.title}
       </Link>
@@ -64,14 +64,14 @@ function PageNavigation() {
   }
 
   return (
-    <div className="mb-24 flex">
+    <div className="flex mb-24">
       {previousPage && (
         <div className="flex flex-col items-start gap-3">
           <PageLink label="Previous" page={previousPage} previous />
         </div>
       )}
       {nextPage && (
-        <div className="ml-auto flex flex-col items-end gap-3">
+        <div className="flex flex-col items-end gap-3 ml-auto">
           <PageLink label="Next" page={nextPage} />
         </div>
       )}
@@ -108,7 +108,7 @@ function SocialLink({ href, icon: Icon, children }) {
       className="group"
     >
       <span className="sr-only">{children}</span>
-      <Icon className="h-5 w-5 fill-zinc-700 transition group-hover:fill-zinc-900 dark:group-hover:fill-zinc-500" />
+      <Icon className="w-5 h-5 transition fill-zinc-700 group-hover:fill-zinc-900 dark:group-hover:fill-zinc-500" />
     </Link>
   )
 }
@@ -117,31 +117,37 @@ function SmallPrint() {
   return (
     <>
       <Feedback />
-      <div className="flex flex-col items-center justify-between gap-5 border-t border-zinc-900/5 pt-4 dark:border-white/5 sm:flex-row">
+      <div className="flex flex-col items-center justify-between gap-5 pt-4 border-t border-zinc-900/5 dark:border-white/5 sm:flex-row">
         <p className="text-xs text-zinc-600 dark:text-zinc-400">
           &copy; Copyright {new Date().getFullYear()}. All rights reserved.
         </p>
-        <div className="flex gap-4">
-          <SocialLink href="https://twitter.com/EricDiviney" icon={TwitterIcon}>
-            Follow us on Twitter
-          </SocialLink>
-          <SocialLink
-            href="https://github.com/ericdiviney/react-handbook/"
-            icon={GitHubIcon}
-          >
-            Follow us on GitHub
-          </SocialLink>
-        </div>
+        <SocialLinksList />
       </div>
     </>
   )
+}
+
+export function SocialLinksList() {
+  return (
+    <div className="flex gap-4">
+      <SocialLink href="https://twitter.com/EricDiviney" icon={TwitterIcon}>
+        Follow us on Twitter
+      </SocialLink>
+      <SocialLink
+        href="https://github.com/ericdiviney/react-handbook/"
+        icon={GitHubIcon}
+      >
+        Follow us on GitHub
+      </SocialLink>
+    </div>
+  );
 }
 
 export function Footer() {
   let router = useRouter()
 
   return (
-    <footer className="mx-auto max-w-2xl space-y-5 pb-16 lg:max-w-5xl">
+    <footer className="max-w-2xl pb-16 mx-auto space-y-5 lg:max-w-5xl">
       <PageNavigation />
       <SmallPrint />
     </footer>
