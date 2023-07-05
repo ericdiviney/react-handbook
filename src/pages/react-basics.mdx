@@ -5,7 +5,7 @@ export const description =
 
 export const title = 'Fundamentals of React'
 
-## 👋 Hey, web devs
+## 👋 Hey, Web Devs
 
 If you want to build web applications with React, this guide will get you there.
 
@@ -15,21 +15,7 @@ What's covered here is typically high-level, the basics, or only a preview of wh
 
 It may be hard to avoid arguments over ideologies, clashes in opinions, or disagreements of philosophy, but this website will keep things civil! The main point is to surface the best ideas.
 
-## Why React?
-
-As a React enthusiast and the [author of the React Handbook](/team/eric-diviney), I often get asked why I like React more than other UI frameworks. I'll try to answer that below:
-
-At the core of React is an idea that really resonates with me when building software: _simplicity_. While there are some not-so-simple concepts to learn before truly mastering React as a tool, I do believe it is the simplest API available today for building UIs.
-
-Many developers might claim React's simplicity (or flexibility) makes it ripe for misuse and leads to spaghetti-filled codebases (especially on large teams).
-
-That ^ may be a valid critique. I've seen some pretty bad React code in my days.
-
-And maybe some people aren't wrong when they say, "A more opinionated and rigid framework like Angular gives less room for chaotic code and provides guardrails to the team".
-
-But even acknowledging all that - in my eight years building for the web, my most memorable & delightful work experiences were on applications built with React. It made building UIs and frontends so much fun and simple. I want to help other engineering teams feel that same delight when working on their React codebase.
-
-## React Basics
+## Specific Parts of JS for React
 
 To give you a quick idea of the current state of React, check out this 2-minute clip by Fireship titled [React in 100 Seconds](https://www.youtube.com/watch?v=Tn6-PIqc4UM). While it barely scratches the surface, it quickly communicates why React is so popular today (an important context to keep in mind).
 
@@ -37,7 +23,9 @@ Some JS fundamentals you'll want to brush up on are **Events, Promises, Arrays**
 
 [Asynchronous JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous) allows us to write UIs and apps with non-blocking interactivity. At the same time, potentially long-running processes run in the background, which helps us defer behavior until those processes have been completed. [Promises](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises) are the primary way of dealing with asynchronous processes and the information carried.
 
-Arrays have developed as of es6 and now provide rich means of manipulating data and information streams. Read more about the functions of [Arrays in JavaScript](https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/).
+Arrays have developed as of `ES6` and now provide rich means of manipulating data and information streams. Read more about the functions of [Arrays in JavaScript](https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/).
+
+## Things to Read Twice (or more)
 
 Now, moving onto the **React API**, JSX is a [declarative](https://ui.dev/imperative-vs-declarative-programming) way to describe our UI. React allows us to ignore the chaos of browser DOM APIs for rendering our apps (or mobile rendering in the case of react-native). You're [really](https://react.dev/learn/writing-markup-with-jsx) going to [want](https://react.dev/learn/javascript-in-jsx-with-curly-braces) to know [JSX](https://www.codecademy.com/learn/react-101/modules/react-101-jsx-u/cheatsheet).
 
@@ -51,6 +39,10 @@ Below are some specific recommended articles both in the docs and from various s
   - [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/) - a very detailed article on the nuance of useEffect by core-team member Dan Abramov
   - [Myths about useEffect](https://epicreact.dev/myths-about-useeffect/)
 - [Escape Hatches](https://react.dev/learn/escape-hatches)
+- [Common Beginner Mistakes with React](https://www.joshwcomeau.com/react/common-beginner-mistakes/)
+
+## All About Rendering
+
 - [Rendering in React](https://react.dev/learn/render-and-commit)
   - [Why React Renders](https://ui.dev/why-react-renders)
   - [Why React Re-Renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
@@ -59,18 +51,20 @@ Below are some specific recommended articles both in the docs and from various s
   - [A Visual Guide to React Rendering](https://alexsidorenko.com/blog/react-render-always-rerenders/)
   - [Interactive CodeSandbox](https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx) to Demonstrate React Rendering (Parent/Child)
     - Notice that `Component B` in this example is [memoized](https://react.dev/reference/react/memo) with `memo()`
-- [Common Beginner Mistakes with React](https://www.joshwcomeau.com/react/common-beginner-mistakes/)
+  - [React recursively re-renders child components, but there is a nuance](https://alexsidorenko.com/blog/react-render-children-prop/)
+    - Props changing will trigger a re-render or all child components directly used in a parent
+    - the `children` prop changes will NOT trigger re-renders (assuming you just pass the `{children}` right through to render in the component's definition)
+    
 
-**Free React Courses & Tutorials**
+## Courses & Videos
+
+Free React Courses & Tutorials {{className: 'lead' }}
 
 - [Egghead.io (react lessons - free tier)](https://egghead.io/q/react?access_state=free) - catalog of React tutorials/lessons
 - [The Beginner's Guide to React](https://egghead.io/courses/the-beginner-s-guide-to-react) - video course by Kent C. Dodds
 - [Interactive React Tutorial](https://react-tutorial.app/) - build React projects with Jad Joubran
 
-**Misc**
+Misc {{className: 'lead' }}
 
 - [How React Works - 2023](https://www.youtube.com/watch?v=za2FZ8QCE18)
 
-## Ready for more?
-
-Head on over and see the [topics](/topics) we try to cover.

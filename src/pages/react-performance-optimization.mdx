@@ -20,6 +20,7 @@ Runtime Performance - This is a measure of how "smooth" your application runs an
 - [PageSpeed Insights](https://pagespeed.web.dev/)
 - [WebPageTest.org](https://webpagetest.org/)
 - [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
+- [UnLightHouse](https://unlighthouse.dev/)
 
 ## Loadtimes (Optimize)
 
@@ -29,7 +30,7 @@ Send as little code/media as possible over the network, and optimize everything
 		- Lazy load [images](https://web.dev/browser-level-image-lazy-loading/)
 	- [Building](https://vitejs.dev/config/build-options.html) and [Minifying](https://vitejs.dev/config/build-options.html#build-minify) all project assets to CSS / JavaScript
 	- Various Methods of Code Splitting
-		- Vite bundles will have some code-splitting done by [default](https://vitejs.dev/guide/features.html)
+		- Vite bundles will have some code-splitting [done](https://vitejs.dev/guide/features.html) by [default](https://vitejs.dev/guide/features.html#build-optimizations)
 		- What is [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) & how to use [lazy](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) to [lazy-load](https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c) components or routes in your React app
 	- [Server-Side Rendering (SSR)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) and [Static Site Generation (SSG)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) can improve the First Contentful Paint and Time to Interactive metrics, as they allow the browser to render the page more quickly (and are accessible by search engines).
 		- Adding SSR / SSG to an existing project is no small feat. Try to evaluate early on if your application would benefit from these technologies so you can configure your project the right way from the start.
@@ -89,6 +90,7 @@ More resources about optimizing JavaScript/React performance
 
 - [Improving React Interaction Times by 4x](https://www.causal.app/blog/react-perf)
 - [Improve the Performance of your React Forms](https://epicreact.dev/improve-the-performance-of-your-react-forms/)
+- [One Simple Trick to Optimize React Re-Renders](https://kentcdodds.com/blog/optimize-react-re-renders)
 - [Speeding up the JavaScript ecosystem - one library at a time](https://marvinh.dev/blog/speeding-up-javascript-ecosystem/)
 - [Making Tanstack Table 1000x faster with a 1 line change](https://jpcamara.com/2023/03/07/making-tanstack-table.html)
 - [Optimizing React performance without refs and memo](https://alexsidorenko.com/blog/react-optimize-rerenders-without-refs-memo/)

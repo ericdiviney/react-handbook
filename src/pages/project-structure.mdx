@@ -106,7 +106,7 @@ const operations = {
 }
 
 /**
- * 2. Prop type definition
+ * 2. Prop type definition (or use interface, it doesn't really matter, just be consistent)
  */
 type CalculatorProps = {
   left: number
@@ -114,7 +114,14 @@ type CalculatorProps = {
   right: number
 }
 
-// Prefer simple function definition over const Calculator: React.FC<Props> = () => {}
+/**
+ * 1. Prefer simple function definition over const definition
+ *    e.g. const Calculator: React.FC<Props> = () => {}
+ * 
+ * 2. Use React's Type system for your components that have *optional children
+ *    Required children should be added to the props type definition
+ *    e.g. function ComponentWithChildren(props: PropswithChildren<PropTypeDefinition>) {}
+ */
 export function Calculator({left, operator, right}: CalculatorProps) {
   /**
    * 3. Component State
