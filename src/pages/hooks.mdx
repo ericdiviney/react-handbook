@@ -47,11 +47,13 @@ Tips:
 ## Other Hooks
 
 `useRef` 
-- `useRef` is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
+- [`useRef`](https://ui.dev/useref) is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
 - It returns an object that has a property called `current` that we can access as we do with objects.
 - [Understanding React Refs and `forwardRef`](https://degreat.co.uk/blog/react-refs/)
-  - `forwardRef` really just adds a ref "prop" to your component, and forwards the ref you are sending along to it (since references can't and shouldn't be passed as regular `props` to your components)
+  - As summarized in [What is `forwardRef`](https://deadsimplechat.com/blog/react-forwardref/):
+    - "... forwardRef is a utility function in react that let you expose a child components DOM to a parent component with a ref..."
   - One very common reason to use refs is for DOM interactions that are abstracted away inside a component. For example, a ref passed from parent ➡️ child might be a `<Form>` (parent) with an `<Input>` (child) component of some kind where you want to `focus()` the actual `<input />` element inside the child component
+  - There is a [gotcha](https://twitter.com/mattpocockuk/status/1636098722982404096?s=20) for instantiating a ref in TypeScript
 
 `useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
 - `useMemo` 
@@ -66,6 +68,8 @@ Tips:
   - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
 
 `useReducer` 
+- [`useReducer`](https://ui.dev/usereducer) - Tyler McGinnis
+- [`useReducer` is easier to adopt than you might think](https://www.reddit.com/r/reactjs/comments/10bohti/usereducer_is_easier_to_adopt_than_you_might_think/)
 - We especially recommend this if there are many calls to update state from your component. 
 - When to reach for `useReducer` over `useState` is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider `useReducer` instead of plain `useState`.
 
@@ -75,6 +79,14 @@ Tips:
   - hence, if you did this in a normal `useEffect`, you would get a flicker-like experience due to the fact `useEffect` would trigger a re-render for what you actually wanted
   - this hook is good for things like positioning and dimension alterations without a flicker on the screen
   - this is a bad hook to do anything computationally heavy as that will drastically slow your render function down
+
+Read [6 React Native Hooks You Don't Know](https://itnext.io/6-new-reactjs-native-hooks-you-dont-know-b41fbe599b5c) and read up more on the following hooks:
+- [`useDeferredValue`](https://react.dev/reference/react/useDeferredValue) - lets you defer updating a part of the UI
+- [`useId`](https://react.dev/reference/react/useId) - for generating unique IDs
+- [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) - lets you subscribe to an [external store](https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api)
+  - Read more on [how to use this hook in your own code](https://blog.saeloun.com/2021/12/30/react-18-useSyncExternalStore-api/)
+- [`useTransition`](https://react.dev/reference/react/useTransition) - lets you update the state without blocking the UI
+
 
 ## Custom Hook Examples
 
