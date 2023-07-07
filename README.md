@@ -1,6 +1,6 @@
 # ⚛🤌 React Handbook
 
-Modern approaches to architecture and feature development for production-ready React apps.
+Modern approaches to architecture and feature development in React apps.
 
 ### Come chat with us on [discord](https://discord.gg/SbDwke7wpy).
 
