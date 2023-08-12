@@ -73,15 +73,13 @@ Other helpful resources for understanding how to measure runtime performance in 
 Runtime performance issues usually boil down to two types of issues:
 
 1. Fixing Slow Renders 
-
-- [Fix the slow render before you fix the re-render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render)
-- Understand that ES6 is [single-threaded](https://javascript.info/event-loop), therefore laggy behavior can happen easily
-	- Offload expensive work that shouldn't block rendering to [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+	- [Fix the slow render before you fix the re-render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render)
+	- Understand that ES6 is [single-threaded](https://javascript.info/event-loop), therefore laggy behavior can happen easily
+		- Offload expensive work that shouldn't block rendering to [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 2. Fixing Profuse Re-Renders 
-
-- Use [Refs](https://react.dev/learn/referencing-values-with-refs) for state & values that [shouldn't cause re-renders](https://www.smashingmagazine.com/2020/11/react-useref-hook/) (or that aren't rendered at all)
-- Be careful of setting state in an effect or outside of event-handlers / conditions
+	- Use [Refs](https://react.dev/learn/referencing-values-with-refs) for state & values that [shouldn't cause re-renders](https://www.smashingmagazine.com/2020/11/react-useref-hook/) (or that aren't rendered at all)
+	- Be careful of setting state in an effect or outside of event-handlers / conditions
 
 
 ***Memoization & Virtualization*** can solve slow renders or profuse re-renders in different ways:
@@ -91,15 +89,17 @@ Runtime performance issues usually boil down to two types of issues:
 	- See `memo()` in action with a [visual example](https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx)
 - use [useMemo()](https://react.dev/reference/react/useMemo#usememo) to memoize specific work *within* your components, cutting down the render time by skipping it if the recalculation isn't needed
 	- [A Visual Guide to React Rendering - useMemo](https://alexsidorenko.com/blog/react-render-usememo/)
-- use [useCallback()](https://react.dev/reference/react/useCallback) to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the recalculation isn't needed
+- use [useCallback()](https://react.dev/reference/react/useCallback) to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the function doesn't need to be recreated
 	- [A Visual Guide to React Rendering - useCallback](https://alexsidorenko.com/blog/react-render-usecallback/)
 - use [virtualization](https://www.patterns.dev/posts/virtual-lists) for efficiently rendering [large lists of datasets](https://www.npmjs.com/package/react-window), cutting down render time
+	- A library called [Million.js](https://million.dev/) has been making the rounds lately, apparently able to replace the VDOM in React with a version that's up to ***70% faster***.
 	
 ## UX Performance Best Practices
 
 - Consider throttling/debouncing frequent updates in the DOM. Humans can't see/process more than a few subtle updates in 1 second (1000 milliseconds), so there's no computational need to update something 100's of times per second.
-	- Read more about [how fast is too fast](https://www.nngroup.com/articles/too-fast-ux/) for humans
+	- Read more about [how fast of an interaction is too fast](https://www.nngroup.com/articles/too-fast-ux/) for humans
 	- For actual changes in the UI/data that's being shown, try not to show more than 4-5 updates per second. Any more, and the humans using your app won't even be able to tell the difference between each update, making it pointless.
+	- [RxJS](https://rxjs.dev/) has traditionally been a great resource for throttling data throughput in a JS application
 	- Treat loading/pending states that are active for < 400ms uniquely, you should do either:
 		- Simply don't show the loading state, as "delay" in the app that's < 400ms probably won't be perceivable by the users anyways
 		- If you show the loading/pending state - require a minimum of ~400ms before switching back to a non-loading state
