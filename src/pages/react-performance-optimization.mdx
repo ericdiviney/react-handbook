@@ -2,6 +2,17 @@ import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 export const description = 'Ship fast and performant UIs, a great start to positive UX.'
 
+export const sections = [
+	{ title: 'Loading vs Runtime', id: 'loading-vs-runtime'},
+	{ title: 'Measuring Loadtimes', id: 'measuring-loadtimes'},
+	{ title: 'Optimizing Loadtimes', id: 'optimizing-loadtimes'},
+	{ title: 'Measuring Runtimes', id: 'measuring-runtimes'},
+	{ title: 'Optimizing Runtimes', id: 'optimizing-runtimes'},
+	{ title: 'UX Performance Best Practices', id: 'ux-performance-best-practices'},
+	{ title: 'Typical Performance Hangups', id: 'typical-performance-hangups-in-react'},
+	{ title: 'Misc. Articles', id: 'misc-articles'}
+]
+
 # React Performance & Optimization
 
 Performance in React apps can be thought of in ***2 ways***:
@@ -15,14 +26,14 @@ Loading Performance - This is a measure of how fast the content is loaded when a
 
 Runtime Performance - This is a measure of how "smooth" your application runs and functions after the initial load. Some specific metrics for this might be "frame rate", "CPU", and "Memory Usage".
 
-## Loadtimes (Measure)
+## Measuring Loadtimes
 
 - [PageSpeed Insights](https://pagespeed.web.dev/)
 - [WebPageTest.org](https://webpagetest.org/)
 - [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
 - [UnLightHouse](https://unlighthouse.dev/)
 
-## Loadtimes (Optimize)
+## Optimizing Loadtimes
 
 Send as little code/media as possible over the network, and optimize everything 
 	- Utilize [GZip compression](https://developer.mozilla.org/en-US/docs/Glossary/GZip_compression) server-side to compress all in-flight HTTP requests
@@ -35,7 +46,7 @@ Send as little code/media as possible over the network, and optimize everything
 	- [Server-Side Rendering (SSR)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) and [Static Site Generation (SSG)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) can improve the First Contentful Paint and Time to Interactive metrics, as they allow the browser to render the page more quickly (and are accessible by search engines).
 		- Adding SSR / SSG to an existing project is no small feat. Try to evaluate early on if your application would benefit from these technologies so you can configure your project the right way from the start.
 
-## Runtimes (Measure)
+## Measuring Runtimes
 
 Modern React is pretty fast by default. Unless you're building complex components/features - you don't need to reach for optimization tactics until you notice a component/feature behaving slowly. The best advice to follow:
 
@@ -57,20 +68,18 @@ Other helpful resources for understanding how to measure runtime performance in 
 - [How to Detect Slow Renders in React?](https://alexsidorenko.com/blog/react-performance-slow-renders/)
 - [How many re-renders are too many?](https://alexsidorenko.com/blog/react-how-many-rerenders/)
 
-## Runtimes (Optimize)
+## Optimizing Runtimes
 
 Runtime performance issues usually boil down to two types of issues:
 
 1. Fixing Slow Renders 
-
-- [Fix the slow render before you fix the re-render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render)
-- Understand that ES6 is [single-threaded](https://javascript.info/event-loop), therefore laggy behavior can happen easily
-	- Offload expensive work that shouldn't block rendering to [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+	- [Fix the slow render before you fix the re-render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render)
+	- Understand that ES6 is [single-threaded](https://javascript.info/event-loop), therefore laggy behavior can happen easily
+		- Offload expensive work that shouldn't block rendering to [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 2. Fixing Profuse Re-Renders 
-
-- Use [Refs](https://react.dev/learn/referencing-values-with-refs) for state & values that [shouldn't cause re-renders](https://www.smashingmagazine.com/2020/11/react-useref-hook/) (or that aren't rendered at all)
-- Be careful of setting state in an effect or outside of event-handlers / conditions
+	- Use [Refs](https://react.dev/learn/referencing-values-with-refs) for state & values that [shouldn't cause re-renders](https://www.smashingmagazine.com/2020/11/react-useref-hook/) (or that aren't rendered at all)
+	- Be careful of setting state in an effect or outside of event-handlers / conditions
 
 
 ***Memoization & Virtualization*** can solve slow renders or profuse re-renders in different ways:
@@ -80,11 +89,30 @@ Runtime performance issues usually boil down to two types of issues:
 	- See `memo()` in action with a [visual example](https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx)
 - use [useMemo()](https://react.dev/reference/react/useMemo#usememo) to memoize specific work *within* your components, cutting down the render time by skipping it if the recalculation isn't needed
 	- [A Visual Guide to React Rendering - useMemo](https://alexsidorenko.com/blog/react-render-usememo/)
-- use [useCallback()](https://react.dev/reference/react/useCallback) to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the recalculation isn't needed
+- use [useCallback()](https://react.dev/reference/react/useCallback) to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the function doesn't need to be recreated
 	- [A Visual Guide to React Rendering - useCallback](https://alexsidorenko.com/blog/react-render-usecallback/)
 - use [virtualization](https://www.patterns.dev/posts/virtual-lists) for efficiently rendering [large lists of datasets](https://www.npmjs.com/package/react-window), cutting down render time
+	- A library called [Million.js](https://million.dev/) has been making the rounds lately, apparently able to replace the VDOM in React with a version that's up to ***70% faster***.
 	
-## Misc
+## UX Performance Best Practices
+
+- Consider throttling/debouncing frequent updates in the DOM. Humans can't see/process more than a few subtle updates in 1 second (1000 milliseconds), so there's no computational need to update something 100's of times per second.
+	- Read more about [how fast of an interaction is too fast](https://www.nngroup.com/articles/too-fast-ux/) for humans
+	- For actual changes in the UI/data that's being shown, try not to show more than 4-5 updates per second. Any more, and the humans using your app won't even be able to tell the difference between each update, making it pointless.
+	- [RxJS](https://rxjs.dev/) has traditionally been a great resource for throttling data throughput in a JS application
+	- Treat loading/pending states that are active for < 400ms uniquely, you should do either:
+		- Simply don't show the loading state, as "delay" in the app that's < 400ms probably won't be perceivable by the users anyways
+		- If you show the loading/pending state - require a minimum of ~400ms before switching back to a non-loading state
+
+<TwitterTweetEmbed tweetId="1675923225341992962" />
+
+## Typical Performance Hangups in React
+
+- Pitfalls of `Context` and `useContext`
+	- [React Context Dangers](https://blog.thoughtspile.tech/2021/10/04/react-context-dangers/)
+	- [React Context Performance](https://dev.to/romaintrotard/react-context-performance-5832)
+
+## Misc. Articles
 
 More resources about optimizing JavaScript/React performance
 
