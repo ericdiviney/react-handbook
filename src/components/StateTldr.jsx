@@ -2,6 +2,7 @@ import * as Tabs from '@radix-ui/react-tabs'
 import * as Accordion from '@radix-ui/react-accordion'
 import clsx from 'clsx'
 import * as React from 'react'
+import { PageLink } from './PageLink'
 
 // todo:
 // new Hyperlink component that automatically opens new tabs. Create issue to use this in other pages once it's done.
@@ -30,9 +31,9 @@ const AccordionTrigger = React.forwardRef(
     <Accordion.Header className="flex">
       <Accordion.Trigger
         className={clsx(
-          'group relative flex w-full cursor-pointer flex-col rounded-lg border pl-9 text-left my-1',
+          'group relative my-1 flex w-full cursor-pointer flex-col rounded-lg border pl-9 text-left',
           'border-slate-300 transition duration-150',
-          'data-[state=closed]:dark:border-zinc-800 data-[state=closed]:dark:hover:border-zinc-600 data-[state=closed]:hover:border-zinc-600',
+          'data-[state=closed]:hover:border-zinc-600 data-[state=closed]:dark:border-zinc-800 data-[state=closed]:dark:hover:border-zinc-600',
           'data-[state=open]:border-sky-400'
         )}
         {...props}
@@ -81,11 +82,11 @@ AccordionContent.displayName = 'AccordionContent'
 export function StateTldr() {
   return (
     <>
-      <div className="max-w-screen-xl px-2 mx-auto mt-6 overflow-x-auto overflow-y-hidden not-prose">
+      <div className="not-prose mx-auto mt-6 max-w-screen-xl overflow-x-auto overflow-y-hidden px-2">
         <div className="hidden xl:block">
           <Tabs.Root defaultValue="one">
             <Tabs.List
-              className="grid grid-cols-1 mt-4 mb-16 gap-y-6 sm:grid-cols-3 sm:gap-x-4"
+              className="mt-4 mb-16 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4"
               aria-label="Quick Guide to State Management in React Apps"
             >
               <TabTrigger tabName="one" title="Build As You Go">
@@ -101,75 +102,70 @@ export function StateTldr() {
                 Data-fetching, stores, and state machines.
               </TabTrigger>
             </Tabs.List>
-            <Tabs.Content className="p-4 grow" value="one">
+            <Tabs.Content className="grow p-4" value="one">
               <div className="flex flex-col justify-evenly md:flex-row">
                 <div className="basis-full md:basis-5/12 lg:basis-1/3">
-                  <span className="block mb-6 text-lg text-gray-900 dark:text-slate-300">
+                  <span className="mb-6 block text-lg text-gray-900 dark:text-slate-300">
                     1. Start by lifting state where possible
                   </span>
                   <ul role="list" className="space-y-6">
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://react.dev/learn/choosing-the-state-structure"
-                        >
-                          Choose a State Structure
-                        </a>{' '}
+                          link="https://react.dev/learn/choosing-the-state-structure"
+                          label="Choose a State Structure"
+                        />{' '}
                         for the data you&apos;ll manage.
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Lift state{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example"
-                        >
-                          to a parent
-                        </a>
+                          link="https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example"
+                          label="to a parent"
+                        />
                         .
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Lift state to{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://alexsidorenko.com/blog/react-prop-drilling-composition/"
-                        >
-                          avoid prop-drilling
-                        </a>
+                          link="https://alexsidorenko.com/blog/react-prop-drilling-composition/"
+                          label="avoid prop-drilling"
+                        />
                         .
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Lift state to{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://alexsidorenko.com/blog/react-siblings/"
-                        >
-                          communicate with sibling components
-                        </a>
+                          link="https://alexsidorenko.com/blog/react-siblings/"
+                          label="communicate with sibling components"
+                        />
                         .
                       </div>
                     </FancyListItem>
                     <FancyListItem last>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://kentcdodds.com/blog/application-state-management-with-react"
-                        >
-                          Co-locate
-                        </a>{' '}
+                          link="https://kentcdodds.com/blog/application-state-management-with-react"
+                          label="Co-locate"
+                        />{' '}
                         state near where it is used.
                       </div>
                     </FancyListItem>
                   </ul>
                 </div>
                 <div className="basis-full md:basis-5/12 lg:basis-1/3">
-                  <span className="block mb-6 text-lg text-gray-900 dark:text-slate-300">
+                  <span className="mb-6 block text-lg text-gray-900 dark:text-slate-300">
                     2. Need More Functionality?
                   </span>
                   <ul role="list" className="space-y-6">
@@ -186,23 +182,21 @@ export function StateTldr() {
                         <ul role="list" className="mt-6 space-y-6">
                           <FancyListItem>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/@tanstack/react-query"
-                              >
-                                tanstack-query
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/@tanstack/react-query"
+                                label="tanstack-query"
+                              />{' '}
                               (REST APIs)
                             </div>
                           </FancyListItem>
                           <FancyListItem last>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/@apollo/client"
-                              >
-                                apollo-client
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/@apollo/client"
+                                label="apollo-client"
+                              />{' '}
                               (GraphQL)
                             </div>
                           </FancyListItem>
@@ -222,23 +216,21 @@ export function StateTldr() {
                         <ul role="list" className="mt-6 space-y-6">
                           <FancyListItem>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/zustand"
-                              >
-                                Zustand
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/zustand"
+                                label="Zustand"
+                              />{' '}
                               (FLUX)
                             </div>
                           </FancyListItem>
                           <FancyListItem last>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/jotai"
-                              >
-                                Jotai
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/jotai"
+                                label="Jotai"
+                              />{' '}
                               (Atomic)
                             </div>
                           </FancyListItem>
@@ -249,67 +241,62 @@ export function StateTldr() {
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         For extremely complex state, consider state machines
                         like{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/xstate"
-                        >
-                          xState
-                        </a>
+                          link="https://www.npmjs.com/package/xstate"
+                          label="xState"
+                        />
                       </div>
                     </FancyListItem>
                   </ul>
                 </div>
               </div>
             </Tabs.Content>
-            <Tabs.Content className="p-5 grow" value="two">
+            <Tabs.Content className="grow p-5" value="two">
               <div className="flex flex-col justify-evenly md:flex-row">
                 <div className="basis-full md:basis-5/12 lg:basis-1/3">
-                  <span className="block mb-6 text-lg text-center text-gray-900 dark:text-slate-300">
+                  <span className="mb-6 block text-center text-lg text-gray-900 dark:text-slate-300">
                     Redux to the Rescue
                   </span>
                   <ul role="list" className="space-y-6">
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@reduxjs/toolkit"
-                        >
-                          Redux Toolkit (RTK)
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/@reduxjs/toolkit"
+                          label="Redux Toolkit (RTK)"
+                        />{' '}
                         is the modern way to write with Redux
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Includes a mechanism for{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/rtk-query/overview"
-                        >
-                          Data-Fetching
-                        </a>
+                          link="https://redux-toolkit.js.org/rtk-query/overview"
+                          label="Data-Fetching"
+                        />
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/api/configureStore"
-                        >
-                          Global Stores
-                        </a>{' '}
+                          link="https://redux-toolkit.js.org/api/configureStore"
+                          label="Global Stores"
+                        />{' '}
                         optimized for re-renders
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Includes common{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/api/configureStore#middleware"
-                        >
-                          middleware
-                        </a>{' '}
+                          link="https://redux-toolkit.js.org/api/configureStore#middleware"
+                          label="middleware"
+                        />{' '}
                         out of the box
                       </div>
                     </FancyListItem>
@@ -322,133 +309,122 @@ export function StateTldr() {
                 </div>
               </div>
             </Tabs.Content>
-            <Tabs.Content className="p-5 grow" value="three">
-              <span className="block mb-6 text-lg text-center text-gray-900 dark:text-slate-300">
+            <Tabs.Content className="grow p-5" value="three">
+              <span className="mb-6 block text-center text-lg text-gray-900 dark:text-slate-300">
                 Recommended Combinations for State Management
               </span>
               <div className="flex flex-col justify-evenly md:flex-row">
                 <div className="basis-3/4">
                   <div className="flex border border-slate-300 dark:border-zinc-800">
                     <div className="basis-full">
-                      <div className="p-2 text-sm font-medium text-center text-gray-900 border-r border-slate-300 dark:border-zinc-800 dark:text-slate-300">
+                      <div className="border-r border-slate-300 p-2 text-center text-sm font-medium text-gray-900 dark:border-zinc-800 dark:text-slate-300">
                         Data-Fetching
                       </div>
                     </div>
                     <div className="basis-full">
-                      <div className="p-2 text-sm font-medium text-center text-gray-900 dark:text-slate-300">
+                      <div className="p-2 text-center text-sm font-medium text-gray-900 dark:text-slate-300">
                         Store
                       </div>
                     </div>
                   </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
+                  <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@tanstack/react-query"
-                        >
-                          tanstack-query
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/@tanstack/react-query"
+                          label="tanstack-query"
+                        />{' '}
                         (REST APIs)
                       </div>
                     </div>
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/zustand"
-                        >
-                          Zustand
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/zustand"
+                          label="Zustand"
+                        />{' '}
                         or{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/jotai"
-                        >
-                          Jotai
-                        </a>
+                          link="https://www.npmjs.com/package/jotai"
+                          label="Jotai"
+                        />
                       </div>
                     </div>
                   </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
+                  <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/swr"
-                        >
-                          swr
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/swr"
+                          label="swr"
+                        />{' '}
                         (REST APIs)
                       </div>
                     </div>
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/zustand"
-                        >
-                          Zustand
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/zustand"
+                          label="Zustand"
+                        />{' '}
                         or{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/jotai"
-                        >
-                          Jotai
-                        </a>
+                          link="https://www.npmjs.com/package/jotai"
+                          label="Jotai"
+                        />
                       </div>
                     </div>
                   </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
+                  <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@apollo/client"
-                        >
-                          apollo-client
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/@apollo/client"
+                          label="apollo-client"
+                        />{' '}
                         (GraphQL)
                       </div>
                     </div>
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/zustand"
-                        >
-                          Zustand
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/zustand"
+                          label="Zustand"
+                        />{' '}
                         or{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/jotai"
-                        >
-                          Jotai
-                        </a>
+                          link="https://www.npmjs.com/package/jotai"
+                          label="Jotai"
+                        />
                       </div>
                     </div>
                   </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
+                  <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/rtk-query/overview"
-                        >
-                          RTK-Query
-                        </a>{' '}
+                          link="https://redux-toolkit.js.org/rtk-query/overview"
+                          label="RTK-Query"
+                        />{' '}
                       </div>
                     </div>
                     <div className="basis-full">
                       <div className="p-2 text-center dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@reduxjs/toolkit"
-                        >
-                          Redux (RTK)
-                        </a>
+                          link="https://www.npmjs.com/package/@reduxjs/toolkit"
+                          label="Redux (RTK)"
+                        />
                       </div>
                     </div>
                   </div>
@@ -465,80 +441,75 @@ export function StateTldr() {
                   <span className="block text-sm font-medium text-gray-900 dark:text-slate-300">
                     Build As You Go
                   </span>
-                  <span className="flex items-center mt-1 text-sm">
+                  <span className="mt-1 flex items-center text-sm">
                     Best for greenfield projects, POCs, and apps with unknown
                     scope/complexity on the frontend when starting.
                   </span>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <div className="w-full my-7">
-                  <span className="block mb-6 text-lg text-gray-900 dark:text-slate-300">
+                <div className="my-7 w-full">
+                  <span className="mb-6 block text-lg text-gray-900 dark:text-slate-300">
                     1. Start by lifting state where possible
                   </span>
                   <ul role="list" className="space-y-6">
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://react.dev/learn/choosing-the-state-structure"
-                        >
-                          Choose a State Structure
-                        </a>{' '}
+                          link="https://react.dev/learn/choosing-the-state-structure"
+                          label="Choose a State Structure"
+                        />{' '}
                         for the data you&apos;ll manage.
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Lift state{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example"
-                        >
-                          to a parent
-                        </a>
+                          link="https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example"
+                          label="to a parent"
+                        />
                         .
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Lift state to{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://alexsidorenko.com/blog/react-prop-drilling-composition/"
-                        >
-                          avoid prop-drilling
-                        </a>
+                          link="https://alexsidorenko.com/blog/react-prop-drilling-composition/"
+                          label="avoid prop-drilling"
+                        />
                         .
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Lift state to{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://alexsidorenko.com/blog/react-siblings/"
-                        >
-                          communicate with sibling components
-                        </a>
+                          link="https://alexsidorenko.com/blog/react-siblings/"
+                          label="communicate with sibling components"
+                        />
                         .
                       </div>
                     </FancyListItem>
                     <FancyListItem last>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://kentcdodds.com/blog/application-state-management-with-react"
-                        >
-                          Co-locate
-                        </a>{' '}
+                          link="https://kentcdodds.com/blog/application-state-management-with-react"
+                          label="Co-locate"
+                        />{' '}
                         state near where it is used.
                       </div>
                     </FancyListItem>
                   </ul>
                 </div>
-                <div className="w-full my-7">
-                  <span className="block mb-6 text-lg text-gray-900 dark:text-slate-300">
+                <div className="my-7 w-full">
+                  <span className="mb-6 block text-lg text-gray-900 dark:text-slate-300">
                     2. Need More Functionality?
                   </span>
                   <ul role="list" className="space-y-6">
@@ -555,23 +526,21 @@ export function StateTldr() {
                         <ul role="list" className="mt-6 space-y-6">
                           <FancyListItem>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/@tanstack/react-query"
-                              >
-                                tanstack-query
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/@tanstack/react-query"
+                                label="tanstack-query"
+                              />{' '}
                               (REST APIs)
                             </div>
                           </FancyListItem>
                           <FancyListItem last>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/@apollo/client"
-                              >
-                                apollo-client
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/@apollo/client"
+                                label="apollo-client"
+                              />{' '}
                               (GraphQL)
                             </div>
                           </FancyListItem>
@@ -591,23 +560,21 @@ export function StateTldr() {
                         <ul role="list" className="mt-6 space-y-6">
                           <FancyListItem>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/zustand"
-                              >
-                                Zustand
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/zustand"
+                                label="Zustand"
+                              />{' '}
                               (FLUX)
                             </div>
                           </FancyListItem>
                           <FancyListItem last>
                             <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                              <a
+                              <PageLink
                                 className="text-sky-400 hover:underline"
-                                href="https://www.npmjs.com/package/jotai"
-                              >
-                                Jotai
-                              </a>{' '}
+                                link="https://www.npmjs.com/package/jotai"
+                                label="Jotai"
+                              />{' '}
                               (Atomic)
                             </div>
                           </FancyListItem>
@@ -618,12 +585,11 @@ export function StateTldr() {
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         For extremely complex state, consider state machines
                         like{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/xstate"
-                        >
-                          xState
-                        </a>
+                          link="https://www.npmjs.com/package/xstate"
+                          label="xState"
+                        />
                       </div>
                     </FancyListItem>
                   </ul>
@@ -637,60 +603,56 @@ export function StateTldr() {
                   <span className="block text-sm font-medium text-gray-900 dark:text-slate-300">
                     You Need Everything
                   </span>
-                  <span className="flex items-center mt-1 text-sm">
+                  <span className="mt-1 flex items-center text-sm">
                     Redux Toolkit (RTK) is the modern way to reduce boilerplate
                     and manage large/complex state.
                   </span>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <div className="w-full my-7">
-                  <span className="block mb-6 text-lg text-center text-gray-900 dark:text-slate-300">
+                <div className="my-7 w-full">
+                  <span className="mb-6 block text-center text-lg text-gray-900 dark:text-slate-300">
                     Redux to the Rescue
                   </span>
                   <ul role="list" className="space-y-6">
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@reduxjs/toolkit"
-                        >
-                          Redux Toolkit (RTK)
-                        </a>{' '}
+                          link="https://www.npmjs.com/package/@reduxjs/toolkit"
+                          label="Redux Toolkit (RTK)"
+                        />{' '}
                         is the modern way to write with Redux
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Includes a mechanism for{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/rtk-query/overview"
-                        >
-                          Data-Fetching
-                        </a>
+                          link="https://redux-toolkit.js.org/rtk-query/overview"
+                          label="Data-Fetching"
+                        />
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/api/configureStore"
-                        >
-                          Global Stores
-                        </a>{' '}
+                          link="https://redux-toolkit.js.org/api/configureStore"
+                          label="Global Stores"
+                        />{' '}
                         optimized for re-renders
                       </div>
                     </FancyListItem>
                     <FancyListItem>
                       <div className="flex-auto py-0.5 text-sm leading-5 dark:text-slate-500">
                         Includes common{' '}
-                        <a
+                        <PageLink
                           className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/api/configureStore#middleware"
-                        >
-                          middleware
-                        </a>{' '}
+                          link="https://redux-toolkit.js.org/api/configureStore#middleware"
+                          label="middleware"
+                        />{' '}
                         out of the box
                       </div>
                     </FancyListItem>
@@ -710,145 +672,134 @@ export function StateTldr() {
                   <span className="block text-sm font-medium text-gray-900 dark:text-slate-300">
                     Other Combinations
                   </span>
-                  <span className="flex items-center mt-1 text-sm">
+                  <span className="mt-1 flex items-center text-sm">
                     State management libraries that play well together.
                     Data-fetching, stores, and state machines.
                   </span>
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <div className="w-full my-7">
-                <span className="block mb-6 text-lg text-center text-gray-900 dark:text-slate-300">
-                Recommended Combinations for State Management
-              </span>
-              <div className="flex flex-col justify-evenly md:flex-row">
-                <div className="basis-3/4">
-                  <div className="flex border border-slate-300 dark:border-zinc-800">
-                    <div className="basis-full">
-                      <div className="p-2 text-sm font-medium text-center text-gray-900 border-r border-slate-300 dark:border-zinc-800 dark:text-slate-300">
-                        Data-Fetching
+                <div className="my-7 w-full">
+                  <span className="mb-6 block text-center text-lg text-gray-900 dark:text-slate-300">
+                    Recommended Combinations for State Management
+                  </span>
+                  <div className="flex flex-col justify-evenly md:flex-row">
+                    <div className="basis-3/4">
+                      <div className="flex border border-slate-300 dark:border-zinc-800">
+                        <div className="basis-full">
+                          <div className="border-r border-slate-300 p-2 text-center text-sm font-medium text-gray-900 dark:border-zinc-800 dark:text-slate-300">
+                            Data-Fetching
+                          </div>
+                        </div>
+                        <div className="basis-full">
+                          <div className="p-2 text-center text-sm font-medium text-gray-900 dark:text-slate-300">
+                            Store
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="basis-full">
-                      <div className="p-2 text-sm font-medium text-center text-gray-900 dark:text-slate-300">
-                        Store
+                      <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/@tanstack/react-query"
+                              label="tanstack-query"
+                            />{' '}
+                            (REST APIs)
+                          </div>
+                        </div>
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/zustand"
+                              label="Zustand"
+                            />{' '}
+                            or{' '}
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/jotai"
+                              label="Jotai"
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@tanstack/react-query"
-                        >
-                          tanstack-query
-                        </a>{' '}
-                        (REST APIs)
+                      <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/swr"
+                              label="swr"
+                            />{' '}
+                            (REST APIs)
+                          </div>
+                        </div>
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/zustand"
+                              label="Zustand"
+                            />
+                            Zustand or{' '}
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/jotai"
+                              label="Jotai"
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/zustand"
-                        >
-                          Zustand
-                        </a>{' '}
-                        or{' '}
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/jotai"
-                        >
-                          Jotai
-                        </a>
+                      <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/@apollo/client"
+                              label="apollo-client"
+                            />{' '}
+                            (GraphQL)
+                          </div>
+                        </div>
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/zustand"
+                              label="Zustand"
+                            />{' '}
+                            or{' '}
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/jotai"
+                              label="Jotai"
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/swr"
-                        >
-                          swr
-                        </a>{' '}
-                        (REST APIs)
-                      </div>
-                    </div>
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/zustand"
-                        >
-                          Zustand
-                        </a>{' '}
-                        or{' '}
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/jotai"
-                        >
-                          Jotai
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@apollo/client"
-                        >
-                          apollo-client
-                        </a>{' '}
-                        (GraphQL)
-                      </div>
-                    </div>
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/zustand"
-                        >
-                          Zustand
-                        </a>{' '}
-                        or{' '}
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/jotai"
-                        >
-                          Jotai
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex py-4 border-b border-slate-300 dark:border-zinc-800">
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://redux-toolkit.js.org/rtk-query/overview"
-                        >
-                          RTK-Query
-                        </a>{' '}
-                      </div>
-                    </div>
-                    <div className="basis-full">
-                      <div className="p-2 text-center dark:text-slate-500">
-                        <a
-                          className="text-sky-400 hover:underline"
-                          href="https://www.npmjs.com/package/@reduxjs/toolkit"
-                        >
-                          Redux (RTK)
-                        </a>
+                      <div className="flex border-b border-slate-300 py-4 dark:border-zinc-800">
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://redux-toolkit.js.org/rtk-query/overview"
+                              label="RTK-Query"
+                            />{' '}
+                          </div>
+                        </div>
+                        <div className="basis-full">
+                          <div className="p-2 text-center dark:text-slate-500">
+                            <PageLink
+                              className="text-sky-400 hover:underline"
+                              link="https://www.npmjs.com/package/@reduxjs/toolkit"
+                              label="Redux (RTK)"
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
                 </div>
               </AccordionContent>
             </AccordionItem>
@@ -859,8 +810,6 @@ export function StateTldr() {
     </>
   )
 }
-
-
 
 export function TabTrigger({ tabName, title, children }) {
   return (
@@ -876,7 +825,7 @@ export function TabTrigger({ tabName, title, children }) {
         <span className="block text-sm font-medium text-gray-900 dark:text-slate-300">
           {title}
         </span>
-        <span className="flex items-center mt-1 text-sm">{children}</span>
+        <span className="mt-1 flex items-center text-sm">{children}</span>
         {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -897,7 +846,7 @@ export function TabTrigger({ tabName, title, children }) {
 
 export function FancyListItem({ children, last = false }) {
   return (
-    <li className="relative flex prose gap-x-4">
+    <li className="prose relative flex gap-x-4">
       <div
         className={clsx(
           'absolute left-0 top-0 -bottom-6 flex w-6 justify-center',
@@ -908,7 +857,7 @@ export function FancyListItem({ children, last = false }) {
       >
         <div className="w-px bg-gray-200 dark:bg-zinc-500"></div>
       </div>
-      <div className="relative flex items-center justify-center flex-none w-6 h-6 bg-white dark:bg-zinc-900">
+      <div className="relative flex h-6 w-6 flex-none items-center justify-center bg-white dark:bg-zinc-900">
         <div className="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300 dark:bg-zinc-900"></div>
       </div>
       {children}
