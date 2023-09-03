@@ -204,6 +204,7 @@ export const navigation = [
       { title: 'Proficiency with Hooks', href: '/hooks' },
       { title: 'State Management Fundamentals', href: '/state-management' },
       { title: 'Performance & Optimization', href: '/react-performance-optimization' },
+      { title: 'Automated Testing', href: '/automated-testing' },
     ],
   },
   {
@@ -216,10 +217,9 @@ export const navigation = [
     ],
   },
   {
-    title: 'Coming Soon',
+    title: 'Planned Topics',
     links: [
       { title: 'Server-Side Rendering', href: '#' },
-      { title: 'Automated Testing', href: '#' },
       { title: 'Error Handling & Boundaries', href: '#' },
       { title: 'Analytics & Monitoring', href: '#' },
       { title: 'CI/CD Pipelines', href: '#' },
