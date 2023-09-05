@@ -53,7 +53,7 @@ Tips:
   - As summarized in [What is `forwardRef`](https://deadsimplechat.com/blog/react-forwardref/):
     - "... forwardRef is a utility function in react that let you expose a child components DOM to a parent component with a ref..."
   - One very common reason to use refs is for DOM interactions that are abstracted away inside a component. For example, a ref passed from parent ➡️ child might be a `<Form>` (parent) with an `<Input>` (child) component of some kind where you want to `focus()` the actual `<input />` element inside the child component
-  - There is a [gotcha](https://twitter.com/mattpocockuk/status/1636098722982404096?s=20) for instantiating a ref in TypeScript
+  - Usage with [TypeScript](https://www.totaltypescript.com/strongly-type-useref-with-elementref)
 
 `useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
 - `useMemo` 

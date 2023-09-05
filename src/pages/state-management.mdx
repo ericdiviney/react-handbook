@@ -143,6 +143,12 @@ If you&apos;ve come this far and now you know you need a global state - the next
 1. Data Fetching & Server Cache (tanstack-query, rtk-query, swr)
 2. Global Stores (Redux, Recoil, etc.)
 
+There are times where you might not need an entire state manager. If your global state is relatively small/simple, you might be fine with one of the following instead:
+- URL
+- Cookie
+- Local/Session Storage
+- IndexDB
+
 ### Why Not Context?
 
 The [React docs](https://react.dev/learn/passing-data-deeply-with-context) explain how to use React Context for some global state management. While this can be a suitable solution for simple applications, we find that using Context correctly is more difficult and limiting than using the tools suggested in this guide.
