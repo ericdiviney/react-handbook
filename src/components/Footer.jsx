@@ -108,7 +108,7 @@ function SocialLink({ href, icon: Icon, children }) {
       className="group"
     >
       <span className="sr-only">{children}</span>
-      <Icon className="w-5 h-5 transition fill-zinc-700 group-hover:fill-zinc-900 dark:group-hover:fill-zinc-500" />
+      <Icon className="w-5 h-5 transition fill-zinc-700" />
     </Link>
   )
 }
@@ -130,14 +130,11 @@ function SmallPrint() {
 export function SocialLinksList() {
   return (
     <div className="flex gap-4">
-      <SocialLink href="https://twitter.com/EricDiviney" icon={TwitterIcon}>
-        Follow us on Twitter
-      </SocialLink>
       <SocialLink
         href="https://github.com/ericdiviney/react-handbook/"
         icon={GitHubIcon}
       >
-        Follow us on GitHub
+        Follow on GitHub
       </SocialLink>
     </div>
   );

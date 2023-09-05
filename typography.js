@@ -39,7 +39,7 @@ module.exports = ({ theme }) => ({
 
       // Base
       color: 'var(--tw-prose-body)',
-      fontSize: theme('fontSize.sm')[0],
+      fontSize: theme('fontSize.base')[0],
       lineHeight: theme('lineHeight.7'),
 
       // Layout
@@ -49,8 +49,8 @@ module.exports = ({ theme }) => ({
         marginRight: 'auto',
         '@screen lg': {
           maxWidth: theme('maxWidth.3xl'),
-          marginLeft: `calc(50% - min(50%, ${theme('maxWidth.lg')}))`,
-          marginRight: `calc(50% - min(50%, ${theme('maxWidth.lg')}))`,
+          marginLeft: `auto`,
+          marginRight: `auto`,
         },
       },
 

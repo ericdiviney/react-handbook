@@ -20,7 +20,7 @@ function TopLevelNavItem({ href, children }) {
     <li className="md:hidden">
       <Link
         href={href}
-        className="block py-1 text-sm transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="block py-1 transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
       </Link>
@@ -28,14 +28,15 @@ function TopLevelNavItem({ href, children }) {
   )
 }
 
-function NavLink({ href, tag, active, isAnchorLink = false, children }) {
+function NavLink({ href, tag, active, isAnchorLink = false, onNavigate, children }) {
   return (
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
+      // onClick={() => onNavigate?.()}
       className={clsx(
-        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
-        isAnchorLink ? 'pl-7' : 'pl-4',
+        'flex justify-between gap-2 py-1 pr-3  transition',
+        isAnchorLink ? 'pl-10' : 'pl-4',
         active
           ? 'text-zinc-900 dark:text-white'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
@@ -105,7 +106,7 @@ function ActivePageMarker({ group, pathname }) {
   )
 }
 
-function NavigationGroup({ group, className }) {
+function NavigationGroup({ group, className, onNavigate }) {
   // If this is the mobile navigation then we always render the initial
   // state, so that the state does not change during the close animation.
   // The state will still update when we re-open (re-render) the navigation.
@@ -144,7 +145,7 @@ function NavigationGroup({ group, className }) {
         <ul role="list" className="border-l border-transparent">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
-              <NavLink href={link.href} active={link.href === router.pathname}>
+              <NavLink href={link.href} active={link.href === router.pathname} onNavigate={() => onNavigate()}>
                 {link.title}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
@@ -194,13 +195,13 @@ export const navigation = [
     ],
   },
   {
-    title: 'Application Guides',
+    title: 'Guides',
     links: [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
       { title: 'Project Structure', href: '/project-structure' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
-      { title: 'Styling / UI Libraries', href: '/styling' },
-      { title: 'Ecosystem / npm', href: '/ecosystem' },
+      { title: 'Styling & UI Libraries', href: '/styling' },
+      { title: 'Ecosystem & npm libraries', href: '/ecosystem' },
       { title: 'Proficiency with Hooks', href: '/hooks' },
       { title: 'State Management Fundamentals', href: '/state-management' },
       { title: 'Performance & Optimization', href: '/react-performance-optimization' },
@@ -219,41 +220,25 @@ export const navigation = [
   {
     title: 'Planned Topics',
     links: [
-      { title: 'Server-Side Rendering', href: '#' },
-      { title: 'Error Handling & Boundaries', href: '#' },
-      { title: 'Analytics & Monitoring', href: '#' },
-      { title: 'CI/CD Pipelines', href: '#' },
+      { title: 'Server-Side Rendering', href: '#ssr' },
+      { title: 'Error Handling & Boundaries', href: '#debugging' },
+      { title: 'Analytics & Monitoring', href: '#analytics' },
+      { title: 'CI/CD Pipelines', href: '#cicd' },
     ],
   },
-  // {
-  //   title: 'Misc',
-  //   links: [
-  //     { title: 'Production Release Checklists', href: '#' },
-  //     { title: 'Integrating with a CMS', href: '#' },
-  //     { title: 'Publishing NPM packages & libraries', href: '#' },
-  //   ],
-  // },
-  // {
-  //   title: 'Expertise Levels',
-  //   links: [
-  //     { title: 'Beginner', href: '/beginner-topics' },
-  //     { title: 'Intermediate', href: '/intermediate-topics' },
-  //     { title: 'Advanced', href: '/advanced-topics' },
-  //     { title: 'All', href: '/all-topics' },
-  //   ],
-  // },
 ]
 
 export function Navigation(props) {
   return (
-    <nav {...props}>
+    <nav>
       <ul role="list">
-        <TopLevelNavItem href="/">Home</TopLevelNavItem>
+        <TopLevelNavItem href="/" onNavigate={() => props.onNavigate()}>Home</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}
             group={group}
             className={groupIndex === 0 && 'md:mt-0'}
+            onNavigate={() => props.onNavigate()}
           />
         ))}
       </ul>

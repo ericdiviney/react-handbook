@@ -30,13 +30,13 @@ const resources = [
 
 export function QuickNavigation() {
   return (
-    <div className="my-16 xl:max-w-none">
-      <div className="not-prose grid grid-cols-1 gap-8 xl:grid-cols-3">
+    <div className="max-w-5xl my-16">
+      <div className="grid grid-cols-1 gap-8 not-prose xl:grid-cols-3">
         {resources.map((resource) => (
           <Card key={resource.href} resource={resource} />
         ))}
       </div>
-      <div className="mt-4 justify-end text-right">
+      <div className="justify-end mt-4 text-right">
         <Button href="/topics" variant="text" arrow="right">
           View all topics
         </Button>

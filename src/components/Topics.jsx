@@ -52,7 +52,7 @@ const topics = [
 
 export function Topics() {
   return (
-    <div className="my-16 xl:max-w-none">
+    <div className="max-w-5xl my-16">
       <div className="grid grid-cols-1 gap-8 not-prose xl:grid-cols-3">
         {topics.map((resource) => (
           <Card key={resource.href} resource={resource} />
