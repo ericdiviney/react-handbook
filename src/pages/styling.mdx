@@ -18,13 +18,11 @@ export const description = 'The best ways to style your React application.'
 - Utility Class Libraries
   - [tailwindcss](https://www.npmjs.com/package/tailwindcss)
   - [unocss](https://www.npmjs.com/package/unocss)
-- Write Your CSS
-  - [stitches](https://www.npmjs.com/package/@stitches/react)
+- Write your CSS
   - [styled-components](https://www.npmjs.com/package/styled-components)
   - [vanilla-extract](https://www.npmjs.com/package/@vanilla-extract/css)
   - [emotion](https://www.npmjs.com/package/@emotion/css)
-  - [CSS modules](https://www.npmjs.com/package/css-modules)
-  - [linaria](https://www.npmjs.com/package/linaria)
+  - [CSS modules](https://vitejs.dev/guide/features.html#css-modules) (this is more of a concept, than a library)
 
 ## Component Libraries
 
@@ -32,14 +30,14 @@ Most UI libraries will come with a "theme" or global way to configure certain th
 
 If your app is small enough, it may be simpler to reach for a headless solution (more below) and create the critical components in your app than try to overwrite or customize an entire library.
 
-- [MUI](https://www.npmjs.com/package/@mui/material)
-- [Twitter Bootstrap](https://www.npmjs.com/package/react-bootstrap)
+- [Material UI](https://www.npmjs.com/package/@mui/material)
+- [React Bootstrap](https://www.npmjs.com/package/react-bootstrap) ([based on Twitter Bootstrap](https://www.npmjs.com/package/bootstrap))
 - [Chakra UI](https://www.npmjs.com/package/@chakra-ui/react)
-- [AntDesign](https://www.npmjs.com/package/antd)
-- [Blueprint](https://www.npmjs.com/package/@blueprintjs/core/)
-- [FluentUI](https://www.npmjs.com/package/@fluentui/react-components)
+- [Ant Design](https://www.npmjs.com/package/antd)
 - [Mantine](https://www.npmjs.com/package/@mantine/core)
-- [pico](https://www.npmjs.com/package/@picocss/pico)
+- [Fluent UI by Microsoft](https://www.npmjs.com/package/@fluentui/react-components)
+- [Carbon by IBM](https://www.npmjs.com/package/@carbon/react)
+- [Pico CSS](https://www.npmjs.com/package/@picocss/pico)
 
 <Note>
   If you need a lot of customization or control over the presentation of the UI,
@@ -48,19 +46,20 @@ If your app is small enough, it may be simpler to reach for a headless solution 
 
 ## Headless Component Libraries
 
-- [radix-ui](https://www.npmjs.com/package/@radix-ui/primitive)
-- [headless-ui](https://www.npmjs.com/package/@headlessui/react)
-- [react-aria](https://react-spectrum.adobe.com/react-aria/)
-- [ariakit](https://www.npmjs.com/package/ariakit)
+- [Radix UI](https://www.npmjs.com/package/@radix-ui/primitive)
+- [Headless UI](https://www.npmjs.com/package/@headlessui/react)
+- [Base UI](https://www.npmjs.com/package/@mui/base)
+- [React Aria](https://www.npmjs.com/package/react-aria)
+- [Ariakit](https://www.npmjs.com/package/@ariakit/react)
 
 ## Recommended Combinations
 
 - [Radix UI](https://www.npmjs.com/package/@radix-ui/primitive) + [tailwind](https://www.npmjs.com/package/tailwindcss)
 - [Headless UI](https://www.npmjs.com/package/@headlessui/react) + [tailwind](https://www.npmjs.com/package/tailwindcss)
-- [Radix UI](https://www.npmjs.com/package/@radix-ui/primitive) + [stitches](https://www.npmjs.com/package/@stitches/react)
 - [Chakra UI](https://www.npmjs.com/package/@chakra-ui/react) + [emotion](https://www.npmjs.com/package/@emotion/css)
+- [Base UI](https://www.npmjs.com/package/@mui/base) + [CSS Modules](https://vitejs.dev/guide/features.html#css-modules) / [styled-components](https://www.npmjs.com/package/styled-components)
 
 ### Misc
 
 - [Demystifying Styled Components - Josh Comeau](https://www.joshwcomeau.com/react/demystifying-styled-components/)
-- [shadcdn](https://ui.shadcn.com/docs/components/accordion) - radix + tailwind components to drop in your project ([no npm package available](https://ui.shadcn.com/docs))
+- [shadcn](https://ui.shadcn.com/docs/components/accordion) - radix + tailwind components to drop in your project ([no npm package available](https://ui.shadcn.com/docs))
