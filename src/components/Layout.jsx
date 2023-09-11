@@ -22,14 +22,22 @@ export function Layout({ children, sections = [] }) {
           layoutScroll
           className="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex"
         >
-          <div className="bg-white dark:bg-zinc-900 group contents lg:pointer-events-auto lg:block lg:border-r lg:border-zinc-900/10 lg:px-4 min-w-[55px] lg:mt-12 lg:pb-8 lg:dark:border-white/10">
+          <div className={clsx(
+            "bg-white dark:bg-zinc-900 group contents lg:pointer-events-auto lg:block lg:border-r lg:border-zinc-900/10 lg:px-4 min-w-[55px] lg:mt-12 lg:pb-8 lg:dark:border-white/10 transition-all",
+            {
+              "shadow hover:shadow-xl": !isNavOpen,
+              "shadow-xl": isNavOpen,
+            }
+          )}>
+
+          
             <Header />
             <ScrollArea.Root scrollHideDelay={0} className="h-[calc(100%-60px)] w-full overflow-hidden mt-8">
               <div className={clsx({
                 'bg-white dark:bg-zinc-900 pb-2 w-full': true,
               })}>
                 <button className={clsx({
-                  'w-6 h-6 relative': true,
+                  'w-6 h-6 relative hidden lg:block': true,
                   'text-zinc-600': !isNavOpen,
                   'text-zinc-800 dark:text-white': isNavOpen,
                 })} onClick={() => setNavOpen(!isNavOpen)}>
@@ -70,7 +78,7 @@ export function Layout({ children, sections = [] }) {
           </div>
         </motion.header>
         <div className={clsx('transition-all duration-400 relative px-4 pt-14 sm:px-6 lg:px-8 lg:pl-16', {
-          'ml-80 xl:ml-auto': isNavOpen,
+          'lg:ml-80 ml-auto': isNavOpen,
         })}>
           <main className="lg:py-16">
             <Prose as="article">{children}</Prose>

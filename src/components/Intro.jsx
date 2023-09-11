@@ -23,7 +23,7 @@ export function Intro({ children, summary }) {
               />
             </svg>
             <button className='flex items-center gap-1' onClick={() => setIsOpen(!isOpen)}>
-              <span className='font-mono font-bold tracking-wider uppercase text-zinc-700 dark:text-white'>There&apos;s a detailed introduction here</span>
+              <span className='font-mono font-bold tracking-wider uppercase text-zinc-700 dark:text-white'>Read Introduction</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={clsx(
                 'w-4 h-4',
                 { 'rotate-180' : isOpen }

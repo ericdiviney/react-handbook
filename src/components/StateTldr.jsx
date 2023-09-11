@@ -366,6 +366,13 @@ export function StateTldr() {
                           href="https://www.npmjs.com/package/jotai"
                         >
                           Jotai
+                        </a>{' '}
+                        or{' '}
+                        <a
+                          className="text-sky-400 hover:underline"
+                          href="https://www.npmjs.com/package/mobx"
+                        >
+                          MobX
                         </a>
                       </div>
                     </div>
@@ -396,6 +403,13 @@ export function StateTldr() {
                           href="https://www.npmjs.com/package/jotai"
                         >
                           Jotai
+                        </a>{' '}
+                        or{' '}
+                        <a
+                          className="text-sky-400 hover:underline"
+                          href="https://www.npmjs.com/package/mobx"
+                        >
+                          MobX
                         </a>
                       </div>
                     </div>
@@ -426,6 +440,13 @@ export function StateTldr() {
                           href="https://www.npmjs.com/package/jotai"
                         >
                           Jotai
+                        </a>{' '}
+                        or{' '}
+                        <a
+                          className="text-sky-400 hover:underline"
+                          href="https://www.npmjs.com/package/mobx"
+                        >
+                          MobX
                         </a>
                       </div>
                     </div>

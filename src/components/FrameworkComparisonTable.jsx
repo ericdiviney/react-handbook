@@ -1,6 +1,6 @@
 export function FrameworkComparisonTable() {
 	return (
-    <div className="max-w-screen-xl pr-2 mx-auto overflow-x-auto">
+    <div className="max-w-screen-xl pr-2 mx-auto overflow-x-auto text-sm">
       <div className="min-w-[600px]">
         <div className="flex justify-between p-6 my-2">
           <div className="basis-1/4"></div>
