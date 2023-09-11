@@ -22,7 +22,7 @@ export function Intro({ children, summary }) {
                 d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
               />
             </svg>
-            <button className='flex items-center gap-1' onClick={() => setIsOpen(!isOpen)}>
+            <button className='flex items-center gap-1 grow' onClick={() => setIsOpen(!isOpen)}>
               <span className='font-mono font-bold tracking-wider uppercase text-zinc-700 dark:text-white'>Read Introduction</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={clsx(
                 'w-4 h-4',

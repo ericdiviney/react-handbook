@@ -81,7 +81,7 @@ AccordionContent.displayName = 'AccordionContent'
 export function StateTldr() {
   return (
     <>
-      <div className="max-w-screen-xl px-2 mx-auto mt-6 overflow-x-auto overflow-y-hidden not-prose">
+      <div className="max-w-screen-xl mx-auto mt-6 overflow-x-auto overflow-y-hidden not-prose">
         <div className="hidden xl:block">
           <Tabs.Root defaultValue="one">
             <Tabs.List
