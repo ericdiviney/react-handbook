@@ -232,7 +232,6 @@ export function Navigation(props) {
   return (
     <nav>
       <ul role="list">
-        <TopLevelNavItem href="/" onNavigate={() => props.onNavigate()}>Home</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}

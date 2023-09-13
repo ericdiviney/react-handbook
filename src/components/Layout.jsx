@@ -32,7 +32,7 @@ export function Layout({ children, sections = [] }) {
 
           
             <Header />
-            <ScrollArea.Root scrollHideDelay={0} className="h-[calc(100%-60px)] w-full overflow-hidden mt-8">
+            <ScrollArea.Root scrollHideDelay={0} className="h-[calc(100%-30px)] w-full overflow-hidden mt-8">
               <div className={clsx({
                 'bg-white dark:bg-zinc-900 pb-2 w-full': true,
               })}>
@@ -72,7 +72,7 @@ export function Layout({ children, sections = [] }) {
                 className="flex touch-none select-none bg-zinc-100 p-0.5 transition-colors duration-[160ms] ease-out data-[orientation=horizontal]:h-1.5 data-[orientation=vertical]:w-1.5 data-[orientation=horizontal]:flex-col dark:bg-zinc-800"
                 orientation="vertical"
               >
-                <ScrollArea.Thumb className="relative flex-1 cursor-pointer rounded-[10px] bg-zinc-200/80 before:absolute before:top-1/2 before:left-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] dark:bg-zinc-700" />
+                <ScrollArea.Thumb className="relative flex-1 cursor-pointer rounded-[10px] bg-zinc-300/80 before:absolute before:top-1/2 before:left-1/2 before:h-full before:min-h-[44px] before:w-full before:min-w-[44px] before:-translate-x-1/2 before:-translate-y-1/2 before:content-[''] dark:bg-zinc-600" />
               </ScrollArea.Scrollbar>
             </ScrollArea.Root>
           </div>
