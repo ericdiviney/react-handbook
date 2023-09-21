@@ -1,4 +1,5 @@
-import { QuickNavigation } from '@/components/QuickNavigation'
+import { Details } from '@/components/Details'
+import { LeadHeading } from '@/components/LeadHeading'
 
 export const description =
   'Modern approaches to architecture and feature development for production-ready React apps.'
@@ -7,34 +8,43 @@ export const description =
 
 Modern approaches to architecture and feature development for production-ready React apps. {{ className: 'lead' }}
 
-> The React Handbook is what you need AFTER you've read the official docs. Once you've learned the fundamentals - this guide will help you ship more, faster.
+## Docs First, Handbook Later
 
-<QuickNavigation />{' '}
+If you haven't ever worked with React before, this guide might seem a little dense.
 
-## Our Goals
+There are some [fundamentals](/fundamentals) we can recommend, but to put it bluntly: you should not be reading this guide before you've read the [official docs](https://react.dev/).
 
-React is a fantastic tool for building UI's and front-end applications. Hundreds of high-quality libraries make the React ecosystem, and React itself is very flexible in many ways.
+## Opinionated Best Practices
 
-On the other hand, the flexibility of React forces us (as engineers/architects) to make so many choices.
+The docs will help you learn React, but the React Handbook will help you learn the <u>**ecosystem**</u>.
 
-This guide aims to help React engineers learn what they need to ship their applications.
+The flexibility of React forces us (as engineers/architects) to make so many choices.
+
+The recommendations here are opinionated _purposefully_. You can implement only what you see fit for your project and team. The baggage that comes with being the most popular UI framework in the world - is that there is a ton of low-quality learning content on the internet. We want to make the good content easy to find.
 
 ## A Bookmark, Not a Course
 
 This guide isn't meant to be a typical course that you start and finish. It's a reference, a website you bookmark and return to when encountering something in the React ecosystem that you'd like to research more.
 
-You could spend time yourself researching the best React practices on Google, Reddit, Twitter, YouTube, Dev.to, Frontendmasters.com, etc. But that will suck up a lot of your time, and you'll also have to decide for yourself which material is worth studying (what is right and what isn't).
+We're trying to cut down the time that the community spends having to research the best React practices on Google, Reddit, Twitter, YouTube, Dev.to, Frontendmasters.com, etc.
 
 By using this site, you'll spend less time searching the internet for good learning resources and instead spend more time shipping your React applications in a way that will scale.
 
-The recommendations here are opinionated _purposefully_. You can implement only what you see fit for your project and team. The baggage that comes with being the most popular UI framework in the world - is that there is a ton of low-quality learning content on the internet.
+It's meant to be SKIMMABLE. So you can jump to the current problem at hand.
 
-Why is React the most popular framework? Read the React Handbook creator's thoughts on that [here](/team/eric-diviney).
+You're welcome to read from start->finish (you'll probably learn something along the way), but that's not necessarily the use-case we envisioned.
 
-## How to Consume this Guide
+## How to Navigate this Website
 
-You can start at the very beginning and read through every page from start to end - you'll undoubtedly pick up some ideas along the way.
+The search (at the top of the page) is pretty great.
 
-The actual use case I envisioned for this website was as a bookmark for React developers.
+The navigation (on the left side of the page) keeps track of where you are on each page, and what else you can explore. You can toggle the sidebar to stay open, or keep it hidden so you can focus.
 
-We expect that most experienced React developers who visit our website will already know about many [topics](/topics) we cover.
+Finally, there are lots of sections/topics that you can expand when you want more detail. They'll look something like this:
+
+<Details>
+<LeadHeading>We're looking for contributors!</LeadHeading>
+If you are interested in working in open-source/public, you can [get involved with us on GitHub](https://reacthandbook.dev/).
+</Details>
+
+We love feedback of all kinds, just please keep in mind that we are working professionals that try to maintain this website in our spare time only. We are open to all suggestions, provided you have a positive attitude when making the suggestion. We don't assume any ill intent, ever.

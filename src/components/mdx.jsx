@@ -29,8 +29,8 @@ function InfoIcon(props) {
 
 export function Note({ children }) {
   return (
-    <div className="my-6 flex gap-2.5 rounded-2xl border border-sky-500/20 bg-sky-50/50 p-4 leading-6 text-sky-900 dark:border-sky-500/30 dark:bg-sky-500/5 dark:text-sky-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.sky.300)]">
-      <InfoIcon className="flex-none w-4 h-4 mt-1 fill-sky-500 stroke-white dark:fill-sky-200/20 dark:stroke-sky-200" />
+    <div className="my-6 flex gap-2.5 rounded-2xl border border-sky-500/20 bg-sky-50/50 p-4 text-sm leading-6 text-sky-900 dark:border-sky-500/30 dark:bg-sky-500/5 dark:text-sky-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.sky.300)]">
+      <InfoIcon className="mt-1 h-4 w-4 flex-none fill-sky-500 stroke-white dark:fill-sky-200/20 dark:stroke-sky-200" />
       <div className="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
         {children}
       </div>
@@ -40,7 +40,7 @@ export function Note({ children }) {
 
 export function Row({ children }) {
   return (
-    <div className="grid items-start grid-cols-1 gap-x-16 gap-y-10  xl:grid-cols-2">
+    <div className="grid grid-cols-1 items-start gap-x-16 gap-y-10 xl:grid-cols-2">
       {children}
     </div>
   )
@@ -74,8 +74,8 @@ export function Properties({ children }) {
 
 export function Property({ name, type, children }) {
   return (
-    <li className="px-0 py-4 m-0 first:pt-0 last:pb-0">
-      <dl className="flex flex-wrap items-center m-0 gap-x-3 gap-y-2">
+    <li className="m-0 px-0 py-4 first:pt-0 last:pb-0">
+      <dl className="m-0 flex flex-wrap items-center gap-x-3 gap-y-2">
         <dt className="sr-only">Name</dt>
         <dd>
           <code>{name}</code>

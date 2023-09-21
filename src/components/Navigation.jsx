@@ -20,7 +20,7 @@ function TopLevelNavItem({ href, children }) {
     <li className="md:hidden">
       <Link
         href={href}
-        className="block py-1 transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="block py-1 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
       </Link>
@@ -28,21 +28,20 @@ function TopLevelNavItem({ href, children }) {
   )
 }
 
-function NavLink({ href, tag, active, isAnchorLink = false, onNavigate, children }) {
+function NavLink({ href, tag, active, isAnchorLink = false, children }) {
   return (
     <Link
       href={href}
       aria-current={active ? 'page' : undefined}
-      // onClick={() => onNavigate?.()}
       className={clsx(
         'flex justify-between gap-2 py-1 pr-3  transition',
-        isAnchorLink ? 'pl-10' : 'pl-4',
+        isAnchorLink ? 'pl-8' : 'pl-4',
         active
           ? 'text-zinc-900 dark:text-white'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
       )}
     >
-      <span className="text-xs truncate">{children}</span>
+      <span className="truncate text-xs">{children}</span>
       {tag && (
         <Tag variant="small" color="zinc">
           {tag}
@@ -82,7 +81,7 @@ function VisibleSectionHighlight({ group, pathname }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
-      className="absolute inset-x-0 top-0 bg-zinc-100 will-change-transform dark:bg-white/[0.04]"
+      className="absolute left-0 right-[8px] top-0 bg-zinc-100 will-change-transform dark:bg-white/[0.04]"
       style={{ borderRadius: 8, height, top }}
     />
   )
@@ -97,7 +96,7 @@ function ActivePageMarker({ group, pathname }) {
   return (
     <motion.div
       layout
-      className="absolute w-px h-6 left-2 bg-sky-500"
+      className="absolute left-2 h-6 w-px bg-sky-500"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -106,7 +105,7 @@ function ActivePageMarker({ group, pathname }) {
   )
 }
 
-function NavigationGroup({ group, className, onNavigate }) {
+function NavigationGroup({ group, className }) {
   // If this is the mobile navigation then we always render the initial
   // state, so that the state does not change during the close animation.
   // The state will still update when we re-open (re-render) the navigation.
@@ -125,9 +124,13 @@ function NavigationGroup({ group, className, onNavigate }) {
         layout="position"
         className="text-xs font-semibold text-zinc-900 dark:text-white"
       >
-        {group.title}
+        {group.href ? (
+          <Link href={group.href}>{group.title}</Link>
+        ) : (
+          group.title
+        )}
       </motion.h2>
-      <div className="relative pl-2 mt-3">
+      <div className="relative mt-3 pl-2">
         <AnimatePresence initial={!isInsideMobileNavigation}>
           {isActiveGroup && (
             <VisibleSectionHighlight group={group} pathname={router.pathname} />
@@ -135,17 +138,17 @@ function NavigationGroup({ group, className, onNavigate }) {
         </AnimatePresence>
         <motion.div
           layout
-          className="absolute inset-y-0 w-px left-2 bg-zinc-900/10 dark:bg-white/5"
+          className="absolute inset-y-0 left-2 w-px bg-zinc-900/10 dark:bg-white/5"
         />
         <AnimatePresence initial={false}>
           {isActiveGroup && (
             <ActivePageMarker group={group} pathname={router.pathname} />
           )}
         </AnimatePresence>
-        <ul role="list" className="border-l border-transparent">
+        <ul role="list" className="border-l border-transparent pr-2">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
-              <NavLink href={link.href} active={link.href === router.pathname} onNavigate={() => onNavigate()}>
+              <NavLink href={link.href} active={link.href === router.pathname}>
                 {link.title}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
@@ -188,14 +191,13 @@ export const navigation = [
   {
     title: 'Getting Started',
     links: [
-      { title: 'The React Handbook', href: '/' },
-      { title: 'JavaScript Fundamentals', href: '/javascript-basics' },
-      { title: 'React Fundamentals', href: '/react-basics' },
-      { title: 'Advanced React', href: '/topics' },
+      { title: 'Home', href: '/' },
+      { title: 'React Fundamentals', href: '/fundamentals' },
     ],
   },
   {
-    title: 'Guides',
+    title: 'Topics',
+    href: '/topics',
     links: [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
       { title: 'Project Structure', href: '/project-structure' },
@@ -204,7 +206,10 @@ export const navigation = [
       { title: 'Ecosystem & npm libraries', href: '/ecosystem' },
       { title: 'Proficiency with Hooks', href: '/hooks' },
       { title: 'State Management Fundamentals', href: '/state-management' },
-      { title: 'Performance & Optimization', href: '/react-performance-optimization' },
+      {
+        title: 'Performance & Optimization',
+        href: '/react-performance-optimization',
+      },
       { title: 'Automated Testing', href: '/automated-testing' },
     ],
   },
@@ -220,7 +225,10 @@ export const navigation = [
   {
     title: 'Planned Topics',
     links: [
-      { title: 'Server-Side Rendering', href: '#ssr' },
+      {
+        title: 'RSC (React Server Components) / SSR',
+        href: '#server-components',
+      },
       { title: 'Error Handling & Boundaries', href: '#debugging' },
       { title: 'Analytics & Monitoring', href: '#analytics' },
       { title: 'CI/CD Pipelines', href: '#cicd' },
@@ -237,7 +245,6 @@ export function Navigation(props) {
             key={group.title}
             group={group}
             className={groupIndex === 0 && 'md:mt-0'}
-            onNavigate={() => props.onNavigate()}
           />
         ))}
       </ul>

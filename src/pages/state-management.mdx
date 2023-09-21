@@ -1,8 +1,23 @@
-import { Intro } from '@/components/Intro'
-import { StateTldr } from '@/components/StateTldr'
-import { StateRequest } from '@/components/StateRequest'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/Accordion'
+import { Details } from '@/components/Details'
+import { LeadHeading } from '@/components/LeadHeading'
+import { Summary } from '@/components/Summary'
+import { StepList, Step } from '@/components/StepList'
+import { Tabs, Tab, TabList, TabTrigger } from '@/components/Tab'
+
+{/* Helper components for this page only */}
+import { GreenfieldContent, ReduxContent, RecommendationContent } from '@/components/State';
 
 export const sections = [
+  {
+    title: 'TLDR - Starting Points',
+    id: 'tldr-starting-points-for-client-state-management',
+  },
   {
     title: 'SSR (Next.js / Remix)',
     id: 'does-any-of-this-apply-to-ssr-next-js-remix',
@@ -40,29 +55,81 @@ export const sections = [
 
 # State Management in React Applications
 
+<Summary>
+  <ul>
+    <li>Quick starting points in TLDR style</li>
+    <li>The different types of state, and they're inherent local or global nature</li>
+    <li>Separating data-fetching (server-state) from client-state</li>
+    <li>Understanding when you'll need a global state manager</li>
+    <li>Comparing the architectures of popular libraries like Redux, Jotai, Recoil and more</li>
+  </ul>
+</Summary>
+
 ---
 
-<Intro summary={
-    <>
-        This is a guide outlining a very flexible approach to managing application state in [CRUD-like](https://www.codecademy.com/article/what-is-crud) React apps. Specifically, this is applicable to the SPA (Single-Page Application) build architecture.
-    </>
-}>
-The **target audience** for this guide are for both React beginners and architects either looking for guidance building a new application or understanding the decisions that others have made for applications they've worked on. Having said that - you should have a **strong grasp of React** if you want to understand this material presented in this article.
+## TLDR: Starting Points for Client State Management
 
-We are authoring another guide for more advanced approaches to state management. The approach in this guide is best applied to CRUD-like SPAs (Single-Page Applications) built with React.
-
-We are looking for writers that can contribute material for:
-
-<div className='flex gap-12 mt-3'>
-    <a href="https://signia.tldraw.dev/" className="font-semibold text-sky-400">signia</a>
-    <a href="https://legendapp.com/open-source/state/" className="font-semibold text-sky-400">legend</a>
-    <a href="https://xstate.js.org/docs/" className="font-semibold text-sky-400">xState</a>
+<div className="not-prose mx-auto mt-6 max-w-screen-xl overflow-x-auto overflow-y-hidden px-0 lg:px-1">
+  <div className="hidden lg:block">
+    <Tabs defaultValue="greenfield">
+      <TabList label="Quick Guide to State Management in React Apps">
+        <TabTrigger tabValue="greenfield" title="Build As You Go">
+          Best for greenfield projects, POCs, and apps with unknown
+          scope/complexity on the frontend when starting.
+        </TabTrigger>
+        <TabTrigger tabValue="redux" title="You Need Everything">
+          Redux Toolkit (RTK) is the modern way to reduce boilerplate and manage
+          large/complex state.
+        </TabTrigger>
+        <TabTrigger tabValue="recommendations" title="Other Combinations">
+          State management libraries that play well together. Data-fetching,
+          stores, and state machines.
+        </TabTrigger>
+      </TabList>
+      <Tab value="greenfield">
+        <GreenfieldContent />
+      </Tab>
+      <Tab value="redux">
+        <ReduxContent />
+      </Tab>
+      <Tab value="recommendations">
+        <RecommendationContent />
+      </Tab>
+    </Tabs>
+  </div>
+  <div className="lg:hidden">
+    <Accordion type="single" defaultValue="greenfield" collapsible>
+      <AccordionItem value="greenfield">
+        <AccordionTrigger title="Build As You Go">
+          Best for greenfield projects, POCs, and apps with unknown
+          scope/complexity on the frontend when starting.
+        </AccordionTrigger>
+        <AccordionContent>
+          <GreenfieldContent />
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="redux">
+        <AccordionTrigger title="You Need Everything">
+          Redux Toolkit (RTK) is the modern way to reduce boilerplate and manage
+          large/complex state.
+        </AccordionTrigger>
+        <AccordionContent>
+          <ReduxContent />
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="recommendations">
+        <AccordionTrigger title="Other Combinations">
+          State management libraries that play well together. Data-fetching,
+          stores, and state machines.
+        </AccordionTrigger>
+        <AccordionContent>
+          <RecommendationContent />
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  </div>
 </div>
-</Intro>
-
-### TLDR: The Best Options for State Management
-
-<StateTldr />
+<hr />
 
 ## Does any of this apply to SSR (Next.js / Remix)
 
