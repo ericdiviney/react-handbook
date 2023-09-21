@@ -66,6 +66,7 @@ V2 of the site
 - add a "Special Thanks" on the about page from me:
     - Josh Claunch, frequent collaborator and gives great feedback (also has expertise in very fast moving data in React apps)
 - "Detail" mode near dark/light mode - which defaults to all expandable components open by default (get this in cookie, localstorage?)
+- check every page for hydration / errors
 
 
 v2 Feedback from?

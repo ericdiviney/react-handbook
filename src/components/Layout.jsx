@@ -9,10 +9,15 @@ import { Navigation } from '@/components/Navigation'
 import { Prose } from '@/components/Prose'
 import { SectionProvider } from '@/components/SectionProvider'
 import clsx from 'clsx'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 
 export function Layout({ children, sections = [] }) {
-  const [isNavOpen, setNavOpen] = useState(false)
+  const [isHoveringNav, setHoveringNav] = useState(false)
+  const [isNavigationOpen, setNavigationOpen] = useState(false)
+
+  function toggleNavOpen() {
+    setNavigationOpen(!isNavigationOpen);
+  }
 
   return (
     <SectionProvider sections={sections}>
@@ -22,11 +27,15 @@ export function Layout({ children, sections = [] }) {
           className="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex"
         >
           <div
+            onMouseEnter={() => setHoveringNav(true)} 
+            onMouseLeave={() => setHoveringNav(false)}
+            data-state={`${isHoveringNav || isNavigationOpen ? 'open' : ''}`}
             className={clsx(
               'group contents min-w-[55px] bg-white transition-all dark:bg-zinc-900 lg:pointer-events-auto lg:mt-12 lg:block lg:border-r lg:border-zinc-900/10 lg:px-4 lg:pb-8 lg:dark:border-white/10',
+              '',
               {
-                'shadow hover:shadow-xl': !isNavOpen,
-                'shadow-xl': isNavOpen,
+                'shadow hover:shadow-xl': !isHoveringNav,
+                'shadow-xl': isHoveringNav,
               }
             )}
           >
@@ -42,11 +51,11 @@ export function Layout({ children, sections = [] }) {
               >
                 <button
                   className={clsx({
-                    'relative hidden h-6 w-6 lg:block': true,
-                    'text-zinc-600': !isNavOpen,
-                    'text-zinc-800 dark:text-white': isNavOpen,
+                    'relative hidden h-6 w-6 lg:block transition-all hover:text-white': true,
+                    'text-zinc-600': !isNavigationOpen,
+                    'text-zinc-800 dark:text-white': isNavigationOpen,
                   })}
-                  onClick={() => setNavOpen(!isNavOpen)}
+                  onClick={() => toggleNavOpen()}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -57,8 +66,8 @@ export function Layout({ children, sections = [] }) {
                     className={clsx(
                       'absolute bottom-0 left-0 h-6 w-6 transition-opacity duration-[190ms] ease-in',
                       {
-                        'opacity-0': isNavOpen,
-                        'opacity-100': !isNavOpen,
+                        'opacity-0': isNavigationOpen,
+                        'opacity-100': !isNavigationOpen,
                       }
                     )}
                   >
@@ -77,8 +86,8 @@ export function Layout({ children, sections = [] }) {
                     className={clsx(
                       'absolute bottom-0 left-0 h-6 w-6 transition-opacity duration-[190ms] ease-in',
                       {
-                        'opacity-0': !isNavOpen,
-                        'opacity-100': isNavOpen,
+                        'opacity-0': !isNavigationOpen,
+                        'opacity-100': isNavigationOpen,
                       }
                     )}
                   >
@@ -90,21 +99,29 @@ export function Layout({ children, sections = [] }) {
                   </svg>
                 </button>
               </div>
-              <ScrollArea.Viewport className="h-full w-full pr-2">
-                <div className="relative overflow-hidden lg:group-hover:block">
+              <ScrollArea.Viewport className="w-full h-full pr-2">
+                <div className={clsx(
+                  "relative overflow-hidden",
+                  {
+                    'lg:group-hover:block': isHoveringNav || isNavigationOpen
+                  }
+                )}>
                   <div
                     className={clsx(
-                      'hidden w-0 overflow-hidden opacity-0 transition-all duration-[190ms] ease-in-out lg:block lg:group-hover:w-72 lg:group-hover:opacity-100',
+                      'hidden w-0 overflow-hidden opacity-0 transition-all duration-[190ms] ease-in-out lg:block',
                       {
-                        'w-72': isNavOpen,
-                        'opacity-100': isNavOpen,
+                        'w-72 opacity-100': isHoveringNav || isNavigationOpen,
+                        'delay-0': isHoveringNav || isNavigationOpen,
+                        'delay-1000': !isHoveringNav && !isNavigationOpen
                       }
                     )}
                   >
                     <div
-                      className={`w-72 pt-2 opacity-0 duration-[190ms] ease-in-out group-hover:opacity-100 ${
-                        isNavOpen ? 'opacity-100' : ''
-                      }`}
+                      className={clsx('w-72 pt-2 opacity-0 duration-[190ms] ease-in-out', {
+                        'opacity-100': isHoveringNav || isNavigationOpen,
+                        'delay-0': isHoveringNav || isNavigationOpen,
+                        'delay-1000': !isHoveringNav && !isNavigationOpen
+                      })}
                     >
                       <Navigation />
                     </div>
@@ -124,7 +141,7 @@ export function Layout({ children, sections = [] }) {
           className={clsx(
             'relative px-4 pt-14 transition-all duration-[190ms] sm:px-6 lg:px-8',
             {
-              'ml-auto lg:ml-80': isNavOpen,
+              'ml-auto lg:ml-80': isNavigationOpen,
             }
           )}
         >
