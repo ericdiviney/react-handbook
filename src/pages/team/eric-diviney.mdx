@@ -3,7 +3,7 @@ export const description =
 
 # Hi, I'm Eric Diviney
 
-## I want to help you build React apps.
+## I want to help you build React apps
 
 <img
   className="max-w-[170px] rounded-full"
@@ -11,35 +11,25 @@ export const description =
   alt="eric diviney"
 />
 
-The React Handbook is a website primarily maintained by me, [Eric Diviney](https://twitter.com/EricDiviney). I'm a software engineer building things at [Dialexa, an IBM company](https://www.dialexa.com/) (we've been [acquired](https://newsroom.ibm.com/2022-09-22-IBM-Acquires-Dialexa-to-Speed-Digital-Innovation)). {{ className: 'lead' }}
+The React Handbook is a website primarily maintained by me, <Resource url='https://twitter.com/EricDiviney'>Eric Diviney</Resource>. I'm a software engineer building things at <Resource url='https://www.dialexa.com/'>Dialexa, an IBM company</Resource>. {{ className: 'lead' }}
 
 Here's more of the backstory on me and why I built this website (and what I think about web development in general).
 
-## 1) Web 2.0 to now
+## 1) Why do I like React? Why is React so popular?
 
-In my opinion, before diving deep into React + Frontend Technologies it might help to paint a historical picture of the web and how applications have evolved. I'll summarize as best I can, but if you are interested in a more detailed timeline you should read this article by Kent C. Dodds titled [The Web's Next Transition](https://www.epicweb.dev/the-webs-next-transition).
-
-1. The internet, HTML, and CSS were all invented. Rad!
-2. MPA (Multi Page App) phase - Web apps were mostly static HTML pages that simply reflected the state of an external system (some backend, database, etc.). The only way to manipulate data in that backend system was by submitting `<forms>` and redirecting the user after the form handling was complete. Since each static HTML page generated is a separate "page" (document), this architecture is commonly known as MPA.
-3. MPA's with sprinkles phase - Along came jQuery. While the underlying mechanism for manipulating data in the external system didn't change (submitting forms), we got more functionality in our HTML web pages. jQuery allowed for all kinds of user interactions and dynamic functionality on a webpage. It even somewhat changed the paradigm for manipulating data, as jQuery.ajax() method became very popular during this time (but submitting forms remained a very common and practical way to allow users to submit data to the external backend system).
-4. SPA's phase - Along came React. We truly had it all in the days of jQuery. But suddenly, we had a fresh, unique way to express our UI's as reusable chunks ("components") _declaratively_. This gave us more than just fancy buttons, animations, and dropdowns. This gave us the ability to truly control much more of the experience that we wanted for our users (instead of being beholden to default browser behavior). Unfortunately, while we gained a lot of control, we had to make some controversial sacrifices - mainly that we moved functionality traditionally responsible for the server (state management, routing, data fetching, etc.) to the front end. Our backend used to handle these problems, now it was an expectation that the front end would handle them. This is probably the primary approach for building new applications with React today.
-5. ??? (the next phase) - I'm not sure what exactly you'd call the next generation of meta-frameworks being released today, but it's definitely not an SPA. In the context of React, the frameworks pushing the bounds for these types of apps are Next, Remix, Gatsby, etc.
-
-## 2) Why do I like React? Why is React so popular?
-
-So, this is just my perspective, far from the complete history. If you want to really understand the history of React, I recommend this [documentary](https://www.youtube.com/watch?v=8pDqJVdNa44) (it's fantastic, seriously). Here's why I think React is great:
+So, this is just my perspective, far from the complete history. If you want to really understand the history of React, I recommend this <Resource url='https://www.youtube.com/watch?v=8pDqJVdNa44'>documentary</Resource> (it's fantastic, seriously). Anyways, here's why I think React is great:
 
 - React was invented at the perfect time - JavaScript was evolving so quickly, and new tools were being invented all the time. There was strong demand for a generic library that was easily approachable and simplified building UIs. React fit this need perfectly at the time.
-- React was (and still is) simpler than other frameworks - while this may be a controversial point for some, React's simple-but-flexible API is not a very steep learning curve. I don't want to call it _easy_, but the API is much simpler than its counterparts (Angular for example - but some frameworks like Solid have a very react-like feel).
+- React is very simple (NOT easy, simple) - while this may be a controversial point for some, React's simple-but-flexible API is not a very steep learning curve. I don't want to call it _easy_, but the API, in our opinion, is much simpler than its counterparts, and also why we prefer it for building UIs.
 - JSX is awesome - At first, it was demonized, but now it's loved. Granted, JSX is nothing react-specific (you can use JSX in just about any modern framework). JSX is a declarative way to define your UI and its hierarchy and feels naturally intuitive to web developers because of its XML/HTML-like syntax.
-- React focused on the right things (at the time) - Instead of shipping the entire kitchen sink (routing, data fetching, styling, etc.) it just focused on the rendering of HTML. This allowed the ecosystem to develop around the library and surfaced the right tools needed by developers. This early (but critical) choice to focus on the right set of features is, in my opinion, what truly unlocked the ecosystem that we enjoy today. Of course, meta-frameworks all ship with opinionated methods of routing, data-fetching, and styling nowadays, but that's because now we see React can definitely still shine if decisions like those are made for us. It lets us focus more on our application.
+- React focused on the right things (at the time) - Instead of shipping the entire kitchen sink (routing, data fetching, styling, etc.) it just focused on the rendering of HTML. This allowed the ecosystem to develop around the library and surfaced the right tools needed by developers. This early (but critical) choice to focus on the right set of features is, in my opinion, what truly unlocked the ecosystem that we enjoy today. Of course, meta-frameworks all ship with opinionated methods of routing, data-fetching, and styling nowadays, but that's because now we see React can definitely still shine if decisions like those are made for us. It lets developers focus more on our application.
 - React is the most popular UI framework in the world now. According to various sources, one can reasonably conclude React is very likely to continue its growth trajectory in the near future (next five years) from these sources:
-  - [State of JS](https://2022.stateofjs.com/en-US/libraries/)
-  - [Stack Overflow Survey](https://survey.stackoverflow.co/2022/#section-most-popular-technologies-web-frameworks-and-technologies)
-  - [Stack Overflow Trends](https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190)
-  - [Statista](https://www.statista.com/statistics/1124699/worldwide-developer-survey-most-used-frameworks-web/)
+  - <Resource url='https://2022.stateofjs.com/en-US/libraries/'>State of JS</Resource>
+  - <Resource url='https://survey.stackoverflow.co/2022/#section-most-popular-technologies-web-frameworks-and-technologies'>Stack Overflow Survey</Resource>
+  - <Resource url='https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190'>Stack Overflow Trends</Resource>
+  - <Resource url='https://www.statista.com/statistics/1124699/worldwide-developer-survey-most-used-frameworks-web/'>Statista</Resource>
 
-## 3) How do I keep up with React/JavaScript?
+## 2) How do I keep up with React/JavaScript?
 
 First, some great (free) resources
 
@@ -52,16 +42,23 @@ First, some great (free) resources
   - [https://www.reddit.com/r/reactjs/](https://www.reddit.com/r/reactjs/)
   - https://www.reddit.com/r/react/
 - My favorite twitter accounts:
+  - [Tanner Linsley](https://twitter.com/tannerlinsley)
   - [Dan Abramov](https://twitter.com/dan_abramov)
-  - [Andrew Clark](https://twitter.com/acdlite)
-  - [Kent C. Dodds](https://twitter.com/kentcdodds)
   - [Jenna Smith](https://twitter.com/jjenzz)
-  - [Lee Robinson](https://twitter.com/leeerob)
+  - [Josh Comeau](https://twitter.com/JoshWComeau)
   - [Ryan Florence](https://twitter.com/ryanflorence)
+  - [Alex Sidorenko](https://twitter.com/asidorenko_)
+  - [Ken Wheeler](https://twitter.com/ken_wheeler)
+  - [Sarah Drasner](https://twitter.com/sarah_edo)
+  - [Kent C. Dodds](https://twitter.com/kentcdodds)
+  - [Lee Robinson](https://twitter.com/leeerob)
   - [Michael Jackson](https://twitter.com/mjackson)
   - [Theo (T3)](https://twitter.com/t3dotgg)
+  - [Andrew Clark](https://twitter.com/acdlite)
   - [Cassidy Williams](https://twitter.com/cassidoo)
   - [Sébastien Lorber (this week in React)](https://twitter.com/sebastienlorber)
+  - [Cory House](https://twitter.com/housecor)
+  - [shadcn](https://twitter.com/shadcn)
 - My favorite websites/blogs/misc:
   - https://alexsidorenko.com/
   - https://ui.dev/blog
@@ -73,20 +70,16 @@ Here are the rare paid courses/tutorials I've paid for that I would 100% recomme
 - [Just JavaScript](https://justjavascript.com/) by Dan Abramov
 - [Epic React Dev](https://epicreact.dev/) by Kent C. Dodds
 
-## 4) My favorite technologies and tools to use
+## 3) Some of my favorite technologies for building software
 
-- Laravel (PHP)
-- Flask (Python)
+- React / React Native
 - TypeScript
-- React
-- Next.js
-- Remix
 - TailWind
 - Radix UI
-- React Query
-- Redux Toolkit
+- Laravel (PHP)
+- Flask (Python)
 
-## 5) Arguments I Care To Make
+## 4) Arguments I Care About
 
 - Philosophies to live by:
   - KISS (Keep It Simple, Stupid)
@@ -103,7 +96,7 @@ Here are the rare paid courses/tutorials I've paid for that I would 100% recomme
   - Always require semicolons at the end of statements. Ya'll are getting ridiculous
   - Tailwind > Traditional CSS (because I don't spend time having to name everything)
 
-## 6) Arguments I Don't Care About
+## 5) Arguments I Don't Care About
 
 - Tabs vs spaces (just pick one so everyone is consistent)
 - camelCase vs snake_case (same reason above, but honestly I do prefer camelCase)
