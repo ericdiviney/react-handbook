@@ -1,5 +1,7 @@
+import { Resource } from '@/components/Resource'
+
 export function FrameworkComparisonTable() {
-	return (
+  return (
     <div className="max-w-screen-xl pr-2 mx-auto overflow-x-auto text-sm">
       <div className="min-w-[600px]">
         <div className="flex justify-between p-6 my-2">
@@ -73,11 +75,7 @@ export function FrameworkComparisonTable() {
                       y2="160.5"
                     >
                       <stop stopColor="white"></stop>
-                      <stop
-                        offset="1"
-                        stopColor="white"
-                        stopOpacity="0"
-                      ></stop>
+                      <stop offset="1" stopColor="white" stopOpacity="0"></stop>
                     </linearGradient>
                     <linearGradient
                       gradientUnits="userSpaceOnUse"
@@ -88,11 +86,7 @@ export function FrameworkComparisonTable() {
                       y2="106.875"
                     >
                       <stop stopColor="white"></stop>
-                      <stop
-                        offset="1"
-                        stopColor="white"
-                        stopOpacity="0"
-                      ></stop>
+                      <stop offset="1" stopColor="white" stopOpacity="0"></stop>
                     </linearGradient>
                   </defs>
                 </svg>
@@ -189,80 +183,48 @@ export function FrameworkComparisonTable() {
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
               <div className="mb-4">
-                <a
-                  href="https://www.gatsbyjs.com/docs/tutorial/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://www.gatsbyjs.com/docs/tutorial/">
                   Gatsby Tutorial
-                </a>
+                </Resource>
               </div>
               <div className="mb-4">
-                <a
-                  href="https://www.youtube.com/watch?v=b2H7fWhQcdE"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://www.youtube.com/watch?v=b2H7fWhQcdE">
                   Getting Started With Gatsby
-                </a>
+                </Resource>
               </div>
               <div>
-                <a
-                  href="https://egghead.io/courses/build-a-blog-with-react-and-markdown-using-gatsby"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://egghead.io/courses/build-a-blog-with-react-and-markdown-using-gatsby">
                   Build a Blog with Markdown &amp; Gatsby
-                </a>
+                </Resource>
               </div>
             </div>
             <div className="w-1/3 px-2">
               <div className="mb-4">
-                <a
-                  href="https://nextjs.org/learn/basics/create-nextjs-app"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://nextjs.org/learn/basics/create-nextjs-app">
                   Next.js Tutorial
-                </a>
+                </Resource>
               </div>
               <div>
-                <a
-                  href="https://egghead.io/courses/introduction-to-next-js-9-9c01"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://egghead.io/courses/introduction-to-next-js-9-9c01">
                   Introduction to Next.js by Xiaoru Li
-                </a>
+                </Resource>
               </div>
             </div>
             <div className="w-1/3 px-2">
               <div className="mb-4">
-                <a
-                  href="https://remix.run/docs/en/v1/tutorials/jokes"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://remix.run/docs/en/v1/tutorials/jokes">
                   Remix Tutorial
-                </a>
+                </Resource>
               </div>
               <div className="mb-4">
-                <a
-                  href="https://egghead.io/courses/up-and-running-with-remix-b82b6bb6"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://egghead.io/courses/up-and-running-with-remix-b82b6bb6">
                   Up &amp; Running With Remix by Kent C. Dodds
-                </a>
+                </Resource>
               </div>
               <div>
-                <a
-                  href="https://www.youtube.com/watch?v=hsIWJpuxNj0"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://www.youtube.com/watch?v=hsIWJpuxNj0">
                   Remix Tutorial with Kent C. Dodds
-                </a>
+                </Resource>
               </div>
             </div>
           </div>
@@ -285,13 +247,9 @@ export function FrameworkComparisonTable() {
             <div className="w-1/3 px-2">
               <div className="mb-4">
                 Remix has a pretty mature solution for{' '}
-                <a
-                  href="https://remix.run/blog/lazy-loading-routes"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://remix.run/blog/lazy-loading-routes">
                   avoiding Network Waterfalls
-                </a>
+                </Resource>
                 .
               </div>
               <div className="mb-4">
@@ -318,29 +276,24 @@ export function FrameworkComparisonTable() {
             <div className="w-1/3 px-2">
               <div>
                 Devs using Remix tend to rave about{' '}
-                <a
-                  href="https://remix.run/blog/lazy-loading-routes"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Resource url="https://remix.run/blog/lazy-loading-routes">
                   Nested Routes
-                </a>
+                </Resource>
                 , while devs using the new (beta){' '}
-                <a
-                  target="_blank"
-                  href="https://beta.nextjs.org/docs/app-directory-roadmap"
-                  rel="noreferrer"
-                >
+                <Resource url="https://beta.nextjs.org/docs/app-directory-roadmap">
                   App Router
-                </a>{' '}
+                </Resource>{' '}
                 in Next.js report many bugs.
               </div>
             </div>
             <div className="w-1/3 px-2">
               As the new framework on the block, Remix has to compete with the
-              incumbents (Gatsby and Next.js). <br/><br/>
-              
-              More: <a href="https://redd.one/blog/my-struggle-with-remix">My Struggle With Remix</a>
+              incumbents (Gatsby and Next.js). <br />
+              <br />
+              More:{' '}
+              <Resource url="https://redd.one/blog/my-struggle-with-remix">
+                My Struggle With Remix
+              </Resource>
             </div>
           </div>
         </div>
@@ -384,27 +337,13 @@ export function FrameworkComparisonTable() {
           <div className="basis-1/4">Commercially Backed By:</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">
-              <a
-                href="https://www.netlify.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Netlify
-              </a>
+              <Resource url="https://www.netlify.com/">Netlify</Resource>
             </div>
             <div className="w-1/3 px-2">
-              <a href="https://vercel.com/" target="_blank" rel="noreferrer">
-                Vercel
-              </a>
+              <Resource url="https://vercel.com/">Vercel</Resource>
             </div>
             <div className="w-1/3 px-2">
-              <a
-                href="https://www.shopify.com/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Shopify
-              </a>
+              <Resource url="https://www.shopify.com/">Shopify</Resource>
             </div>
           </div>
         </div>

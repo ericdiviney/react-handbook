@@ -39,7 +39,7 @@ This guide will be as succinct and straight to the point as possible. In the fut
 - workshop material you can present to your developer team to make the automated testing efforts on your team more meaningful and valuable
 - more detailed advice on using testing to build a better product
   
-If you think you could help out with the above and are interested in working in open-source/public, you can [get involved with us on GitHub](https://reacthandbook.dev/).
+If you think you could help out with the above and are interested in working in open-source/public, you can <Resource url='https://github.com/ericdiviney/react-handbook'>get involved with us on GitHub</Resource>.
 </Details>
 
 ## What is the point of automated testing?
@@ -88,13 +88,13 @@ Below, you'll see the minimum steps required to start testing in your applicatio
 ## How to Get Started & Write Your First Test
 
 1. Choose a test-runner
-   1. [Jest](https://jestjs.io/) or [Vitest](https://vitest.dev/) for unit/integration tests
-   2. [Cypress](https://www.cypress.io/app/#e2e) or [Selenium](https://www.selenium.dev/documentation/webdriver/) or [Playwright](https://playwright.dev/) for E2E tests
+   1. <Resource url='https://jestjs.io/'>Jest</Resource> or <Resource url='https://vitest.dev/'>Vitest</Resource> for unit/integration tests
+   2. <Resource url='https://www.cypress.io/app/#e2e'>Cypress</Resource> or <Resource url='https://www.selenium.dev/documentation/webdriver/'>Selenium</Resource> or <Resource url='https://playwright.dev/'>Playwright</Resource> for E2E tests
 2. Choose a testing library
-   1. [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) is the best modern choice. [Enzyme](https://enzymejs.github.io/enzyme/) is an alternative, but we wouldn't recommend it due to the patterns of tests the API encourages developers to write.
+   1. <Resource url='https://testing-library.com/docs/react-testing-library/intro/'>React Testing Library</Resource> is the best modern choice. <Resource url='https://enzymejs.github.io/enzyme/'>Enzyme</Resource> is an alternative, but we wouldn't recommend it due to the patterns of tests the API encourages developers to write.
 3. Dive in!
-   1. If you've never written or seen a unit test in a React app before, you could watch Jack Herrington go through a few examples in [this YouTube video](https://www.youtube.com/watch?v=bvdHVxqjv80).
-   2. Be aware of [this configuration requirement](https://react.dev/blog/2022/03/08/react-18-upgrade-guide#configuring-your-testing-environment) if your application uses a React version ≥ 18 and you're not going to use React Testing Library (which handles it for you).
+   1. If you've never written or seen a unit test in a React app before, you could watch Jack Herrington go through a few examples in <Resource url='https://www.youtube.com/watch?v=bvdHVxqjv80'>this YouTube video</Resource>.
+   2. Be aware of <Resource url='https://react.dev/blog/2022/03/08/react-18-upgrade-guide#configuring-your-testing-environment'>this configuration requirement</Resource> if your application uses a React version ≥ 18 and you're not going to use React Testing Library (which handles it for you).
    3. Also be aware of new features added to React 18 that might break your test suite if the underlying tools haven't taken them into account (e.g. Concurrent mode, Suspense)
 
 ## What to Test In A React App
@@ -104,8 +104,8 @@ In an ideal world, the answer to this question is everything you control. And 99
 Everything that you test that isn't "Visual" is probably going to fall in the "Behavior" category. This is quite a large net - honestly, entire books could probably dedicated to writing effective automated tests of component behavior. Below are some examples of each.
 
 <Expand parent='Visual testing'>
-- [Snapshot testing](https://circleci.com/blog/snapshot-testing-with-jest/) - not terribly useful, alerts you to changes in the DOM rendered by component
-- [Visual Regression](https://www.browserstack.com/guide/visual-regression-testing) - pixel-perfect screenshot comparison to know all changes, both big and small
+- <Resource url='https://circleci.com/blog/snapshot-testing-with-jest/'>Snapshot testing</Resource> - not terribly useful, alerts you to changes in the DOM rendered by component
+- <Resoure url='https://www.browserstack.com/guide/visual-regression-testing'>Visual Regression</Resource> - pixel-perfect screenshot comparison to know all changes, both big and small
 - Styles - Testing styles isn't the best use of time, but sometimes, it might make sense if the styles are a result of an interaction/event and important to the function of the app
 </Expand>
 
@@ -127,11 +127,11 @@ Everything that you test that isn't "Visual" is probably going to fall in the "B
 - Custom Hooks & Context Providers (Unit Tests)
   - As for testing a custom hook / context provider - it is recommended not to try to test the hook/context itself and instead consume the hook/context in a component for the sake of testing. The component can be one that's actually used in the application or is just a dummy component (that never gets loaded in the production bundle) for the sake of testing. Either way, writing a component to consume the underlying hook/context will be easier to test than trying to test just a hook/context in isolation.
   - The point we want to drive home for you is that for your test of a hook/context - try to do it all in one component (dummy or real, it doesn't matter). Outside of the test, you should probably be _mocking_ your contexts everywhere else they are used (to make your other tests simpler to reason about).
-  - If you are insistent on testing custom hooks in isolation you can try this library: [React Hooks Testing Library](https://react-hooks-testing-library.com/reference/api)
+  - If you are insistent on testing custom hooks in isolation you can try this library: <Resource url='https://react-hooks-testing-library.com/reference/api'>React Hooks Testing Library</Resource>
 - Global Stores (Unit Tests)
   - Unlike the above, if you're using a library like Redux or Jotai, you CAN write some unit tests for your state logic. Any library worth using should probably have a page on how to write tests in said library, for example:
-    - [Writing tests in Redux](https://redux.js.org/usage/writing-tests)
-    - [Writing tests in Jotai](https://jotai.org/docs/guides/testing)
+    - <Resource url='https://redux.js.org/usage/writing-tests'>Writing tests in Redux</Resource>
+    - <Resource url='https://jotai.org/docs/guides/testing'>Writing tests in Jotai</Resource>
 - Custom Utils / App Functions (Unit Tests)
   - Most of the time, these are pure javascript functions kept somewhere for repeated use throughout the project. These should be simple to test because you don't have to worry about rendering anything. You can test the inputs and outputs of a simple function by passing different arguments as each function parameter and checking the return value.
 - Page / Feature Components (Integration Tests)
@@ -179,7 +179,7 @@ What to avoid when writing tests
   <Question value='one'>
     <QuestionText>How to make components more testable</QuestionText>
     <Answer>
-      The easiest way to think about making components easier to test is to try and make them more ["pure" functions](https://react.dev/learn/keeping-components-pure). In React - making components more "pure" tends to mean relying on props (which are the "arguments" to our functional component). If the component relies on any internal/external state for rendering, we can't guarantee what that state data will be when we render the component, and therefore, we can't always guarantee that our functional component will return a certain JSX output.
+      The easiest way to think about making components easier to test is to try and make them more <Resource url='https://react.dev/learn/keeping-components-pure'>"pure" functions</Resource>. In React - making components more "pure" tends to mean relying on props (which are the "arguments" to our functional component). If the component relies on any internal/external state for rendering, we can't guarantee what that state data will be when we render the component, and therefore, we can't always guarantee that our functional component will return a certain JSX output.
 
       This is not an outright recommendation to rebuild all of your components to use ONLY props, far from it. The usage of props is very nuanced, and getting it right from both a performance standpoint AND a developer-experience standpoint is difficult to get right. Props are not always the right solution, but if you want to design your components with unit-testability in mind, your functional components' render logic should rely more on props than other sources of information (like global stores, local state, localStorage, etc.)
     </Answer>
@@ -227,9 +227,9 @@ What to avoid when writing tests
 
 - Refactoring your code shouldn't break tests.
   - Since the traditional definition of a refactor would include NOT changing the functionality/output (and simply making the code more efficient/maintainable) - if a test breaks during a refactor session, then you had to have changed functionality, or the test was too brittle and assumed too much implementation detail. This is a "false failure", by the way.
-- Use [custom rendering](https://testing-library.com/docs/react-testing-library/setup#custom-render) to make it easier to simulate your application in your test suite
-- Use [Mock Service Workers (MSW)](https://mswjs.io/) for mocking your API endpoints
-- Use [faker](https://github.com/faker-js/faker) for generating large amounts of fake datasets
+- Use <Resource url='https://testing-library.com/docs/react-testing-library/setup#custom-render'>custom rendering</Resource> to make it easier to simulate your application in your test suite
+- Use <Resource url='https://mswjs.io/'>Mock Service Workers (MSW)</Resource> for mocking your API endpoints
+- Use <Resource url='https://github.com/faker-js/faker'>faker</Resource> for generating large amounts of fake datasets
 
 ## Jest Tips
 
@@ -272,12 +272,12 @@ test('another test where we want a different return value from someFunction', ()
 
 ## RTL Tips
 
-Watch [Testing Library: everybody uses it, but nobody understands it](https://www.youtube.com/watch?v=jNAMdsbdvlI&t=1s) by Matan Borenkraout.
+Watch <Resource url='https://www.youtube.com/watch?v=jNAMdsbdvlI&t=1s'>Testing Library: everybody uses it, but nobody understands it</Resource> by Matan Borenkraout.
 
-- RTL has a [very rich API](https://testing-library.com/docs/queries/about/) for querying/selecting DOM nodes rendered by your components - it’s very useful for making tests less brittle and reliant on implementation details
-  - You can find [a similar tool in browsers](https://developer.chrome.com/docs/devtools/accessibility/reference/#computed) by going to Elements → Inspect → Accessibility → Computed Properties
-  - The [Testing Playground](https://testing-playground.com/) can also be helpful in finding creative but robust ways of finding DOM nodes in your render output
-- When firing events in your tests, 99% of the time, you should prefer [userEvent](https://testing-library.com/docs/user-event/intro/) over [fireEvent](https://testing-library.com/docs/dom-testing-library/api-events#fireevent), because userEvent simulates an event closer to how a browser would (including propagation and other events that get fired like mouseUp / mouseDown)
+- RTL has a <Resource url='https://testing-library.com/docs/queries/about/'>very rich API</Resource> for querying/selecting DOM nodes rendered by your components - it's very useful for making tests less brittle and reliant on implementation details
+  - You can find <Resource url='https://developer.chrome.com/docs/devtools/accessibility/reference/#computed'>a similar tool in browsers</Resource> by going to Elements → Inspect → Accessibility → Computed Properties
+  - The <Resource url='https://testing-playground.com/'>Testing Playground</Resource> can also be helpful in finding creative but robust ways of finding DOM nodes in your render output
+- When firing events in your tests, 99% of the time, you should prefer <Resource url='https://testing-library.com/docs/user-event/intro/'>userEvent</Resource> over <Resource url='https://testing-library.com/docs/dom-testing-library/api-events#fireevent'>fireEvent</Resource>, because userEvent simulates an event closer to how a browser would (including propagation and other events that get fired like mouseUp / mouseDown)
 
 ```jsx
 // example of "custom rendering" so that when you render your components, they have dependencies like contexts/stores/etc
@@ -307,9 +307,9 @@ const el = getByText(/word or phrase/i); // gets an element by its text content,
 
 ## Misc Reading
 
-- [What is a test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test) by Kent C. Dodds
-- [What is a mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock) by Kent C. Dodds
-- [Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) by Kent C. Dodds
-- [Fix the "Not Wrapped in act() Warning"](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning) by Kent C. Dodds
-- [An Overview of JavaScript Testing in 2022](https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870) by Vitali Zaidman
-- [Testing Overview](https://abseil.io/resources/swe-book/html/ch11.html) by Adam Bender
+- <Resource url='https://kentcdodds.com/blog/but-really-what-is-a-javascript-test'>What is a test?</Resource> by Kent C. Dodds
+- <Resource url='https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock'>What is a mock?</Resource> by Kent C. Dodds
+- <Resource url='https://kentcdodds.com/blog/testing-implementation-details'>Testing Implementation Details</Resource> by Kent C. Dodds
+- <Resource url='https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning'>Fix the "Not Wrapped in act() Warning"</Resource> by Kent C. Dodds
+- <Resource url='https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870'>An Overview of JavaScript Testing in 2022</Resource> by Vitali Zaidman
+- <Resource url='https://abseil.io/resources/swe-book/html/ch11.html'>Testing Overview</Resource> by Adam Bender

@@ -50,11 +50,9 @@ export function Layout({ children, sections = [] }) {
                 })}
               >
                 <button
-                  className={clsx({
-                    'relative hidden h-6 w-6 lg:block transition-all hover:text-white': true,
-                    'text-zinc-600': !isNavigationOpen,
-                    'text-zinc-800 dark:text-white': isNavigationOpen,
-                  })}
+                  className={clsx(
+                    'relative hidden h-6 w-6 lg:block transition-all text-zinc-800 dark:text-white'
+                  )}
                   onClick={() => toggleNavOpen()}
                 >
                   <svg
@@ -112,7 +110,7 @@ export function Layout({ children, sections = [] }) {
                       {
                         'w-72 opacity-100': isHoveringNav || isNavigationOpen,
                         'delay-0': isHoveringNav || isNavigationOpen,
-                        'delay-1000': !isHoveringNav && !isNavigationOpen
+                        'delay-500': !isHoveringNav && !isNavigationOpen
                       }
                     )}
                   >
@@ -120,7 +118,7 @@ export function Layout({ children, sections = [] }) {
                       className={clsx('w-72 pt-2 opacity-0 duration-[190ms] ease-in-out', {
                         'opacity-100': isHoveringNav || isNavigationOpen,
                         'delay-0': isHoveringNav || isNavigationOpen,
-                        'delay-1000': !isHoveringNav && !isNavigationOpen
+                        'delay-500': !isHoveringNav && !isNavigationOpen
                       })}
                     >
                       <Navigation />

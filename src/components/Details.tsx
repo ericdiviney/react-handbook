@@ -2,22 +2,6 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { PropsWithChildren, useState } from 'react'
 
-{
-  /* <Details>
-The **target audience** for this guide are for both React beginners and architects either looking for guidance building a new application or understanding the decisions that others have made for applications they've worked on. Having said that - you should have a **strong grasp of React** if you want to understand this material presented in this article.
-
-We are authoring another guide for more advanced approaches to state management. The approach in this guide is best applied to CRUD-like SPAs (Single-Page Applications) built with React.
-
-We are looking for writers that can contribute material for:
-
-<div className='flex gap-12 mt-3'>
-    <a href="https://signia.tldraw.dev/" className="font-semibold text-sky-400">signia</a>
-    <a href="https://legendapp.com/open-source/state/" className="font-semibold text-sky-400">legend</a>
-    <a href="https://xstate.js.org/docs/" className="font-semibold text-sky-400">xState</a>
-</div>
-</Details> */
-}
-
 interface DetailsProps {
   icon: 'learn' | 'contribute'
   label: string
