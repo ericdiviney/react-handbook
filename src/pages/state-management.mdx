@@ -166,7 +166,7 @@ Before explaining this approach to State Management, let's get on the same page 
 
 Outlined here are the various categories data your application might need to manage. Understanding the disctinction between each is crucial because some state-management tools are better suited for different categories of state data than others.
 
-If you&apos;re interested in a more detailed definition of each state category below, you might take the time to read [The 5 Types of React Application State](https://jamesknelson.com/5-types-react-application-state/). Think of these categories as out of your control; this is simply the nature of the web and how the industry has decided to categorize information.
+If you&apos;re interested in a more detailed definition of each state category below, you might take the time to read <Resource url='https://jamesknelson.com/5-types-react-application-state/'>The 5 Types of React Application State</Resource>. Think of these categories as out of your control; this is simply the nature of the web and how the industry has decided to categorize information.
 
 **1. UI state** <span className='text-[.75rem]'>(other names: "Control State")</span> <br/> Local state is just what it sounds like: state that doesn&apos;t leave your container. "Container" is a pretty generic word, in React-world it is a synonym for "component". Some examples of what is meant by "local state" are form values, toggle states (true/false) representing expanded sidebars, opened accordions, active tabs, etc. One way to think about local state is you can typically discard it until the "container" renders again, initiating the state with a default value. Most of the time, you should use native React hooks (`useState`, `useReducer`, `useContext`) to manage this type of state.
 
@@ -193,15 +193,15 @@ Now that you know all the types of state, the remainder of this guide will focus
 
 Those specific 3 types are the focus because the other types (4. Session State and 5. Location state) can easily be solved for us by tapping into the vast React ecosystem without much consideration. Or, put differently, **most apps require the same functionality when it comes to routing and token storage**, so there's not much to solve.
 
-It&apos;s infrequent that you should write a custom location state manager when plenty of better options already exist for managing navigation history (like [react-router-dom](https://www.npmjs.com/package/react-router-dom) or [reactnavigation](https://reactnavigation.org/) for React-Native apps).
+It&apos;s infrequent that you should write a custom location state manager when plenty of better options already exist for managing navigation history (like <Resource url='https://www.npmjs.com/package/react-router-dom'>react-router-dom</Resource> or <Resource url='https://reactnavigation.org/'>reactnavigation</Resource> for React-Native apps).
 
-And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in the [Overlaps](#common-overlaps) section below), so here's a summary:
+And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in the <Resource url='#common-overlaps'>Overlaps</Resource> section below), so here's a summary:
 
-In almost all React apps that need authentication - the recommendation is to use access tokens for communicating with APIs, and tokens can be stored easily in localStorage to persist across page refreshes. If you are implementing access tokens that can be [refreshed](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them) (as is common today), your session state management will be a little more hands-on, but typically you can reach for an open-source solution to get you pretty far. In many enterprise apps that use SSO solutions or third-party authentication services, you could utilize these libraries to help with managing tokens client-side:
+In almost all React apps that need authentication - the recommendation is to use access tokens for communicating with APIs, and tokens can be stored easily in localStorage to persist across page refreshes. If you are implementing access tokens that can be <Resource url='https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them'>refreshed</Resource> (as is common today), your session state management will be a little more hands-on, but typically you can reach for an open-source solution to get you pretty far. In many enterprise apps that use SSO solutions or third-party authentication services, you could utilize these libraries to help with managing tokens client-side:
 
-- [okta-react](https://www.npmjs.com/package/@okta/okta-react)
-- [auth0-react](https://www.npmjs.com/package/@auth0/auth0-react)
-- [clerk-react](https://www.npmjs.com/package/@clerk/clerk-react)
+- <Resource url='https://www.npmjs.com/package/@okta/okta-react'>okta-react</Resource>
+- <Resource url='https://www.npmjs.com/package/@auth0/auth0-react'>auth0-react</Resource>
+- <Resource url='ttps://www.npmjs.com/package/@clerk/clerk-react'>clerk-react</Resource>
 
 ## Common Uses of The Tools We Know
 
@@ -228,11 +228,11 @@ However, developers often do reach for global state manager libraries too soon. 
 
 Now that you understand the differences between local and global state - you need to understand how far you can take local state before introducing a global store in your application.
 
-- [Choosing the State Structure](https://react.dev/learn/choosing-the-state-structure) - Advice for how to structure the specific data you will be managing
-- [Extracting State into a Reducer](https://react.dev/learn/extracting-state-logic-into-a-reducer)
-- [Lifting State](https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example) - Lifting state to a parent can sometimes alleviate the need for global stores
-  - [Update the State of a Sibling Component by Lifting State](https://alexsidorenko.com/blog/react-siblings/)
-  - [Avoiding Prop-Drilling by Lifting State](https://alexsidorenko.com/blog/react-prop-drilling-composition/)
+- <Resource url='https://react.dev/learn/choosing-the-state-structure'>Choosing the State Structure</Resource> - Advice for how to structure the specific data you will be managing
+- <Resource url='https://react.dev/learn/extracting-state-logic-into-a-reducer'>Extracting State into a Reducer</Resource>
+- <Resource url='https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example'>Lifting State</Resource> - Lifting state to a parent can sometimes alleviate the need for global stores
+  - <Resource url='https://alexsidorenko.com/blog/react-siblings/'>Update the State of a Sibling Component by Lifting State</Resource>
+  - <Resource url='https://alexsidorenko.com/blog/react-prop-drilling-composition/'>Avoiding Prop-Drilling by Lifting State</Resource>
 
 ## When Do You Need Global State?
 
@@ -253,9 +253,9 @@ There are times where you might not need an entire state manager. If your global
 
 ### Why Not Context?
 
-The [React docs](https://react.dev/learn/passing-data-deeply-with-context) explain how to use React Context for some global state management. While this can be a suitable solution for simple applications, we find that using Context correctly is more difficult and limiting than using the tools suggested in this guide.
+The <Resource url='https://react.dev/learn/passing-data-deeply-with-context'>React docs</Resource> explain how to use React Context for more global-like state management. While this can be a suitable solution for simple applications, we find that using Context correctly is typically hard to get right as a global state manager, especially if you have lots of data and its frequently being accessed by various trees/nodes in your application. 
 
-Our upcoming advanced State Management Guide will explain how to use Context correctly, when it's a good choice, and why we think there are [better options](https://blog.testdouble.com/posts/2021-03-19-react-context-for-dependency-injection-not-state/). The takeaway here is that an efficient (optimized for re-renders) solution for global state management is not an easy task with Context.
+Our upcoming advanced State Management Guide will explain how to use Context correctly, when it's a good choice, and why we think there are <Resource url='https://blog.testdouble.com/posts/2021-03-19-react-context-for-dependency-injection-not-state/'>better options</Resource>. The takeaway here is that an efficient (optimized for re-renders) solution for global state management is not an easy task with Context.
 
 ## 1) "Smart" Data Fetching
 
@@ -339,18 +339,18 @@ Tradeoffs
 
 - Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
 - Blackbox: the proxy can feel a little magical at times, and may prove difficult to debug in very complex scenarios
-- Heavily reliant on browser support for the [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) API
+- Heavily reliant on browser support for the <Resource url='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy'>Proxy</Resource> API
 
 ## Table Comparison
 
 Before diving into the recommendations below, it will help to clarify what "FLUX" means and why it is included in the descriptions of each library.
 
-The [FLUX architecture](https://medium.com/swlh/the-case-for-flux-379b7d1982c6) is very intricate with many details, but to sum it up here: `unidirectional (one-way) data-flow, implemented with` [immutability](https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310).
+The <Resource url='https://medium.com/swlh/the-case-for-flux-379b7d1982c6'>FLUX architecture</Resource> is very intricate with many details, but to sum it up here: `unidirectional (one-way) data-flow, implemented with` <Resource url='https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310'>immutability</Resource>.
 
 Whoa, lots of fancy words there. Let's simplify:
 
-- `unidirectional data-flow` - "actions" get "dispatched" to update the "store" in a [predictable, consistent manner](https://medium.com/@grover.vinayak0611/what-is-flux-architecture-why-facebook-used-it-and-the-comparison-with-mvc-architecture-49c01ed5d2e1)
-- `implemented with immutability` - the way that update operations are performed on the store (the literal code that changes the data when an update happens). Read more about [immutability](https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/) and [update patterns](https://redux.js.org/usage/structuring-reducers/immutable-update-patterns)
+- `unidirectional data-flow` - "actions" get "dispatched" to update the "store" in a <Resource url='https://medium.com/@grover.vinayak0611/what-is-flux-architecture-why-facebook-used-it-and-the-comparison-with-mvc-architecture-49c01ed5d2e1'>predictable, consistent manner</Resource>
+- `implemented with immutability` - the way that update operations are performed on the store (the literal code that changes the data when an update happens). Read more about <Resource url='https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/'>immutability</Resource> and <Resource url='https://redux.js.org/usage/structuring-reducers/immutable-update-patterns'>update patterns</Resource>
 
 FLUX is just a design pattern for updating stores of data, nothing more. You'll notice that nearly every non-proxy library recommended implements FLUX principles in some way - so its important to understand Flux outside the context of any specific one of these libraries.
 
@@ -358,12 +358,12 @@ The links below take you to bundlejs.com to demonstrate what the bundle size mig
 
 | Pattern     | Library                                                         | Links to Bundle Size                                                       | Popularity (weekly downloads) |
 | ----------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------- |
-| Flux Module | [redux-toolkit](https://www.npmjs.com/package/@reduxjs/toolkit) | [bundlejs.com](https://bundlejs.com/?q=%40reduxjs%2Ftoolkit%2Creact-redux) | 2 million                     |
-| Flux Module | [zustand](https://www.npmjs.com/package/zustand)                | [bundlejs.com](https://bundlejs.com/?q=zustand)                            | 1.5 million                   |
-| Flux Atomic | [recoil](https://www.npmjs.com/package/recoil)                  | [bundlejs.com](https://bundlejs.com/?q=recoil)                             | 400k                          |
-| Flux Atomic | [jotai](https://www.npmjs.com/package/jotai)                    | [bundlejs.com](https://bundlejs.com/?q=jotai)                              | 450k                          |
-| Proxy       | [mobx](https://www.npmjs.com/package/mobx)                      | [bundlejs.com](https://bundlejs.com/?q=mobx)                               | 1 million                     |
-| Proxy       | [valtio](https://www.npmjs.com/package/valtio)                  | [bundlejs.com](https://bundlejs.com/?q=valtio)                             | 230k                          |
+| Flux Module | <Resource url='https://www.npmjs.com/package/@reduxjs/toolkit'>redux-toolkit</Resource> | <Resource url='https://bundlejs.com/?q=%40reduxjs%2Ftoolkit%2Creact-redux'>bundlejs.com</Resource> | 2 million                     |
+| Flux Module | <Resource url='https://www.npmjs.com/package/zustand'>zustand</Resource>                | <Resource url='https://bundlejs.com/?q=zustand'>bundlejs.com</Resource>                            | 1.5 million                   |
+| Flux Atomic | <Resource url='https://www.npmjs.com/package/recoil'>recoil</Resource>                  | <Resource url='https://bundlejs.com/?q=recoil'>bundlejs.com</Resource>                             | 400k                          |
+| Flux Atomic | <Resource url='https://www.npmjs.com/package/jotai'>jotai</Resource>                    | <Resource url='https://bundlejs.com/?q=jotai'>bundlejs.com</Resource>                              | 450k                          |
+| Proxy       | <Resource url='https://www.npmjs.com/package/mobx'>mobx</Resource>                      | <Resource url='https://bundlejs.com/?q=mobx'>bundlejs.com</Resource>                               | 1 million                     |
+| Proxy       | <Resource url='https://www.npmjs.com/package/valtio'>valtio</Resource>                  | <Resource url='https://bundlejs.com/?q=valtio'>bundlejs.com</Resource>                             | 230k                          |
 
 ## Common Overlaps
 
@@ -385,9 +385,9 @@ Specific common overlaps between "App" State and "Session" State
 
 ### Thanks / References
 
-Thanks for reading! If you have any suggestions to make to how developers can approach managing state in their React applications <a href="/team/eric-diviney">I</a> would love to talk with you (and give you credit for your contributions!).
+Thanks for reading! If you have any suggestions to make to how developers can approach managing state in their React applications <Resource url="/team/eric-diviney">I would love to talk with you</Resource> (and give you credit for your contributions!).
 
-- [https://dev.to/g_abud/why-i-quit-redux-1knl](https://dev.to/g_abud/why-i-quit-redux-1knl)
-- [https://kentcdodds.com/blog/application-state-management-with-react](https://kentcdodds.com/blog/application-state-management-with-react)
-- [https://leerob.io/blog/react-state-management](https://leerob.io/blog/react-state-management)
-- [https://www.matillion.com/resources/blog/react-state-management-libraries-which-one](https://www.matillion.com/resources/blog/react-state-management-libraries-which-one)
+- <Resource url='https://kentcdodds.com/blog/application-state-management-with-react'>kentcdodds.com/blog/application-state-management-with-react</Resource>
+- <Resource url='https://leerob.io/blog/react-state-management'>leerob.io/blog/react-state-management</Resource>
+- <Resource url='https://www.matillion.com/resources/blog/react-state-management-libraries-which-one'>matillion.com/resources/blog/react-state-management-libraries-which-one</Resource>
+- <Resource url='https://dev.to/g_abud/why-i-quit-redux-1knl'>dev.to/g_abud/why-i-quit-redux-1knl</Resource>
