@@ -25,7 +25,7 @@ export function QuestionText({ children }) {
   return <AccordionPrimitive.Header className="flex m-0">
   <AccordionPrimitive.Trigger
     className={clsx(
-      'flex flex-1 items-center justify-between py-4 font-medium transition-all [&[data-state=open]>svg]:rotate-180 hover:text-sky-400 data-[state=open]:text-sky-400',
+      'flex flex-1 items-center justify-between py-4 font-medium transition-all duration-100 [&[data-state=open]>svg]:rotate-180 hover:text-zinc-600 dark:hover:text-sky-200',
     )}
   >
     {children}

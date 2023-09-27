@@ -1,4 +1,6 @@
 import * as HoverCard from '@radix-ui/react-hover-card'
+import { Resource } from '@/components/Resource'
+import Image from 'next/image'
 
 const core = [
   {
@@ -10,19 +12,6 @@ const core = [
       site: 'https://ericdiviney.com/',
     },
     image: '/eric-diviney.jpg',
-  },
-]
-
-const maintainers = [
-  {
-    name: 'Theophilus Ekunnusi',
-    description: 'Student Frontend Engineer | Alx',
-    socials: {
-      twitter: 'https://twitter.com/theo_flux',
-      github: 'https://github.com/Theo-flux',
-      site: 'https://github.com/Theo-flux',
-    },
-    image: 'https://avatars.githubusercontent.com/u/72856939?s=120&v=4',
   },
 ]
 
@@ -40,9 +29,36 @@ export function Contributors() {
             <MemberCard key={person.image} person={person} large />
           ))}
         </div>
+        <div className='mt-6'>
+          <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
+            Special thanks to:
+          </span>
+
+          <ul className="space-y-2 list-disc">
+            <li>
+              <Resource url='https://twitter.com/josh_claunch'>Josh Claunch</Resource> - someone I repeatedly go to for feedback/advice on things I&apos;m writing, and for having very advanced knowledge of state management in React applications
+            </li>
+            <li>
+              <Resource url='https://www.linkedin.com/in/conklin-anthony/'>Anthony Conklin</Resource> - someone else I can always rely on for fresh feedback on any web project I start
+            </li>
+            <li>
+              <Resource url='https://github.com/Theo-flux'>Theo-Flux</Resource> for being the first person to contribute to the project besides myself, giving me hope that I&apos;m working on something worthwhile
+            </li>
+            <li>
+              <Resource url='https://www.linkedin.com/in/anogueras/'>Tono Nogueras  </Resource> for significant contributions to the React Native guide
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <p className='lead'>Join 10+ other <a href="https://github.com/ericdiviney/react-handbook">contributors</a>, and help us maintain the website as an example of what a solid Next.js application codebase can look like.</p>
+      <p className="lead">
+        Join 10+ other{' '}
+        <Resource url="https://github.com/ericdiviney/react-handbook">
+          contributors
+        </Resource>
+        , and help us maintain the website as an example of what a solid Next.js
+        application codebase can look like.
+      </p>
     </div>
   )
 }
@@ -55,27 +71,31 @@ function MemberCard({ person, large = false }) {
   return (
     <HoverCard.Root key={image}>
       <HoverCard.Trigger asChild>
-        <a
-          className="inline-block rounded-full outline-none cursor-pointer"
-          href={socials.site}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          <img
-            key={image}
-            className={`${size} relative z-10 inline-block rounded-full ring-2 ring-white dark:ring-zinc-900`}
-            src={image}
-            alt=""
-          />
-        </a>
+        <div>
+          <Resource
+            className="inline-block rounded-full outline-none cursor-pointer"
+            url={socials.site}
+          >
+            <img
+              key={image}
+              className={`${size} relative z-10 inline-block rounded-full ring-2 ring-white dark:ring-zinc-900`}
+              src={image}
+              alt=""
+            />
+          </Resource>
+        </div>
       </HoverCard.Trigger>
       <HoverCard.Portal>
         <HoverCard.Content
-          className="z-40 data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade w-[300px] rounded-md bg-white p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
+          className="data-[side=bottom]:animate-slideUpAndFade data-[side=right]:animate-slideLeftAndFade data-[side=left]:animate-slideRightAndFade data-[side=top]:animate-slideDownAndFade z-40 w-[300px] rounded-md bg-white p-5 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] data-[state=open]:transition-all"
           sideOffset={5}
         >
           <div className="flex flex-col gap-[7px]">
-            <img className="block h-[60px] w-[60px] rounded-full" src={image} />
+            <img
+              className="block h-[60px] w-[60px] rounded-full"
+              src={image}
+              alt=""
+            />
             <div className="flex flex-col gap-[15px]">
               <div>
                 <div className="m-0 font-medium leading-[1.5]">{name}</div>
@@ -83,24 +103,24 @@ function MemberCard({ person, large = false }) {
               <div className="m-0 text-sm leading-[1.5]">{description}</div>
               <div className="prose flex gap-[15px]">
                 {socials.twitter && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    href={socials.twitter}
-                    className="m-0 text-sm leading-[1.5]"
-                  >
-                    Twitter
-                  </a>
+                  <>
+                    <Resource
+                      url={socials.twitter}
+                      className="m-0 text-sm leading-[1.5]"
+                    >
+                      Twitter
+                    </Resource>
+                  </>
                 )}
                 {socials.github && (
-                  <a
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    href={socials.github}
-                    className="m-0 text-sm leading-[1.5]"
-                  >
-                    GitHub
-                  </a>
+                  <>
+                    <Resource
+                      url={socials.github}
+                      className="m-0 text-sm leading-[1.5]"
+                    >
+                      GitHub
+                    </Resource>
+                  </>
                 )}
               </div>
             </div>

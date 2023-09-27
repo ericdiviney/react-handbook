@@ -1,34 +1,41 @@
 V2 of the site
 
+# Doing
+- replace all <a> tags in markdown and everywhere with <Resource url=''></Resource>
 
-- refactor FrameworkComparisonTable to generic ComparisonTable
-    - simplify this table
-    - reach out directly to each framework and get their 1 minute pitch
-    - remove your "opinions" on when one is better than the other. SSG vs SSR - and that's really the only consideration you should be making
-- animate all the toggles/interactions that can happen on the site, buttery smooth namean
+
+
+# Next
 - center Tweet embeds and give better spacing
 - go through all code snippets and recreate as js/ts tabs (offer both versions for all snippets on site)
 - custom components/visualizations for things in code snippets that aren't code
     - plus better ways of presenting short code snippets (automated testing) - the code snippets here are kinda ugly honest
 - create custom component that shows folder structure of react project
+    - https://www.radix-ui.com/primitives/docs/components/collapsible
 - remove onNavigate from Navigation component
 - a "see more links/material on this subject" component
 - elevated shadow + hover effect for cards
 - move to a more hierarchical type system
     - headings, paragraphs, lead text are the only "size" variants you need, everything else should be formatting and layout
-- FAQ component like this: https://v0.dev/t/q78qlbK
 - persist the open navigation sidebar to the localStorage and instantiate from it, so on refreshes it doesn't reset
-- add a "sign up for newsletter to get updates" form somewhere
-- also add ways to get people's attention, global CTA's pointing to new pages "Hey, we just published a new page on {x}, check it out ->"
-- add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
+- check notebook for any components you missed and want to add/reuse around the site
+- create version of <Code> component that has internal state, does NOT rely on global language choice (more like tabs,accordion)
+- animate all the toggles/interactions that can happen on the site, buttery smooth namean
+
+
+
+## Larger content updates to wrap up v2 sprint
+- refactor FrameworkComparisonTable to generic ComparisonTable
+    - simplify this table
+    - reach out directly to each framework and get their 1 minute pitch
+    - remove your "opinions" on when one is better than the other. SSG vs SSR - and that's really the only consideration you should be making
 - At bottom of "Frameworks" page - add a "more to come" notice for pages on Gatsby, Next, and Remix each
 - finish homepage content and be sure newly created pages (fundamentals) are all grammatically fine and complete before publish
+- add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
 - add to courses - https://scrimba.com/learn/learnreact
 - add animation to Tab/Accordion component in State Management (like the stripe navigation, sliding left/right)
-- check notebook for any components you missed and want to add/reuse around the site
 - add to styling page 
     - https://github.com/css-modules
-- replace all <a> tags in markdown and everywhere with <Resource url=''></Resource>
 - change navigation link: Styling / UI Libraries → Styling & UI Libraries
 - Add a new section for each popular CSS library and some resources/tips for it:
     - tailwind
@@ -48,12 +55,12 @@ V2 of the site
     - just link to the respective pages now, don't try to write so much on each just link to the docs, tutorials, tips, cheatsheets, etc.
 - add to homepage, we refer to websites and web applications as simply "web apps". It's an arbitrary distinction really. This site helps you build web and mobile apps, simple as that.
     - then also update all throughout the site when referring to sites/apps/websites/web applications/webapps/etc.
-- create version of <Code> component that has internal state, does NOT rely on global language choice (more like tabs,accordion)
 - https://www.youtube.com/watch?v=30LWjhZzg50
 - Josh's feedback is awesome, in Discord
 - find somewhere to put tamagui.js and NX monorepo for native/web shared codebases
 - add a <Summary> to the top of each content page
-- migrate to typescript bro
+- check every page for hydration / errors
+- use LeadHeadings inside <Details> and <Summary> where you need headers
 - remove web 2.0 to now section on your bio, also remove "Weve been acquired" and only link to Dialexa for now
 - add some personality: this site previously took stances on tools, frameworks, etc. We are going to really try and undo that. Let's start with some basics:
     - we live in a golden era of web development tools
@@ -63,10 +70,31 @@ V2 of the site
     - Astro, Qwik, jQuery, seriously all of it can be fun to write with
     - We're not going to fall into the cycle of dogmatic binary choices for best practices. We believe the world is more gray than that, and I want the content on this website to reflect that
     - IMO, the twitter wars have gotten to click baity lately. Everyone's posting hot takes, memes, etc. I'm not looking for engagement bait. I simply want to help write one of the best damn resources on the internet for learning React development.
+- Looking for contributions on Ecosystem page
+    - useful things for 3d rendering
+    - edge cases / difficult things to do in frontend apps
+    - niche libraries that just REALLY fill out their use-cases
+    - add toast section to this page?
+- New resources in the sidebar - Starter File Templates (Components, Contexts, Tests, etc.)
+    - JavaScript / TypeScript component starter file
+    - Barrel files
+    - JavaScript / TypeScript context starter files / templates
+        - what are the cute little variants with useState() that make it a simple global state?
+    - JavaScript / TypeScript custom hook starter file
+    - Test with custom render, context provider, components, and test assertations
+
+
+
+
+## Longer initiatives to add to the pipeline or to Github issues tab
+- migrate to typescript bro
+- "Detail" mode near dark/light mode - which defaults to all expandable components open by default (get this in cookie, localstorage?)
+- refactor tabs to use headless ui instead of Radix - does this change much?
+- refactor accordion -> disclosure in headless ui instead of Radix
+- add a "sign up for newsletter to get updates" form somewhere
+- also add ways to get people's attention, global CTA's pointing to new pages "Hey, we just published a new page on {x}, check it out ->"
 - add a "Special Thanks" on the about page from me:
     - Josh Claunch, frequent collaborator and gives great feedback (also has expertise in very fast moving data in React apps)
-- "Detail" mode near dark/light mode - which defaults to all expandable components open by default (get this in cookie, localstorage?)
-- check every page for hydration / errors
 
 
 v2 Feedback from?
