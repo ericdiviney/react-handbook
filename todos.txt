@@ -11,6 +11,7 @@ V2 of the site
 - custom components/visualizations for things in code snippets that aren't code
     - plus better ways of presenting short code snippets (automated testing) - the code snippets here are kinda ugly honest
 - create custom component that shows folder structure of react project
+    - https://www.radix-ui.com/primitives/docs/components/collapsible
 - remove onNavigate from Navigation component
 - a "see more links/material on this subject" component
 - elevated shadow + hover effect for cards
@@ -74,7 +75,13 @@ V2 of the site
     - edge cases / difficult things to do in frontend apps
     - niche libraries that just REALLY fill out their use-cases
     - add toast section to this page?
-
+- New resources in the sidebar - Starter File Templates (Components, Contexts, Tests, etc.)
+    - JavaScript / TypeScript component starter file
+    - Barrel files
+    - JavaScript / TypeScript context starter files / templates
+        - what are the cute little variants with useState() that make it a simple global state?
+    - JavaScript / TypeScript custom hook starter file
+    - Test with custom render, context provider, components, and test assertations
 
 
 
