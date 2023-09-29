@@ -28,23 +28,23 @@ Runtime Performance - This is a measure of how "smooth" your application runs an
 
 ## Measuring Loadtimes
 
-- [PageSpeed Insights](https://pagespeed.web.dev/)
-- [WebPageTest.org](https://webpagetest.org/)
-- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
-- [UnLightHouse](https://unlighthouse.dev/)
+- <Resource url='https://pagespeed.web.dev/'>PageSpeed Insights</Resource>
+- <Resource url='https://webpagetest.org/'>WebPageTest.org</Resource>
+- <Resource url='https://developer.chrome.com/docs/lighthouse/overview/'>Lighthouse</Resource>
+- <Resource url='https://unlighthouse.dev/'>UnLightHouse</Resource>
 
 ## Optimizing Loadtimes
 
 Send as little code/media as possible over the network, and optimize everything 
-	- Utilize [GZip compression](https://developer.mozilla.org/en-US/docs/Glossary/GZip_compression) server-side to compress all in-flight HTTP requests
-	- Optimize all [images](https://kinsta.com/blog/optimize-images-for-web/) and [videos](https://www.keycdn.com/blog/video-optimization) included in the bundle
-		- Lazy load [images](https://web.dev/browser-level-image-lazy-loading/)
-	- [Building](https://vitejs.dev/config/build-options.html) and [Minifying](https://vitejs.dev/config/build-options.html#build-minify) all project assets to CSS / JavaScript
+	- Utilize <Resource url='https://developer.mozilla.org/en-US/docs/Glossary/GZip_compression'>GZip compression</Resource> server-side to compress all in-flight HTTP requests
+	- Optimize all <Resource url='https://kinsta.com/blog/optimize-images-for-web/'>images</Resource> and <Resource url='https://www.keycdn.com/blog/video-optimization'>videos</Resource> included in the bundle
+		- Lazy load <Resource url='https://web.dev/browser-level-image-lazy-loading/'>images</Resource>
+	- <Resource url='https://vitejs.dev/config/build-options.html'>Building</Resource> and <Resource url='https://vitejs.dev/config/build-options.html#build-minify'>Minifying</Resource> all project assets to CSS / JavaScript
 	- Various Methods of Code Splitting
-		- Vite bundles will have some code-splitting [done](https://vitejs.dev/guide/features.html) by [default](https://vitejs.dev/guide/features.html#build-optimizations)
-		- What is [Lazy Loading](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading) & how to use [lazy](https://react.dev/reference/react/lazy) and [Suspense](https://react.dev/reference/react/Suspense) to [lazy-load](https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c) components or routes in your React app
-	- [Server-Side Rendering (SSR)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) and [Static Site Generation (SSG)](https://www.youtube.com/watch?v=bfLFHp7Sbkg) can improve the First Contentful Paint and Time to Interactive metrics, as they allow the browser to render the page more quickly (and are accessible by search engines).
-		- Adding SSR / SSG to an existing project is no small feat. Try to evaluate early on if your application would benefit from these technologies so you can configure your project the right way from the start.
+		- Vite bundles will have some code-splitting <Resource url='https://vitejs.dev/guide/features.html'>done</Resource> by <Resource url='https://vitejs.dev/guide/features.html#build-optimizations'>default</Resource>
+		- What is <Resource url='https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading'>Lazy Loading</Resource> & how to use <Resource url='https://react.dev/reference/react/lazy'>lazy</Resource> and <Resource url='https://react.dev/reference/react/Suspense'>Suspense</Resource> to <Resource url='https://blog.bitsrc.io/lazy-loading-react-components-with-react-lazy-and-suspense-f05c4cfde10c'>lazy-load</Resource> components or routes in your React app
+	- <Resource url='https://www.youtube.com/watch?v=bfLFHp7Sbkg'>Server-Side Rendering (SSR)</Resource> and <Resource url='https://www.youtube.com/watch?v=bfLFHp7Sbkg'>Static Site Generation (SSG)</Resource> can improve the First Contentful Paint and Time to Interactive metrics, as they allow the browser to render the page more quickly (and are accessible by search engines).
+		- Adding SSR / SSG to an existing project is no small feat and will take you more than an afternoon. Try to evaluate early on if your application would benefit from these technologies so you can configure your project the right way from the start.
 
 ## Measuring Runtimes
 
@@ -57,49 +57,49 @@ In modern React apps, most of the performance issues you'll run into can probabl
 
 <TwitterTweetEmbed tweetId={'1649711882142461952'} />
 
-Read more from Alex Sidorenko in his series [A Visual Guide to React Rendering](https://alexsidorenko.com/blog/react-render-always-rerenders/).
+Read more from Alex Sidorenko in his series <Resource url='https://alexsidorenko.com/blog/react-render-always-rerenders/'>A Visual Guide to React Rendering</Resource>.
 
 Other helpful resources for understanding how to measure runtime performance in React apps: 
 
-- [Measuring Performance in Chrome](https://developer.chrome.com/docs/devtools/performance/)
-- [Debugging in the Browser](https://javascript.info/debugging-chrome)
-- [Devtools Coverage](https://developer.chrome.com/docs/devtools/coverage/) - shows how much of your code is being shipped but then NOT running (while session is recording)
-- Use the [Profiler](https://react.dev/reference/react/Profiler) to measure rendering performance of a React tree programatically
-- [How to Detect Slow Renders in React?](https://alexsidorenko.com/blog/react-performance-slow-renders/)
-- [How many re-renders are too many?](https://alexsidorenko.com/blog/react-how-many-rerenders/)
+- <Resource url='https://developer.chrome.com/docs/devtools/performance/'>Measuring Performance in Chrome</Resource>
+- <Resource url='https://javascript.info/debugging-chrome'>Debugging in the Browser</Resource>
+- <Resource url='https://developer.chrome.com/docs/devtools/coverage/'>Devtools Coverage</Resource> - shows how much of your code is being shipped but then NOT running (while session is recording)
+- Use the <Resource url='https://react.dev/reference/react/Profiler'>Profiler</Resource> to measure rendering performance of a React tree programatically
+- <Resource url='https://alexsidorenko.com/blog/react-performance-slow-renders/'>How to Detect Slow Renders in React?</Resource>
+- <Resource url='https://alexsidorenko.com/blog/react-how-many-rerenders/'>How many re-renders are too many?</Resource>
 
 ## Optimizing Runtimes
 
 Runtime performance issues usually boil down to two types of issues:
 
 1. Fixing Slow Renders 
-	- [Fix the slow render before you fix the re-render](https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render)
-	- Understand that ES6 is [single-threaded](https://javascript.info/event-loop), therefore laggy behavior can happen easily
-		- Offload expensive work that shouldn't block rendering to [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+	- <Resource url='https://kentcdodds.com/blog/fix-the-slow-render-before-you-fix-the-re-render'>Fix the slow render before you fix the re-render</Resource>
+	- Understand that ES6 is <Resource url='https://javascript.info/event-loop'>single-threaded</Resource>, therefore laggy behavior can happen easily
+		- Offload expensive work that shouldn't block rendering to <Resource url='https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers'>Web Workers</Resource>
 
 2. Fixing Profuse Re-Renders 
-	- Use [Refs](https://react.dev/learn/referencing-values-with-refs) for state & values that [shouldn't cause re-renders](https://www.smashingmagazine.com/2020/11/react-useref-hook/) (or that aren't rendered at all)
+	- Use <Resource url='https://react.dev/learn/referencing-values-with-refs'>Refs</Resource> for state & values that <Resource url='https://www.smashingmagazine.com/2020/11/react-useref-hook/'>shouldn't cause re-renders</Resource> (or that aren't rendered at all)
 	- Be careful of setting state in an effect or outside of event-handlers / conditions
 
 
 ***Memoization & Virtualization*** can solve slow renders or profuse re-renders in different ways:
 
-- use [memo](https://react.dev/reference/react/memo) to memoize components and cut down pointless re-renders of child components when their props aren't changing
-	- You should probably use `memo()` around any component immediately under [Context Provider](https://alexsidorenko.com/blog/react-render-context/)
-	- See `memo()` in action with a [visual example](https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx)
-- use [useMemo()](https://react.dev/reference/react/useMemo#usememo) to memoize specific work *within* your components, cutting down the render time by skipping it if the recalculation isn't needed
-	- [A Visual Guide to React Rendering - useMemo](https://alexsidorenko.com/blog/react-render-usememo/)
-- use [useCallback()](https://react.dev/reference/react/useCallback) to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the function doesn't need to be recreated
-	- [A Visual Guide to React Rendering - useCallback](https://alexsidorenko.com/blog/react-render-usecallback/)
-- use [virtualization](https://www.patterns.dev/posts/virtual-lists) for efficiently rendering [large lists of datasets](https://www.npmjs.com/package/react-window), cutting down render time
-	- A library called [Million.js](https://million.dev/) has been making the rounds lately, apparently able to replace the VDOM in React with a version that's up to ***70% faster***.
+- use <Resource url='https://react.dev/reference/react/memo'>memo</Resource> to memoize components and cut down pointless re-renders of child components when their props aren't changing
+	- You should probably use `memo()` around any component immediately under <Resource url='https://alexsidorenko.com/blog/react-render-context/'>Context Provider</Resource>
+	- See `memo()` in action with a <Resource url='https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx'>visual example</Resource>
+- use <Resource url='https://react.dev/reference/react/useMemo#usememo'>useMemo()</Resource> to memoize specific work *within* your components, cutting down the render time by skipping it if the recalculation isn't needed
+	- <Resource url='https://alexsidorenko.com/blog/react-render-usememo/'>A Visual Guide to React Rendering - useMemo</Resource>
+- use <Resource url='https://react.dev/reference/react/useCallback'>useCallback()</Resource> to memoize (cache) functions that are created for use in your components, cutting down the render time by skipping it if the function doesn't need to be recreated
+	- <Resource url='https://alexsidorenko.com/blog/react-render-usecallback/'>A Visual Guide to React Rendering - useCallback</Resource>
+- use <Resource url='https://www.patterns.dev/posts/virtual-lists'>virtualization</Resource> for efficiently rendering <Resource url='https://www.npmjs.com/package/react-window'>large lists of datasets</Resource>, cutting down render time
+	- A library called <Resource url='https://million.dev/'>Million.js</Resource> has been making the rounds lately, apparently able to replace the VDOM in React with a version that's up to ***70% faster***.
 	
 ## UX Performance Best Practices
 
 - Consider throttling/debouncing frequent updates in the DOM. Humans can't see/process more than a few subtle updates in 1 second (1000 milliseconds), so there's no computational need to update something 100's of times per second.
-	- Read more about [how fast of an interaction is too fast](https://www.nngroup.com/articles/too-fast-ux/) for humans
+	- Read more about <Resource url='https://www.nngroup.com/articles/too-fast-ux/'>how fast of an interaction is too fast</Resource> for humans
 	- For actual changes in the UI/data that's being shown, try not to show more than 4-5 updates per second. Any more, and the humans using your app won't even be able to tell the difference between each update, making it pointless.
-	- [RxJS](https://rxjs.dev/) has traditionally been a great resource for throttling data throughput in a JS application
+	- <Resource url='https://rxjs.dev/'>RxJS</Resource> has traditionally been a great resource for throttling data throughput in a JS application
 	- Treat loading/pending states that are active for < 400ms uniquely, you should do either:
 		- Simply don't show the loading state, as "delay" in the app that's < 400ms probably won't be perceivable by the users anyways
 		- If you show the loading/pending state - require a minimum of ~400ms before switching back to a non-loading state
@@ -109,18 +109,18 @@ Runtime performance issues usually boil down to two types of issues:
 ## Typical Performance Hangups in React
 
 - Pitfalls of `Context` and `useContext`
-	- [React Context Dangers](https://blog.thoughtspile.tech/2021/10/04/react-context-dangers/)
-	- [React Context Performance](https://dev.to/romaintrotard/react-context-performance-5832)
-- Using [SVGs in JSX](https://twitter.com/_developit/status/1382838799420514317?s=20) can sometimes result in bloated bundles
+	- <Resource url='https://blog.thoughtspile.tech/2021/10/04/react-context-dangers/'>React Context Dangers</Resource>
+	- <Resource url='https://dev.to/romaintrotard/react-context-performance-5832'>React Context Performance</Resource>
+- Using <Resource url='https://twitter.com/_developit/status/1382838799420514317?s=20'>SVGs in JSX</Resource> can sometimes result in bloated bundles
 
 ## Misc. Articles
 
 More resources about optimizing JavaScript/React performance
 
-- [Improving React Interaction Times by 4x](https://www.causal.app/blog/react-perf)
-- [Improve the Performance of your React Forms](https://epicreact.dev/improve-the-performance-of-your-react-forms/)
-- [One Simple Trick to Optimize React Re-Renders](https://kentcdodds.com/blog/optimize-react-re-renders)
-- [Speeding up the JavaScript ecosystem - one library at a time](https://marvinh.dev/blog/speeding-up-javascript-ecosystem/)
-- [Making Tanstack Table 1000x faster with a 1 line change](https://jpcamara.com/2023/03/07/making-tanstack-table.html)
-- [Optimizing React performance without refs and memo](https://alexsidorenko.com/blog/react-optimize-rerenders-without-refs-memo/)
-- [React Performance Checklist - Cory House](https://github.com/coryhouse/reactjsconsulting/issues/77)
+- <Resource url='https://www.causal.app/blog/react-perf'>Improving React Interaction Times by 4x</Resource>
+- <Resource url='https://epicreact.dev/improve-the-performance-of-your-react-forms/'>Improve the Performance of your React Forms</Resource>
+- <Resource url='https://kentcdodds.com/blog/optimize-react-re-renders'>One Simple Trick to Optimize React Re-Renders</Resource>
+- <Resource url='https://marvinh.dev/blog/speeding-up-javascript-ecosystem/'>Speeding up the JavaScript ecosystem - one library at a time</Resource>
+- <Resource url='https://jpcamara.com/2023/03/07/making-tanstack-table.html'>Making Tanstack Table 1000x faster with a 1 line change</Resource>
+- <Resource url='https://alexsidorenko.com/blog/react-optimize-rerenders-without-refs-memo/'>Optimizing React performance without refs and memo</Resource>
+- <Resource url='https://github.com/coryhouse/reactjsconsulting/issues/77'>React Performance Checklist - Cory House</Resource>

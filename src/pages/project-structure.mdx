@@ -5,13 +5,13 @@ export const description =
 
 When it comes to organizing React SPAs a great reference is:
 
-- [alan2207/bulletproof-react](https://github.com/alan2207/bulletproof-react)
+- <Resource url='https://github.com/alan2207/bulletproof-react'>alan2207/bulletproof-react</Resource>
 
 It is a goldmine of great ideas to help you keep your codebase simple and clean (while also scaling well for very large applications).
 
 ## Folder Structure
 
-If you need a scalable folder structure for your React SPA, you should try this one from [bulletproof-react](https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md). If you use a meta-framework, these conventions may still work fine. Having said that, there are some slightly unique things to be aware of when building with [Next.js](https://github.com/alan2207/bulletproof-react/issues/21) or [Remix](https://remix.run/docs/en/main/file-conventions/route-files-v2). Both frameworks have an approach for SSR (server-side rendering) and for avoiding network waterfalls, and thus will probably require some changes from the folder structure in bulletproof-react. The good news is since they recommend a folder structure you don’t have to think about it too much.
+If you need a scalable folder structure for your React SPA, you should try this one from <Resource url='https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md'>bulletproof-react</Resource>. If you use a meta-framework, these conventions may still work fine. Having said that, there are some slightly unique things to be aware of when building with <Resource url='https://nextjs.org/docs/app'>Next.js</Resource> or <Resource url='https://remix.run/docs/en/main/file-conventions/route-files-v2'>Remix</Resource>. Both frameworks have an approach for SSR (server-side rendering) and for avoiding network waterfalls, and thus will probably require some changes from the folder structure in bulletproof-react. The good news is since they recommend a folder structure you don't have to think about it too much.
 
 ```tsx
 src
@@ -64,12 +64,12 @@ src
 
 To avoid falling victim to analysis paralysis in this area: don't spend more than 5 minutes trying to plan a folder structure that will meet all of your future project needs. It's usually better to simply organize as you go. If you don't know what to do yet - just keep everything in the same flat folder (src). Once you get 10+ files in there that each has its own concern, you'll start to see the patterns that should dictate your folder structure.
 
-If you're not a fan of the approach above, you might like this [alternative folder structure](https://www.joshwcomeau.com/react/file-structure/) by Josh Comeau instead. The article is a great read regardless if you end up adopting the recommendations, because it walks you through multiple scenarios for organizing your project.
+If you're not a fan of the approach above, you might like this <Resource url='https://www.joshwcomeau.com/react/file-structure/'>alternative folder structure</Resource> by Josh Comeau instead. The article is a great read regardless if you end up adopting the recommendations, because it walks you through multiple scenarios for organizing your project.
 
 ## Component Format
 
-- [Clean Code JavaScript](https://github.com/ryanmcdermott/clean-code-javascript) - advice for writing clear, concise code in JavaScript
-- [Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet) - naming things consistently gets easier with this advice
+- <Resource url='https://github.com/ryanmcdermott/clean-code-javascript'>Clean Code JavaScript</Resource> - advice for writing clear, concise code in JavaScript
+- <Resource url='https://github.com/kettanaito/naming-cheatsheet'>Naming Cheatsheet</Resource> - naming things consistently gets easier with this advice
 
 **Writing Functional React Components**
 
@@ -191,10 +191,10 @@ function ShortenedMarkup() {
 }
 ```
 
-[Eslint](https://www.npmjs.com/package/eslint) and [Prettier](https://www.npmjs.com/package/prettier) can also be very effective at enforcing project standards and consistency. Start with the examples provided in the bulletproof-react repo:
+<Resource url='https://www.npmjs.com/package/eslint'>Eslint</Resource> and <Resource url='https://www.npmjs.com/package/prettier'>Prettier</Resource> can also be very effective at enforcing project standards and consistency. Start with the examples provided in the bulletproof-react repo:
 
-- [.eslintrc.js](https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js) (eslint config file)
-- [.prettierrc](https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc) (prettier config file)
+- <Resource url='https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js'>.eslintrc.js</Resource> (eslint config file)
+- <Resource url='https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc'>.prettierrc</Resource> (prettier config file)
 
 At a minimum, you should always have an eslint configuration in your project, but running both (eslint is more for catching code smells and potential bugs, and prettier is for opinionated formatting) is recommended.
 
@@ -204,13 +204,13 @@ Getting engineers to properly document their code can sometimes be difficult (an
 
 The question typically isn't "how can we convince our team and stakeholders that well-written documentation is worth it". The right question to ask is "how can we make writing and maintaining documentation easier for our developers". Everyone knows great docs are worth their weight in gold. The hard part is writing great docs.
 
-1. Use [TypeScript](https://www.npmjs.com/package/typescript) - TypeScript can create all sorts of documentation that your IDE (like [Visual Studio Code](https://code.visualstudio.com/docs/languages/typescript)) can display to you while coding. Using TypeScript properly means that all the engineers on your team can:
+1. Use <Resource url='https://www.npmjs.com/package/typescript'>TypeScript</Resource> - TypeScript can create all sorts of documentation that your IDE (like <Resource url='https://code.visualstudio.com/docs/languages/typescript'>Visual Studio Code</Resource>) can display to you while coding. Using TypeScript properly means that all the engineers on your team can:
    1. Analyze function signatures, parameters, and their return types without leaving the file you are working in
    2. Autocomplete while typing, IntelliSense, etc.
    3. Way more!
-2. [Storybook](https://www.npmjs.com/package/storybook) for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
-   - [Storybook for React Tutorial](https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/)
-3. Commenting systems like [JSDoc](https://www.npmjs.com/package/jsdoc) - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. If you did BOTH of the above options (1 and 2) this may not be necessary, but if one or both of the options above isn't viable for you then this may be helpful.
+2. <Resource url='https://www.npmjs.com/package/storybook'>Storybook</Resource> for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
+   - <Resource url='https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/'>Storybook for React Tutorial</Resource>
+3. Commenting systems like <Resource url='https://www.npmjs.com/package/jsdoc'>JSDoc</Resource> - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. If you did BOTH of the above options (1 and 2) this may not be necessary, but if one or both of the options above isn't viable for you then this may be helpful.
 
 You should at minimum be picking 1 option above. Or an approach that mixes all 3:
 

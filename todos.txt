@@ -1,9 +1,5 @@
 V2 of the site
 
-# Doing
-- replace all <a> tags in markdown and everywhere with <Resource url=''></Resource>
-
-
 
 # Next
 - center Tweet embeds and give better spacing
@@ -30,6 +26,7 @@ V2 of the site
     - reach out directly to each framework and get their 1 minute pitch
     - remove your "opinions" on when one is better than the other. SSG vs SSR - and that's really the only consideration you should be making
 - At bottom of "Frameworks" page - add a "more to come" notice for pages on Gatsby, Next, and Remix each
+    - Astro, Livewire, Alpine, Awesome-Vite backends, NX monorepo 
 - finish homepage content and be sure newly created pages (fundamentals) are all grammatically fine and complete before publish
 - add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
 - add to courses - https://scrimba.com/learn/learnreact
@@ -82,6 +79,7 @@ V2 of the site
         - what are the cute little variants with useState() that make it a simple global state?
     - JavaScript / TypeScript custom hook starter file
     - Test with custom render, context provider, components, and test assertations
+    - component design patterns
 
 
 
@@ -102,3 +100,6 @@ Mark Erikson
 Josh Claunch
 Seb Lorber
 Nextjsweekly guy
+Twitter bookmarks of people who've shared
+Discord peeps
+Anthony

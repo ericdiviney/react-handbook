@@ -4,7 +4,7 @@ export const description = 'React hooks and all their happy little nuances.'
 
 ## Hooks at a High-Level
 
-The new React [docs](https://react.dev/reference/react) are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
+The new React <Resource url='https://react.dev/reference/react'>docs</Resource> are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
 
 In my experience, the use of hooks follows the 80/20 rule (assuming you are importing a UI library): approximately `80%` of the time your components will only need the mixed use of `useState` / `useEffect` to solve your problems (maybe more, this isn't a bad thing). When components get large/complex enough (the remaining `20%` of the time), you'll start to bring in `useRef`, `useMemo`, `useCallback`, and `useLayoutEffect` to help with the problems in your components.
 
@@ -14,17 +14,17 @@ In my experience, the use of hooks follows the 80/20 rule (assuming you are impo
 
 Common questions:
 
-- [Is updating hook-state synchronous or asynchronous?](https://www.youtube.com/watch?v=RAJD4KpX8LA)
-- [How to process multiple state updates to a variable before re-rendering](https://react.dev/learn/queueing-a-series-of-state-updates)
+- <Resource url='https://www.youtube.com/watch?v=RAJD4KpX8LA'>Is updating hook-state synchronous or asynchronous?</Resource>
+- <Resource url='https://react.dev/learn/queueing-a-series-of-state-updates'>How to process multiple state updates to a variable before re-rendering</Resource>
 
 Tips:
 
-- If the initial value for your state is computationally expensive, consider [lazy state initialization](https://kentcdodds.com/blog/use-state-lazy-initialization-and-function-updates) to ensure it only runs once per component mount
-- If you are updating/setting state values profusely throughout your component, you would probably benefit by switching to the [reducer pattern](https://react.dev/reference/react/useReducer) or even defining a [custom hook](https://react.dev/learn/reusing-logic-with-custom-hooks).
-- Read the [Common Pitfalls of `useState`](https://profy.dev/article/react-usestate-pitfalls)
-- Store as little "state" as possible, [derive](https://kentcdodds.com/blog/dont-sync-state-derive-it) as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
-- Avoid state-effect [Ping-Pong](https://twitter.com/asidorenko_/status/1622904907954094080?s=20), just like above, derive your values as part of the render function. Trying to keep too much info in state/hooks is somewhat of an anti-pattern that can get you into trouble.
-- Don't try to update one property in an object or one item in an array, instead you should [replace](https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state) the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a [ref (`useRef`)](#advanced-hooks)
+- If the initial value for your state is computationally expensive, consider <Resource url='https://kentcdodds.com/blog/use-state-lazy-initialization-and-function-updates'>lazy state initialization</Resource> to ensure it only runs once per component mount
+- If you are updating/setting state values profusely throughout your component, you would probably benefit by switching to the <Resource url='https://react.dev/reference/react/useReducer'>reducer pattern</Resource> or even defining a <Resource url='https://react.dev/learn/reusing-logic-with-custom-hooks'>custom hook</Resource>.
+- Read the <Resource url='https://profy.dev/article/react-usestate-pitfalls'>Common Pitfalls of `useState`</Resource>
+- Store as little "state" as possible, <Resource url='https://kentcdodds.com/blog/dont-sync-state-derive-it'>derive</Resource> as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
+- Avoid state-effect <Resource url='https://twitter.com/asidorenko_/status/1622904907954094080?s=20'>Ping-Pong</Resource>, derive your values as part of the render function. Trying to keep too much info synced together in state/hooks is somewhat of an anti-pattern that can get you into trouble.
+- Don't try to update one property in an object or one item in an array, instead you should <Resource url='https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state'>replace</Resource> the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a <Resource url='#advanced-hooks'>ref (`useRef`)</Resource>
 
 ## `useEffect`
 
@@ -32,13 +32,13 @@ Effects are code that run last during the rendering cycle. You may hear that eff
 
 You might be using effects wrong if:
 
-- You have code in an effect that "resets" all local component state when a prop changes for that component (read [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect#resetting-all-state-when-a-prop-changes))
-- Effects are NOT "subscriptions" - try not to think of them as a way to "opt in" or [listen](https://profy.dev/article/react-usestate-pitfalls#listening-to-state-changes-via-useeffect) to changes to specific variables. Thinking this way can lead to pointless re-renders and therefore laggard performance in your apps
-- Related to the above point, if you are updating state with setState() **inside** of your effect, you [might be doing something wrong](https://profy.dev/article/react-usestate-pitfalls#updating-state-via-useeffect) (not always, but we find this more true than not). Since effects run last in the render phase, updating state from there will immediately cause your component to re-render
+- You have code in an effect that "resets" all local component state when a prop changes (read <Resource url='https://react.dev/learn/you-might-not-need-an-effect#resetting-all-state-when-a-prop-changes'>You Might Not Need an Effect</Resource>)
+- Effects are NOT "subscriptions" - try not to think of them as a way to <Resource url='https://profy.dev/article/react-usestate-pitfalls#listening-to-state-changes-via-useeffect'>"watch" or listen</Resource> to changes to specific variables. Thinking this way can lead to pointless re-renders and therefore laggard performance in your apps
+- Related to the above point, if you are updating state with setState() **inside** of your effect, you <Resource url='https://profy.dev/article/react-usestate-pitfalls#updating-state-via-useeffect'>might be doing something wrong</Resource> (not always, but we find this more true than not). Since effects run last in the render phase, updating state from there will immediately cause your component to re-render
 
 Tips:
 
-- Read Dan Abramov's [Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/) (and then, when you think you understand effects, read it again)
+- Read Dan Abramov's <Resource url='https://overreacted.io/a-complete-guide-to-useeffect/'>Complete Guide to useEffect</Resource> (and then, when you think you understand effects, read it again)
 - When effects run
   - `useEffect(() ⇒ {})` - will run after every render of a component
   - `useEffect(() ⇒ {}, [])` - will run only after the first render of a component
@@ -47,50 +47,49 @@ Tips:
 ## Other Hooks
 
 `useRef` 
-- [`useRef`](https://ui.dev/useref) is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
+- <Resource url='https://ui.dev/useref'>`useRef`</Resource> is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
 - It returns an object that has a property called `current` that we can access as we do with objects.
-- [Understanding React Refs and `forwardRef`](https://degreat.co.uk/blog/react-refs/)
-  - As summarized in [What is `forwardRef`](https://deadsimplechat.com/blog/react-forwardref/):
+- <Resource url='https://degreat.co.uk/blog/react-refs/'>Understanding React Refs and `forwardRef`</Resource>
+  - As summarized in <Resource url='https://deadsimplechat.com/blog/react-forwardref/'>What is `forwardRef`</Resource>:
     - "... forwardRef is a utility function in react that let you expose a child components DOM to a parent component with a ref..."
   - One very common reason to use refs is for DOM interactions that are abstracted away inside a component. For example, a ref passed from parent ➡️ child might be a `<Form>` (parent) with an `<Input>` (child) component of some kind where you want to `focus()` the actual `<input />` element inside the child component
-  - Usage with [TypeScript](https://www.totaltypescript.com/strongly-type-useref-with-elementref)
+  - Usage with <Resource url='https://www.totaltypescript.com/strongly-type-useref-with-elementref'>TypeScript</Resource>
 
 `useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
 - `useMemo` 
-  - Read more about the performance benefits of `useMemo` on our [Performance](/react-performance-optimization) guide
+  - Read more about the performance benefits of `useMemo` on our <Resource url='/react-performance-optimization'>Performance</Resource> guide
   - The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
   - It takes two arguments: a chunk of work to be performed, wrapped up in a function and a list of dependencies.
   - `useMemo` is essentially like a little cache, and the dependencies are the cache invalidation strategy.
 - `useCallback` 
-  - Read more about the performance benefits of `useCallback` on our [Performance](/react-performance-optimization) guide
+  - Read more about the performance benefits of `useCallback` on our <Resource url='/react-performance-optimization'>Performance</Resource> guide
   - `useCallback` serves the same purpose as `useMemo`, but it's built specifically for functions.
   - We hand it a function directly, and it memoizes that function, threading it between renders.
   - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
 
 `useReducer` 
-- [`useReducer`](https://ui.dev/usereducer) - Tyler McGinnis
-- [`useReducer` is easier to adopt than you might think](https://www.reddit.com/r/reactjs/comments/10bohti/usereducer_is_easier_to_adopt_than_you_might_think/)
+- <Resource url='https://ui.dev/usereducer'>`useReducer`</Resource> - Tyler McGinnis
+- <Resource url='https://www.reddit.com/r/reactjs/comments/10bohti/usereducer_is_easier_to_adopt_than_you_might_think/'>`useReducer` is easier to adopt than you might think</Resource>
 - We especially recommend this if there are many calls to update state from your component. 
 - When to reach for `useReducer` over `useState` is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider `useReducer` instead of plain `useState`.
 
 `useLayoutEffect`
-- Notice in the [first section](#hooks-at-a-high-level) that `useLayoutEffect` occurs before the DOM updates calculated during a re-render are actually painted on the screen
+- Notice in the <Resource url='#hooks-at-a-high-level'>component lifecycle (React Hook Flow Diagram)</Resource> that `useLayoutEffect` occurs before the DOM updates calculated during a re-render are actually painted on the screen
 - Very similar to useEffect, but use this one specifically when you need to run an "effect" that will affect/alter the DOM in some way
   - hence, if you did this in a normal `useEffect`, you would get a flicker-like experience due to the fact `useEffect` would trigger a re-render for what you actually wanted
   - this hook is good for things like positioning and dimension alterations without a flicker on the screen
   - this is a bad hook to do anything computationally heavy as that will drastically slow your render function down
 
-Read [6 React Native Hooks You Don't Know](https://itnext.io/6-new-reactjs-native-hooks-you-dont-know-b41fbe599b5c) and read up more on the following hooks:
-- [`useDeferredValue`](https://react.dev/reference/react/useDeferredValue) - lets you defer updating a part of the UI
-- [`useId`](https://react.dev/reference/react/useId) - for generating unique IDs
-- [`useSyncExternalStore`](https://react.dev/reference/react/useSyncExternalStore) - lets you subscribe to an [external store](https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api)
-  - Read more on [how to use this hook in your own code](https://blog.saeloun.com/2021/12/30/react-18-useSyncExternalStore-api/)
-- [`useTransition`](https://react.dev/reference/react/useTransition) - lets you update the state without blocking the UI
+- <Resource url='https://react.dev/reference/react/useDeferredValue'>`useDeferredValue`</Resource> - lets you defer updating a part of the UI
+- <Resource url='https://react.dev/reference/react/useId'>`useId`</Resource> - for generating unique IDs
+- <Resource url='https://react.dev/reference/react/useSyncExternalStore'>`useSyncExternalStore`</Resource> - lets you subscribe to an <Resource url='https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api'>external store</Resource>
+  - Read more on <Resource url='https://blog.saeloun.com/2021/12/30/react-18-useSyncExternalStore-api/'>how to use this hook in your own code</Resource>
+- <Resource url='https://react.dev/reference/react/useTransition'>`useTransition`</Resource> - lets you update the state without blocking the UI
 
 
 ## Custom Hook Examples
 
 You can also copy+paste hooks from the websites below into your own projects. If you prefer to keep npm dependencies as light as possible, you could copy over only the ones you need.
 
-- [usehooks.com](https://usehooks.com/ )
-- [usehooks-ts.com](https://usehooks-ts.com/)
+- <Resource url='https://usehooks.com/'>usehooks.com</Resource>
+- <Resource url='https://usehooks-ts.com/'>usehooks-ts.com</Resource>

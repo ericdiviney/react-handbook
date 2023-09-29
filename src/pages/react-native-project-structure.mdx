@@ -3,28 +3,28 @@ export const description =
 
 # React Native Project Standards
 
-There's no reason you can't or shouldn't follow an organization template like we describe on our normal [Project Structure](/project-structure) page.
+There's no reason you can't or shouldn't follow an organization template like we describe on our normal <Resource url='/project-structure'>Project Structure</Resource> page.
 
 ## Limitations of React Native
 
-In 2018, Airbnb, longtime supporter (and consumers) of React Native shocked the community when they publicly announced they were sunsetting use of React Native on their mobile application products. The article is still published [here](https://medium.com/airbnb-engineering/sunsetting-react-native-1868ba28e30a), along with the [entire series](https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c) explaining the challenges they faced building an enterprise mobile application with React Native. We feel it is fair to recognize this pivotal moment in the history because it reoriented the focus of the React Native team - some of the identified gaps of which have been closed and others which are still being worked on. It's only fair to mention this so you can be more sure that React Native is the right choice for your application in the long-term.
+In 2018, Airbnb, longtime supporter (and consumers) of React Native shocked the community when they publicly announced they were sunsetting use of React Native on their mobile application products. The article is still published <Resource url='https://medium.com/airbnb-engineering/sunsetting-react-native-1868ba28e30a'>here</Resource>, along with the <Resource url='https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c'>entire series</Resource> explaining the challenges they faced building an enterprise mobile application with React Native. We feel it is fair to recognize this pivotal moment in the history because it reoriented the focus of the React Native team - some of the identified gaps of which have been closed and others which are still being worked on. It's only fair to mention this so you can be more sure that React Native is the right choice for your application in the long-term.
 
 
 ## Common UX Standards
 
-**Cancellation** - Give your users the ability to "cancel" a touch/gesture right in the middle of it (for example, by dragging their finger away). Read more about gesture best practices [here](https://reactnative.dev/docs/gesture-responder-system).
+**Cancellation** - Give your users the ability to "cancel" a touch/gesture right in the middle of it (for example, by dragging their finger away). Read more about gesture best practices <Resource url='https://reactnative.dev/docs/gesture-responder-system'>here</Resource>.
 
-**Stick to Buttons With Visual Feedback** - Various buttons provided by React Native have their own feedback controls which provides visual aid to the user. It is [recommended best practice](https://reactnative.dev/docs/gesture-responder-system) to implement visual feedback for a gesture touch to keep the user informed of action results. Traditionally, this would've been implemented with things like `TouchableOpacity` - but the recommended component to use for future apps would be the [Pressable](https://reactnative.dev/docs/pressable).
+**Stick to Buttons With Visual Feedback** - Various buttons provided by React Native have their own feedback controls which provides visual aid to the user. It is <Resource url='https://reactnative.dev/docs/gesture-responder-system'>recommended best practice</Resource> to implement visual feedback for a gesture touch to keep the user informed of action results. Traditionally, this would've been implemented with things like `TouchableOpacity` - but the recommended component to use for future apps would be the <Resource url='https://reactnative.dev/docs/pressable'>Pressable</Resource>.
 
 ## Ecosystem / Packages
 
-A very useful directory for browsing open source packages and functionality you should consider using is the [React Native Directory](https://reactnative.directory/). You can filter by the platform you're deploying to as well.
+A very useful directory for browsing open source packages and functionality you should consider using is the <Resource url='https://reactnative.directory/'>React Native Directory</Resource>. You can filter by the platform you're deploying to as well.
 
-Furthermore, there will be times you need to use "Native Modules" to interact with device-specific APIs that JavaScript cannot provide. At the time of writing, `Native Modules` and `Native Components` are deprecated and will eventually transfer to the new and improved `Turbo Native Modules` and `Fabric Native Components`. For more info, visit the [Native Modules Intro](https://reactnative.dev/docs/native-modules-intro) from the docs.
+Furthermore, there will be times you need to use "Native Modules" to interact with device-specific APIs that JavaScript cannot provide. At the time of writing, `Native Modules` and `Native Components` are deprecated and will eventually transfer to the new and improved `Turbo Native Modules` and `Fabric Native Components`. For more info, visit the <Resource url='https://reactnative.dev/docs/native-modules-intro'>Native Modules Intro</Resource> from the docs.
 
 ## Component Tips
 
-There's nothing particularly unique in React Native that would keep you from implementing the same general project practices we recommend on our [Project Structure](/project-structure#component-format) page. So for organizing your component files and folder structure we do recommend the same approach.
+There's nothing particularly unique in React Native that would keep you from implementing the same general project practices we recommend on our <Resource url='/project-structure#component-format'>Project Structure</Resource> page. So for organizing your component files and folder structure we do recommend the same approach.
 
 However, there are some particular catches when developing with React-Native, so we'll try to explain those below:
 
@@ -74,15 +74,15 @@ import { FlatList } from 'react-native'
 
 ## Performance & Optimization Tips
 
-With React Native being a leader in producing mobile applications, it is imperative to consider performance caveats and best practices. For more, please refer to the [React Native Performance Overview Docs](https://reactnative.dev/docs/performance). Below are some misc tips for optimization.
+With React Native being a leader in producing mobile applications, it is imperative to consider performance caveats and best practices. For more, please refer to the <Resource url='https://reactnative.dev/docs/performance'>React Native Performance Overview Docs</Resource>. Below are some misc tips for optimization.
 
 **Image performance** is a crucial when working with a native application as memory constraints means unoptimized image use could lead to crashes, especially when using static image resources. Here are a number of ways to handle for this.
 
-- [react-native-fast-image package](https://www.npmjs.com/package/react-native-fast-image?activeTab=readme) - Provides a `FastImage` component that integrates with the `SDWebImage`(iOS) and `Glide` (Android) objects which, as you guessed, loads images much faster.
+- <Resource url='https://www.npmjs.com/package/react-native-fast-image?activeTab=readme'>react-native-fast-image package</Resource> - Provides a `FastImage` component that integrates with the `SDWebImage`(iOS) and `Glide` (Android) objects which, as you guessed, loads images much faster.
 - **Proper image Formats** - You may want to consider using formats like PNG or WEBP format for reducing binary size of images for both platforms. This can reduce images to 1/3 of the original size.
 
-**RAM Format** - For iOS, you can produce your application in RAM format for a single indexed file. As [the docs](https://reactnative.dev/docs/ram-bundles-inline-requires) state:
+**RAM Format** - For iOS, you can produce your application in RAM format for a single indexed file. As <Resource url='https://reactnative.dev/docs/ram-bundles-inline-requires'>the docs</Resource> state:
 
 > "... This is useful for apps that have a large number of screens which may not ever be opened during a typical usage of the app. Generally it is useful to apps that have large amounts of code that are not needed for a while after startup..."
 
-With use of [Hermes](https://hermesengine.dev/), this is enabled by default.
+With use of <Resource url='https://hermesengine.dev/'>Hermes</Resource>, this is enabled by default.
