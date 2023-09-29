@@ -1,14 +1,5 @@
 V2 of the site
 
-
-# Next
-- center Tweet embeds and give better spacing
-- remove onNavigate from Navigation component
-- elevated shadow + hover effect for cards
-- persist the open navigation sidebar to the localStorage and instantiate from it, so on refreshes it doesn't reset
-- animate all the toggles/interactions that can happen on the site, buttery smooth namean
-
-
 ## A few more reusable components 
 - go through all code snippets and recreate as js/ts tabs (offer both versions for all snippets on site)
 - create version of <Code> component that has internal state, does NOT rely on global language choice (more like tabs,accordion)

@@ -10,7 +10,7 @@ export function Tabs({ children, defaultValue }) {
 export function TabList({ children, label }) {
   return (
     <RadixTab.List
-      className="mt-4 mb-16 flex justify-center gap-4"
+      className="flex justify-center gap-4 mt-4 mb-16"
       aria-label={label}
     >
       {children}
@@ -32,7 +32,7 @@ export function TabTrigger({ tabValue, title, children }) {
         <span className="block text-sm font-medium text-gray-900 dark:text-slate-300">
           {title}
         </span>
-        <span className="mt-1 flex items-center text-sm">{children}</span>
+        <span className="flex items-center mt-1 text-sm">{children}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -54,7 +54,10 @@ export function TabTrigger({ tabValue, title, children }) {
 
 export function Tab({ children, value }) {
   return (
-    <RadixTab.Content className="grow p-5" value={value}>
+    <RadixTab.Content className={clsx(
+      'p-5 grow group',
+      'data-[state=active]:animate-fadeIn data-[state=inactive]:animate-fadeOut',
+    )} value={value}>
       {children}
     </RadixTab.Content>
   )

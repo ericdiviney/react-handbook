@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 
@@ -11,13 +11,21 @@ import { SectionProvider } from '@/components/SectionProvider'
 import clsx from 'clsx'
 import { useState } from 'react'
 
+const storageKey = 'sidebar';
+
 export function Layout({ children, sections = [] }) {
-  const [isHoveringNav, setHoveringNav] = useState(false)
+  const [isHoveringNav, setHoveringNav] = useState(false);
   const [isNavigationOpen, setNavigationOpen] = useState(false)
 
   function toggleNavOpen() {
+    localStorage.setItem(storageKey, !isNavigationOpen);
     setNavigationOpen(!isNavigationOpen);
   }
+
+  useEffect(() => {
+    const shouldSidebarBeOpen = !(localStorage.getItem(storageKey) === 'false');
+    if (shouldSidebarBeOpen) setNavigationOpen(true);
+  }, [])
 
   return (
     <SectionProvider sections={sections}>

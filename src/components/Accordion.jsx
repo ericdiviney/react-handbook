@@ -1,8 +1,8 @@
 import * as RadixAccordion from '@radix-ui/react-accordion'
 import { clsx } from 'clsx'
 
-export function Accordion({ children }) {
-  return <RadixAccordion.Root>{children}</RadixAccordion.Root>
+export function Accordion({ children, defaultValue }) {
+  return <RadixAccordion.Root defaultValue={defaultValue}>{children}</RadixAccordion.Root>
 }
 
 export function AccordionItem({ children, className, ...props }) {
@@ -23,6 +23,7 @@ export function AccordionTrigger({ children, title, ...props }) {
   return (
     <RadixAccordion.Header className="flex">
       <RadixAccordion.Trigger
+        onClick={(e)=> setTimeout(() => e.target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 240)}
         className={clsx(
           'group relative my-1 flex w-full cursor-pointer flex-col rounded-lg border pl-9 text-left',
           'border-slate-300 transition duration-150',
@@ -35,7 +36,7 @@ export function AccordionTrigger({ children, title, ...props }) {
           <span className="block text-sm font-medium text-gray-900 dark:text-slate-300">
             {title}
           </span>
-          <span className="mt-1 flex items-center text-sm">{children}</span>
+          <span className="flex items-center mt-1 text-sm">{children}</span>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -61,12 +62,12 @@ export function AccordionContent({ children, className, ...props }) {
   return (
     <RadixAccordion.Content
       className={clsx(
-        'text-mauve11 bg-mauve2 data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp overflow-hidden text-[15px]',
+        'group data-[state=open]:animate-accordionDown data-[state=closed]:animate-accordionUp',
         className
       )}
       {...props}
     >
-      <div className="py-[15px] px-5">{children}</div>
+      <div className="py-[15px] px-5 group-data-[state=open]:animate-enterFromTop group-data-[state=closed]:animate-exitToTop">{children}</div>
     </RadixAccordion.Content>
   )
 }
