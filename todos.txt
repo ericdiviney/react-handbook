@@ -3,20 +3,21 @@ V2 of the site
 
 # Next
 - center Tweet embeds and give better spacing
+- remove onNavigate from Navigation component
+- elevated shadow + hover effect for cards
+- persist the open navigation sidebar to the localStorage and instantiate from it, so on refreshes it doesn't reset
+- animate all the toggles/interactions that can happen on the site, buttery smooth namean
+
+
+## A few more reusable components 
 - go through all code snippets and recreate as js/ts tabs (offer both versions for all snippets on site)
+- create version of <Code> component that has internal state, does NOT rely on global language choice (more like tabs,accordion)
 - custom components/visualizations for things in code snippets that aren't code
     - plus better ways of presenting short code snippets (automated testing) - the code snippets here are kinda ugly honest
 - create custom component that shows folder structure of react project
     - https://www.radix-ui.com/primitives/docs/components/collapsible
-- remove onNavigate from Navigation component
 - a "see more links/material on this subject" component
-- elevated shadow + hover effect for cards
-- move to a more hierarchical type system
-    - headings, paragraphs, lead text are the only "size" variants you need, everything else should be formatting and layout
-- persist the open navigation sidebar to the localStorage and instantiate from it, so on refreshes it doesn't reset
 - check notebook for any components you missed and want to add/reuse around the site
-- create version of <Code> component that has internal state, does NOT rely on global language choice (more like tabs,accordion)
-- animate all the toggles/interactions that can happen on the site, buttery smooth namean
 
 
 
