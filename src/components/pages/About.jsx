@@ -1,6 +1,5 @@
 import * as HoverCard from '@radix-ui/react-hover-card'
 import { Resource } from '@/components/Resource'
-import Image from 'next/image'
 
 const core = [
   {
@@ -17,7 +16,7 @@ const core = [
 
 export function Contributors() {
   return (
-    <div className="my-6 border-y border-zinc-400 dark:border-zinc-700">
+    <div className="my-6">
       <div className="my-16">
         <div>
           <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
@@ -76,6 +75,7 @@ function MemberCard({ person, large = false }) {
             className="inline-block rounded-full outline-none cursor-pointer"
             url={socials.site}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               key={image}
               className={`${size} relative z-10 inline-block rounded-full ring-2 ring-white dark:ring-zinc-900`}
@@ -91,6 +91,7 @@ function MemberCard({ person, large = false }) {
           sideOffset={5}
         >
           <div className="flex flex-col gap-[7px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="block h-[60px] w-[60px] rounded-full"
               src={image}

@@ -1,7 +1,4 @@
-import { Details } from '@/components/Details'
-import { Expand } from '@/components/Expand'
-import { FAQ, Question, Answer, QuestionText } from '@/components/FAQ'
-import { Summary } from '@/components/Summary'
+
 
 export const sections = [
   {
@@ -13,8 +10,7 @@ export const sections = [
   { title: 'What to Test In React Apps', id: 'what-to-test-in-a-react-app' },
   { title: 'Testing FAQs', id: 'faqs' },
   { title: 'General Tips', id: 'general-tips' },
-  { title: 'Tips for using Jest', id: 'jest-tips' },
-  { title: 'Tips for using RTL', id: 'rtl-tips' },
+  { title: 'Tips for using Jest & RTL', id: 'tips' },
   { title: 'Misc Reading', id: 'misc-reading' },
 ]
 
@@ -105,7 +101,7 @@ Everything that you test that isn't "Visual" is probably going to fall in the "B
 
 <Expand parent='Visual testing'>
 - <Resource url='https://circleci.com/blog/snapshot-testing-with-jest/'>Snapshot testing</Resource> - not terribly useful, alerts you to changes in the DOM rendered by component
-- <Resoure url='https://www.browserstack.com/guide/visual-regression-testing'>Visual Regression</Resource> - pixel-perfect screenshot comparison to know all changes, both big and small
+- <Resource url='https://www.browserstack.com/guide/visual-regression-testing'>Visual Regression</Resource> - pixel-perfect screenshot comparison to know all changes, both big and small
 - Styles - Testing styles isn't the best use of time, but sometimes, it might make sense if the styles are a result of an interaction/event and important to the function of the app
 </Expand>
 
@@ -231,9 +227,10 @@ What to avoid when writing tests
 - Use <Resource url='https://mswjs.io/'>Mock Service Workers (MSW)</Resource> for mocking your API endpoints
 - Use <Resource url='https://github.com/faker-js/faker'>faker</Resource> for generating large amounts of fake datasets
 
-## Jest Tips
+## Tips
 
-```jsx
+<CodeGroup title='Code Tips'>
+```jsx {{ title: 'Jest' }}
 // Mocking global APIs like window.scrollTo that you don't import from anywhere
 
 // A) You can have the same mock for ALL of your tests in one place
@@ -270,16 +267,7 @@ test('another test where we want a different return value from someFunction', ()
 })
 ```
 
-## RTL Tips
-
-Watch <Resource url='https://www.youtube.com/watch?v=jNAMdsbdvlI&t=1s'>Testing Library: everybody uses it, but nobody understands it</Resource> by Matan Borenkraout.
-
-- RTL has a <Resource url='https://testing-library.com/docs/queries/about/'>very rich API</Resource> for querying/selecting DOM nodes rendered by your components - it's very useful for making tests less brittle and reliant on implementation details
-  - You can find <Resource url='https://developer.chrome.com/docs/devtools/accessibility/reference/#computed'>a similar tool in browsers</Resource> by going to Elements → Inspect → Accessibility → Computed Properties
-  - The <Resource url='https://testing-playground.com/'>Testing Playground</Resource> can also be helpful in finding creative but robust ways of finding DOM nodes in your render output
-- When firing events in your tests, 99% of the time, you should prefer <Resource url='https://testing-library.com/docs/user-event/intro/'>userEvent</Resource> over <Resource url='https://testing-library.com/docs/dom-testing-library/api-events#fireevent'>fireEvent</Resource>, because userEvent simulates an event closer to how a browser would (including propagation and other events that get fired like mouseUp / mouseDown)
-
-```jsx
+```jsx {{ title: 'RTL' }}
 // example of "custom rendering" so that when you render your components, they have dependencies like contexts/stores/etc
 // create local test-utils.ts file
 
@@ -304,6 +292,18 @@ const el = getByText(/word or phrase/i); // gets an element by its text content,
 // you should be relying mostly on this for elements that have text content
 // remember other properties you can query for by going to Elements → Inspect → Accessibility → Computed Properties
 ```
+</CodeGroup>
+
+### More Tips for Using React Testing Library (RTL)
+
+Watch <Resource url='https://www.youtube.com/watch?v=jNAMdsbdvlI&t=1s'>Testing Library: everybody uses it, but nobody understands it</Resource> by Matan Borenkraout.
+
+- RTL has a <Resource url='https://testing-library.com/docs/queries/about/'>very rich API</Resource> for querying/selecting DOM nodes rendered by your components - it's very useful for making tests less brittle and reliant on implementation details
+  - You can find <Resource url='https://developer.chrome.com/docs/devtools/accessibility/reference/#computed'>a similar tool in browsers</Resource> by going to Elements → Inspect → Accessibility → Computed Properties
+  - The <Resource url='https://testing-playground.com/'>Testing Playground</Resource> can also be helpful in finding creative but robust ways of finding DOM nodes in your render output
+- When firing events in your tests, 99% of the time, you should prefer <Resource url='https://testing-library.com/docs/user-event/intro/'>userEvent</Resource> over <Resource url='https://testing-library.com/docs/dom-testing-library/api-events#fireevent'>fireEvent</Resource>, because userEvent simulates an event closer to how a browser would (including propagation and other events that get fired like mouseUp / mouseDown)
+
+
 
 ## Misc Reading
 

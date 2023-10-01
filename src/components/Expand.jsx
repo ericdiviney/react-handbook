@@ -12,7 +12,7 @@ export function Expand({ children, parent }) {
     <div className="my-2">
       <div>
         <button
-          className="flex items-center gap-3"
+          className="flex items-center gap-3 group"
           onClick={() => toggleHidden()}
         >
           <svg
@@ -32,6 +32,7 @@ export function Expand({ children, parent }) {
             />
           </svg>
           <h3 className="m-0 text-base font-bold">{parent}</h3>
+          <span className="m-0 text-xs font-light tracking-tight transition-all -translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-focus:translate-x-0 group-focus:opacity-100">{hidden ? 'show' : 'hide'}</span>
         </button>
       </div>
       <div>
@@ -39,7 +40,8 @@ export function Expand({ children, parent }) {
           className={clsx(
             '[&>:first-child]:mt-0 [&>:last-child]:mb-0 px-0 py-2',
             {
-              hidden: hidden,
+              'hidden': hidden,
+              'animate-enterFromTop': !hidden,
             }
           )}
         >

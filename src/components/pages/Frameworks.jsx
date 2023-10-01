@@ -127,14 +127,6 @@ export function FrameworkComparisonTable() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between p-6 my-2 rounded-xl bg-slate-100 dark:bg-zinc-800">
-          <div className="basis-1/4">The gist</div>
-          <div className="flex w-3/4">
-            <div className="w-1/3 px-2">Fast, non-dynamic sites</div>
-            <div className="w-1/3 px-2">Enterprise React</div>
-            <div className="w-1/3 px-2">Indie Products / SaaS Startups</div>
-          </div>
-        </div>
         <div className="flex justify-between p-6 my-2">
           <div className="basis-1/4">Good for:</div>
           <div className="flex w-3/4">
@@ -150,31 +142,6 @@ export function FrameworkComparisonTable() {
             <div className="w-1/3 px-2">
               SEO-friendly rendering, Fast dynamic apps/sites, Deploying
               &quot;to the edge&quot;
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between p-6 my-2">
-          <div className="basis-1/4">Not Good for:</div>
-          <div className="flex w-3/4">
-            <div className="w-1/3 px-2">
-              Dynamically generated content like search results, user-generated
-              feeds, admin dashboards
-            </div>
-            <div className="w-1/3 px-2">
-              <div className="mb-4">
-                If you have absolutely no requirement for server-side react now
-                or ever
-              </div>
-              <div>
-                If your team has opinionated stances on functionality like
-                routing, data fetching, etc.
-              </div>
-            </div>
-            <div className="w-1/3 px-2">
-              <div className="mb-4">
-                Medium-Large apps (think enterprise SPAs)
-              </div>
-              <div>Very complex apps with a lot of async logic</div>
             </div>
           </div>
         </div>
@@ -229,76 +196,8 @@ export function FrameworkComparisonTable() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between p-6 my-2 rounded-xl bg-emerald-50 dark:bg-transparent">
-          <div className="basis-1/4">Pros:</div>
-          <div className="flex w-3/4">
-            <div className="w-1/3 px-2">
-              The obvious solution for when you know you want SSG. Generates
-              static HTML files at build time, which can be served efficiently
-              by a CDN, ensuring fast load times and improved performance.
-            </div>
-            <div className="w-1/3 px-2">
-              <div className="mb-4">
-                Next.js is the more battle-tested library in production, so
-                you&apos;re less likely to encounter bugs that you&apos;ll have
-                to report to the framework authors.
-              </div>
-            </div>
-            <div className="w-1/3 px-2">
-              <div className="mb-4">
-                Remix has a pretty mature solution for{' '}
-                <Resource url="https://remix.run/blog/lazy-loading-routes">
-                  avoiding Network Waterfalls
-                </Resource>
-                .
-              </div>
-              <div className="mb-4">
-                Remix will probably work better out-of-the-box for apps that
-                require support in older browsers like Safari 8-9 or IE 9-11.
-              </div>
-              <div>
-                Simple architecture. Conceptually, a shift back towards MPA
-                (Multi Page App) architectures like RoR (Ruby), Laravel (PHP),
-                etc.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between p-6 my-2 rounded-xl bg-rose-50 dark:bg-transparent">
-          <div className="basis-1/4">Cons:</div>
-          <div className="flex w-3/4">
-            <div className="w-1/3 px-2">
-              Serving dynamic content in way that scales is a bit of a pain.
-              Otherwise, you&apos;re mostly left with doing fetch() inside
-              useEffect() and then rendering like you normally would in a simple
-              SPA.
-            </div>
-            <div className="w-1/3 px-2">
-              <div>
-                Devs using Remix tend to rave about{' '}
-                <Resource url="https://remix.run/blog/lazy-loading-routes">
-                  Nested Routes
-                </Resource>
-                , while devs using the new (beta){' '}
-                <Resource url="https://beta.nextjs.org/docs/app-directory-roadmap">
-                  App Router
-                </Resource>{' '}
-                in Next.js report many bugs.
-              </div>
-            </div>
-            <div className="w-1/3 px-2">
-              As the new framework on the block, Remix has to compete with the
-              incumbents (Gatsby and Next.js). <br />
-              <br />
-              More:{' '}
-              <Resource url="https://redd.one/blog/my-struggle-with-remix">
-                My Struggle With Remix
-              </Resource>
-            </div>
-          </div>
-        </div>
         <div className="flex justify-between p-6 my-2">
-          <div className="basis-1/4">Neutral Points To Be Aware Of</div>
+          <div className="basis-1/4">Things To Be Aware Of</div>
           <div className="flex w-3/4">
             <div className="w-1/3 px-2">Mostly for SSG only.</div>
             <div className="w-1/3 px-2">

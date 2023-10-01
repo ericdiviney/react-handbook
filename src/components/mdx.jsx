@@ -2,10 +2,19 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { Heading } from '@/components/Heading'
 
-export const a = Link
-export { Button } from '@/components/Button'
-export { CodeGroup, Code as code, Pre as pre } from '@/components/Code'
+export const a = Link;
+export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
+export * from '@/components/Accordion'
+export { Button } from '@/components/Button';
+export * from '@/components/Details';
+export * from '@/components/Expand';
+export * from '@/components/FAQ';
+export * from '@/components/LeadHeading'
+export * from '@/components/PillTab';
 export * from '@/components/Resource';
+export * from '@/components/Summary';
+export * from '@/components/StepList';
+export * from '@/components/Tab';
 export * from '@/components/Tweet';
 
 export const h2 = function H2(props) {

@@ -198,8 +198,7 @@ export const navigation = [
     title: 'Topics',
     href: '/topics',
     links: [
-      { title: 'Frameworks & Build Tools', href: '/frameworks' },
-      { title: 'Project Structure', href: '/project-structure' },
+      { title: 'Project Standards', href: '/project-standards' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
       { title: 'Styling & UI Libraries', href: '/styling' },
       { title: 'Ecosystem & npm libraries', href: '/ecosystem' },
@@ -213,12 +212,10 @@ export const navigation = [
     ],
   },
   {
-    title: 'Framework Guides',
+    title: 'React Frameworks',
     links: [
-      {
-        title: 'React Native',
-        href: '/react-native-project-structure',
-      },
+      { title: 'Frameworks & Build Tools', href: '/frameworks' },
+      { title: 'React Native', href: '/react-native-project-standards' },
     ],
   },
   {

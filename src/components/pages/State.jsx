@@ -1,7 +1,7 @@
-import { LeadHeading } from './LeadHeading'
-import { Resource } from './Resource'
-import { Step, StepList } from './StepList'
-import { SimpleCell, SimpleRow, SimpleTable } from './SimpleTable'
+import { LeadHeading } from '@/components/LeadHeading'
+import { Resource } from '@/components/Resource'
+import { Step, StepList } from '@/components/StepList'
+import { SimpleCell, SimpleRow, SimpleTable } from '@/components/SimpleTable'
 
 // Helpers for the state management page
 

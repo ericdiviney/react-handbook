@@ -1,31 +1,13 @@
 V2 of the site
 
-## A few more reusable components 
-- go through all code snippets and recreate as js/ts tabs (offer both versions for all snippets on site)
-- create version of <Code> component that has internal state, does NOT rely on global language choice (more like tabs,accordion)
-- custom components/visualizations for things in code snippets that aren't code
-    - plus better ways of presenting short code snippets (automated testing) - the code snippets here are kinda ugly honest
-- create custom component that shows folder structure of react project
-    - https://www.radix-ui.com/primitives/docs/components/collapsible
-- a "see more links/material on this subject" component
-- check notebook for any components you missed and want to add/reuse around the site
-
-
-
 ## Larger content updates to wrap up v2 sprint
-- refactor FrameworkComparisonTable to generic ComparisonTable
-    - simplify this table
-    - reach out directly to each framework and get their 1 minute pitch
-    - remove your "opinions" on when one is better than the other. SSG vs SSR - and that's really the only consideration you should be making
-- At bottom of "Frameworks" page - add a "more to come" notice for pages on Gatsby, Next, and Remix each
-    - Astro, Livewire, Alpine, Awesome-Vite backends, NX monorepo 
-- finish homepage content and be sure newly created pages (fundamentals) are all grammatically fine and complete before publish
-- add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
-- add to courses - https://scrimba.com/learn/learnreact
-- add animation to Tab/Accordion component in State Management (like the stripe navigation, sliding left/right)
-- add to styling page 
-    - https://github.com/css-modules
-- change navigation link: Styling / UI Libraries → Styling & UI Libraries
+
+- file explorer and add more folder structures 
+    - Josh Comeau has a nice minimal version you can draw some inspiration from: https://www.joshwcomeau.com/react/file-structure/#the-implementation-3
+    - https://www.robinwieruch.de/react-folder-structure/
+    - https://blog.webdevsimplified.com/2022-07/react-folder-structure/
+    - 4/4 from this one: https://twitter.com/_georgemoller/status/1678374278511697920?s=20
+
 - Add a new section for each popular CSS library and some resources/tips for it:
     - tailwind
         - https://twitter.com/housecor/status/1615790145751367712?s=20
@@ -35,30 +17,17 @@ V2 of the site
         - shadcdn component library
         - tailwind plugins for vscode
     - https://github.com/emilkowalski/sonner
-- update navigation link text: “Framework Guides” → React Frameworks
-    - remember to make (coming soon) links for SPAs, Remix, Next, Gatsby
-        - https://github.com/vitejs/awesome-vite
-    - create an "Other Stacks w/ React" page also under "Frameworks" - this is where you recommend LiveWire, Laravel, Rails, Flask, Astro***
-    - Vite backend integration resources - https://github.com/vitejs/awesome-vite#integrations-with-backends
-- rework the framework comparison table
-    - just link to the respective pages now, don't try to write so much on each just link to the docs, tutorials, tips, cheatsheets, etc.
-- add to homepage, we refer to websites and web applications as simply "web apps". It's an arbitrary distinction really. This site helps you build web and mobile apps, simple as that.
-    - then also update all throughout the site when referring to sites/apps/websites/web applications/webapps/etc.
-- https://www.youtube.com/watch?v=30LWjhZzg50
-- Josh's feedback is awesome, in Discord
+- remember to make (coming soon) links for SPAs, Remix, Next.js, Gatsby
+    - remix page - include links to tutorials, kent c dodds, ryans series on twitter right now (building complex UI stuff)
+    - nextjs - nextjs weekly newsletter, video courses anywhere around the internet, subreddits, docs, idk what else
+    - https://github.com/vitejs/awesome-vite
+- create an "Other Stacks w/ React" page also under "Frameworks" - this is where you recommend LiveWire, Laravel, Rails, Flask, Astro***
 - find somewhere to put tamagui.js and NX monorepo for native/web shared codebases
+- Vite backend integration resources - https://github.com/vitejs/awesome-vite#integrations-with-backends
+- https://www.youtube.com/watch?v=30LWjhZzg50
 - add a <Summary> to the top of each content page
 - check every page for hydration / errors
 - use LeadHeadings inside <Details> and <Summary> where you need headers
-- remove web 2.0 to now section on your bio, also remove "Weve been acquired" and only link to Dialexa for now
-- add some personality: this site previously took stances on tools, frameworks, etc. We are going to really try and undo that. Let's start with some basics:
-    - we live in a golden era of web development tools
-    - React is great
-    - Vue is also great
-    - Angular is pretty wonderful
-    - Astro, Qwik, jQuery, seriously all of it can be fun to write with
-    - We're not going to fall into the cycle of dogmatic binary choices for best practices. We believe the world is more gray than that, and I want the content on this website to reflect that
-    - IMO, the twitter wars have gotten to click baity lately. Everyone's posting hot takes, memes, etc. I'm not looking for engagement bait. I simply want to help write one of the best damn resources on the internet for learning React development.
 - Looking for contributions on Ecosystem page
     - useful things for 3d rendering
     - edge cases / difficult things to do in frontend apps
@@ -71,9 +40,18 @@ V2 of the site
         - what are the cute little variants with useState() that make it a simple global state?
     - JavaScript / TypeScript custom hook starter file
     - Test with custom render, context provider, components, and test assertations
-    - component design patterns
+    - component design patterns (HOC, etc.)
+- Add a components/storybook like screen with examples of everything (link in footer, not header or sidebar with code samples)
+- add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
+    - this should be just like the "You will learn" summary at beginning of pages, say that we're working on more material and we'd be open to contributions
 
-
+Pages to be updated/modernized with the new components:
+- Project standards
+- Styling and UI libs
+- hooks guide
+- state Management
+- performance
+- testing
 
 
 ## Longer initiatives to add to the pipeline or to Github issues tab
@@ -87,7 +65,9 @@ V2 of the site
     - Josh Claunch, frequent collaborator and gives great feedback (also has expertise in very fast moving data in React apps)
 
 
-v2 Feedback from?
+prepare tweet thread with screenshots outlining the updates
+then, tag the following:
+
 Mark Erikson
 Josh Claunch
 Seb Lorber

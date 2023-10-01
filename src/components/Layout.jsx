@@ -22,6 +22,7 @@ export function Layout({ children, sections = [] }) {
     setNavigationOpen(!isNavigationOpen);
   }
 
+  // if user had sidebar pinned open previously - on new page loads we should continue that behavior
   useEffect(() => {
     const shouldSidebarBeOpen = !(localStorage.getItem(storageKey) === 'false');
     if (shouldSidebarBeOpen) setNavigationOpen(true);

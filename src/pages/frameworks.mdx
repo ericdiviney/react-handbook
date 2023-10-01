@@ -1,5 +1,4 @@
-import { FrameworkComparisonTable } from '@/components/FrameworkComparisonTable'
-import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { FrameworkComparisonTable } from '@/components/pages/Frameworks'
 
 export const description =
   'Explore React meta-frameworks and the tools that bundle them.'
@@ -46,13 +45,29 @@ One final reason you might start with plain React is if you are introducing it t
 - <Resource url='https://vitejs.dev/guide/#scaffolding-your-first-vite-project'>Vite</Resource> is the current recommended alternative
   - Read this guide on <Resource url='https://www.robinwieruch.de/vite-create-react-app/'>migrating your app from CRA to Vite</Resource>
 
+## Build Tools 
+
+<Resource url='https://webpack.js.org/'>Webpack</Resource> was the undisputed winner here for a long time. You probably won't get in too much trouble if you use it now (other than sitting around waiting for development builds to finish). TLDR: It works, but it's slow.
+
+But, now Webpack faces competition:
+
+- <Resource url='https://vitejs.dev/guide/why.html'>Vite</Resource> - a great modern alternative to Webpack that leverages browsers' native ES modules support for better performance (less code sent to the browser until required). An excellent option for building web apps and websites
+- <Resource url='https://parceljs.org/'>parcel</Resource> - another modern alternative build tool + development server, if you are developing a library/package this might fit your needs better than Vite
+- <Resource url='https://esbuild.github.io/'>esbuild</Resource> - a very flexible zero-config solution for large projects with intricate needs. Will probably be able to do what you need, but at the cost of a pretty steep learning curve
+
+Snowpack used to be a great tool, but it is no longer maintained and recommends Vite as an alternative build tool solution. <Resource url='https://wmr.dev/'>wmr</Resource> can also be used as a build tool, though it generally has less open-source support and popularity than the options above.
+
+Further reading:
+
+- <Resource url='https://css-tricks.com/comparing-the-new-generation-of-build-tools/#h-vite'>Comparing the New Generation of Build Tools</Resource>
+
 ## React Native
 
 For building native (iOS, Android, Windows, MacOS) and web applications.
 
-You can also use a framework like <Resource url='https://www.npmjs.com/package/expo'>Expo</Resource> to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the <Resource url='/react-native-project-structure'>React Native Framework Framework Tips</Resource>.
+You can also use a framework like <Resource url='https://www.npmjs.com/package/expo'>Expo</Resource> to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the <Resource url='/react-native-project-standards'>React Native Framework Framework Tips</Resource>.
 
-## The Shift Towards SSR
+## Web Frameworks & The Shift Towards SSR
 
 Before jumping into the frameworks below, it can help to understand _why_ this shift has happened:
 
@@ -82,27 +97,27 @@ Before you dive in below, you may benefit by watching <Resource url='https://www
 
 CRA (Create React App) is a <Resource url='https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741'>bad</Resource> starting point for your next production application. Next.js and Remix are great options for web applications, or you could go with a SPA if <Resource url='/frameworks#vanilla-react-spas'>it fits your requirements</Resource>.
 
-**Gatsby vs. Next (for websites)**
+**Gatsby is good for websites**
 
-Gatsby is not ideal for web applications that are dependent on user interactions changing data or dynamically rendering data fetched from an external source (like a DB).
+Gatsby is not ideal for web applications that have lots of user interactions changing data or dynamically rendering data fetched from an external source (like a DB).
 
-If you're looking to build a website (potentially with some simple features hidden behind authentication), other than developer experience (dx) you're getting the same end-result picking between Next.js and Gatsby. With Next being the more flexible option (without sacrificing performance) there aren't many reasons to recommend Gatsby. Again, you should consider the DX of everyone that will be working on the project, but as far as functionality - Next.js gets you everything Gatsby does and more. Gatsby can support server-side generated responses at runtime, but in general, Next has better support for this feature. If your project has any potential to grow beyond the current spec/scope - we recommend Next.js. Traditionally, some arguments favoring Gatsby might have referenced integrating GraphQL easily, or the <Resource url='https://www.gatsbyjs.com/plugins'>plugin library</Resource> - Next.js has since <Resource url='https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/'>closed</Resource> the GraphQL gap, and it's likely you'd be able to find plugin alternatives given the vast React ecosystem.
+Some arguments favoring Gatsby might reference integrating GraphQL easily, or the <Resource url='https://www.gatsbyjs.com/plugins'>plugin library</Resource> - Next.js has since <Resource url='https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/'>closed</Resource> the GraphQL gap, and you'll probably easily find open-source alternatives for most Gatsby plugins.
 
-Further reading
+Long story short: Gatsby can be great for content-driven public websites that need to load fast. For more reading, reference the following:
 
 - <Resource url='https://www.gatsbyjs.com/features/jamstack/gatsby-vs-nextjs'>Gatsby vs Next.js</Resource> - Official Gatsby.js comparison
 
-**Next vs. Remix (for web apps)**
+**Next &amp; Remix**
 
-Remix is something newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities. That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's a bit of an unorthodox way of building a UI for your application needs, but the decisions are intentional. When comparing Remix to Next.js:
+Next.js and Remix can be used for websites that Gatsby are good for, but they really shine for slightly more complex web applications that interface with today's modern data systems. Remix is something a little newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities (<Resource url='https://remix.run/docs/en/main/discussion/progressive-enhancement'>Progressive Enhancement</Resource>). That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's definitely different from building SPAs, but just try to stick with it to see the benefits. When comparing Remix to Next.js:
 
 - Both use the folder/file structure to setup the "routes" of your app
 - Both take advantage of HTTP caching to deliver results to users as fast as possible
 - Both provide built-in mechanisms for data fetching in your components
 - When compared to Next.js - in most cases its probably more affordable to ship a Remix app via cloudflare workers than it is to ship a Next.js app on Vercel
 - When compared to Next.js - The way it "blends" server and client-side code / components receives a lot of positive feedback
-- Remix is built on top of standard Web APIs, Next encourages a Node.js approach (for now)
-- Remix relies less on node.js, meaning Remix is more portable to non-node environments like Cloudflare Workers or Deno Deploy and also makes it easier to run "on the edge"
+- Remix is built on top of standard Web APIs making it easy to deploy to the <Resource url='https://remix.run/blog/remix-and-the-edge'>"edge"</Resource>, Next.js encourages a Node.js server (for now)
+- Remix relies less on Node.js, meaning Remix is more portable to non-node environments like Cloudflare Workers or Deno Deploy and also makes it easier to run "on the edge"
 - Remix apps will tend to "work" quicker - since their underlying fundamentals are based on web standards (like forms for mutating data). In other words: Remix makes it so your users don't have to wait for a large JS bundle (04.chunk.js) to finish loading before they can interact with the page
 
 Further reading:
@@ -115,19 +130,3 @@ Some new ideas are floating around to get really performant websites (blogs, por
 
 If this fits your use case, you might benefit from looking into <Resource url='https://docs.astro.build/en/guides/integrations-guide/react/'>Astro</Resource> or <Resource url='https://qwik.builder.io/docs/integrations/react/'>Qwik</Resource>, which are easy to integrate from a React perspective.
 - With the <Resource url='https://astro.build/blog/astro-2100/'>recent updates</Resource> to Astro, this is actually becoming a very compelling alternative tech-stack for applications. 
-
-## Build Tools
-
-<Resource url='https://webpack.js.org/'>Webpack</Resource> was the undisputed winner here for a long time. You probably won't get in too much trouble if you use it now (other than sitting around waiting for development builds to finish). TLDR: It works, but it's slow.
-
-But, now Webpack faces competition:
-
-- <Resource url='https://vitejs.dev/guide/why.html'>Vite</Resource> - a great modern alternative to Webpack that leverages browsers' native ES modules support for better performance (less code sent to the browser until required). An excellent option for building web apps and websites
-- <Resource url='https://parceljs.org/'>parcel</Resource> - another modern alternative build tool + development server, if you are developing a library/package this might fit your needs better than Vite
-- <Resource url='https://esbuild.github.io/'>esbuild</Resource> - a very flexible zero-config solution for large projects with intricate needs. Will probably be able to do what you need, but at the cost of a pretty steep learning curve
-
-Snowpack used to be a great tool, but it is no longer maintained and recommends Vite as an alternative build tool solution. <Resource url='https://wmr.dev/'>wmr</Resource> can also be used as a build tool, though it generally has less open-source support and popularity than the options above.
-
-Further reading:
-
-- <Resource url='https://css-tricks.com/comparing-the-new-generation-of-build-tools/#h-vite'>Comparing the New Generation of Build Tools</Resource>

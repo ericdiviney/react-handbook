@@ -3,7 +3,7 @@ export const description =
 
 # React Native Project Standards
 
-There's no reason you can't or shouldn't follow an organization template like we describe on our normal <Resource url='/project-structure'>Project Structure</Resource> page.
+There's no reason you can't or shouldn't follow a directory-setup like we describe on our normal <Resource url='/project-standards'>Project Standards</Resource> page.
 
 ## Limitations of React Native
 
@@ -24,14 +24,21 @@ Furthermore, there will be times you need to use "Native Modules" to interact wi
 
 ## Component Tips
 
-There's nothing particularly unique in React Native that would keep you from implementing the same general project practices we recommend on our <Resource url='/project-structure#component-format'>Project Structure</Resource> page. So for organizing your component files and folder structure we do recommend the same approach.
+There's nothing particularly unique in React Native that would keep you from implementing the same general project practices we recommend on our <Resource url='/project-standards#component-format'>Project Structure</Resource> page. So for organizing your component files and folder structure we do recommend the same approach.
 
 However, there are some particular catches when developing with React-Native, so we'll try to explain those below:
 
-```tsx
+<CodeGroup title='React Native Quick Tips'>
+```jsx {{ title: 'JavaScript' }}
 // Occasionally you will run into scenarios where Platform-specific code is required.
 // You can use the Platform import for these purposes.
 import { Platform, StyleSheet } from 'react-native'
+
+// <SafeViewArea> & <Flatlist> are two critical components you should frequently use
+// SafeViewArea - To ensure your views don't get cut off by odd iPhone screen shapes (wrap your View layer in this)
+import { SafeAreaView } from 'react-native'
+// FlatList - an extremely performant method of rendering list-like components. Uses virtualization under the hood.
+import { FlatList } from 'react-native'
 
 // Conditionally apply styles depending on platform of user
 const styles = StyleSheet.create({
@@ -57,20 +64,11 @@ switch (Platform.OS) {
   case 'web':
 }
 
-if (Platform.OS === 'ios') {
-  // iOS-only
+if (Platform.OS === 'ios' || Platform.OS === 'android') {
+  // target whichever system you need
 }
 ```
-
-```jsx
-// <SafeViewArea> & <Flatlist> are two critical components you should frequently use
-
-// SafeViewArea - To ensure your views don't get cut off by odd iPhone screen shapes (wrap your View layer in this)
-import { SafeAreaView } from 'react-native'
-
-// FlatList - an extremely performant method of rendering list-like components. Uses virtualization under the hood.
-import { FlatList } from 'react-native'
-```
+</CodeGroup>
 
 ## Performance & Optimization Tips
 
