@@ -215,11 +215,17 @@ export const navigation = [
     title: 'React Frameworks',
     links: [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
-      { title: 'React Native', href: '/react-native-project-standards' },
+      { title: 'SPA (Single Page Application)', href: '/frameworks/spa' },
+      { title: 'React Native', href: '/frameworks/react-native' },
+      { title: 'Next.js', href: '/frameworks/nextjs' },
+      { title: 'Remix', href: '/frameworks/remix' },
+      { title: 'Alternate React Stacks', href: '/frameworks/alternate-tech-stacks' },
+      { title: 'Gatsby (coming soon)', href: '#gatsby' },
+      { title: 'Nx (coming soon)', href: '#nx' },
     ],
   },
   {
-    title: 'Planned Topics',
+    title: 'In Progress',
     links: [
       {
         title: 'RSC (React Server Components) / SSR',
@@ -228,6 +234,7 @@ export const navigation = [
       { title: 'Error Handling & Boundaries', href: '#debugging' },
       { title: 'Analytics & Monitoring', href: '#analytics' },
       { title: 'CI/CD Pipelines', href: '#cicd' },
+      { title: 'Component Design Patterns', href: '#components-patterns' },
     ],
   },
 ]

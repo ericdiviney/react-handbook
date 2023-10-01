@@ -2,22 +2,7 @@ V2 of the site
 
 ## Larger content updates to wrap up v2 sprint
 
-- file explorer and add more folder structures 
-    - Josh Comeau has a nice minimal version you can draw some inspiration from: https://www.joshwcomeau.com/react/file-structure/#the-implementation-3
-    - https://www.robinwieruch.de/react-folder-structure/
-    - https://blog.webdevsimplified.com/2022-07/react-folder-structure/
-    - 4/4 from this one: https://twitter.com/_georgemoller/status/1678374278511697920?s=20
-
-- Add a new section for each popular CSS library and some resources/tips for it:
-    - tailwind
-        - https://twitter.com/housecor/status/1615790145751367712?s=20
-        - https://tailwindui.com/
-        - https://nextui.org/docs/guide/introduction
-        - https://preline.co/index.html
-        - shadcdn component library
-        - tailwind plugins for vscode
-    - https://github.com/emilkowalski/sonner
-- remember to make (coming soon) links for SPAs, Remix, Next.js, Gatsby
+- Work on SPA, Next, Remix, and Alternatve Tech Stacks page
     - remix page - include links to tutorials, kent c dodds, ryans series on twitter right now (building complex UI stuff)
     - nextjs - nextjs weekly newsletter, video courses anywhere around the internet, subreddits, docs, idk what else
     - https://github.com/vitejs/awesome-vite
@@ -55,14 +40,13 @@ Pages to be updated/modernized with the new components:
 
 
 ## Longer initiatives to add to the pipeline or to Github issues tab
-- migrate to typescript bro
-- "Detail" mode near dark/light mode - which defaults to all expandable components open by default (get this in cookie, localstorage?)
-- refactor tabs to use headless ui instead of Radix - does this change much?
-- refactor accordion -> disclosure in headless ui instead of Radix
-- add a "sign up for newsletter to get updates" form somewhere
-- also add ways to get people's attention, global CTA's pointing to new pages "Hey, we just published a new page on {x}, check it out ->"
-- add a "Special Thanks" on the about page from me:
-    - Josh Claunch, frequent collaborator and gives great feedback (also has expertise in very fast moving data in React apps)
+
+1. Migrate all files to TypeScript
+2. Add more structures to the file explorer (and link directly to the inspiration)
+    - https://www.robinwieruch.de/react-folder-structure/
+    - https://blog.webdevsimplified.com/2022-07/react-folder-structure/
+    4/4 from this one: https://twitter.com/_georgemoller/status/1678374278511697920?s=20
+3. Add more file templates to project standards page (Context providers, currying for tons of providers, custom hooks, higher order components, other stuff?)
 
 
 prepare tweet thread with screenshots outlining the updates

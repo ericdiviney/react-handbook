@@ -26,6 +26,11 @@ const nextConfig = {
         destination: '/project-standards',
         permanent: true,
       },
+      {
+        source: '/react-native-project-standards',
+        destination: '/frameworks/react-native',
+        permanent: true,
+      },
     ]
   },
 }
