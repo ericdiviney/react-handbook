@@ -147,7 +147,7 @@ function NavigationGroup({ group, className }) {
         <ul role="list" className="pr-2 border-l border-transparent">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
-              <NavLink href={link.href} active={link.href === router.pathname}>
+              <NavLink href={link.href} tag={link.tag ?? undefined} active={link.href === router.pathname}>
                 {link.title}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
@@ -215,17 +215,16 @@ export const navigation = [
     title: 'React Frameworks',
     links: [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
-      { title: 'SPA (Single Page Application)', href: '/frameworks/spa' },
       { title: 'React Native', href: '/frameworks/react-native' },
       { title: 'Next.js', href: '/frameworks/nextjs' },
-      { title: 'Remix', href: '/frameworks/remix' },
       { title: 'Alternate React Stacks', href: '/frameworks/alternate-tech-stacks' },
-      { title: 'Gatsby (coming soon)', href: '#gatsby' },
-      { title: 'Nx (coming soon)', href: '#nx' },
+      { title: 'Remix', href: '#remix', tag: 'coming soon' },
+      { title: 'Gatsby', href: '#gatsby', tag: 'coming soon' },
+      { title: 'Nx', href: '#nx', tag: 'coming soon' },
     ],
   },
   {
-    title: 'In Progress',
+    title: 'Upcoming & In Progress',
     links: [
       {
         title: 'RSC (React Server Components) / SSR',

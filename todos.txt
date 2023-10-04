@@ -2,33 +2,12 @@ V2 of the site
 
 ## Larger content updates to wrap up v2 sprint
 
-- Work on SPA, Next, Remix, and Alternatve Tech Stacks page
-    - remix page - include links to tutorials, kent c dodds, ryans series on twitter right now (building complex UI stuff)
-    - nextjs - nextjs weekly newsletter, video courses anywhere around the internet, subreddits, docs, idk what else
-    - https://github.com/vitejs/awesome-vite
-- create an "Other Stacks w/ React" page also under "Frameworks" - this is where you recommend LiveWire, Laravel, Rails, Flask, Astro***
-- find somewhere to put tamagui.js and NX monorepo for native/web shared codebases
-- Vite backend integration resources - https://github.com/vitejs/awesome-vite#integrations-with-backends
-- https://www.youtube.com/watch?v=30LWjhZzg50
-- add a <Summary> to the top of each content page
-- check every page for hydration / errors
-- use LeadHeadings inside <Details> and <Summary> where you need headers
-- Looking for contributions on Ecosystem page
-    - useful things for 3d rendering
-    - edge cases / difficult things to do in frontend apps
-    - niche libraries that just REALLY fill out their use-cases
-    - add toast section to this page?
-- New resources in the sidebar - Starter File Templates (Components, Contexts, Tests, etc.)
-    - JavaScript / TypeScript component starter file
-    - Barrel files
-    - JavaScript / TypeScript context starter files / templates
-        - what are the cute little variants with useState() that make it a simple global state?
-    - JavaScript / TypeScript custom hook starter file
-    - Test with custom render, context provider, components, and test assertations
-    - component design patterns (HOC, etc.)
-- Add a components/storybook like screen with examples of everything (link in footer, not header or sidebar with code samples)
 - add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
     - this should be just like the "You will learn" summary at beginning of pages, say that we're working on more material and we'd be open to contributions
+    - hooks
+    - state management
+    - automated testing
+    - ecosystem (always adding)
 
 Pages to be updated/modernized with the new components:
 - Project standards
@@ -37,6 +16,15 @@ Pages to be updated/modernized with the new components:
 - state Management
 - performance
 - testing
+- clean up all frameworks pages
+
+- check every page for hydration / errors
+
+
+
+
+
+
 
 
 ## Longer initiatives to add to the pipeline or to Github issues tab
@@ -46,7 +34,11 @@ Pages to be updated/modernized with the new components:
     - https://www.robinwieruch.de/react-folder-structure/
     - https://blog.webdevsimplified.com/2022-07/react-folder-structure/
     4/4 from this one: https://twitter.com/_georgemoller/status/1678374278511697920?s=20
-3. Add more file templates to project standards page (Context providers, currying for tons of providers, custom hooks, higher order components, other stuff?)
+3. Add more file templates to project standards page (Context providers, quick-n-dirty global state with useContext/useState, barrel files and explanation, currying for tons of providers, custom hooks, higher order components, unit/integration/e2e test templates, other stuff?)
+4. Add a new page near component templates - Random component tips and tricks:
+    - using key={} to reset state for a component
+5. Add a link in the footer, only visible on localhost, that opens a new page that demonstrates all the UI components on the site and provides the ts props interface for each
+
 
 
 prepare tweet thread with screenshots outlining the updates

@@ -5,6 +5,15 @@ export const description =
 
 # Frameworks & Build Tools
 
+<Summary>
+  <ul>
+    <li>A comparison of each of the modern frameworks (Next / Remix / Gatsby)</li>
+    <li>Why SPAs are still a good option for some applications</li>
+    <li>The options for build tools in JavaScript ecosystem</li>
+    <li>Alternative stacks like monorepos (Nx) or Astro</li>
+  </ul>
+</Summary>
+
 There are many variants of React to choose from today. While optionality is excellent, it can also bring confusion when it's time to decide on your tech stack.
 
 We wrote this guide to bring clarity to the framework discussion.
@@ -52,6 +61,7 @@ One final reason you might start with plain React is if you are introducing it t
 But, now Webpack faces competition:
 
 - <Resource url='https://vitejs.dev/guide/why.html'>Vite</Resource> - a great modern alternative to Webpack that leverages browsers' native ES modules support for better performance (less code sent to the browser until required). An excellent option for building web apps and websites
+  - <Resource url='https://github.com/vitejs/awesome-vite'>github.com/vitejs/awesome-vite</Resource>
 - <Resource url='https://parceljs.org/'>parcel</Resource> - another modern alternative build tool + development server, if you are developing a library/package this might fit your needs better than Vite
 - <Resource url='https://esbuild.github.io/'>esbuild</Resource> - a very flexible zero-config solution for large projects with intricate needs. Will probably be able to do what you need, but at the cost of a pretty steep learning curve
 
@@ -65,7 +75,7 @@ Further reading:
 
 For building native (iOS, Android, Windows, MacOS) and web applications.
 
-You can also use a framework like <Resource url='https://www.npmjs.com/package/expo'>Expo</Resource> to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo, but for current best practices, visit the <Resource url='/frameworks/react-native'>React Native Framework Framework Tips</Resource>.
+You can also use a framework like <Resource url='https://www.npmjs.com/package/expo'>Expo</Resource> to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo - visit the <Resource url='/frameworks/react-native'>React Native Framework Framework Tips</Resource> to see what we can recommend.
 
 ## Web Frameworks & The Shift Towards SSR
 
@@ -130,3 +140,14 @@ Some new ideas are floating around to get really performant websites (blogs, por
 
 If this fits your use case, you might benefit from looking into <Resource url='https://docs.astro.build/en/guides/integrations-guide/react/'>Astro</Resource> or <Resource url='https://qwik.builder.io/docs/integrations/react/'>Qwik</Resource>, which are easy to integrate from a React perspective.
 - With the <Resource url='https://astro.build/blog/astro-2100/'>recent updates</Resource> to Astro, this is actually becoming a very compelling alternative tech-stack for applications. 
+
+## Monorepo / Nx
+
+Managing multiple applications/projects under a single repository is much easier with tooling like <Resource url='https://nx.dev/getting-started/why-nx'>Nx</Resource>. Particularly, it makes it much simpler to have shared code between multiple client web/mobile applications with a monorepo setup.
+
+<Expand parent='Typical arguments in favor of monorepo'>
+1. Code Sharing: Centralize common/shared code
+2. Consistent Developer Environment: Uniform configurations and tooling across projects
+3. Atomic Changes: Modify shared libraries and affected applications in one commit
+4. Build and Test Optimization: Only rebuild and retest code that has changed
+</Expand>

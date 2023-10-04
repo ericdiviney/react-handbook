@@ -33,7 +33,7 @@ export function Layout({ children, sections = [] }) {
       <div>
         <motion.header
           layoutScroll
-          className="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex"
+          className="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-[100] lg:flex"
         >
           <div
             onMouseEnter={() => setHoveringNav(true)} 
@@ -54,9 +54,7 @@ export function Layout({ children, sections = [] }) {
               className="mt-8 h-[calc(100%-30px)] w-full overflow-hidden"
             >
               <div
-                className={clsx({
-                  'w-full bg-white pb-2 dark:bg-zinc-900': true,
-                })}
+                className='w-full pb-2 bg-white dark:bg-zinc-900'
               >
                 <button
                   className={clsx(

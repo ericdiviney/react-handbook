@@ -132,10 +132,8 @@ export function SocialLinksList() {
 }
 
 export function Footer() {
-  let router = useRouter()
-
   return (
-    <footer className="max-w-2xl pb-16 mx-auto space-y-5 lg:max-w-5xl">
+    <footer className="max-w-2xl py-16 mx-auto space-y-5 lg:max-w-5xl">
       <PageNavigation />
       <SmallPrint />
     </footer>
