@@ -8,7 +8,7 @@ import {
   PillTabsContent,
 } from '@/components/PillTab'
 import { bulletproofStructure, simpleStructure } from './Standards-Config';
-import type { DirectoryExplorerProps, DirectoryItem, DirectoryItemProps } from './Standards-Config';
+import type { DirectoryExplorerProps, DirectoryItemType, DirectoryItemProps } from './Standards-Config';
 
 export function DirectoryExplorerTabs() {
   return (
@@ -48,7 +48,7 @@ export function DirectoryExplorerTabs() {
 }
 
 export function DirectoryExplorer({ structure }: DirectoryExplorerProps) {
-  const [selectedItem, setSelectedItem] = useState<DirectoryItem>()
+  const [selectedItem, setSelectedItem] = useState<DirectoryItemType>()
 
   return (
     <div className="p-4 mt-8 mb-6 border shadow rounded-xl dark:border-zinc-700">

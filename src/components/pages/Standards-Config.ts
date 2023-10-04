@@ -8,7 +8,7 @@ import {
   PillTabsContent,
 } from '@/components/PillTab'
 
-export const bulletproofStructure: DirectoryItem[] = [
+export const bulletproofStructure: DirectoryItemType[] = [
   {
     name: 'src',
     type: 'folder',
@@ -165,7 +165,7 @@ export const bulletproofStructure: DirectoryItem[] = [
   },
 ];
 
-export const simpleStructure: DirectoryItem[] = [
+export const simpleStructure: DirectoryItemType[] = [
   {
     name: 'src',
     type: 'folder',
@@ -266,18 +266,18 @@ export const simpleStructure: DirectoryItem[] = [
 ];
 
 export interface DirectoryExplorerProps {
-  structure: DirectoryItem[]
+  structure: DirectoryItemType[]
 }
 
-export interface DirectoryItem {
+export interface DirectoryItemType {
   type: string
   name: string
   description: React.ReactNode
-  items?: DirectoryItem[]
+  items?: DirectoryItemType[]
 }
 
 export interface DirectoryItemProps {
-  item: DirectoryItem
-  onSelect: (i: DirectoryItem) => void
+  item: DirectoryItemType
+  onSelect: (i: DirectoryItemType) => void
 }
 
