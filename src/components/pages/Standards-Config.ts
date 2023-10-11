@@ -1,12 +1,18 @@
-import clsx from 'clsx'
-import { useState } from 'react'
-import { Resource } from '@/components/Resource'
-import {
-  PillTabs,
-  PillTabsList,
-  PillTabsTrigger,
-  PillTabsContent,
-} from '@/components/PillTab'
+export interface DirectoryExplorerProps {
+  structure: DirectoryItemType[]
+}
+
+export interface DirectoryItemType {
+  type: string
+  name: string
+  description: React.ReactNode
+  items?: DirectoryItemType[]
+}
+
+export interface DirectoryItemProps {
+  item: DirectoryItemType
+  onSelect: (i: DirectoryItemType) => void
+}
 
 export const bulletproofStructure: DirectoryItemType[] = [
   {
@@ -163,7 +169,7 @@ export const bulletproofStructure: DirectoryItemType[] = [
     type: 'file',
     description: '',
   },
-];
+]
 
 export const simpleStructure: DirectoryItemType[] = [
   {
@@ -174,19 +180,22 @@ export const simpleStructure: DirectoryItemType[] = [
       {
         name: 'components',
         type: 'folder',
-        description: 'your application is small and simple enough that everything can be a component, and it can all be grouped in a components folder',
+        description:
+          'your application is small and simple enough that everything can be a component, and it can all be grouped in a components folder',
         items: [
           {
             name: 'App',
             type: 'folder',
-            description: 'The App wrapper, probably where any routes and context providers should also live',
+            description:
+              'The App wrapper, probably where any routes and context providers should also live',
             items: [
               {
                 name: 'App.jsx',
                 type: 'file',
-                description: 'The App wrapper, probably where any routes and context providers should also live',
+                description:
+                  'The App wrapper, probably where any routes and context providers should also live',
               },
-            ]
+            ],
           },
           {
             name: 'Header',
@@ -198,7 +207,7 @@ export const simpleStructure: DirectoryItemType[] = [
                 type: 'file',
                 description: 'global header component',
               },
-            ]
+            ],
           },
           {
             name: 'Widget',
@@ -210,7 +219,7 @@ export const simpleStructure: DirectoryItemType[] = [
                 type: 'file',
                 description: 'widget used on one page',
               },
-            ]
+            ],
           },
           {
             name: 'Screen',
@@ -220,10 +229,10 @@ export const simpleStructure: DirectoryItemType[] = [
               {
                 name: 'Screen.jsx',
                 type: 'file',
-                description: 'One of the modules or screens in the application'
-              }
-            ]
-          }
+                description: 'One of the modules or screens in the application',
+              },
+            ],
+          },
         ],
       },
       {
@@ -263,21 +272,4 @@ export const simpleStructure: DirectoryItemType[] = [
     type: 'file',
     description: '',
   },
-];
-
-export interface DirectoryExplorerProps {
-  structure: DirectoryItemType[]
-}
-
-export interface DirectoryItemType {
-  type: string
-  name: string
-  description: React.ReactNode
-  items?: DirectoryItemType[]
-}
-
-export interface DirectoryItemProps {
-  item: DirectoryItemType
-  onSelect: (i: DirectoryItemType) => void
-}
-
+]

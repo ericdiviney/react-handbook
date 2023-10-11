@@ -22,22 +22,23 @@ Pages to be updated/modernized with the new components:
 
 
 
-
-
-
-
-
 ## Longer initiatives to add to the pipeline or to Github issues tab
 
-1. Migrate all files to TypeScript
-2. Add more structures to the file explorer (and link directly to the inspiration)
+1. Set Milet loose on the UX optimizations - start with sidebar like he suggested, but move to some of the good content he published that's not on the handbook yet:
+    - Components basics
+    - Hooks
+    - Common React Patterns
+2. Migrate all files to TypeScript
+3. Add more structures to the file explorer (and link directly to the inspiration)
     - https://www.robinwieruch.de/react-folder-structure/
     - https://blog.webdevsimplified.com/2022-07/react-folder-structure/
     4/4 from this one: https://twitter.com/_georgemoller/status/1678374278511697920?s=20
-3. Add more file templates to project standards page (Context providers, quick-n-dirty global state with useContext/useState, barrel files and explanation, currying for tons of providers, custom hooks, higher order components, unit/integration/e2e test templates, other stuff?)
-4. Add a new page near component templates - Random component tips and tricks:
+4. Add more file templates to project standards page (Context providers, quick-n-dirty global state with useContext/useState, barrel files and explanation, currying for tons of providers, custom hooks, higher order components, unit/integration/e2e test templates, other stuff?)
+5. Add a new page near component templates - Random component tips and tricks:
     - using key={} to reset state for a component
-5. Add a link in the footer, only visible on localhost, that opens a new page that demonstrates all the UI components on the site and provides the ts props interface for each
+6. Add a link in the footer, only visible on localhost, that opens a new page that demonstrates all the UI components on the site and provides the ts props interface for each
+7. Add a section to the homepage:
+    What will I learn here that isn't covered in the docs?
 
 
 
@@ -51,3 +52,4 @@ Nextjsweekly guy
 Twitter bookmarks of people who've shared
 Discord peeps
 Anthony
+Milet can probably blast it out
