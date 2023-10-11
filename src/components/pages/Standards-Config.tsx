@@ -192,8 +192,7 @@ export const simpleStructure: DirectoryItemType[] = [
               {
                 name: 'App.jsx',
                 type: 'file',
-                description:
-                  'The App wrapper, probably where any routes and context providers should also live',
+                description:'The App wrapper, probably where any routes and context providers should also live',
               },
             ],
           },

@@ -2,13 +2,6 @@ V2 of the site
 
 ## Larger content updates to wrap up v2 sprint
 
-- add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
-    - this should be just like the "You will learn" summary at beginning of pages, say that we're working on more material and we'd be open to contributions
-    - hooks
-    - state management
-    - automated testing
-    - ecosystem (always adding)
-
 Pages to be updated/modernized with the new components:
 - Project standards
 - Styling and UI libs
@@ -30,6 +23,7 @@ Pages to be updated/modernized with the new components:
     - Common React Patterns
 2. Migrate all files to TypeScript
 3. Add more structures to the file explorer (and link directly to the inspiration)
+    - more files in each folder
     - https://www.robinwieruch.de/react-folder-structure/
     - https://blog.webdevsimplified.com/2022-07/react-folder-structure/
     4/4 from this one: https://twitter.com/_georgemoller/status/1678374278511697920?s=20
@@ -39,6 +33,12 @@ Pages to be updated/modernized with the new components:
 6. Add a link in the footer, only visible on localhost, that opens a new page that demonstrates all the UI components on the site and provides the ts props interface for each
 7. Add a section to the homepage:
     What will I learn here that isn't covered in the docs?
+8. Add a "Coming soon" or "More to come" to put at the bottom of topic pages. State Management is a great example here, since we want to publish an advanced guide.
+    - this should be just like the "You will learn" summary at beginning of pages, say that we're working on more material and we'd be open to contributions
+    - hooks
+    - state management
+    - automated testing
+    - ecosystem (always adding)
 
 
 

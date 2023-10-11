@@ -42,7 +42,7 @@ const TabsTrigger = React.forwardRef<
     ref={ref}
     className={clsx(
       "-m-[3px] mx-1 text-xs px-2 pb-2 border-b-2 border-b-transparent transition-all",
-      "hover:border-b-zinc-800 data-[state=active]:border-b-zinc-800 data-[state=active]:text-zinc-900",
+      "hover:border-b-zinc-800 data-[state=active]:border-b-zinc-800 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-sky-400",
       className
     )}
     {...props}
