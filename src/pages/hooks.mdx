@@ -17,10 +17,21 @@ The new React <Resource url='https://react.dev/reference/react'>docs</Resource> 
 
 In my experience, the use of hooks follows the 80/20 rule (assuming you are importing a UI library): approximately `80%` of the time your components will only need the mixed use of `useState` / `useEffect` to solve your problems (maybe more, this isn't a bad thing). When components get large/complex enough (the remaining `20%` of the time), you'll start to bring in `useRef`, `useMemo`, `useCallback`, and `useLayoutEffect` to help with the problems in your components.
 
+<Expand parent='Functional Component Lifecycle Diagram'>
 ![hook flow chart](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
+</Expand>
 
-## `useState`
+---
 
+## Hooks Deep Dive
+
+<br/>
+
+<FAQ>
+
+<Question value='useState'>
+<QuestionText>`useState`</QuestionText>
+<Answer>
 Common questions:
 
 - <Resource url='https://www.youtube.com/watch?v=RAJD4KpX8LA'>Is updating hook-state synchronous or asynchronous?</Resource>
@@ -34,9 +45,12 @@ Tips:
 - Store as little "state" as possible, <Resource url='https://kentcdodds.com/blog/dont-sync-state-derive-it'>derive</Resource> as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
 - Avoid state-effect <Resource url='https://twitter.com/asidorenko_/status/1622904907954094080?s=20'>Ping-Pong</Resource>, derive your values as part of the render function. Trying to keep too much info synced together in state/hooks is somewhat of an anti-pattern that can get you into trouble.
 - Don't try to update one property in an object or one item in an array, instead you should <Resource url='https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state'>replace</Resource> the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a <Resource url='#advanced-hooks'>ref (`useRef`)</Resource>
+</Answer>
+</Question>
 
-## `useEffect`
-
+<Question value='useEffect'>
+<QuestionText>`useEffect`</QuestionText>
+<Answer>
 Effects are code that run last during the rendering cycle. You may hear that effects actually run AFTER rendering is complete. What matters is that you know effect code runs last, whether you actually consider it part of the rendering phase or it's own step that happens AFTER rendering phase probably doesn't matter.
 
 You might be using effects wrong if:
@@ -52,10 +66,12 @@ Tips:
   - `useEffect(() ⇒ {})` - will run after every render of a component
   - `useEffect(() ⇒ {}, [])` - will run only after the first render of a component
   - `useEffect(() ⇒ {}, [deps])` - will run after renders, but only when deps change
+</Answer>
+</Question>
 
-## Other Hooks
-
-`useRef` 
+<Question value='useRef'>
+<QuestionText>`useRef`</QuestionText>
+<Answer>
 - <Resource url='https://ui.dev/useref'>`useRef`</Resource> is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
 - It returns an object that has a property called `current` that we can access as we do with objects.
 - <Resource url='https://degreat.co.uk/blog/react-refs/'>Understanding React Refs and `forwardRef`</Resource>
@@ -63,8 +79,13 @@ Tips:
     - "... forwardRef is a utility function in react that let you expose a child components DOM to a parent component with a ref..."
   - One very common reason to use refs is for DOM interactions that are abstracted away inside a component. For example, a ref passed from parent ➡️ child might be a `<Form>` (parent) with an `<Input>` (child) component of some kind where you want to `focus()` the actual `<input />` element inside the child component
   - Usage with <Resource url='https://www.totaltypescript.com/strongly-type-useref-with-elementref'>TypeScript</Resource>
+</Answer>
+</Question>
 
-`useMemo`, `useCallback` - memoize values and functions that don't need to be re-declared every single render-cycle. 
+<Question value='useMemo / useCallback'>
+<QuestionText>`useMemo / useCallback`</QuestionText>
+<Answer>
+`useMemo`, `useCallback` - allow us to memoize values and functions that don't need to be re-declared every single render-cycle. 
 - `useMemo` 
   - Read more about the performance benefits of `useMemo` on our <Resource url='/react-performance-optimization'>Performance</Resource> guide
   - The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
@@ -75,25 +96,42 @@ Tips:
   - `useCallback` serves the same purpose as `useMemo`, but it's built specifically for functions.
   - We hand it a function directly, and it memoizes that function, threading it between renders.
   - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
+</Answer>
+</Question>
 
-`useReducer` 
+<Question value='useReducer'>
+<QuestionText>`useReducer`</QuestionText>
+<Answer>
 - <Resource url='https://ui.dev/usereducer'>`useReducer`</Resource> - Tyler McGinnis
 - <Resource url='https://www.reddit.com/r/reactjs/comments/10bohti/usereducer_is_easier_to_adopt_than_you_might_think/'>`useReducer` is easier to adopt than you might think</Resource>
 - We especially recommend this if there are many calls to update state from your component. 
 - When to reach for `useReducer` over `useState` is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider `useReducer` instead of plain `useState`.
+</Answer>
+</Question>
 
-`useLayoutEffect`
+<Question value='useLayoutEffect'>
+<QuestionText>`useLayoutEffect`</QuestionText>
+<Answer>
 - Notice in the <Resource url='#hooks-at-a-high-level'>component lifecycle (React Hook Flow Diagram)</Resource> that `useLayoutEffect` occurs before the DOM updates calculated during a re-render are actually painted on the screen
 - Very similar to useEffect, but use this one specifically when you need to run an "effect" that will affect/alter the DOM in some way
   - hence, if you did this in a normal `useEffect`, you would get a flicker-like experience due to the fact `useEffect` would trigger a re-render for what you actually wanted
   - this hook is good for things like positioning and dimension alterations without a flicker on the screen
   - this is a bad hook to do anything computationally heavy as that will drastically slow your render function down
+</Answer>
+</Question>
 
+<Question value='other'>
+<QuestionText>Other useful hooks</QuestionText>
+<Answer>
 - <Resource url='https://react.dev/reference/react/useDeferredValue'>`useDeferredValue`</Resource> - lets you defer updating a part of the UI
 - <Resource url='https://react.dev/reference/react/useId'>`useId`</Resource> - for generating unique IDs
 - <Resource url='https://react.dev/reference/react/useSyncExternalStore'>`useSyncExternalStore`</Resource> - lets you subscribe to an <Resource url='https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api'>external store</Resource>
   - Read more on <Resource url='https://blog.saeloun.com/2021/12/30/react-18-useSyncExternalStore-api/'>how to use this hook in your own code</Resource>
 - <Resource url='https://react.dev/reference/react/useTransition'>`useTransition`</Resource> - lets you update the state without blocking the UI
+</Answer>
+</Question>
+
+</FAQ>
 
 
 ## Custom Hook Examples

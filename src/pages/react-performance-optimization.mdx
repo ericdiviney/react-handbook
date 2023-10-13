@@ -63,9 +63,14 @@ Modern React is pretty fast by default. Unless you're building complex component
 
 In modern React apps, most of the performance issues you'll run into can probably be simplified down to rendering problems (either too slow, or too much). The visual in the tweet below explains how rendering can cause cascading effects across a large application.
 
+<br/>
+<Expand parent='See a visual example of how a slow render can cause cascading effects'>
 <Tweet tweetId={'1649711882142461952'} />
-
 Read more from Alex Sidorenko in his series <Resource url='https://alexsidorenko.com/blog/react-render-always-rerenders/'>A Visual Guide to React Rendering</Resource>.
+</Expand>
+<br/>
+
+
 
 Other helpful resources for understanding how to measure runtime performance in React apps: 
 
@@ -111,8 +116,7 @@ Runtime performance issues usually boil down to two types of issues:
 	- Treat loading/pending states that are active for < 400ms uniquely, you should do either:
 		- Simply don't show the loading state, as "delay" in the app that's < 400ms probably won't be perceivable by the users anyways
 		- If you show the loading/pending state - require a minimum of ~400ms before switching back to a non-loading state
-
-<Tweet tweetId="1675923225341992962" />
+		<Expand parent='See an example of loading states that appear "too fast"'><Tweet tweetId="1675923225341992962" /></Expand>
 
 ## Typical Performance Hangups in React
 

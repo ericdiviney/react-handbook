@@ -38,7 +38,7 @@ export const sections = [
     id: '2-global-stores-singleton-vs-atomic-vs-proxy',
   },
   { title: '3) Global State Libraries', id: 'table-comparison' },
-  { title: 'Common Overlaps', id: 'common-overlaps' },
+  { title: 'Common Overlaps Between State Managers', id: 'common-overlaps-between-different-state-managers' },
 ]
 
 # State Management in React Applications
@@ -124,48 +124,60 @@ export const sections = [
 In general, this guide applies to managing state on the client (browser). Since the entire premise of SSR is SERVER-side, this guide doesn't really apply to managing any state on the server. To summarize:
 
 - Even apps that use SSR might also need to manage state on the client
-- Simple CRUD-like applications often means you can shift/move some of your client state to the server
+- Simple <Resource url='https://www.freecodecamp.org/news/crud-operations-explained/'>CRUD-like</Resource> applications often means you can shift/move some of your client state to the server
 
 ## Term Definitions
 
 Before explaining this approach to State Management, let's get on the same page regarding some phrases frequently used.
 
-**State** - A broad term, meaning the information the application manages &amp; requires to function correctly
-
-**Client State** - State data that is managed on the client side of 2 networking applications (browser and server)
-
-**Server State** - State data that is managed server-side (database, APIs, etc.)
-
-**Local / Local state** - the use of the term "local state" in this guide will fluctuate between two concepts:
+<Expand parent='State'>
+A broad term, meaning the information the application manages &amp; requires to function correctly
+</Expand>
+<Expand parent='Client State'>
+State data that is managed on the client side of 2 networking applications (browser and server)
+</Expand>
+<Expand parent='Server State'>
+State data that is managed server-side (database, APIs, etc.)
+</Expand>
+<Expand parent='Local / Local state'>
+the use of the term "local state" in this guide will fluctuate between two concepts:
 
 - State data that is local by how its used - for example, state that is hidden in a React component and not available externally of said component (commonly done with `useState`)
 - State data that is _intended_ for or that _obviously_ should be local (many variations of UI State)
-
-**Global / Global state** - The opposite of local (above), the use of the term "global state" means one of two things:
+</Expand>
+<Expand parent='Global / Global state'>
+The opposite of local (above), the use of the term "global state" means one of two things:
 
 - State data that is global by configuration (regardless of what the state data is representing or if it ideally would be better as local state). If the data has been configured in a way that it's globally accessible in your React component tree without having to pass as props, then it shall be called "global state"
 - State data _intended_ to be global or state data that should _obviously_ be managed globally (trivial examples might be the currently authenticated user, the user-session access token, application theme data like light/dark mode, etc.)
-
-**Store** - The actual "container" or object that holds the app-state data. A good metaphor might be like a database (in your front end), the source of truth, etc. "State" is a more generic term describing the data you manage, whereas the store is an object/memory/container that actually holds that data your application must manage.
-
-**State Manager/Library** - Use of this term refers to the individual tool/solution used to implement some state management logic (whether it be Context, Redux, or react-query)
-
+</Expand>
+<Expand parent='Store'>
+The actual "container" or object that holds the app-state data. A good metaphor might be like a database (in your front end), the source of truth, etc. "State" is a more generic term describing the data you manage, whereas the store is an object/memory/container that actually holds that data your application must manage.
+</Expand>
+<Expand parent='State Manager/Library'>
+Use of this term refers to the individual tool/solution used to implement some state management logic (whether it be Context, Redux, or react-query)
+</Expand>
 ## Categories of State In Web Apps
 
 Outlined here are the various categories data your application might need to manage. Understanding the disctinction between each is crucial because some state-management tools are better suited for different categories of state data than others.
 
 If you&apos;re interested in a more detailed definition of each state category below, you might take the time to read <Resource url='https://jamesknelson.com/5-types-react-application-state/'>The 5 Types of React Application State</Resource>. Think of these categories as out of your control; this is simply the nature of the web and how the industry has decided to categorize information.
 
-**1. UI state** <span className='text-[.75rem]'>(other names: "Control State")</span> <br/> Local state is just what it sounds like: state that doesn&apos;t leave your container. "Container" is a pretty generic word, in React-world it is a synonym for "component". Some examples of what is meant by "local state" are form values, toggle states (true/false) representing expanded sidebars, opened accordions, active tabs, etc. One way to think about local state is you can typically discard it until the "container" renders again, initiating the state with a default value. Most of the time, you should use native React hooks (`useState`, `useReducer`, `useContext`) to manage this type of state.
-
-**2. Communication state** <span className='text-[.75rem]'>(other names: "Fetch State", "Async State")</span> <br/> Communication state is less about storing data and more about storing the _status_ of processes. In modern apps, we deal with asynchronous functionality constantly (HTTP requests, background tasks running on server, etc.) We need to keep our app responsive while things are happening in the background. Storing when processes are loading, complete, or have encountered an error is the "communication" state we want. Managing this properly allows us to show loading animations, optimistic UIs, feedback, errors, etc., all leading to a better user experience. It will be up to you to decide how much of your "communication state" needs to live globally in a store vs. locally in containers like pages or components. In many applications this is easily solved with "Smart" data-fetching.
-
-**3. Application state** <span className='text-[.75rem]'>(other names: "Business Data", "App Data", "Server State")</span> <br/> Data state is the easiest to define of all these types. It&apos;s any data that powers your application! It's all the data the users need to use the application; it usually comes from external applications (like servers, databases, REST APIs, etc.). This data type can overlap with number 4 below (session state) in small ways. An example might be a user&apos;s profile data. That info could probably be considered both "business" data and "session" data - where exactly to draw that line can be blurry, but don&apos;t worry about that for now.
-
-**4. Session state** <span className='text-[.75rem]'>(other names: "Authentication State")</span> <br/> Session state is all about managing information about the user currently using your application. It should be noted that even though this is sometimes referred to as "Auth State" - sessions can also exist for unauthenticated users of apps/websites (like an unauthenticated user adding things to their shopping cart on an e-commerce website).
-
-**5. Location state** <span className='text-[.75rem]'>(other names: "URL", "Browser History State", "Navigation State")</span> <br/> Unless you are building a router or doing some very complex work with browser location APIs - managing the location state of your app will typically be handled natively by the browser or a library like react-router. Commonly, the behavior of your application will rely on the URL (like using an id in a URL such as /invoice?id=1234). However, it is very uncommon for you to need to manage the location state yourself. Typically you would let the browser&apos;s native functionality or a solution like react-router manage this state for you. We don&apos;t focus on managing that type of state in this guide.
-
+<Expand parent={<>1. UI state <span className='text-[.75rem]'>(other names: "Control State")</span> </>}>
+Local state is just what it sounds like: state that doesn&apos;t leave your container. "Container" is a pretty generic word, in React-world it is a synonym for "component". Some examples of what is meant by "local state" are form values, toggle states (true/false) representing expanded sidebars, opened accordions, active tabs, etc. One way to think about local state is you can typically discard it until the "container" renders again, initiating the state with a default value. Most of the time, you should use native React hooks (`useState`, `useReducer`, `useContext`) to manage this type of state.
+</Expand>
+<Expand parent={<>2. Communication state <span className='text-[.75rem]'>(other names: "Fetch State", "Async State")</span></>}>
+Communication state is less about storing data and more about storing the _status_ of processes. In modern apps, we deal with asynchronous functionality constantly (HTTP requests, background tasks running on server, etc.) We need to keep our app responsive while things are happening in the background. Storing when processes are loading, complete, or have encountered an error is the "communication" state we want. Managing this properly allows us to show loading animations, optimistic UIs, feedback, errors, etc., all leading to a better user experience. It will be up to you to decide how much of your "communication state" needs to live globally in a store vs. locally in containers like pages or components. In many applications this is easily solved with "Smart" data-fetching.
+</Expand>
+<Expand parent={<>3. Application state <span className='text-[.75rem]'>(other names: "Business Data", "App Data", "Server State")</span></>}>
+Data state is the easiest to define of all these types. It&apos;s any data that powers your application! It's all the data the users need to use the application; it usually comes from external applications (like servers, databases, REST APIs, etc.). This data type can overlap with number 4 below (session state) in small ways. An example might be a user&apos;s profile data. That info could probably be considered both "business" data and "session" data - where exactly to draw that line can be blurry, but don&apos;t worry about that for now.
+</Expand>
+<Expand parent={<>4. Session state <span className='text-[.75rem]'>(other names: "Authentication State")</span></>}>
+Session state is all about managing information about the user currently using your application. It should be noted that even though this is sometimes referred to as "Auth State" - sessions can also exist for unauthenticated users of apps/websites (like an unauthenticated user adding things to their shopping cart on an e-commerce website).
+</Expand>
+<Expand parent={<>5. Location state <span className='text-[.75rem]'>(other names: "URL", "Browser History State", "Navigation State")</span></>}>
+Unless you are building a router or doing some very complex work with browser location APIs - managing the location state of your app will typically be handled natively by the browser or a library like react-router. Commonly, the behavior of your application will rely on the URL (like using an id in a URL such as /invoice?id=1234). However, it is very uncommon for you to need to manage the location state yourself. Typically you would let the browser&apos;s native functionality or a solution like react-router manage this state for you. We don&apos;t focus on managing that type of state in this guide.
+</Expand>
 ## Local or Global: Developers Choice
 
 Categorically speaking, ALL state we manage in applications can be written as either "local" or "global" state - a piece of state _becomes_ global based on if its exposed and consumed by the rest of the application (in other components) without passing the data as props. _None_ of the types of state we covered above (1-5) are inherently local or global. For some types, it may seem obvious - a trivial example of this is the UI state - of which you should use React hooks (like `useState` and `useReducer`) to manage, almost always. Technically you _could_ configure some UI state to be in a global store such as Redux, but in practice, there&apos;s rarely a need for that type of state data to be accessible globally, and configuring it that way will eventually cause performance issues in your application.
@@ -185,11 +197,13 @@ It&apos;s infrequent that you should write a custom location state manager when 
 
 And for session state - there is very little complexity to storing tokens (but some overlap with other session data you can read in the <Resource url='#common-overlaps'>Overlaps</Resource> section below), so here's a summary:
 
+<Details label='More On Authentication'>
 In almost all React apps that need authentication - the recommendation is to use access tokens for communicating with APIs, and tokens can be stored easily in localStorage to persist across page refreshes. If you are implementing access tokens that can be <Resource url='https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them'>refreshed</Resource> (as is common today), your session state management will be a little more hands-on, but typically you can reach for an open-source solution to get you pretty far. In many enterprise apps that use SSO solutions or third-party authentication services, you could utilize these libraries to help with managing tokens client-side:
 
 - <Resource url='https://www.npmjs.com/package/@okta/okta-react'>okta-react</Resource>
 - <Resource url='https://www.npmjs.com/package/@auth0/auth0-react'>auth0-react</Resource>
 - <Resource url='ttps://www.npmjs.com/package/@clerk/clerk-react'>clerk-react</Resource>
+</Details>
 
 ## Common Uses of The Tools We Know
 
@@ -249,11 +263,9 @@ Our upcoming advanced State Management Guide will explain how to use Context cor
 
 Before exploring global stores - you should be aware of a common situation in a lot of apps where people \*think they need a global store - but don&apos;t actually. Picture this React app: a dashboard behind authentication with only several routes (pages). One of the routes simply fetches a dataset from an API and renders a bar graph based on that dataset. Then, a second route also fetches some data from an API, but has a `<form />` on the same page that allows the user to update or mutate that data. After the user submits the form, the application should re-fetch the data from the API to have the new data instead of the old stale data the user previously saw.
 
-If you can step back and observe this at a high level… often, this basic CRUD behavior (fetching data, mutating data, then re-fetching data because we know it&apos;s stale now) is the majority of an application&apos;s state.
+If you can step back and observe this at a high level… often, this basic <Resource url='https://www.freecodecamp.org/news/crud-operations-explained/'>CRUD</Resource> behavior (fetching data, mutating data, then re-fetching data because we know it&apos;s stale now) is the majority of an application&apos;s state.
 
-Looking at an application this way, managing "globalish" state in a simple CRUD app is very straightforward.
-
-The way these data-fetching libraries work is they cache the response of each API endpoint that's getting requests from your app. The basic idea is when you have multiple components consuming the same endpoint data - the API only gets hit once instead of 3 times (once when each component is rendered).
+The way these data-fetching libraries work to simplify your state manager - is they cache the response of each API endpoint that's getting requests from your app and let you easily re-access the response. The basic idea is when you have multiple components consuming the same endpoint data - the API only gets hit once instead of 3 times (once when each component is rendered) and that response is turned into a global state that gets shared.
 
 The library only needs you to pass the URL string and some options that dictate when the cache should be cleared + refetched. The cache provides you a global store to consume data from in your components, albeit, a pretty simple one that expects all of your data is coming from an API.
 
@@ -286,9 +298,9 @@ The different recommended approaches for global stores are:
 2. Atomic - the atomic pattern (often associated with Recoil &amp; Jotai) all centers around the idea of an "atom" - an isolated piece of state. Atoms are consumed &amp; mutated from anywhere in your application. This pattern differs from the singleton approach above by splitting your state into smaller related groups of data that allow more granular interactions with global state data. Atoms can also be grouped together to derive state.
 3. Proxy - this architecture pattern introduces a proxy object for you to interact with, while that proxy communicates with the source of truth (the store). This approach is intended to make modifying the application state simpler by allowing any assignment/mutation and the proxy forwarding those updates back to the central store (this is the antithesis or opposite of "immutability", really)
 
-Next, let's explore the tradeoffs and benefits each architecture offers 👇
+Next, you can read more about the tradeoffs and benefits each architecture offers 👇
 
-### Singleton / Module
+<Expand parent='Singleton / Module'>
 
 Benefits
 
@@ -302,7 +314,9 @@ Tradeoffs
 - State trees that become very large can lead to performance issues
 - Difficulties in code-splitting
 
-### Atomic
+</Expand>
+
+<Expand parent='Atomic'>
 
 Benefits
 
@@ -315,7 +329,9 @@ Tradeoffs
 - Experimental: the approach and community is relatively new (compared to others in the ecosystem) - tooling/education might be a little behind that of other architectures
 - Lacks "Middleware": The singleton model being so popular for a long time led to the standardization of "middleware" (a big ecosystem benefit)
 
-### Proxy: Simple Reactivity
+</Expand>
+
+<Expand parent='Proxy: Simple Reactivity'>
 
 Benefits
 
@@ -329,18 +345,9 @@ Tradeoffs
 - Blackbox: the proxy can feel a little magical at times, and may prove difficult to debug in very complex scenarios
 - Heavily reliant on browser support for the <Resource url='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy'>Proxy</Resource> API
 
+</Expand>
+
 ## Table Comparison
-
-Before diving into the recommendations below, it will help to clarify what "FLUX" means and why it is included in the descriptions of each library.
-
-The <Resource url='https://medium.com/swlh/the-case-for-flux-379b7d1982c6'>FLUX architecture</Resource> is very intricate with many details, but to sum it up here: `unidirectional (one-way) data-flow, implemented with` <Resource url='https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310'>immutability</Resource>.
-
-Whoa, lots of fancy words there. Let's simplify:
-
-- `unidirectional data-flow` - "actions" get "dispatched" to update the "store" in a <Resource url='https://medium.com/@grover.vinayak0611/what-is-flux-architecture-why-facebook-used-it-and-the-comparison-with-mvc-architecture-49c01ed5d2e1'>predictable, consistent manner</Resource>
-- `implemented with immutability` - the way that update operations are performed on the store (the literal code that changes the data when an update happens). Read more about <Resource url='https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/'>immutability</Resource> and <Resource url='https://redux.js.org/usage/structuring-reducers/immutable-update-patterns'>update patterns</Resource>
-
-FLUX is just a design pattern for updating stores of data, nothing more. You'll notice that nearly every non-proxy library recommended implements FLUX principles in some way - so its important to understand Flux outside the context of any specific one of these libraries.
 
 The links below take you to bundlejs.com to demonstrate what the bundle size might result in (using latest versions).
 
@@ -353,7 +360,20 @@ The links below take you to bundlejs.com to demonstrate what the bundle size mig
 | Proxy       | <Resource url='https://www.npmjs.com/package/mobx'>mobx</Resource>                      | <Resource url='https://bundlejs.com/?q=mobx'>bundlejs.com</Resource>                               | 1 million                     |
 | Proxy       | <Resource url='https://www.npmjs.com/package/valtio'>valtio</Resource>                  | <Resource url='https://bundlejs.com/?q=valtio'>bundlejs.com</Resource>                             | 230k                          |
 
-## Common Overlaps
+<Details label='What is FLUX?'>
+Before diving into the recommendations above, it might help to know what "FLUX" means and why it is included in the descriptions of each library.
+
+The <Resource url='https://medium.com/swlh/the-case-for-flux-379b7d1982c6'>FLUX architecture</Resource> is very intricate with many details, but to sum it up here: `unidirectional (one-way) data-flow, implemented with` <Resource url='https://medium.com/dailyjs/the-state-of-immutability-169d2cd11310'>immutability</Resource>.
+
+Whoa, lots of fancy words there. Let's simplify:
+
+- `unidirectional data-flow` - "actions" get "dispatched" to update the "store" in a <Resource url='https://medium.com/@grover.vinayak0611/what-is-flux-architecture-why-facebook-used-it-and-the-comparison-with-mvc-architecture-49c01ed5d2e1'>predictable, consistent manner</Resource>
+- `implemented with immutability` - the way that update operations are performed on the store (the literal code that changes the data when an update happens). Read more about <Resource url='https://wecodetheweb.com/2016/02/12/immutable-javascript-using-es6-and-beyond/'>immutability</Resource> and <Resource url='https://redux.js.org/usage/structuring-reducers/immutable-update-patterns'>update patterns</Resource>
+
+FLUX is just a design pattern for updating stores of data, nothing more. You'll notice that nearly every non-proxy library recommended implements FLUX principles in some way - so its important to understand Flux outside the context of any specific one of these libraries.
+</Details>
+
+## Common Overlaps Between Different State Managers
 
 As we&apos;ve just been through many state solutions - undoubtedly there&apos;s some "overlap" between what they&apos;re able to do. When there&apos;s overlap, it can be confusing as to which direction you should take. There are some recommendations below for questions you'll frequently run into while deciding the best ways to manage application state.
 
@@ -374,8 +394,10 @@ Specific common overlaps between "App" State and "Session" State
 ### Thanks / References
 
 Thanks for reading! If you have any suggestions to make to how developers can approach managing state in their React applications <Resource url="/team/eric-diviney">I would love to talk with you</Resource> (and give you credit for your contributions!).
-
 - <Resource url='https://kentcdodds.com/blog/application-state-management-with-react'>kentcdodds.com/blog/application-state-management-with-react</Resource>
 - <Resource url='https://leerob.io/blog/react-state-management'>leerob.io/blog/react-state-management</Resource>
 - <Resource url='https://www.matillion.com/resources/blog/react-state-management-libraries-which-one'>matillion.com/resources/blog/react-state-management-libraries-which-one</Resource>
 - <Resource url='https://dev.to/g_abud/why-i-quit-redux-1knl'>dev.to/g_abud/why-i-quit-redux-1knl</Resource>
+
+Specific thankyou to editors of this guide:
+- <Resource url='https://twitter.com/josh_claunch'>Josh Claunch</Resource>
