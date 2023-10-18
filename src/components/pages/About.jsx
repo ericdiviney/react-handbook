@@ -12,6 +12,16 @@ const core = [
     },
     image: '/eric-diviney.jpg',
   },
+  {
+    name: 'Mileta Dulovic',
+    description: 'CTO | Optinian',
+    socials: {
+      twitter: 'https://twitter.com/DulovicMileta',
+      github: 'https://www.linkedin.com/in/mileta-dulovic/overlay/photo/',
+      site: 'https://miletadulovic.me/',
+    },
+    image: '/mileta-dulovic.jpg',
+  }
 ]
 
 export function Contributors() {
