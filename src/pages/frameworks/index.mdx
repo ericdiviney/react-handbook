@@ -1,0 +1,153 @@
+import { FrameworkComparisonTable } from '@/components/pages/Frameworks'
+
+export const description =
+  'Explore React meta-frameworks and the tools that bundle them.'
+
+# Frameworks & Build Tools
+
+<Summary>
+  <ul>
+    <li>A comparison of each of the modern frameworks (Next / Remix / Gatsby)</li>
+    <li>Why SPAs are still a good option for some applications</li>
+    <li>The options for build tools in JavaScript ecosystem</li>
+    <li>Alternative stacks like monorepos (Nx) or Astro</li>
+  </ul>
+</Summary>
+
+There are many variants of React to choose from today. While optionality is excellent, it can also bring confusion when it's time to decide on your tech stack.
+
+We wrote this guide to bring clarity to the framework discussion.
+
+Each framework will have unique selling points on why you would choose them for your project. Read below to investigate those features a little deeper.
+
+### But first, a hot take
+
+<Tweet tweetId="1617611126514266112" />
+
+For anyone that doesn't already know, <Resource url='https://twitter.com/acdlite'>Andrew Clark</Resource> (above) is a core contributor to React whose recent work includes Hooks, Server Components, and Suspense.
+
+Don't overanalyze what Andrew is saying above. You're not losing any "cool points" if your project is still a React SPA. In fact, if your entire app is hidden behind authentication (like a dashboard) - SPAs are still a perfectly valid way to ship it.
+
+This whole framework debate/conversation is still being played out in the open-source community. In general, over the past few years, the pendulum has swung back towards SSR (server-side rendering) because of the <Resource url='#the-shift-towards-ssr'>benefits</Resource> it brings to certain types of applications. A lot of developers have realized that SSR can result in a better experience of their product (app OR site), and thats the reason why this pendulum is swinging back in this direction. No one has an agenda, there's no conspiracy.
+
+Some valuable advice when working with these frameworks is **don't fight the frameworks' choices**. If you disagree philosophically enough with React or the framework at hand - just choose another. Inventing and managing your own internal framework, or bastardizing a meta-framework to fit your needs is likely only going to cause you headaches and lots of effort spent maintaining your app as opposed to improving it.
+
+Read more <Resource url='https://react.dev/learn/start-a-new-react-project#building-with-a-full-featured-framework'>from the official react documentation</Resource> on their endorsement of framework usage.
+
+---
+
+## Vanilla React (SPAs)
+
+Given today's options, it is less likely that you should start a React project from scratch and more likely you should reach for a framework. A React SPA could be a good choice for you if:
+
+- The scope of your app is very lightweight and a relatively simple SPA that doesn't need the advantages of server-side rendering. This scope is very unlikely to change anytime soon.
+- Your app is not lightweight or straightforward, and your team will manage all dependencies and technical choices you'll likely need to make for the project to succeed (routing, data fetching, etc.).
+- Either of the above is true and practically the entire application lives behind authentication
+
+One final reason you might start with plain React is if you are introducing it to a legacy application. This is a good way to slowly migrate different parts of the application first to React, and then to the latest React framework (like Next.js or Remix) if you desire features like SSR.
+
+**Whatever you do, don't start with CRA (Create-React-App)**
+
+- It is outdated (with more issues popping up every day)
+- It ignores the advice of picking a framework instead of just React
+- The authors <Resource url='https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741'>themselves have said</Resource> they don't intend on adding new features or maintaining it much further
+- <Resource url='https://vitejs.dev/guide/#scaffolding-your-first-vite-project'>Vite</Resource> is the current recommended alternative
+  - Read this guide on <Resource url='https://www.robinwieruch.de/vite-create-react-app/'>migrating your app from CRA to Vite</Resource>
+
+## Build Tools 
+
+<Resource url='https://webpack.js.org/'>Webpack</Resource> was the undisputed winner here for a long time. You probably won't get in too much trouble if you use it now (other than sitting around waiting for development builds to finish). TLDR: It works, but it's slow.
+
+But, now Webpack faces competition:
+
+- <Resource url='https://vitejs.dev/guide/why.html'>Vite</Resource> - a great modern alternative to Webpack that leverages browsers' native ES modules support for better performance (less code sent to the browser until required). An excellent option for building web apps and websites
+  - <Resource url='https://github.com/vitejs/awesome-vite'>github.com/vitejs/awesome-vite</Resource>
+- <Resource url='https://parceljs.org/'>parcel</Resource> - another modern alternative build tool + development server, if you are developing a library/package this might fit your needs better than Vite
+- <Resource url='https://esbuild.github.io/'>esbuild</Resource> - a very flexible zero-config solution for large projects with intricate needs. Will probably be able to do what you need, but at the cost of a pretty steep learning curve
+
+Snowpack used to be a great tool, but it is no longer maintained and recommends Vite as an alternative build tool solution. <Resource url='https://wmr.dev/'>wmr</Resource> can also be used as a build tool, though it generally has less open-source support and popularity than the options above.
+
+Further reading:
+
+- <Resource url='https://css-tricks.com/comparing-the-new-generation-of-build-tools/#h-vite'>Comparing the New Generation of Build Tools</Resource>
+
+## React Native
+
+For building native (iOS, Android, Windows, MacOS) and web applications.
+
+You can also use a framework like <Resource url='https://www.npmjs.com/package/expo'>Expo</Resource> to build, debug, and simulate an application that will run all the available platforms using the same codebase. There is much to write about React Native and its various restrictions outside the quirks of using Expo - visit the <Resource url='/frameworks/react-native'>React Native Framework Framework Tips</Resource> to see what we can recommend.
+
+## Web Frameworks & The Shift Towards SSR
+
+Before jumping into the frameworks below, it can help to understand _why_ this shift has happened:
+
+1. SEO (Search Engine Optimization) - Many <Resource url='https://medium.com/@badams/another-very-late-response-youre-confusing-googlebot-the-crawler-with-caffeine-google-s-b9ef24d81524'>articles</Resource> claim that client-side rendering hurts SEO performance. Google even <Resource url='https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering'>recommends moving away</Resource> from "dynamic content rendering" which tells a server to give a different response depending on the user-agent of the request (bots get different content than users do). While the official position is that client-side rendering is treated the same as server-side rendering, the results speak for themselves. Most companies do not possess the resources or knowledge to properly assess if client-side rendering is hurting their SEO. Therefore the best option for many companies is to take an approach that's tried and true and that does not present un-necessary risk for search engine bots. That option is server-side rendering. Simply put: bots can parse server-rendered content much easier than client-rendered content.
+   - In tandem with this, functional meta tags like opengraph tags for social networks are much simpler to implement
+2. Faster initial render/content paint - This is a particularly useful point to consider if you know your users might be using your application on slow internet connections. Faster load times will be easier to achieve in the near future with features like Remix's <Resource url='https://remix.run/docs/en/main/guides/routing#what-is-nested-routing'>Nested Routes</Resource> (Next.js equivalent is the <Resource url='https://nextjs.org/docs/app'>App Router</Resource>)
+3. Meaningful HTTP error codes - Returning 400/500 codes isn't really possible with a client-side router
+4. App will run better with JS disabled - Not sure how many people run their browsers with JS disabled by default - but perhaps this is your audience! If so, SSR is probably exactly what you need
+
+## About Next.js, Remix, Gatsby
+
+All 3 frameworks lay the foundations for an application/website built with React. Some things to note:
+
+- Each framework provides some tooling out-of-the-box for you when starting a new project, and this tooling is meant to make your life easier as a developer
+- If you embrace what each framework offers, taking advantage of the vast react ecosystem will be much easier
+- Each framework will be better suited for some use-cases, and ill suited for other use-cases
+
+Before you dive in below, you may benefit by watching <Resource url='https://www.youtube.com/watch?v=bfLFHp7Sbkg'>this video</Resource> by Ryan Florence explaining the differences in approach from a server and cache perspective of the frameworks below. After you've watched it, you'll be heading into the next section with a strong understanding of SSG (static site generation) vs SSR (server-side rendering), as well as caching strategies that can decrease the load you put on your server while still serving your users dynamic content that will lead to a positive experience.
+
+## Comparison
+
+<FrameworkComparisonTable />
+
+---
+
+**React SPA vs. React Frameworks**
+
+CRA (Create React App) is a <Resource url='https://github.com/reactjs/reactjs.org/pull/5487#issuecomment-1409720741'>bad</Resource> starting point for your next production application. Next.js and Remix are great options for web applications, or you could go with a SPA if <Resource url='/frameworks#vanilla-react-spas'>it fits your requirements</Resource>.
+
+**Gatsby is good for websites**
+
+Gatsby is not ideal for web applications that have lots of user interactions changing data or dynamically rendering data fetched from an external source (like a DB).
+
+Some arguments favoring Gatsby might reference integrating GraphQL easily, or the <Resource url='https://www.gatsbyjs.com/plugins'>plugin library</Resource> - Next.js has since <Resource url='https://www.apollographql.com/blog/apollo-client/next-js/next-js-getting-started/'>closed</Resource> the GraphQL gap, and you'll probably easily find open-source alternatives for most Gatsby plugins.
+
+Long story short: Gatsby can be great for content-driven public websites that need to load fast. For more reading, reference the following:
+
+- <Resource url='https://www.gatsbyjs.com/features/jamstack/gatsby-vs-nextjs'>Gatsby vs Next.js</Resource> - Official Gatsby.js comparison
+
+**Next &amp; Remix**
+
+Next.js and Remix can be used for websites that Gatsby are good for, but they really shine for slightly more complex web applications that interface with today's modern data systems. Remix is something a little newer, attempting to take advantage of many current browser standards that can naturally make web applications more accessible and quicker across many devices and network capabilities (<Resource url='https://remix.run/docs/en/main/discussion/progressive-enhancement'>Progressive Enhancement</Resource>). That was a jargony way of saying: _Remix really tries to make your app fast out of the box_. It's definitely different from building SPAs, but just try to stick with it to see the benefits. When comparing Remix to Next.js:
+
+- Both use the folder/file structure to setup the "routes" of your app
+- Both take advantage of HTTP caching to deliver results to users as fast as possible
+- Both provide built-in mechanisms for data fetching in your components
+- When compared to Next.js - in most cases its probably more affordable to ship a Remix app via cloudflare workers than it is to ship a Next.js app on Vercel
+- When compared to Next.js - The way it "blends" server and client-side code / components receives a lot of positive feedback
+- Remix is built on top of standard Web APIs making it easy to deploy to the <Resource url='https://remix.run/blog/remix-and-the-edge'>"edge"</Resource>, Next.js encourages a Node.js server (for now)
+- Remix relies less on Node.js, meaning Remix is more portable to non-node environments like Cloudflare Workers or Deno Deploy and also makes it easier to run "on the edge"
+- Remix apps will tend to "work" quicker - since their underlying fundamentals are based on web standards (like forms for mutating data). In other words: Remix makes it so your users don't have to wait for a large JS bundle (04.chunk.js) to finish loading before they can interact with the page
+
+Further reading:
+
+- <Resource url='https://remix.run/blog/remix-vs-next'>Remix vs Next.js</Resource> - Official Remix comparison
+
+## High-Performance Websites
+
+Some new ideas are floating around to get really performant websites (blogs, portfolios, marketing sites, ecommerce, etc.).
+
+If this fits your use case, you might benefit from looking into <Resource url='https://docs.astro.build/en/guides/integrations-guide/react/'>Astro</Resource> or <Resource url='https://qwik.builder.io/docs/integrations/react/'>Qwik</Resource>, which are easy to integrate from a React perspective.
+- With the <Resource url='https://astro.build/blog/astro-2100/'>recent updates</Resource> to Astro, this is actually becoming a very compelling alternative tech-stack for applications. 
+
+## Monorepo / Nx
+
+Managing multiple applications/projects under a single repository is much easier with tooling like <Resource url='https://nx.dev/getting-started/why-nx'>Nx</Resource>. Particularly, it makes it much simpler to have shared code between multiple client web/mobile applications with a monorepo setup.
+
+<Expand parent='Typical arguments in favor of monorepo'>
+1. Code Sharing: Centralize common/shared code
+2. Consistent Developer Environment: Uniform configurations and tooling across projects
+3. Atomic Changes: Modify shared libraries and affected applications in one commit
+4. Build and Test Optimization: Only rebuild and retest code that has changed
+</Expand>

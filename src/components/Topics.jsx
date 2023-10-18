@@ -8,10 +8,10 @@ const topics = [
     href: '/frameworks',
   },
   {
-    name: 'Project Structure',
+    name: 'Project Standards',
     description:
       'In React you can do just about anything you want. But, what *should* you do with your folders and components?',
-    href: '/project-structure',
+    href: '/project-standards',
   },
   {
     name: 'React Ecosystem',
@@ -26,7 +26,7 @@ const topics = [
     href: '/semantics',
   },
   {
-    name: 'Styling / UI Libraries',
+    name: 'Styling & UI Libraries',
     description:
       'Promising approaches for writing/maintaining CSS in your application.',
     href: '/styling',
@@ -52,7 +52,7 @@ const topics = [
 
 export function Topics() {
   return (
-    <div className="my-16 xl:max-w-none">
+    <div className="max-w-5xl my-16">
       <div className="grid grid-cols-1 gap-8 not-prose xl:grid-cols-3">
         {topics.map((resource) => (
           <Card key={resource.href} resource={resource} />

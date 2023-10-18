@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./{src,mdx}/**/*.{js,mjs,jsx,mdx}'],
+  content: ['./{src,mdx}/**/*.{js,mjs,jsx,mdx,ts,tsx}'],
   darkMode: 'class',
   theme: {
     fontSize: {
@@ -25,7 +25,7 @@ module.exports = {
         glow: '0 0 4px rgb(0 0 0 / 0.1)',
       },
       maxWidth: {
-        lg: '33rem',
+        'lg': '33rem',
         '2xl': '40rem',
         '3xl': '50rem',
         '5xl': '66rem',
@@ -36,6 +36,82 @@ module.exports = {
         7.5: '0.075',
         15: '0.15',
       },
+      keyframes: {
+        accordionDown: {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        accordionUp: {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+        enterFromTop: {
+          from: { opacity: 0, transform: 'translateY(-9px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        enterFromRight: {
+          from: { opacity: 0, transform: 'translateX(9px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
+        },
+        enterFromBottom: {
+          from: { opacity: 0, transform: 'translateX(9px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
+        },
+        enterFromLeft: {
+          from: { opacity: 0, transform: 'translateX(-9px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
+        },
+        exitToTop: {
+          from: { opacity: 1, transform: 'translateX(0)' },
+          to: { opacity: 0, transform: 'translateX(-9px)' },
+        },
+        exitToRight: {
+          from: { opacity: 1, transform: 'translateX(0)' },
+          to: { opacity: 0, transform: 'translateX(9px)' },
+        },
+        exitToBottom: {
+          from: { opacity: 1, transform: 'translateX(0)' },
+          to: { opacity: 0, transform: 'translateY(9px)' },
+        },
+        exitToLeft: {
+          from: { opacity: 1, transform: 'translateX(0)' },
+          to: { opacity: 0, transform: 'translateX(-9px)' },
+        },
+        scaleIn: {
+          from: { opacity: 0, transform: 'rotateX(-10deg) scale(0.9)' },
+          to: { opacity: 1, transform: 'rotateX(0deg) scale(1)' },
+        },
+        scaleOut: {
+          from: { opacity: 1, transform: 'rotateX(0deg) scale(1)' },
+          to: { opacity: 0, transform: 'rotateX(-10deg) scale(0.95)' },
+        },
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+      },
+    },
+    animation: {
+      accordionDown: "accordionDown 120ms ease-out",
+      accordionUp: "accordionUp 120ms ease-out",
+      scaleIn: 'scaleIn 150ms ease',
+      scaleOut: 'scaleOut 150ms ease',
+      fadeIn: 'fadeIn 150ms ease',
+      fadeOut: 'fadeOut 150ms ease',
+      quickFadeIn: 'fadeIn 100ms ease',
+      quickFadeOut: 'fadeOut 100ms ease',
+      enterFromLeft: 'enterFromLeft 150ms ease-in-out',
+      enterFromRight: 'enterFromRight 150ms ease-in-out',
+      exitToLeft: 'exitToLeft 150ms ease-in-out',
+      exitToRight: 'exitToRight 150ms ease-in-out',
+      enterFromTop: 'enterFromTop 150ms ease-in-out',
+      enterFromBottom: 'enterFromBottom 150ms ease-in-out',
+      exitToTop: 'exitToTop 150ms ease-in-out',
+      exitToBottom: 'exitToBottom 150ms ease-in-out',
     },
   },
   plugins: [require('@tailwindcss/typography')],

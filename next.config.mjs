@@ -19,6 +19,20 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/project-structure',
+        destination: '/project-standards',
+        permanent: true,
+      },
+      {
+        source: '/react-native-project-standards',
+        destination: '/frameworks/react-native',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default withMDX(nextConfig)

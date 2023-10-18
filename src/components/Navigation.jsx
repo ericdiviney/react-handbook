@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion'
-import * as ScrollArea from '@radix-ui/react-scroll-area'
 
 import { useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useSectionStore } from '@/components/SectionProvider'
@@ -20,7 +19,7 @@ function TopLevelNavItem({ href, children }) {
     <li className="md:hidden">
       <Link
         href={href}
-        className="block py-1 text-sm transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+        className="block py-1 transition text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
       </Link>
@@ -34,8 +33,8 @@ function NavLink({ href, tag, active, isAnchorLink = false, children }) {
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'flex justify-between gap-2 py-1 pr-3 text-sm transition',
-        isAnchorLink ? 'pl-7' : 'pl-4',
+        'flex justify-between gap-2 py-1 pr-3  transition',
+        isAnchorLink ? 'pl-8' : 'pl-4',
         active
           ? 'text-zinc-900 dark:text-white'
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white'
@@ -81,7 +80,7 @@ function VisibleSectionHighlight({ group, pathname }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { delay: 0.2 } }}
       exit={{ opacity: 0 }}
-      className="absolute inset-x-0 top-0 bg-zinc-100 will-change-transform dark:bg-white/[0.04]"
+      className="absolute left-0 right-[8px] top-0 bg-zinc-100 will-change-transform dark:bg-white/[0.04]"
       style={{ borderRadius: 8, height, top }}
     />
   )
@@ -124,7 +123,11 @@ function NavigationGroup({ group, className }) {
         layout="position"
         className="text-xs font-semibold text-zinc-900 dark:text-white"
       >
-        {group.title}
+        {group.href ? (
+          <Link href={group.href}>{group.title}</Link>
+        ) : (
+          group.title
+        )}
       </motion.h2>
       <div className="relative pl-2 mt-3">
         <AnimatePresence initial={!isInsideMobileNavigation}>
@@ -141,10 +144,10 @@ function NavigationGroup({ group, className }) {
             <ActivePageMarker group={group} pathname={router.pathname} />
           )}
         </AnimatePresence>
-        <ul role="list" className="border-l border-transparent">
+        <ul role="list" className="pr-2 border-l border-transparent">
           {group.links.map((link) => (
             <motion.li key={link.href} layout="position" className="relative">
-              <NavLink href={link.href} active={link.href === router.pathname}>
+              <NavLink href={link.href} tag={link.tag ?? undefined} active={link.href === router.pathname}>
                 {link.title}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
@@ -187,68 +190,58 @@ export const navigation = [
   {
     title: 'Getting Started',
     links: [
-      { title: 'The React Handbook', href: '/' },
-      { title: 'JavaScript Fundamentals', href: '/javascript-basics' },
-      { title: 'React Fundamentals', href: '/react-basics' },
-      { title: 'Advanced React', href: '/topics' },
+      { title: 'Home', href: '/' },
+      { title: 'React Fundamentals', href: '/fundamentals' },
     ],
   },
   {
-    title: 'Application Guides',
+    title: 'Topics',
+    href: '/topics',
     links: [
-      { title: 'Frameworks & Build Tools', href: '/frameworks' },
-      { title: 'Project Structure', href: '/project-structure' },
+      { title: 'Project Standards', href: '/project-standards' },
       { title: 'Accessibility & Semantics', href: '/semantics' },
-      { title: 'Styling / UI Libraries', href: '/styling' },
-      { title: 'Ecosystem / npm', href: '/ecosystem' },
+      { title: 'Styling & UI Libraries', href: '/styling' },
+      { title: 'Ecosystem & npm libraries', href: '/ecosystem' },
       { title: 'Proficiency with Hooks', href: '/hooks' },
       { title: 'State Management Fundamentals', href: '/state-management' },
-      { title: 'Performance & Optimization', href: '/react-performance-optimization' },
+      {
+        title: 'Performance & Optimization',
+        href: '/react-performance-optimization',
+      },
       { title: 'Automated Testing', href: '/automated-testing' },
     ],
   },
   {
-    title: 'Framework Guides',
+    title: 'React Frameworks',
     links: [
-      {
-        title: 'React Native',
-        href: '/react-native-project-structure',
-      },
+      { title: 'Frameworks & Build Tools', href: '/frameworks' },
+      { title: 'React Native', href: '/frameworks/react-native' },
+      { title: 'Next.js', href: '/frameworks/nextjs' },
+      { title: 'Alternate React Stacks', href: '/frameworks/alternate-tech-stacks' },
+      { title: 'Remix', href: '#remix', tag: 'coming soon' },
+      { title: 'Gatsby', href: '#gatsby', tag: 'coming soon' },
+      { title: 'Nx', href: '#nx', tag: 'coming soon' },
     ],
   },
   {
-    title: 'Planned Topics',
+    title: 'Upcoming & In Progress',
     links: [
-      { title: 'Server-Side Rendering', href: '#' },
-      { title: 'Error Handling & Boundaries', href: '#' },
-      { title: 'Analytics & Monitoring', href: '#' },
-      { title: 'CI/CD Pipelines', href: '#' },
+      {
+        title: 'RSC (React Server Components) / SSR',
+        href: '#server-components',
+      },
+      { title: 'Error Handling & Boundaries', href: '#debugging' },
+      { title: 'Analytics & Monitoring', href: '#analytics' },
+      { title: 'CI/CD Pipelines', href: '#cicd' },
+      { title: 'Component Design Patterns', href: '#components-patterns' },
     ],
   },
-  // {
-  //   title: 'Misc',
-  //   links: [
-  //     { title: 'Production Release Checklists', href: '#' },
-  //     { title: 'Integrating with a CMS', href: '#' },
-  //     { title: 'Publishing NPM packages & libraries', href: '#' },
-  //   ],
-  // },
-  // {
-  //   title: 'Expertise Levels',
-  //   links: [
-  //     { title: 'Beginner', href: '/beginner-topics' },
-  //     { title: 'Intermediate', href: '/intermediate-topics' },
-  //     { title: 'Advanced', href: '/advanced-topics' },
-  //     { title: 'All', href: '/all-topics' },
-  //   ],
-  // },
 ]
 
 export function Navigation(props) {
   return (
-    <nav {...props}>
+    <nav>
       <ul role="list">
-        <TopLevelNavItem href="/">Home</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}

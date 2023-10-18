@@ -1,11 +1,21 @@
 import Link from 'next/link'
 import clsx from 'clsx'
-
 import { Heading } from '@/components/Heading'
 
-export const a = Link
-export { Button } from '@/components/Button'
-export { CodeGroup, Code as code, Pre as pre } from '@/components/Code'
+export const a = Link;
+export { CodeGroup, Code as code, Pre as pre } from '@/components/Code';
+export * from '@/components/Accordion'
+export { Button } from '@/components/Button';
+export * from '@/components/Details';
+export * from '@/components/Expand';
+export * from '@/components/FAQ';
+export * from '@/components/LeadHeading'
+export * from '@/components/PillTab';
+export * from '@/components/Resource';
+export * from '@/components/Summary';
+export * from '@/components/StepList';
+export * from '@/components/Tab';
+export * from '@/components/Tweet';
 
 export const h2 = function H2(props) {
   return <Heading level={2} {...props} />
@@ -29,7 +39,7 @@ function InfoIcon(props) {
 
 export function Note({ children }) {
   return (
-    <div className="my-6 flex gap-2.5 rounded-2xl border border-sky-500/20 bg-sky-50/50 p-4 leading-6 text-sky-900 dark:border-sky-500/30 dark:bg-sky-500/5 dark:text-sky-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.sky.300)]">
+    <div className="my-6 flex gap-2.5 rounded-2xl border border-sky-500/20 bg-sky-50/50 p-4 text-sm leading-6 text-sky-900 dark:border-sky-500/30 dark:bg-sky-500/5 dark:text-sky-200 dark:[--tw-prose-links:theme(colors.white)] dark:[--tw-prose-links-hover:theme(colors.sky.300)]">
       <InfoIcon className="flex-none w-4 h-4 mt-1 fill-sky-500 stroke-white dark:fill-sky-200/20 dark:stroke-sky-200" />
       <div className="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
         {children}
@@ -40,7 +50,7 @@ export function Note({ children }) {
 
 export function Row({ children }) {
   return (
-    <div className="grid items-start grid-cols-1 gap-x-16 gap-y-10 xl:max-w-none xl:grid-cols-2">
+    <div className="grid items-start grid-cols-1 gap-x-16 gap-y-10 xl:grid-cols-2">
       {children}
     </div>
   )

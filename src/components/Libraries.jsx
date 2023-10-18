@@ -48,11 +48,11 @@ const libraries = [
 
 export function Libraries() {
   return (
-    <div className="my-16 xl:max-w-none">
+    <div className="my-16 ">
       <Heading level={2} id="official-libraries">
         Official libraries
       </Heading>
-      <div className="not-prose mt-4 grid grid-cols-1 gap-x-6 gap-y-10 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:max-w-none xl:grid-cols-3">
+      <div className="grid grid-cols-1 pt-10 mt-4 border-t not-prose gap-x-6 gap-y-10 border-zinc-900/5 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-3">
         {libraries.map((library) => (
           <div key={library.name} className="flex flex-row-reverse gap-6">
             <div className="flex-auto">
@@ -71,7 +71,7 @@ export function Libraries() {
             <Image
               src={library.logo}
               alt=""
-              className="h-12 w-12"
+              className="w-12 h-12"
               unoptimized
             />
           </div>

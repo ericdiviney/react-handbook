@@ -1,0 +1,287 @@
+import { DirectoryExplorerTabs } from '@/components/pages/Standards';
+
+export const description =
+  'How to structure your React project and format your components.'
+
+# Project Standards
+
+<Summary>
+  <ul>
+    <li>Various File/Directory Structures for your React app</li>
+    <li>A file template for consistent patterns in your UI components</li>
+    <li>Tips for authoring and maintaining project documentation</li>
+  </ul>
+</Summary>
+
+## File/Directory Structures
+
+The file/directory structures we show below are best for SPA (Single Page Applications). You can adopt some ideas for your Next.js or Remix projects - but both frameworks adopt a specific method of organizing your files (<Resource url='https://nextjs.org/docs/app'>App Router</Resource> for Next.js, <Resource url='https://remix.run/docs/en/main/discussion/routes'>Nested Routing</Resource> for Remix)
+
+<DirectoryExplorerTabs />
+
+<Note>
+  We're looking for open-source contributors to help us add the configurations for Remix + Next.js here as well, so that those directory structures can be understood. We'd love the help!      
+</Note>
+
+To avoid falling victim to analysis paralysis in this area: don't spend more than 5 minutes trying to plan a folder structure that will meet all of your future project needs. It's usually better to simply organize as you go. If you don't know what to do yet - just keep everything in the same flat folder (src). Once you get 10+ files in there that each has its own concern, you'll start to see the patterns that should dictate your folder structure.
+
+## Component Files
+
+- <Resource url='https://github.com/ryanmcdermott/clean-code-javascript'>Clean Code JavaScript</Resource> - advice for writing clear, concise code in JavaScript
+- <Resource url='https://github.com/kettanaito/naming-cheatsheet'>Naming Cheatsheet</Resource> - naming things consistently gets easier with this advice
+
+<Details label='Deep Dive | Writing Functional Components'>
+Here, we introduce a delightful but scalable component format that you can adopt in your projects. A consistent format will make it easier for you to maintain components in the long run.
+
+1. Imports and constants
+2. Prop type definition
+3. Component State
+4. Other hooks
+5. Effects
+6. Helper functions (scoped)
+7. JSX (return statement)
+8. Abstracted JSX only used in this file
+
+<CodeGroup title="Component Format">
+```jsx {{ title: 'JavaScript' }}
+/**
+ * 1. Imports and constants
+ * You can configure an alias in your build tool that allow you to reference a root or specific folder
+ * leads to cleaner imports and not nested spaghetti code like ../../../../some/random/folder/far/away
+ */
+import { blahblahblah } from '@/features/blah'
+import { UserContext } from '@/contexts/user'
+
+// for additional organization in the imports section ^^, you can
+// alphebetize them with a package like @trivago/prettier-plugin-sort-imports
+
+const operations = {
+  '+': (left: number, right: number): number => left + right,
+  '-': (left: number, right: number): number => left - right,
+  '*': (left: number, right: number): number => left * right,
+  '/': (left: number, right: number): number => left / right,
+}
+
+/**
+ * 2. Prefer simple function definition over const definition
+ *    e.g. const Calculator: React.FC<Props> = () => {}
+ */
+export function Calculator({left, operator, right}) {
+  /**
+   * 3. Component State
+   */
+  const { user } = useContext(UserContext);
+  const [someState, setSomeState] = useState();
+  const [someOtherState, setSomeOtherState] = useState();
+  const result = operations[operator](left, right)
+  const someCondition = true;
+
+  /**
+   * 4. Other hooks
+   */
+  const cachedValue = useMemo(calculateValue, dependencies)
+  const cachedFn = useCallback(fn, dependencies)
+
+  /**
+   * 5. Effects
+   */
+  useEffect(() => {
+    // your effect code
+
+    return () => {
+      // your effect cleanup code
+    }
+  }, dependencies);
+
+  /**
+   * 6. Helper functions
+   */
+  function helperFunctionThatReliesOnComponentState() {
+    cachedFn(cachedValue);
+  }
+
+  /**
+   * 7. JSX / Return statement
+   * Advice: you can keep your return statements clean by moving static JSX to their own micro-components at the bottom of this file in step 8.
+   */
+  return (
+    {someCondition ? <ShortenedMarkup /> : (
+      <div>
+        <code>
+          {left} {operator} {right} = <output>{result}</output>
+        </code>
+      </div>
+    )}
+  );
+}
+
+/**
+ * 8. Abstracted JSX used only in this file
+ */
+function ShortenedMarkup() {
+  return (
+    <div>
+      <div>
+        <div>
+          <div>
+            <div>
+              Some UI content that doesn't rely on the props/state of the component above
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```tsx {{ title: 'TypeScript' }}
+/**
+ * 1. Imports and constants
+ * You can configure an alias in your build tool that allow you to reference a root or specific folder
+ * leads to cleaner imports and not nested spaghetti code like ../../../../some/random/folder/far/away
+ */
+import { blahblahblah } from '@/features/blah'
+import { UserContext } from '@/contexts/user'
+
+/**
+ * 1.1 Import types/interfaces below js imports
+ */
+import type { OperationsType } from '@/types';
+
+// for additional organization in the imports section ^^, you can
+// alphebetize them with a package like @trivago/prettier-plugin-sort-imports
+
+// Define any constants available to the entire file/module right after the imports
+const operations: OperationsType = {
+  '+': (left: number, right: number): number => left + right,
+  '-': (left: number, right: number): number => left - right,
+  '*': (left: number, right: number): number => left * right,
+  '/': (left: number, right: number): number => left / right,
+}
+
+/**
+ * 1.2 Prop type definition (or use interface, it doesn't really matter, just be consistent)
+ */
+type CalculatorProps = {
+  left: number
+  operator: keyof typeof operations
+  right: number
+}
+
+/**
+ * 2. Prefer simple function definition over const definition
+ *    e.g. const Calculator: React.FC<Props> = () => {}
+ * 
+ * 2.1 Use React's Type system for your components that have *optional children
+ *    Required children should be added to the props type definition
+ *    e.g. function ComponentWithChildren(props: PropswithChildren<PropTypeDefinition>) {}
+ */
+export function Calculator({left, operator, right, children}: React.PropsWithChildren<CalculatorProps>) {
+  /**
+   * 3. Component State
+   */
+  const { user } = useContext(UserContext);
+  const [someState, setSomeState] = useState(defaultValue); // TypeScript knows this variable needs to be the same type as defaultValue
+  const [someOtherState, setSomeOtherState] = useState<number | undefined>(); // If your state starts off as null/undefined, you might have to type it like this
+  const result = operations[operator](left, right)
+  const someCondition = true;
+
+  /**
+   * 4. Other hooks
+   */
+  const cachedValue = useMemo(calculateValue, dependencies)
+  const cachedFn = useCallback(fn, dependencies)
+
+  /**
+   * 5. Effects
+   */
+  useEffect(() => {
+    // your effect code
+
+    return () => {
+      // your effect cleanup code
+    }
+  }, dependencies);
+
+  /**
+   * 6. Helper functions
+   */
+  function helperFunctionThatReliesOnComponentState() {
+    cachedFn(cachedValue);
+  }
+
+  /**
+   * 7. JSX / Return statement
+   * Advice: you can keep your return statements clean by moving static JSX to their own micro-components at the bottom of this file in step 8.
+   */
+  return (
+    {someCondition ? <ShortenedMarkup /> : (
+      <div>
+        <code>
+          {left} {operator} {right} = <output>{result}</output>
+        </code>
+      </div>
+    )}
+  );
+}
+
+/**
+ * 8. Abstracted JSX used only in this file
+ */
+function ShortenedMarkup() {
+  return (
+    <div>
+      <div>
+        <div>
+          <div>
+            <div>
+              Some UI content that doesn't rely on the props/state of the component above
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+</CodeGroup>
+</Details>
+
+## Linting and Formatting
+
+<Resource url='https://www.npmjs.com/package/eslint'>Eslint</Resource> and <Resource url='https://www.npmjs.com/package/prettier'>Prettier</Resource> can also be very effective at enforcing project standards and consistency. Start with the examples provided in the bulletproof-react repo:
+
+- <Resource url='https://github.com/alan2207/bulletproof-react/blob/master/.eslintrc.js'>.eslintrc.js</Resource> (eslint config file)
+- <Resource url='https://github.com/alan2207/bulletproof-react/blob/master/.prettierrc'>.prettierrc</Resource> (prettier config file)
+
+At a minimum, you should always have an eslint configuration in your project, but running both (eslint is more for catching code smells and potential bugs, and prettier is for opinionated formatting) is recommended.
+
+## Maintaining Documentation
+
+Getting engineers to properly document their code can sometimes be difficult (and slow down team productivity!)
+
+The question typically isn't "how can we convince our team and stakeholders that well-written documentation is worth it". The right question to ask is "how can we make writing and maintaining documentation easier for our developers". Everyone knows great docs are worth their weight in gold. The hard part is writing great docs.
+
+<Expand parent="Use TypeScript">
+Use <Resource url='https://www.npmjs.com/package/typescript'>TypeScript</Resource> - TypeScript can create all sorts of documentation that your IDE (like <Resource url='https://code.visualstudio.com/docs/languages/typescript'>Visual Studio Code</Resource>) can display to you while coding. Using TypeScript properly means that all the engineers on your team can:
+  1. Analyze function signatures, parameters, and their return types without leaving the file you are working in
+  2. Autocomplete while typing, IntelliSense, etc.
+  3. Way more!
+
+It also prevents an entire class of bugs from arising, and gives IDE more capabilities (Intellisense, auto-complete, etc.)
+  - <Resource url='https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html'>Add TypeScript to your project</Resource>
+</Expand>
+
+<Expand parent="Use Storybook">
+<Resource url='https://www.npmjs.com/package/storybook'>Storybook</Resource> for components and UI libraries - leveraging something like Storybook makes it easier for team members to explore the various states/functionality of your reusable components. It also makes it easier to create entire design systems that can be used across your organization
+  - <Resource url='https://storybook.js.org/tutorials/intro-to-storybook/react/en/get-started/'>Storybook for React Tutorial</Resource>
+  - This would make it easy for engineers AND non-engineers peripheral to the project to browse the various components and their different states (centralized interactive design system)
+  - See <Resource url='https://storybook.js.org/'>how Storybook works</Resource>
+</Expand>
+
+<Expand parent="Use JSDoc">
+Commenting systems like <Resource url='https://www.npmjs.com/package/jsdoc'>JSDoc</Resource> - technology like this assumes you write plentiful documentation in comments next to your code, and those same comments can be parsed to generate actual HTML webpages that you can navigate, view, etc. It basically tries to take all of your comments throughout your codebase and generate swagger-like documentation for it. If you did BOTH of the above options (1 and 2) this may not be necessary, but if one or both of the options above isn't viable for you then this may be helpful.
+- HTML pages are <Resource url='https://jsdoc.app/about-getting-started.html'>generated</Resource> by tracking your jsdoc comments and creating a navigable website (a type of documentation)
+- You may hear that you can "write TypeScript" with jsdoc comments, and while that is <Resource url='https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html'>technically true</Resource>, we find that writing *application* code that way can be counter-productive. Maintaining a library is a different story - but if you are writing application code, I wouldn't seriously consider this as an approach to "writing TypeScript". I'd just recommend you learn the syntax of TypeScript.
+</Expand>

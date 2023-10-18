@@ -28,7 +28,7 @@ const variantStyles = {
 
 export function Button({
   variant = 'primary',
-  className,
+  className = '',
   children,
   arrow,
   ...props
@@ -52,11 +52,29 @@ export function Button({
     />
   )
 
+  let arrowDownIcon = (
+    <ArrowIcon
+      className={clsx(
+        'mt-0.5 h-5 w-5 -mr-1 rotate-90',
+      )}
+    />
+  )
+
+  let arrowUpIcon = (
+    <ArrowIcon
+      className={clsx(
+        'mt-0.5 h-5 w-5 -mr-1 -rotate-90',
+      )}
+    />
+  )
+
   return (
     <Component className={className} {...props}>
       {arrow === 'left' && arrowIcon}
       {children}
       {arrow === 'right' && arrowIcon}
+      {arrow === 'down' && arrowDownIcon}
+      {arrow === 'up' && arrowUpIcon}
     </Component>
   )
 }

@@ -1,36 +1,48 @@
 
+
 export const sections = [
-    { title: 'The Point of Testing', id: 'what-is-the-point-of-automated-testing' },
-    { title: 'The 3 Types of Tests', id: 'the-3-types-of-tests' },
-    { title: 'What to Test In React Apps', id: 'what-to-test-in-a-react-app' },
-    { title: 'Other FAQs', id: 'faqs' },
-    { title: 'General Tips', id: 'general-tips' },
-    { title: 'Jest', id: 'jest-tips' },
-    { title: 'RTL', id: 'rtl-tips' },
-    { title: 'Misc Reading', id: 'misc-reading' },
+  {
+    title: 'The Point of Testing',
+    id: 'what-is-the-point-of-automated-testing',
+  },
+  { title: 'The 3 Types of Tests', id: 'the-3-types-of-tests' },
+  { title: 'Writing Your First Test', id: 'how-to-get-started-and-write-your-first-test' },
+  { title: 'What to Test In React Apps', id: 'what-to-test-in-a-react-app' },
+  { title: 'Testing FAQs', id: 'faqs' },
+  { title: 'General Tips', id: 'general-tips' },
+  { title: 'Tips for using Jest & RTL', id: 'tips' },
+  { title: 'Misc Reading', id: 'misc-reading' },
 ]
 
 # A Wide View of Automated Testing in React Apps
 
+<Summary>
+  - What are the benefits of automated testing on a project/application
+  - What is the difference between a Unit, Integration, and End-to-End (E2E) test
+  - Examples of how you should be testing your React applications
+  - Advice for brainstorming the critical pieces of your app where automated testing would be useful
+</Summary>
+
+---
+
+Given the focus on React of this website - most of the testing concepts presented in this guide will be described in a way that its used with React. This might not be the best introduction to testing if you've never heard of it before.
+
+<Details icon='contribute' label='Looking for Contributors'>
 This guide will be as succinct and straight to the point as possible. In the future, we would like to provide more learning material, such as:
 
 - specific patterns of writing tests with open-source libraries (like RTL) and what functions provided by these libraries enable meaningful tests
-- implementing an advanced/complex level of automated testing at very large applications/organizations at scale
+- implementing an advanced/complex level of automated testing at very large applications/organizations at scale 
 - workshop material you can present to your developer team to make the automated testing efforts on your team more meaningful and valuable
-- more detailed tutorials of testing libraries and tradeoffs of approaches in each
-
-If you think you could help out with the above and are interested in working in open-source/public, you can [get involved with us on GitHub](https://reacthandbook.dev/).
-
-Right now, we want to cover the basics - to explain to you why testing is valuable/good. To explain what the types of testing are, and then to explain (or at least introduce) what and how you should be testing in your React applications. Each section can be navigated via the navigation on the left, but feel free to jump to the areas most relevant to your needs.
-
-Given the focus on React of this website - most of the testing concepts presented in this guide will be described in a way that its used with React. This might not be the best introduction to testing if you've never heard of it before.
+- more detailed advice on using testing to build a better product
+  
+If you think you could help out with the above and are interested in working in open-source/public, you can <Resource url='https://github.com/ericdiviney/react-handbook'>get involved with us on GitHub</Resource>.
+</Details>
 
 ## What is the point of automated testing?
 
 Let's split this into 2 categories in case you have to make the argument for testing to your non-technical superiors.
 
-***Benefits of testing for the development team***
-
+<Expand parent='Benefits for the Development Team'>
 1. Efficiency: Saves time by automatically running repetitive test cases.
 2. Consistency: Tests run the same way every time, reducing human error.
 3. Coverage: More code can be covered, revealing more potential issues.
@@ -38,14 +50,15 @@ Let's split this into 2 categories in case you have to make the argument for tes
 5. Documentation: Test cases can serve as documentation.
 6. Early Detection: Identifies issues early in the development process, reducing costs and bugs found in production environments.
 7. Deployment Confidence: Increases confidence in code quality.
+</Expand>
 
-***Benefits of testing for the product/organization***
-
+<Expand parent='Benefits for the Product/Organization'>
 1. Cost-Efficiency: Reduced need for manual testing saves time, time = money.
 2. Speed to Market: Quicker tests lead to quicker development cycles.
 3. Risk Mitigation: Early bug detection reduces post-launch hotfix costs.
 4. Quality Assurance: Consistent and comprehensive tests ensure a more reliable application.
 5. Competitive Edge: Better quality and faster delivery can lead to a competitive advantage.
+</Expand>
 
 ## The 3 Types of Tests
 
@@ -53,75 +66,87 @@ Let's split this into 2 categories in case you have to make the argument for tes
 2. **Integration testing** - testing interactions between multiple units to see if they work as expected.
 3. **End-to-end** ("E2E", "Functional") testing - testing entire workflows/paths that users can take in your application.
 
-**Key terms & concepts**
+Next, we've included a short glossary of frequently used words when talking about automated testing. These are simple definitions that might not cover every detail about each term, but should give you an idea of what they mean.
 
+<Expand parent='Key terms & Concepts'>
 - Test - a piece of code written to assert if another piece of code is behaving as expected
-- Test Case - an individual point of functionality or "state" to test in the code that's being tested. <br />
-- Test Runner - a tool that discovers your test files and interprets how to execute them<br />
-- Test Suite - the collection of test cases for your application<br />
-- Assertion - A comparison or check to verify some type of condition (for example, *asserting* if two string variables are equal or not)<br />
-- Mocking / Mock - Overwriting/simulating external dependencies of your application for the sake of testing<br />
-- Code Coverage - how much of the application code (0% - 100%) runs after the testing suite is executed. All things equal - 100% code coverage is the best end of the spectrum - but never an absolute requirement.<br />
-- Regression Testing / Visual Regression - using screenshots of your application and comparing it to previous versions to alert you of visual changes. Heavy focus on the visual output of your application code, and not necessarily the behavioral aspect of it.<br />
+- Test Case - an individual point of functionality or "state" to test in the code that's being tested. 
+- Test Runner - a tool that discovers your test files and interprets how to execute them
+- Test Suite - the collection of test cases for your application
+- Assertion - A comparison or check to verify some type of condition (for example, _asserting_ if two string variables are equal or not)
+- Mocking / Mock - Overwriting/simulating external dependencies of your application for the sake of testing
+- Code Coverage - how much of the application code (0% - 100%) runs after the testing suite is executed. All things equal - 100% code coverage is the best end of the spectrum - but never an absolute requirement.
+- Regression Testing / Visual Regression - using screenshots of your application and comparing it to previous versions to alert you of visual changes. Heavy focus on the visual output of your application code, and not necessarily the behavioral aspect of it.
+</Expand>
 
-**Getting Started in Your React App**
+Below, you'll see the minimum steps required to start testing in your application.
+
+## How to Get Started & Write Your First Test
 
 1. Choose a test-runner
-    1. [Jest](https://jestjs.io/) or [Vitest](https://vitest.dev/) for unit/integration tests
-    2. [Cypress](https://www.cypress.io/app/#e2e) or [Selenium](https://www.selenium.dev/documentation/webdriver/) or [Playwright](https://playwright.dev/) for E2E tests
+   1. <Resource url='https://jestjs.io/'>Jest</Resource> or <Resource url='https://vitest.dev/'>Vitest</Resource> for unit/integration tests
+   2. <Resource url='https://www.cypress.io/app/#e2e'>Cypress</Resource> or <Resource url='https://www.selenium.dev/documentation/webdriver/'>Selenium</Resource> or <Resource url='https://playwright.dev/'>Playwright</Resource> for E2E tests
 2. Choose a testing library
-    1. [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) is the best modern choice. [Enzyme](https://enzymejs.github.io/enzyme/) is an alternative, but we wouldn't recommend it due to the patterns of tests the API encourages developers to write.
+   1. <Resource url='https://testing-library.com/docs/react-testing-library/intro/'>React Testing Library</Resource> is the best modern choice. <Resource url='https://enzymejs.github.io/enzyme/'>Enzyme</Resource> is an alternative, but we wouldn't recommend it due to the patterns of tests the API encourages developers to write.
 3. Dive in!
-    1. If you've never written or seen a unit test in a React app before, you could watch Jack Herrington go through a few examples in [this YouTube video](https://www.youtube.com/watch?v=bvdHVxqjv80).
-    2. Be aware of [this configuration requirement](https://react.dev/blog/2022/03/08/react-18-upgrade-guide#configuring-your-testing-environment) if your application uses a React version ≥ 18 and you're not going to use React Testing Library (which handles it for you).
-    3. Also be aware of new features added to React 18 that might break your test suite if the underlying tools haven't taken them into account (e.g. Concurrent mode, Suspense)
-
+   1. If you've never written or seen a unit test in a React app before, you could watch Jack Herrington go through a few examples in <Resource url='https://www.youtube.com/watch?v=bvdHVxqjv80'>this YouTube video</Resource>.
+   2. Be aware of <Resource url='https://react.dev/blog/2022/03/08/react-18-upgrade-guide#configuring-your-testing-environment'>this configuration requirement</Resource> if your application uses a React version ≥ 18 and you're not going to use React Testing Library (which handles it for you).
+   3. Also be aware of new features added to React 18 that might break your test suite if the underlying tools haven't taken them into account (e.g. Concurrent mode, Suspense)
 
 ## What to Test In A React App
 
-In an ideal world, the answer to this question is everything you control. But here are some practical examples to get you started:
+In an ideal world, the answer to this question is everything you control. And 99% of the time that can be divided into two categories: Visual and Behavioral testing.
 
-Visual:
+Everything that you test that isn't "Visual" is probably going to fall in the "Behavior" category. This is quite a large net - honestly, entire books could probably dedicated to writing effective automated tests of component behavior. Below are some examples of each.
 
-- [Snapshot testing](https://circleci.com/blog/snapshot-testing-with-jest/) - not terribly useful, alerts you to changes in the DOM rendered by component
-- [Visual Regression](https://www.browserstack.com/guide/visual-regression-testing) - pixel-perfect screenshot comparison to know all changes, both big and small
+<Expand parent='Visual testing'>
+- <Resource url='https://circleci.com/blog/snapshot-testing-with-jest/'>Snapshot testing</Resource> - not terribly useful, alerts you to changes in the DOM rendered by component
+- <Resource url='https://www.browserstack.com/guide/visual-regression-testing'>Visual Regression</Resource> - pixel-perfect screenshot comparison to know all changes, both big and small
 - Styles - Testing styles isn't the best use of time, but sometimes, it might make sense if the styles are a result of an interaction/event and important to the function of the app
+</Expand>
 
-Behavioral:
-
+<Expand parent='Behavioral testing'>
 - UI Components (Unit Tests)
-    - The smaller/basic components like Buttons, Cards, Toggles, etc., should mostly rely on props for their internal logic (they're more "pure") and, therefore should be easy to test.
-    - Test output - Test that passing different props combinations results in the expected render output. What are this component's different render "states" or "variants" of output? Are there loading states or "empty" states if the data passed is null/empty?
-    - Test interactivity - Does this component contain interactions that change what is rendered? Observe the interactivity and write that into a test
-    - Controlled component interactivity - When components become "controlled" - they relinquish some of their internal state to the callee/parent. Typically, this is through the use of props and they would be named something like onClick, onToggle, onChange, etc. You should be testing that these props properly work and are called when expected and with the expected arguments if any are included.
 - Custom Hooks & Context Providers (Unit Tests)
-    - As for testing a custom hook / context provider - it is recommended not to try to test the hook/context itself and instead consume the hook/context in a component for the sake of testing. The component can be one that's actually used in the application or is just a dummy component (that never gets loaded in the production bundle) for the sake of testing. Either way, writing a component to consume the underlying hook/context will be easier to test than trying to test just a hook/context in isolation.
-    - The point we want to drive home for you is that for your test of a hook/context - try to do it all in one component (dummy or real, it doesn't matter). Outside of the test, you should probably be *mocking* your contexts everywhere else they are used (to make your other tests simpler to reason about).
-    - If you are insistent on testing custom hooks in isolation you can try this library: [React Hooks Testing Library](https://react-hooks-testing-library.com/reference/api)
 - Global Stores (Unit Tests)
-    - Unlike the above, if you're using a library like Redux or Jotai, you CAN write some unit tests for your state logic. Any library worth using should probably have a page on how to write tests in said library, for example:
-        - [Writing tests in Redux](https://redux.js.org/usage/writing-tests)
-        - [Writing tests in Jotai](https://jotai.org/docs/guides/testing)
 - Custom Utils / App Functions (Unit Tests)
-    - Most of the time, these are pure javascript functions kept somewhere for repeated use throughout the project. These should be simple to test because you don't have to worry about rendering anything. You can test the inputs and outputs of a simple function by passing different arguments as each function parameter and checking the return value.
 - Page / Feature Components (Integration Tests)
-    - Test your components working together with other logic in your code like context providers, global stores, browser APIs, and third-party servers/APIs, as this is a more realistic simulation of your app being used by an actual user.
-    - Test output - can you see that the child components are rendered correctly? Are there other visual queues that get rendered you should test for?
-    - Test interactivity - typically in feature-level or page-level components, there are additional things you can test, some examples might be:
-        - Form submission handlers, form validation, interactions that make third-party API calls, interactions that update stores/contexts, interactions that should cause a navigation change, interactions that trigger other expensive work (export to CSV, drawing on a canvas, etc.) that you could arguably mock
-    - Test errors - since features/pages are where API interactions happen, its also typically where users can get errors / error-states in the app. Mock APIs to return errors and test that your frontend responds appropriately.
 - Entire user flows / paths (E2E Tests)
-    - Tests that confirm an entire path a user might take is working as expected.
-    - Examples: multi-step forms, multi-step authentication, multi-step config, etc.
-    - Think of both the happy paths AND the unhappy paths, like when errors occur
+</Expand>
 
+<Details label='Deep Dive - Behavioral Testing'>
+  - UI Components (Unit Tests)
+  - The smaller/basic components like Buttons, Cards, Toggles, etc., should mostly rely on props for their internal logic (they're more "pure") and, therefore should be easy to test.
+  - Test output - Test that passing different props combinations results in the expected render output. What are this component's different render "states" or "variants" of output? Are there loading states or "empty" states if the data passed is null/empty?
+  - Test interactivity - Does this component contain interactions that change what is rendered? Observe the interactivity and write that into a test
+  - Controlled component interactivity - When components become "controlled" - they relinquish some of their internal state to the callee/parent. Typically, this is through the use of props and they would be named something like onClick, onToggle, onChange, etc. You should be testing that these props properly work and are called when expected and with the expected arguments if any are included.
+- Custom Hooks & Context Providers (Unit Tests)
+  - As for testing a custom hook / context provider - it is recommended not to try to test the hook/context itself and instead consume the hook/context in a component for the sake of testing. The component can be one that's actually used in the application or is just a dummy component (that never gets loaded in the production bundle) for the sake of testing. Either way, writing a component to consume the underlying hook/context will be easier to test than trying to test just a hook/context in isolation.
+  - The point we want to drive home for you is that for your test of a hook/context - try to do it all in one component (dummy or real, it doesn't matter). Outside of the test, you should probably be _mocking_ your contexts everywhere else they are used (to make your other tests simpler to reason about).
+  - If you are insistent on testing custom hooks in isolation you can try this library: <Resource url='https://react-hooks-testing-library.com/reference/api'>React Hooks Testing Library</Resource>
+- Global Stores (Unit Tests)
+  - Unlike the above, if you're using a library like Redux or Jotai, you CAN write some unit tests for your state logic. Any library worth using should probably have a page on how to write tests in said library, for example:
+    - <Resource url='https://redux.js.org/usage/writing-tests'>Writing tests in Redux</Resource>
+    - <Resource url='https://jotai.org/docs/guides/testing'>Writing tests in Jotai</Resource>
+- Custom Utils / App Functions (Unit Tests)
+  - Most of the time, these are pure javascript functions kept somewhere for repeated use throughout the project. These should be simple to test because you don't have to worry about rendering anything. You can test the inputs and outputs of a simple function by passing different arguments as each function parameter and checking the return value.
+- Page / Feature Components (Integration Tests)
+  - Test your components working together with other logic in your code like context providers, global stores, browser APIs, and third-party servers/APIs, as this is a more realistic simulation of your app being used by an actual user.
+  - Test output - can you see that the child components are rendered correctly? Are there other visual queues that get rendered you should test for?
+  - Test interactivity - typically in feature-level or page-level components, there are additional things you can test, some examples might be:
+    - Form submission handlers, form validation, interactions that make third-party API calls, interactions that update stores/contexts, interactions that should cause a navigation change, interactions that trigger other expensive work (export to CSV, drawing on a canvas, etc.) that you could arguably mock
+  - Test errors - since features/pages are where API interactions happen, its also typically where users can get errors / error-states in the app. Mock APIs to return errors and test that your frontend responds appropriately.
+- Entire user flows / paths (E2E Tests)
+  - Tests that confirm an entire path a user might take is working as expected.
+  - Examples: multi-step forms, multi-step authentication, multi-step config, etc.
+  - Think of both the happy paths AND the unhappy paths, like when errors occur
 
 Identifying what to test:
 
-- Which parts of your codebase breaking would be *really bad if they broke? This is where you start writing integration & E2E tests.
-    - E-commerce: add to cart + checkout is the critical flow
-    - Social networks: Authentication and main feed are the critical flows
-    - Airbnb: Property search + booking
+- Which parts of your codebase breaking would be \*really bad if they broke? This is where you start writing integration & E2E tests.
+  - E-commerce: add to cart + checkout is the critical flow
+  - Social networks: Authentication and main feed are the critical flows
+  - Airbnb: Property search + booking
 - Is there an A/C (Acceptance Criteria) for a task, ticket, feature, or something that outlines the functionality? These are great starting points for test ideas in a feature/page-level integration test.
 - How are you testing your work locally? Every developer knows the game of ping-ponging between code editor and browser, checking every little behavior along the way. What are the things you are checking while building this feature locally? Use that to think about writing your test.
 - What are the paths or use cases a user of the app might take? Think of both happy paths AND sad paths. Test that both at least show the user the expected UX.
@@ -130,78 +155,92 @@ Identifying what to test:
 What to avoid when writing tests
 
 - Testing that components are called with certain props
-    - Testing render *output* is simpler and what the user would experience (users don't care about internal details of your app like props, so neither should your tests)
+  - Testing render _output_ is simpler and what the user would experience (users don't care about internal details of your app like props, so neither should your tests)
 - Tests that require or assume certain elements will appear in a certain order or hierarchy in the DOM
-    - Sometimes, you'll make too many assumptions in your tests that generate false failures or break too easily. A trivial example of this would be querying all buttons in the DOM and then assuming the nth is the one we need (for example, something like `querySelectorAll('.button')[1]`). This can especially make an integration test of many interacting components very brittle and give false failures. Instead, query the button by its text, a data-id attribute, or something that wouldn't make this test so easy to break when code around it changes.
-    - Something you can use in the browser to make queries for DOM nodes easier and more reliable is to open the developer tools, highlight/inspect the HTML being rendered by the component, and go to Elements → Inspect → Accessibility → Computed Properties. This will give you ways of querying the highlighted element via the accessibility computed properties.
+  - Sometimes, you'll make too many assumptions in your tests that generate false failures or break too easily. A trivial example of this would be querying all buttons in the DOM and then assuming the nth is the one we need (for example, something like `querySelectorAll('.button')[1]`). This can especially make an integration test of many interacting components very brittle and give false failures. Instead, query the button by its text, a data-id attribute, or something that wouldn't make this test so easy to break when code around it changes.
+  - Something you can use in the browser to make queries for DOM nodes easier and more reliable is to open the developer tools, highlight/inspect the HTML being rendered by the component, and go to Elements → Inspect → Accessibility → Computed Properties. This will give you ways of querying the highlighted element via the accessibility computed properties.
 - Trying to test the internal state logic of components. Let's take a carousel, for example.
-    - The internal logic of a carousel would have an index to keep track of the "current" item being shown. But that index could start at 0, or 1, or 500. Trying to test what index the carousel is keeping track of (too much of an implementation detail) - try to test what you expect the output to be of the carousel.
-    - Again: "Would the user notice this?"
-        - A user won't notice what index your carousel component starts at. But they will notice what the carousel is rendering, so test that!
+  - The internal logic of a carousel would have an index to keep track of the "current" item being shown. But that index could start at 0, or 1, or 500. Trying to test what index the carousel is keeping track of (too much of an implementation detail) - try to test what you expect the output to be of the carousel.
+  - Again: "Would the user notice this?"
+    - A user won't notice what index your carousel component starts at. But they will notice what the carousel is rendering, so test that!
 - Testing that components render certain child components with certain props (ensuring the data is passed through correctly). This is too much detail. Find ways to test the render output to assess whether the component behaves correctly.
-    - Previous popular libraries like enzyme provided functions like .find() to locate child components rendered in a parent, and .props() to let us peek at the props supplied to a component. But again, these are all implementation details. Testing the API of the component is not the same as testing the behavior of the component. Try to test the behavior more than the API.
-    - Besides, it's better to learn about trivial bugs like breaking prop name changes via TypeScript (during development)
+  - Previous popular libraries like enzyme provided functions like .find() to locate child components rendered in a parent, and .props() to let us peek at the props supplied to a component. But again, these are all implementation details. Testing the API of the component is not the same as testing the behavior of the component. Try to test the behavior more than the API.
+  - Besides, it's better to learn about trivial bugs like breaking prop name changes via TypeScript (during development)
 - All of these are just various ways of saying don't test too much implementation detail. Test what the user would notice.
+</Details>
 
 ## FAQs
 
-**How to make components more testable**
+<FAQ>
+  <Question value='one'>
+    <QuestionText>How to make components more testable</QuestionText>
+    <Answer>
+      The easiest way to think about making components easier to test is to try and make them more <Resource url='https://react.dev/learn/keeping-components-pure'>"pure" functions</Resource>. In React - making components more "pure" tends to mean relying on props (which are the "arguments" to our functional component). If the component relies on any internal/external state for rendering, we can't guarantee what that state data will be when we render the component, and therefore, we can't always guarantee that our functional component will return a certain JSX output.
 
-The easiest way to think about making components easier to test is to try and make them more ["pure" functions](https://react.dev/learn/keeping-components-pure). In the context of React - making components more "pure" tends to mean relying on props (which are the "arguments" to our functional component). If the component relies on any internal/external state for rendering, we can't guarantee what that state data will be when we render the component, and therefore, we can't always guarantee that our functional component will return a certain JSX output.
-
-This is not an outright recommendation to rebuild all of your components to use ONLY props, far from it. The usage of props is very nuanced, and getting it right from both a performance standpoint AND a developer-experience standpoint is difficult to get right. Props are not always the right solution, but if you want to design your components with unit-testability in mind, your functional components' render logic should rely more on props than other sources of information (like global stores, local state, localStorage, etc.)
-
-**What should I be mocking?**
-
-- When we mock things, we say "Pretend this thing works perfectly, and pretend that in this particular test, the thing worked this particular way"
-- Great examples of things that should be mocked in most React app test suites:
-- Any code YOU (the developer) cannot easily control/change
-- Browser APIs (like `window.scrollTo`)
-- Node dependencies (like a google-map embed)
-- 3rd party APIs (data-fetching calls, any backends/servers/databases, etc.)
-
-**I'm using TypeScript. Do I still need to write unit tests?**
-
-TypeScript does solve a basic level of testing in your application (in an automated way), yes. However, it is not sufficient to say that TS alone is enough to give you real confidence in your application code.
-
-Unit + Integration tests can give you confidence that there are no glaring bugs in the feature set of your application, which TypeScript really can't. Simply put, TypeScript is not a replacement for writing tests.
-
-**What types of tests are best to write (and how much)?**
-
-Instead of telling you what to do, you should think about the benefits and tradeoffs of each. We'll help you think about it.
-
-- **Unit Tests** - Unit tests are probably the simplest to write most of the time, and this type shines when used for your primitive components/functions that are the basic building blocks of your application. The more "pure" your components can be (relying only on props), the easier they'll be to test (that's not to say that heavy prop usage is the best API for *every* component, only that it makes unit testing much simpler). However, this type really only tests things at a very basic level.
-- **Integration Tests** - Writing unit tests at the feature/page level. Testing that multiple components all work together with other code logic (Forms, APIs, hooks, global state, etc.) to form application features. This type of test *arguably* has the best return on investment if you do not want to spend a lot of time on an automated testing suite - it will guarantee the core functionality of your app doesn't break (catastrophically, at least) when making changes to your application code.
-- **E2E/Functional Tests** - Robots literally open a browser and run through entire flows (happy paths, sad paths, all of it), checking all kinds of functionality along the way. Think of multi-step forms, authentication flows, etc. These are the most complex to implement but are going to give you the utmost confidence that almost every facet of your application is working as expected.
-
-**When should the devs be writing tests (during the software development lifecycle)?**
-
-1. *During the development of the features*. The software engineer picking up the task/story/ticket/feature should know the code better than anyone. They should also be writing the appropriate unit+integration tests to boost confidence in the code they're merging. See further below for examples of what should be tested.
-2. *After development, but before production deployment*. If your team/organization is large enough and you have resources for it, it's not the worst idea to let a dedicated QA/Automation engineer pick up the ticket after it is merged to write a complete E2E test (which might not be the specialty of the software engineer completing the feature).
-3. *When you get a chance to catch your breath and address tech debt, refactors, etc.* This is a good time to get a baseline of automated tests running because while addressing tech debt and implementing refactors for a better codebase, the actual features of the application shouldn't change at all (that's the definition of a "refactor"). Hence, if you spend some time writing tests, they won't immediately break and require more time to fix. Now, they make a good baseline moving forward for your deployment pipeline.
-4. *If none of these times suit you, or you can't find a way to prioritize testing in your own way or in one recommended way above*, your product/organization probably wouldn't gain much from automated testing anyway.
+      This is not an outright recommendation to rebuild all of your components to use ONLY props, far from it. The usage of props is very nuanced, and getting it right from both a performance standpoint AND a developer-experience standpoint is difficult to get right. Props are not always the right solution, but if you want to design your components with unit-testability in mind, your functional components' render logic should rely more on props than other sources of information (like global stores, local state, localStorage, etc.)
+    </Answer>
+  </Question>
+  <Question value='two'>
+    <QuestionText>What should I be mocking?</QuestionText>
+    <Answer>
+      - When we mock things, we say "Pretend this thing works perfectly, and pretend that in this particular test, the thing worked this particular way"
+      - Great examples of things that should be mocked in most React app test suites:
+      - Any code YOU (the developer) cannot easily control/change
+      - Browser APIs (like `window.scrollTo`)
+      - Node dependencies (like a google-map embed)
+      - 3rd party APIs (data-fetching calls, any backends/servers/databases, etc.)
+    </Answer>
+  </Question>
+  <Question value='three'>
+    <QuestionText>I'm using TypeScript. Do I still need to write unit tests?</QuestionText>
+    <Answer>
+      TypeScript does solve a basic level of testing in your application (in an automated way), yes. However, it is not sufficient to say that TS alone is enough to give you real confidence in your application code.
+      
+      Unit + Integration tests can give you confidence that there are no glaring bugs in the feature set of your application, which TypeScript really can't. Simply put, TypeScript is not a replacement for writing tests.
+    </Answer>
+  </Question>
+  <Question value='four'>
+    <QuestionText>What types of tests are best to write (and how much)?</QuestionText>
+    <Answer>
+      Instead of telling you what to do, you should think about the benefits and tradeoffs of each. We'll help you think about it.
+      - **Unit Tests** - Unit tests are probably the simplest to write most of the time, and this type shines when used for your primitive components/functions that are the basic building blocks of your application. The more "pure" your components can be (relying only on props), the easier they'll be to test (that's not to say that heavy prop usage is the best API for _every_ component, only that it makes unit testing much simpler). However, this type really only tests things at a very basic level.
+      - **Integration Tests** - Writing unit tests at the feature/page level. Testing that multiple components all work together with other code logic (Forms, APIs, hooks, global state, etc.) to form application features. This type of test _arguably_ has the best return on investment if you do not want to spend a lot of time on an automated testing suite - it will guarantee the core functionality of your app doesn't break (catastrophically, at least) when making changes to your application code.
+      - **E2E/Functional Tests** - Robots literally open a browser and run through entire flows (happy paths, sad paths, all of it), checking all kinds of functionality along the way. Think of multi-step forms, authentication flows, etc. These are the most complex to implement but are going to give you the utmost confidence that almost every facet of your application is working as expected.
+    </Answer>
+  </Question>
+  <Question value='five'>
+    <QuestionText>When should the devs be writing tests (during the software development lifecycle)?</QuestionText>
+    <Answer>
+      1. _During the development of the features_. The software engineer picking up the task/story/ticket/feature should know the code better than anyone. They should also be writing the appropriate unit+integration tests to boost confidence in the code they're merging. See further below for examples of what should be tested.
+      2. _After development, but before production deployment_. If your team/organization is large enough and you have resources for it, it's not the worst idea to let a dedicated QA/Automation engineer pick up the ticket after it is merged to write a complete E2E test (which might not be the specialty of the software engineer completing the feature).
+      3. _When you get a chance to catch your breath and address tech debt, refactors, etc._ This is a good time to get a baseline of automated tests running because while addressing tech debt and implementing refactors for a better codebase, the actual features of the application shouldn't change at all (that's the definition of a "refactor"). Hence, if you spend some time writing tests, they won't immediately break and require more time to fix. Now, they make a good baseline moving forward for your deployment pipeline.
+      4. _If none of these times suit you, or you can't find a way to prioritize testing in your own way or in one recommended way above_, your product/organization probably wouldn't gain much from automated testing anyway.
+    </Answer>
+  </Question>
+</FAQ>
 
 ## General Tips
 
 - Refactoring your code shouldn't break tests.
-    - Since the traditional definition of a refactor would include NOT changing the functionality/output (and simply making the code more efficient/maintainable) - if a test breaks during a refactor session, then you had to have changed functionality, or the test was too brittle and assumed too much implementation detail. This is a "false failure", by the way.
-- Use [custom rendering](https://testing-library.com/docs/react-testing-library/setup#custom-render) to make it easier to simulate your application in your test suite
-- Use [Mock Service Workers (MSW)](https://mswjs.io/) for mocking your API endpoints
-- Use [faker](https://github.com/faker-js/faker) for generating large amounts of fake datasets
+  - Since the traditional definition of a refactor would include NOT changing the functionality/output (and simply making the code more efficient/maintainable) - if a test breaks during a refactor session, then you had to have changed functionality, or the test was too brittle and assumed too much implementation detail. This is a "false failure", by the way.
+- Use <Resource url='https://testing-library.com/docs/react-testing-library/setup#custom-render'>custom rendering</Resource> to make it easier to simulate your application in your test suite
+- Use <Resource url='https://mswjs.io/'>Mock Service Workers (MSW)</Resource> for mocking your API endpoints
+- Use <Resource url='https://github.com/faker-js/faker'>faker</Resource> for generating large amounts of fake datasets
 
-## Jest Tips
+## Tips
 
-```jsx
+<CodeGroup title='Code Tips'>
+```jsx {{ title: 'Jest' }}
 // Mocking global APIs like window.scrollTo that you don't import from anywhere
 
 // A) You can have the same mock for ALL of your tests in one place
 beforeAll(() => {
-  window.functionToMock = jest.fn().mockImplementation(() => {});
+  window.functionToMock = jest.fn().mockImplementation(() => {})
 })
 
 // B) You can mock the function to something different for each test
 beforeEach(() => {
-  window.functionToMock = jest.fn();
+  window.functionToMock = jest.fn()
 })
 
 test('description', () => {
@@ -214,10 +253,10 @@ test('description', () => {
 
 // How to mock functions you are importing from another file/source
 // This is useful for mocking functions in your code that hit API endpoints (if you're not using the MSW pattern)
-import { someFunction } from 'third-party-npm-dependency';
+import { someFunction } from 'third-party-npm-dependency'
 
 // tell jest we will mock it in this file
-jest.mock('third-party-npm-dependency');
+jest.mock('third-party-npm-dependency')
 
 test('the first test', () => {
   someFunction.mockImplementation(() => {}) // pass a mock function here
@@ -226,19 +265,9 @@ test('the first test', () => {
 test('another test where we want a different return value from someFunction', () => {
   someFunction.mockImplementation(() => {}) // you can change it in each test with mockImplementation();
 })
-
 ```
 
-## RTL Tips
-
-Watch [Testing Library: everybody uses it, but nobody understands it](https://www.youtube.com/watch?v=jNAMdsbdvlI&t=1s) by Matan Borenkraout.
-
-- RTL has a [very rich API](https://testing-library.com/docs/queries/about/) for querying/selecting DOM nodes rendered by your components - it’s very useful for making tests less brittle and reliant on implementation details
-    - You can find [a similar tool in browsers](https://developer.chrome.com/docs/devtools/accessibility/reference/#computed) by going to Elements → Inspect → Accessibility → Computed Properties
-    - The [Testing Playground](https://testing-playground.com/) can also be helpful in finding creative but robust ways of finding DOM nodes in your render output
-- When firing events in your tests, 99% of the time, you should prefer [userEvent](https://testing-library.com/docs/user-event/intro/) over [fireEvent](https://testing-library.com/docs/dom-testing-library/api-events#fireevent), because userEvent simulates an event closer to how a browser would (including propagation and other events that get fired like mouseUp / mouseDown)
-
-```jsx
+```jsx {{ title: 'RTL' }}
 // example of "custom rendering" so that when you render your components, they have dependencies like contexts/stores/etc
 // create local test-utils.ts file
 
@@ -263,11 +292,24 @@ const el = getByText(/word or phrase/i); // gets an element by its text content,
 // you should be relying mostly on this for elements that have text content
 // remember other properties you can query for by going to Elements → Inspect → Accessibility → Computed Properties
 ```
+</CodeGroup>
+
+### More Tips for Using React Testing Library (RTL)
+
+Watch <Resource url='https://www.youtube.com/watch?v=jNAMdsbdvlI&t=1s'>Testing Library: everybody uses it, but nobody understands it</Resource> by Matan Borenkraout.
+
+- RTL has a <Resource url='https://testing-library.com/docs/queries/about/'>very rich API</Resource> for querying/selecting DOM nodes rendered by your components - it's very useful for making tests less brittle and reliant on implementation details
+  - You can find <Resource url='https://developer.chrome.com/docs/devtools/accessibility/reference/#computed'>a similar tool in browsers</Resource> by going to Elements → Inspect → Accessibility → Computed Properties
+  - The <Resource url='https://testing-playground.com/'>Testing Playground</Resource> can also be helpful in finding creative but robust ways of finding DOM nodes in your render output
+- When firing events in your tests, 99% of the time, you should prefer <Resource url='https://testing-library.com/docs/user-event/intro/'>userEvent</Resource> over <Resource url='https://testing-library.com/docs/dom-testing-library/api-events#fireevent'>fireEvent</Resource>, because userEvent simulates an event closer to how a browser would (including propagation and other events that get fired like mouseUp / mouseDown)
+
+
 
 ## Misc Reading
 
-- [What is a test?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-test) by Kent C. Dodds
-- [What is a mock?](https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock) by Kent C. Dodds
-- [Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) by Kent C. Dodds
-- [Fix the "Not Wrapped in act() Warning"](https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning) by Kent C. Dodds
-- [An Overview of JavaScript Testing in 2022](https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870) by Vitali Zaidman
+- <Resource url='https://kentcdodds.com/blog/but-really-what-is-a-javascript-test'>What is a test?</Resource> by Kent C. Dodds
+- <Resource url='https://kentcdodds.com/blog/but-really-what-is-a-javascript-mock'>What is a mock?</Resource> by Kent C. Dodds
+- <Resource url='https://kentcdodds.com/blog/testing-implementation-details'>Testing Implementation Details</Resource> by Kent C. Dodds
+- <Resource url='https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning'>Fix the "Not Wrapped in act() Warning"</Resource> by Kent C. Dodds
+- <Resource url='https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870'>An Overview of JavaScript Testing in 2022</Resource> by Vitali Zaidman
+- <Resource url='https://abseil.io/resources/swe-book/html/ch11.html'>Testing Overview</Resource> by Adam Bender
