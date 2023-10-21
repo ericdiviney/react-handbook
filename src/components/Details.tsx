@@ -58,6 +58,10 @@ export function Details({
 
   const buttonLabel = icon === 'contribute' ? 'What we need' : 'Read More';
 
+  function toggleOpen() {
+        setIsOpen(!isOpen)
+    }
+
   return (
     <div className="pt-8 my-8 bg-white shadow-lg pointer-events-auto dark:shadow-inset rounded-xl ring-1 ring-gray-900/10 dark:bg-zinc-900 dark:ring-zinc-800">
       <div className="px-8">
@@ -70,7 +74,7 @@ export function Details({
         <div className="pt-6 pb-2">
           <Button
             variant="filled"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleOpen}
             arrow={isOpen ? 'up' : 'down'}
           >
             {isOpen ? 'Collapse' : buttonLabel}

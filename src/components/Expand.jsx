@@ -12,8 +12,8 @@ export function Expand({ children, parent }) {
     <div className="my-2">
       <div>
         <button
-          className="flex items-center gap-3 group"
-          onClick={() => toggleHidden()}
+          className="flex items-center text-left gap-3 group"
+          onClick={toggleHidden}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
