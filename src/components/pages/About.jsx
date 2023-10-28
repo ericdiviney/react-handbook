@@ -48,7 +48,7 @@ export function Contributors() {
               <Resource url='https://twitter.com/josh_claunch'>Josh Claunch</Resource> - someone we repeatedly go to for feedback/advice on things I&apos;m writing, and for having very advanced knowledge of state management in React applications
             </li>
             <li>
-              <Resource url='https://www.linkedin.com/in/conklin-anthony/'>Anthony Conklin</Resource> - someone else we can always rely on for fresh feedback on any web project I start
+              <Resource url='https://www.linkedin.com/in/conklin-anthony/'>Anthony Conklin</Resource> - someone else we can always rely on for fresh feedback
             </li>
             <li>
               <Resource url='https://github.com/Theo-flux'>Theo-Flux</Resource> for being the first person to contribute to the project besides myself, giving us hope that we&apos;re working on something worthwhile
