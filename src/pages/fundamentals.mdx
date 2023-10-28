@@ -85,9 +85,8 @@ Many newcomers to React think a performant React app means simply cutting down t
 - <Resource url='https://alexsidorenko.com/blog/react-render-always-rerenders/'>A Visual Guide to React Rendering</Resource>
 - <Resource url='https://codesandbox.io/s/a-visual-guide-to-react-rendering-sandbox-td70u?file=/src/sandbox.jsx'>Interactive CodeSandbox</Resource> that shows how/when parents re-render any direct child components used in the render (NOT to be confused with the `children` prop, which do NOT always trigger re-renders if/when they change)
   - Notice that `Component B` in this example is <Resource url='https://react.dev/reference/react/memo'>memoized</Resource> with `memo()`
-- <Resource url='https://alexsidorenko.com/blog/react-render-children-prop/'>React recursively re-renders child components, but there is a nuance</Resource>
-  - Props changing will trigger a re-render or all child components directly used in a parent
-  - the `children` prop changes will NOT trigger re-renders (assuming you just pass the `{children}` right through to render in the component's definition)
+- <Resource url='https://alexsidorenko.com/blog/react-render-children-prop/'>React recursively re-renders child components, but the `children` prop is special</Resource>
+  - assuming your component passes the children prop through and simply renders it, re-renders of `{children}` will not always cause the parent to re-render
 - <Resource url='https://julesblom.com/writing/react-hook-component-timeline'>Timeline of a React Component With Hooks</Resource>
   - An interactive timeline showing how a React component with hooks runs
 - <Resource url='https://julesblom.com/writing/parents-owners-performance'>Parents & Owners in React: Rendering Performance</Resource>
