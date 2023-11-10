@@ -104,7 +104,7 @@ function ActivePageMarker({ group, pathname }) {
   )
 }
 
-function NavigationGroup({ group, className, nestedOnly = false }) {
+function NavigationGroup({ group, className }) {
   // If this is the mobile navigation then we always render the initial
   // state, so that the state does not change during the close animation.
   // The state will still update when we re-open (re-render) the navigation.
@@ -117,66 +117,9 @@ function NavigationGroup({ group, className, nestedOnly = false }) {
   let isActiveGroup =
     group.links.findIndex((link) => link.href === router.pathname) !== -1
 
-  if (nestedOnly) {
-    return (
-      <li className={clsx('relative mt-6', className)}>
-        <div className="relative pl-2 mt-3">
-          <AnimatePresence initial={!(isInsideMobileNavigation || nestedOnly)}>
-            {isActiveGroup && (
-              <VisibleSectionHighlight group={group} pathname={router.pathname} />
-            )}
-          </AnimatePresence>
-          <motion.div
-            layout
-            className="absolute inset-y-0 w-px left-2 bg-zinc-900/10 dark:bg-white/5"
-          />
-          <AnimatePresence initial={false}>
-            {isActiveGroup && (
-              <ActivePageMarker group={group} pathname={router.pathname} />
-            )}
-          </AnimatePresence>
-          <ul role="list" className="pr-2 border-l border-transparent">
-            {group.links.map((link) => (
-              <motion.li key={link.href} layout="position" className="relative">
-                <AnimatePresence mode="popLayout" initial={false}>
-                  {link.href === router.pathname && sections.length > 0 && (
-                    <motion.ul
-                      role="list"
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: 1,
-                        transition: { delay: 0.1 },
-                      }}
-                      exit={{
-                        opacity: 0,
-                        transition: { duration: 0.15 },
-                      }}
-                    >
-                      {sections.map((section) => (
-                        <li key={section.id}>
-                          <NavLink
-                            href={`${link.href}#${section.id}`}
-                            tag={section.tag}
-                            isAnchorLink
-                          >
-                            {section.title}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-      </li>
-    )
-  }
-
   return (
     <li className={clsx('relative mt-6', className)}>
-      <h2
+      <motion.h2
         layout="position"
         className="text-xs font-semibold text-zinc-900 dark:text-white"
       >
@@ -185,18 +128,57 @@ function NavigationGroup({ group, className, nestedOnly = false }) {
         ) : (
           group.title
         )}
-      </h2>
-      <div className="relative pl-2 mt-1">
+      </motion.h2>
+      <div className="relative pl-2 mt-3">
+        <AnimatePresence initial={!isInsideMobileNavigation}>
+          {isActiveGroup && (
+            <VisibleSectionHighlight group={group} pathname={router.pathname} />
+          )}
+        </AnimatePresence>
+        <motion.div
+          layout
+          className="absolute inset-y-0 w-px left-2 bg-zinc-900/10 dark:bg-white/5"
+        />
+        <AnimatePresence initial={false}>
+          {isActiveGroup && (
+            <ActivePageMarker group={group} pathname={router.pathname} />
+          )}
+        </AnimatePresence>
         <ul role="list" className="pr-2 border-l border-transparent">
           {group.links.map((link) => (
-            <NavLink
-              key={link.href}
-              href={link.href}
-              tag={link.tag ?? undefined}
-              active={link.href === router.pathname}
-            >
-              {link.title}
-            </NavLink>
+            <motion.li key={link.href} layout="position" className="relative">
+              <NavLink href={link.href} tag={link.tag ?? undefined} active={link.href === router.pathname}>
+                {link.title}
+              </NavLink>
+              <AnimatePresence mode="popLayout" initial={false}>
+                {link.href === router.pathname && sections.length > 0 && (
+                  <motion.ul
+                    role="list"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { delay: 0.1 },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      transition: { duration: 0.15 },
+                    }}
+                  >
+                    {sections.map((section) => (
+                      <li key={section.id}>
+                        <NavLink
+                          href={`${link.href}#${section.id}`}
+                          tag={section.tag}
+                          isAnchorLink
+                        >
+                          {section.title}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </motion.li>
           ))}
         </ul>
       </div>
@@ -235,10 +217,7 @@ export const navigation = [
       { title: 'Frameworks & Build Tools', href: '/frameworks' },
       { title: 'React Native', href: '/frameworks/react-native' },
       { title: 'Next.js', href: '/frameworks/nextjs' },
-      {
-        title: 'Alternate React Stacks',
-        href: '/frameworks/alternate-tech-stacks',
-      },
+      { title: 'Alternate React Stacks', href: '/frameworks/alternate-tech-stacks' },
       { title: 'Remix', href: '#remix', tag: 'coming soon' },
       { title: 'Gatsby', href: '#gatsby', tag: 'coming soon' },
       { title: 'Nx', href: '#nx', tag: 'coming soon' },
@@ -259,7 +238,7 @@ export const navigation = [
   },
 ]
 
-export function Navigation({ nestedOnly = false }) {
+export function Navigation(props) {
   return (
     <nav>
       <ul role="list">
@@ -268,7 +247,6 @@ export function Navigation({ nestedOnly = false }) {
             key={group.title}
             group={group}
             className={groupIndex === 0 && 'md:mt-0'}
-            nestedOnly={nestedOnly}
           />
         ))}
       </ul>
