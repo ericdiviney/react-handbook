@@ -150,12 +150,23 @@ export function Layout({ children, sections = [] }) {
             }
           )}
         >
-          <main className="lg:py-16">
+          <main className="relative lg:py-16">
             <Prose as="article">{children}</Prose>
+            <FloatingSidebar />
           </main>
           <Footer />
         </div>
       </div>
     </SectionProvider>
+  )
+}
+
+function FloatingSidebar() {
+  return (
+    <div className='fixed z-20 top-[3.8125rem] bottom-0 right-[max(0px,calc(50%-45rem))] w-[19.5rem] py-10 overflow-y-auto hidden xl:block'>
+      <div className='relative'>
+        <Navigation nestedOnly />
+      </div>
+    </div>
   )
 }
