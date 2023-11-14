@@ -55,6 +55,12 @@ function CopyButton({ code }) {
       }
     }
   }, [copyCount])
+  
+  function copyToClipboard() {
+    window.navigator.clipboard.writeText(code).then(() => {
+      setCopyCount((count) => count + 1)
+    })
+  }
 
   return (
     <button
@@ -65,11 +71,7 @@ function CopyButton({ code }) {
           ? 'bg-sky-400/10 ring-1 ring-inset ring-sky-400/20'
           : 'bg-white/5 hover:bg-white/7.5 dark:bg-white/2.5 dark:hover:bg-white/5'
       )}
-      onClick={() => {
-        window.navigator.clipboard.writeText(code).then(() => {
-          setCopyCount((count) => count + 1)
-        })
-      }}
+      onClick={copyToClipboard}
     >
       <span
         aria-hidden={copied}

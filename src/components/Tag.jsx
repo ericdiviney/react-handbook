@@ -8,11 +8,6 @@ const colorStyles = {
   sky: {
     small: 'text-sky-500 dark:text-sky-400',
     medium:
-      'ring-sky-300 dark:ring-sky-400/30 bg-sky-400/10 text-sky-500 dark:text-sky-400',
-  },
-  sky: {
-    small: 'text-sky-500',
-    medium:
       'ring-sky-300 bg-sky-400/10 text-sky-500 dark:ring-sky-400/30 dark:bg-sky-400/10 dark:text-sky-400',
   },
   amber: {
