@@ -1,3 +1,4 @@
+import { Resource } from '@/components/Resource'
 export const description = 'React hooks and all their happy little nuances.'
 
 # Proficiency with the Hooks API
@@ -5,7 +6,10 @@ export const description = 'React hooks and all their happy little nuances.'
 <Summary>
   <ul>
     <li>How to properly think about each of the hooks</li>
-    <li>When to reach for more specific hooks (useRef, useMemo, useCallback, useLayoutEffect)</li>
+    <li>
+      When to reach for more specific hooks (useRef, useMemo, useCallback,
+      useLayoutEffect)
+    </li>
     <li>What exactly is memoization and what is it solving</li>
     <li>Examples of custom hooks</li>
   </ul>
@@ -17,126 +21,1161 @@ The new React <Resource url='https://react.dev/reference/react'>docs</Resource> 
 
 In my experience, the use of hooks follows the 80/20 rule (assuming you are importing a UI library): approximately `80%` of the time your components will only need the mixed use of `useState` / `useEffect` to solve your problems (maybe more, this isn't a bad thing). When components get large/complex enough (the remaining `20%` of the time), you'll start to bring in `useRef`, `useMemo`, `useCallback`, and `useLayoutEffect` to help with the problems in your components.
 
-<Expand parent='Functional Component Lifecycle Diagram'>
-![hook flow chart](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
+<Expand parent="Functional Component Lifecycle Diagram">
+  ![hook flow
+  chart](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
 </Expand>
 
 ---
 
 ## Hooks Deep Dive
 
-<br/>
+<br />
 
 <FAQ>
 
 <Question value='useState'>
 <QuestionText>`useState`</QuestionText>
 <Answer>
-Common questions:
+The `useState` hook is a built-in hook in React that allows you to add state to functional components. It provides a way to manage stateful values within a component without the need for external state management libraries.
 
-- <Resource url='https://www.youtube.com/watch?v=RAJD4KpX8LA'>Is updating hook-state synchronous or asynchronous?</Resource>
-- <Resource url='https://react.dev/learn/queueing-a-series-of-state-updates'>How to process multiple state updates to a variable before re-rendering</Resource>
+Here's the basic syntax of using the `useState` hook:
 
-Tips:
+```jsx
+import React, { useState } from 'react'
 
-- If the initial value for your state is computationally expensive, consider <Resource url='https://kentcdodds.com/blog/use-state-lazy-initialization-and-function-updates'>lazy state initialization</Resource> to ensure it only runs once per component mount
-- If you are updating/setting state values profusely throughout your component, you would probably benefit by switching to the <Resource url='https://react.dev/reference/react/useReducer'>reducer pattern</Resource> or even defining a <Resource url='https://react.dev/learn/reusing-logic-with-custom-hooks'>custom hook</Resource>.
-- Read the <Resource url='https://profy.dev/article/react-usestate-pitfalls'>Common Pitfalls of `useState`</Resource>
-- Store as little "state" as possible, <Resource url='https://kentcdodds.com/blog/dont-sync-state-derive-it'>derive</Resource> as much as you can on the fly (e.g. if your form has a "first name" and "last name" fields but you also need to display the full name together, just concatenate the two values together, don't try to store this value in it's own "fullName" state variable)
-- Avoid state-effect <Resource url='https://twitter.com/asidorenko_/status/1622904907954094080?s=20'>Ping-Pong</Resource>, derive your values as part of the render function. Trying to keep too much info synced together in state/hooks is somewhat of an anti-pattern that can get you into trouble.
-- Don't try to update one property in an object or one item in an array, instead you should <Resource url='https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state'>replace</Resource> the entire object/array with what the new state value should be. If you need an object to persist between renders but that shouldn't cause re-renders when you change that object, you probably need a <Resource url='#advanced-hooks'>ref (`useRef`)</Resource>
+const Component = () => {
+  const [state, setState] = useState(initialValue)
+  // Rest of the component code
+}
+```
+
+In this example, we import the `useState` hook from the `react` package and call it within the component. The `useState` hook returns an array with two elements:
+
+1. `state`: This is the current state value that you can read and use within the component.
+
+2. `setState`: This is a function that allows you to update the state value. When you call `setState`, React will re-render the component and apply the updated state value.
+
+You can provide an initial value for the state by passing it as an argument to the `useState` hook. The initial value can be a primitive type (such as a string, number, or boolean) or even an object or an array.
+
+Here's an example that demonstrates the usage of the `useState` hook:
+
+```jsx
+import React, { useState } from 'react'
+
+const Counter = () => {
+  const [count, setCount] = useState(0)
+
+  const increment = () => {
+    setCount(count + 1)
+  }
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={increment}>Increment</button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+In this example, we define a `Counter` component that uses the `useState` hook to manage a `count` state. The initial value of `count` is set to 0. We also define an `increment` function that updates the `count` state by calling `setCount` with the new value.
+
+Within the JSX code, we display the current value of `count` and attach the `increment` function to the `onClick` event of a button. When the button is clicked, the `increment` function is called, updating the state and triggering a re-render of the component.
+
+The `useState` hook simplifies state management in functional components, allowing you to add and update state with ease. You can use multiple instances of the `useState` hook within a single component to manage different state values independently.
+
+Remember that when using the `useState` hook, React will merge the state updates for you. This means that calling `setState` multiple times within a single render will result in a single re-render, optimizing the performance of your components.
+
 </Answer>
 </Question>
 
 <Question value='useEffect'>
 <QuestionText>`useEffect`</QuestionText>
 <Answer>
-Effects are code that run last during the rendering cycle. You may hear that effects actually run AFTER rendering is complete. What matters is that you know effect code runs last, whether you actually consider it part of the rendering phase or it's own step that happens AFTER rendering phase probably doesn't matter.
+  The `useEffect` hook is a built-in hook in React that allows you to perform side effects in functional components. Side effects can include fetching data from an API, subscribing to events, manipulating the DOM, and more.
 
-You might be using effects wrong if:
+Here's the basic syntax of using the `useEffect` hook:
 
-- You have code in an effect that "resets" all local component state when a prop changes (read <Resource url='https://react.dev/learn/you-might-not-need-an-effect#resetting-all-state-when-a-prop-changes'>You Might Not Need an Effect</Resource>)
-- Effects are NOT "subscriptions" - try not to think of them as a way to <Resource url='https://profy.dev/article/react-usestate-pitfalls#listening-to-state-changes-via-useeffect'>"watch" or listen</Resource> to changes to specific variables. Thinking this way can lead to pointless re-renders and therefore laggard performance in your apps
-- Related to the above point, if you are updating state with setState() **inside** of your effect, you <Resource url='https://profy.dev/article/react-usestate-pitfalls#updating-state-via-useeffect'>might be doing something wrong</Resource> (not always, but we find this more true than not). Since effects run last in the render phase, updating state from there will immediately cause your component to re-render
+```jsx
+import React, { useEffect } from 'react'
 
-Tips:
+const Component = () => {
+  useEffect(() => {
+    // Side effect code goes here
+    return () => {
+      // Cleanup code goes here (optional)
+    }
+  }, [dependency])
 
-- Read Dan Abramov's <Resource url='https://overreacted.io/a-complete-guide-to-useeffect/'>Complete Guide to useEffect</Resource> (and then, when you think you understand effects, read it again)
-- When effects run
-  - `useEffect(() ⇒ {})` - will run after every render of a component
-  - `useEffect(() ⇒ {}, [])` - will run only after the first render of a component
-  - `useEffect(() ⇒ {}, [deps])` - will run after renders, but only when deps change
+  // Rest of the component code
+}
+```
+
+In this example, we import the `useEffect` hook from the `react` package and call it within the component. The `useEffect` hook takes two arguments:
+
+1. A function: This function represents the side effect you want to perform. It will be called after the component has rendered for the first time, and subsequent re-renders if any dependencies have changed.
+
+2. An array of dependencies (optional): This array specifies the values that the effect depends on. If any of the dependencies change, the effect will be re-executed. If the array is empty, the effect will only run once, similar to the `componentDidMount` lifecycle method.
+
+The function passed to `useEffect` can contain asynchronous code, API calls, subscriptions, or any other side effect you need to perform within the component.
+
+Here's an example that demonstrates the usage of the `useEffect` hook:
+
+```jsx
+import React, { useState, useEffect } from 'react'
+
+const Counter = () => {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    console.log('Effect triggered')
+    document.title = `Count: ${count}`
+
+    return () => {
+      console.log('Cleanup')
+    }
+  }, [count])
+
+  const increment = () => {
+    setCount(count + 1)
+  }
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={increment}>Increment</button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+In this example, we have a `Counter` component that uses the `useState` and `useEffect` hooks. The `useEffect` hook is used to update the document title whenever the `count` state changes. We log a message when the effect is triggered and clean up the effect when the component unmounts or when the `count` value changes.
+
+Within the JSX code, we display the current value of `count` and provide a button to increment the count.
+
+The `useEffect` hook allows you to handle side effects within your functional components while ensuring they are executed at the appropriate times. It replaces the need for lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in class components.
+
+Remember to clean up any resources or subscriptions in the cleanup function returned by `useEffect` to prevent memory leaks or unnecessary computations.
+
+</Answer>
+</Question>
+
+<Question value='useContext'>
+  <QuestionText>`useContext`</QuestionText>
+  <Answer>
+    The `useContext` hook is a built-in hook in React that allows you to access the value of a context directly within a functional component. [[Managing state with React Context|Context]] provides a way to pass data through the component tree without manually passing props at every level.
+
+    Here's the basic syntax of using the `useContext` hook:
+
+    ```jsx
+    import React, { useContext } from 'react';
+
+    const Component = () => {
+      const contextValue = useContext(Context);
+
+      // Rest of the component code
+    };
+    ```
+
+    In this example, we import the `useContext` hook from the `react` package and call it within the component, passing the context object as the argument. The `useContext` hook returns the current value of the context.
+
+    To use the `useContext` hook, you need to have a context object created using the `React.createContext()` function. The context object represents the shared data that you want to access within components.
+
+    Here's an example that demonstrates the usage of the `useContext` hook:
+
+    ```jsx
+    import React, { useContext } from 'react';
+
+    const ThemeContext = React.createContext('light');
+
+    const Component = () => {
+      const theme = useContext(ThemeContext);
+
+      return (
+        <div>
+          <h1>Current Theme: {theme}</h1>
+        </div>
+      );
+    };
+
+    export default Component;
+    ```
+
+    In this example, we create a context object called `ThemeContext` using `React.createContext('light')`. The default value of the context is `'light'`.
+
+    Within the `Component`, we use the `useContext` hook to access the current value of the `ThemeContext`. The `theme` variable will contain the current value of the context, which can be used within the component.
+
+    To provide a different value for the context, you can wrap the `Component` with a `ThemeContext.Provider` component and pass the desired value as a prop.
+
+    ```jsx
+    import React from 'react';
+
+    import Component from './Component';
+
+    const App = () => {
+      return (
+        <ThemeContext.Provider value="dark">
+          <Component />
+        </ThemeContext.Provider>
+      );
+    };
+
+    export default App;
+    ```
+
+    In this example, we wrap the `Component` with a `ThemeContext.Provider` component and set the value to `'dark'`. This will override the default value of the `ThemeContext` within the `Component`, and it will receive the value `'dark'` through the `useContext` hook.
+
+    The `useContext` hook simplifies accessing context values within functional components, eliminating the need to wrap components with `Context.Consumer` or pass props through multiple levels of the component tree.
+
+    Remember that the context object and the `useContext` hook should be used when the data needs to be shared across multiple components and not just between parent and child components.
+
+  </Answer>
+</Question>
+
+<Question value='useReducer'>
+  <QuestionText>`useReducer`</QuestionText>
+  <Answer>
+    The `useReducer` hook is a built-in hook in React that allows you to manage complex state and state transitions within a functional component. It is an alternative to the `useState` hook when you have more advanced state management needs.
+
+    Here's the basic syntax of using the `useReducer` hook:
+
+    ```jsx
+    import React, { useReducer } from 'react';
+
+    const reducer = (state, action) => {
+    // Reducer logic to update state based on action type
+      switch (action.type) {
+        case 'INCREMENT':
+        return { ...state, count: state.count + 1 };
+        case 'DECREMENT':
+        return { ...state, count: state.count - 1 };
+        default:
+        return state;
+      }
+    };
+
+    const Component = () => {
+      const initialState = { count: 0 };
+
+      const [state, dispatch] = useReducer(reducer, initialState);
+
+      // Rest of the component code
+    };
+
+    ```
+
+In this example, we import the `useReducer` hook from the `react` package and define a `reducer` function that specifies how the state should be updated based on different actions. The `reducer` function takes the current state and an action object and returns the new state.
+
+Within the `Component`, we provide an initial state object, `initialState`, and call the `useReducer` hook, passing the `reducer` and `initialState` as arguments. The `useReducer` hook returns an array with two elements:
+
+1. `state`: This represents the current state managed by the reducer.
+
+2. `dispatch`: This is a function used to dispatch actions to the reducer, which triggers the state update.
+
+To update the state, you need to dispatch an action with a specific type that matches one of the cases in the `reducer`. The `dispatch` function sends the action to the `reducer`, which handles the state transition based on the action type.
+
+```jsx
+import React, { useReducer } from 'react'
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { ...state, count: state.count + 1 }
+    case 'DECREMENT':
+      return { ...state, count: state.count - 1 }
+    default:
+      return state
+  }
+}
+
+const Counter = () => {
+  const initialState = { count: 0 }
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const increment = () => {
+    dispatch({ type: 'INCREMENT' })
+  }
+
+  const decrement = () => {
+    dispatch({ type: 'DECREMENT' })
+  }
+
+  return (
+    <div>
+      <h1>Count: {state.count}</h1>
+
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+In this example, we have a `Counter` component that uses the `useReducer` hook to manage a `count` state. The `reducer` function handles the state updates based on the dispatched actions, which are triggered by the `increment` and `decrement` functions.
+
+Within the JSX code, we display the current value of `state.count` and provide buttons to increment and decrement the count.
+
+The `useReducer` hook is useful when you have complex state transitions or when the state depends on the previous state. It allows you to centralize state logic and makes it easier to reason about the state changes in your application.
+
+</Answer>
+</Question>
+
+<Question value='useCallback'>
+  <QuestionText>`useCallback`</QuestionText>
+  <Answer>
+    The useCallback hook is a unique feature offered by React, allowing you to provide a stable reference for callback functions, which results in performance optimization. It is incredibly valuable when working with child components that depend on callback functions from parent components because it helps avoid unnecessary re-rendering.
+
+    Here's the basic syntax of using the `useCallback` hook:
+
+    ```jsx
+    import React, { useState, useCallback } from 'react';
+
+    const Component = () => {
+      const [count, setCount] = useState(0);
+
+      const handleClick = useCallback(() => {
+      // Callback function logic
+        setCount(count + 1);
+
+      }, [count]);
+
+      // Rest of the component code
+    };
+    ```
+
+    In this example, we import the useCallback hook from the react package and define a callback function, handleClick. This function is wrapped with useCallback, which takes the function and an array of dependencies as parameters.
+
+    The dependency array `count` indicates that the callback function will be memoized and only re-created if the count's value alters. If the dependencies array is [ ] (empty), the callback function will be created once and then reused throughout the component's lifespan.
+
+    By using useCallback, the callback function gets a stable reference that persists as long as the dependencies are consistent. Therefore, it avoids unnecessary re-rendering of child components that receive the callback as a prop, as they get the same function reference.
+
+    Here's an example that demonstrates the usage of the `useCallback` hook:
+
+    ```jsx
+    import React, { useState, useCallback } from 'react';
+
+    const Counter = () => {
+      const [count, setCount] = useState(0);
+
+      const handleClick = useCallback(() => {
+        setCount(count + 1);
+      }, [count]);
+
+      return (
+        <div>
+          <h1>Count: {count}</h1>
+          <button onClick={handleClick}>Increment</button>
+        </div>
+      );
+
+    };
+
+    export default Counter
+
+    ```
+
+    In this case, the `Counter` component uses `useCallback` to provide a stable reference to the `incrementCount` callback function. `IncrementCount` aligns with the `onClick` event within the JSX code and updates the count state.
+
+    While the `useCallback` hook is primarily beneficial when child components depend on a callback function from a parent component, wrapping unstable callbacks (ones that are redefined on every render) in useCallback means the function reference remains the same from one render to another.
+
+    It's critical to remember that you should use `useCallback` when you need to provide a stable reference to the callback function, especially when passing the callback as a prop to a child React component. Using useCallback is not generally required if the callback doesn't cause child components' unnecessary re-rendering.
+
+    </Answer>
+
+</Question>
+
+<Question value='useMemo'>
+  <QuestionText>`useMemo`</QuestionText>
+  <Answer>
+    The `useMemo` hook is an integral feature in React that allows you to memoize and cache the computation's result. This aids in optimizing performance by preventing redundant recalculations in functional components of resource-demanding operations.
+
+    Here's the basic syntax of using the `useMemo` hook:
+
+    ```jsx
+    import React, { useMemo } from 'react'
+
+    const Component = () => {
+      const result = useMemo(() => {
+        // Computation logic
+        return computeExpensiveResult(dependency)
+      }, [dependency])
+        // Rest of the component code
+    }
+    ```
+
+    In this case, we import the useMemo hook from the react package and establish a computation logic within the callback function. Wrapping the computation with useMemo, which accepts the callback function and an array of dependencies as arguments, is crucial.
+
+    The dependent array `[dependency]` indicates that the result is memoized and only re-computed when the dependency's value transforms. If the dependency array is empty [], the result is computed once and then reused throughout the lifespan of the component's lifecycle.
+
+    Using useMemo, the computation result remains memoized and cached as long as the dependencies are consistent, preventing unnecessary re-computations when the component re-renders and, thus, improves performance.
+
+    Here's an example that demonstrates the usage of the `useMemo` hook:
+
+    ```jsx
+    import React, { useMemo } from 'react'
+
+    const Counter = () => {
+      const count = 5
+
+      const doubledCount = useMemo(() => {
+        return count * 2
+
+      }, [count])
+
+      return (
+        <div>
+          <h1>Count: {count}</h1>
+          <h1>Doubled Count: {doubledCount}</h1>
+        </div>
+      )
+    }
+
+    export default Counter
+    ```
+
+In this case, the Counter component utilizes useMemo to memoize the computation of doubledCount. The doubledCount variable computes by multiplying the count value by 2.
+
+The current count value and the memoized doubledCount are displayed in the JSX code. The same memoized value will be reused as long as count is constant.
+The useMemo hook proves indispensable when operating with costly computations dependent on specific variables. Memoizing the result avoids unnecessary computations and enhances the performance of your components.
+
+Keep in mind that useMemo does not guarantee that it will only re-compute when dependencies change. There are other <Resource url='https://react.dev/reference/react/useMemo'>circumstances</Resource> (including running in strict mode during development or when using `useMemo()` with suspense) when React might decide to re-run the computation. Future changes might change those computations behavior, so there's no strict guarantee.
+
+Also, remember that `useMemo` has its own overhead as well. Simply put, `useMemo` should only be used when the overhead of computation is significantly larger than the overhead of using `useMemo`. If the computation is lightweight or there're no dependencies that may cause a re-render, it's generally not recommended to use `useMemo`.
+
 </Answer>
 </Question>
 
 <Question value='useRef'>
 <QuestionText>`useRef`</QuestionText>
 <Answer>
-- <Resource url='https://ui.dev/useref'>`useRef`</Resource> is very similar to `useState`, except updates to a ref do NOT trigger re-renders.
-- It returns an object that has a property called `current` that we can access as we do with objects.
-- <Resource url='https://degreat.co.uk/blog/react-refs/'>Understanding React Refs and `forwardRef`</Resource>
-  - As summarized in <Resource url='https://deadsimplechat.com/blog/react-forwardref/'>What is `forwardRef`</Resource>:
-    - "... forwardRef is a utility function in react that let you expose a child components DOM to a parent component with a ref..."
-  - One very common reason to use refs is for DOM interactions that are abstracted away inside a component. For example, a ref passed from parent ➡️ child might be a `<Form>` (parent) with an `<Input>` (child) component of some kind where you want to `focus()` the actual `<input />` element inside the child component
-  - Usage with <Resource url='https://www.totaltypescript.com/strongly-type-useref-with-elementref'>TypeScript</Resource>
-</Answer>
-</Question>
+The useRef hook is an intrinsic hook in React that enables you to create a mutable value that persists across multiple renders of a component. It's commonly used to gain access to and manipulate DOM elements, or to store any mutable value that needs to be conserved between renderings.
 
-<Question value='useMemo / useCallback'>
-<QuestionText>`useMemo / useCallback`</QuestionText>
-<Answer>
-`useMemo`, `useCallback` - allow us to memoize values and functions that don't need to be re-declared every single render-cycle. 
-- `useMemo` 
-  - Read more about the performance benefits of `useMemo` on our <Resource url='/react-performance-optimization'>Performance</Resource> guide
-  - The fundamental idea with useMemo is that it allows us to "remember" a computed value between renders.
-  - It takes two arguments: a chunk of work to be performed, wrapped up in a function and a list of dependencies.
-  - `useMemo` is essentially like a little cache, and the dependencies are the cache invalidation strategy.
-- `useCallback` 
-  - Read more about the performance benefits of `useCallback` on our <Resource url='/react-performance-optimization'>Performance</Resource> guide
-  - `useCallback` serves the same purpose as `useMemo`, but it's built specifically for functions.
-  - We hand it a function directly, and it memoizes that function, threading it between renders.
-  - It is syntactic sugar. It exists purely to make our lives a bit nicer when trying to memoize callback functions.
-</Answer>
-</Question>
+One essential thing to note upfront is that **updating a ref won't trigger a re-render**. This makes `useRef` useful for cases where you need to access mutable values that persist between renders without causing a re-rendering, such as DOM elements, previous values, or any other value that requires conservation.
 
-<Question value='useReducer'>
-<QuestionText>`useReducer`</QuestionText>
-<Answer>
-- <Resource url='https://ui.dev/usereducer'>`useReducer`</Resource> - Tyler McGinnis
-- <Resource url='https://www.reddit.com/r/reactjs/comments/10bohti/usereducer_is_easier_to_adopt_than_you_might_think/'>`useReducer` is easier to adopt than you might think</Resource>
-- We especially recommend this if there are many calls to update state from your component. 
-- When to reach for `useReducer` over `useState` is very nuanced, but we tend to relate it to how many values are kept in local state and how often they are updating. As the number of values and number of updates to those values in your component increase, the more likely you should consider `useReducer` instead of plain `useState`.
+Here's the basic syntax of using the `useRef` hook:
+
+```jsx
+import React, { useRef } from 'react'
+
+const Component = () => {
+  const ref = useRef(initialValue)
+
+  // Rest of the component code
+}
+```
+
+In this example, we import the `useRef` hook from the react package and call it within the component, providing an optional initialValue as an argument. The `useRef` hook gives back a mutable ref object.
+
+You can hold any value in the ref object, and it will persist across the component's renderings. You can leverage and modify the value of the ref using the .current property.
+
+Here's an example that demonstrates the usage of the `useRef` hook:
+
+```jsx
+import React, { useRef } from 'react'
+
+const TextInput = () => {
+  const inputRef = useRef()
+
+  const handleClick = () => {
+    inputRef.current.focus()
+  }
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>Focus Input</button>
+    </div>
+  )
+}
+
+export default TextInput
+```
+
+In this example, we have a `TextInput` component that uses the `useRef` hook to create a `ref` object called `inputRef`. We assign the `ref` object to the `ref` prop of the `<input>` element.
+
+When the button is clicked, the `handleClick` function is called, which uses the `.current` property of the `inputRef` to access the underlying DOM element and call the `focus()` method. This sets the focus on the input field.
+
+The `useRef` hook is also useful for storing and accessing any mutable value that needs to persist between renders. Unlike state (`useState`), updating the `ref` object does not trigger a re-render of the component.
+
+Here's an example that demonstrates storing a mutable value using `useRef`:
+
+```jsx
+import React, { useRef } from 'react'
+
+const Counter = () => {
+  const countRef = useRef(0)
+
+  const handleIncrement = () => {
+    countRef.current += 1
+    console.log('Current Count:', countRef.current)
+  }
+
+  return (
+    <div>
+      <h1>Counter: {countRef.current}</h1>
+      <button onClick={handleIncrement}>Increment</button>
+    </div>
+  )
+}
+
+export default Counter
+```
+
+Here we have a `TextInput` component that utilizes the `useRef` hook to initiate a ref object called `inputRef`. Such ref object is allied to the ref prop of the `<input>` element.
+
+Whenever the button is clicked, the `handleClick` function initiates, leveraging the `.current` property of the `inputRef` to gain access to the underlying DOM element and call the `focus()` method. This action focuses on the input field.
+
+The `useRef` hook also brings value in storing and gaining access to any mutable value that needs preservation between renderings. As stated before, unlike changes in state (`useState`), any alteration to the ref object does not cause a re-render of the component.
+
 </Answer>
 </Question>
 
 <Question value='useLayoutEffect'>
 <QuestionText>`useLayoutEffect`</QuestionText>
 <Answer>
-- Notice in the <Resource url='#hooks-at-a-high-level'>component lifecycle (React Hook Flow Diagram)</Resource> that `useLayoutEffect` occurs before the DOM updates calculated during a re-render are actually painted on the screen
-- Very similar to useEffect, but use this one specifically when you need to run an "effect" that will affect/alter the DOM in some way
-  - hence, if you did this in a normal `useEffect`, you would get a flicker-like experience due to the fact `useEffect` would trigger a re-render for what you actually wanted
-  - this hook is good for things like positioning and dimension alterations without a flicker on the screen
-  - this is a bad hook to do anything computationally heavy as that will drastically slow your render function down
+  The `useLayoutEffect` hook is a built-in hook in React that has the same signature as the `useEffect` hook, but it fires synchronously after all DOM mutations. It allows you to perform imperative DOM mutations or read layout-related information before the browser repaints.
+
+Here's the basic syntax of using the `useLayoutEffect` hook:
+
+```jsx
+import React, { useLayoutEffect } from 'react'
+
+const Component = () => {
+  useLayoutEffect(() => {
+    // DOM mutations or layout-related operations
+    // Run synchronously after DOM mutations
+    // Useful for measuring DOM nodes or manipulating layout
+
+    return () => {
+      // Cleanup code (optional)
+    }
+  }, [dependency])
+
+  // Rest of the component code
+}
+```
+
+In this example, we import the `useLayoutEffect` hook from the `react` package and call it within the component. The `useLayoutEffect` hook takes two arguments:
+
+1. A function: This function represents the side effect you want to perform. It will be called synchronously after the DOM mutations have been applied but before the browser repaints.
+
+2. An array of dependencies (optional): This array specifies the values that the effect depends on. If any of the dependencies change, the effect will be re-executed. If the array is empty, the effect will only run once.
+
+The `useLayoutEffect` hook is similar to the `useEffect` hook, but it runs synchronously after all DOM mutations have been applied. This can be useful for operations that require accurate layout information, such as measuring DOM elements or manipulating the layout based on the DOM state.
+
+Here's an example that demonstrates the usage of the `useLayoutEffect` hook:
+
+```jsx
+import React, { useLayoutEffect, useState } from 'react'
+
+const MeasureElement = () => {
+  const [width, setWidth] = useState(0)
+
+  const measureWidth = () => {
+    const element = document.getElementById('my-element')
+    const elementWidth = element.offsetWidth
+    setWidth(elementWidth)
+  }
+
+  useLayoutEffect(() => {
+    measureWidth()
+  }, [])
+
+  return (
+    <div>
+      <div id="my-element">Hello, World!</div>
+      <p>Width: {width}px</p>
+    </div>
+  )
+}
+
+export default MeasureElement
+```
+
+In this example, we import the `useLayoutEffect` hook from the `react` package and call it within the component. The `useLayoutEffect` hook takes two arguments:
+
+1. A function: This function represents the side effect you want to perform. It will be called synchronously after the browser renders but before the user sees the updated UI.
+
+2. An array of dependencies (optional): This array specifies the values that the effect depends on. If any of the dependencies change, the effect will be re-executed. If the array is empty, the effect will only run once, similar to the `componentDidMount` lifecycle method.
+
+Although `useLayoutEffect` is typically associated with DOM manipulation, you can also use it to access layout-related information without directly manipulating the DOM.
+
+Here's an example that demonstrates the usage of the `useLayoutEffect` hook for accessing layout-related information:
+
+```jsx
+import React, { useLayoutEffect, useState } from 'react'
+
+const MeasureElement = () => {
+  const [width, setWidth] = useState(0)
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      const element = document.getElementById('my-element')
+      const elementWidth = element.offsetWidth
+      setWidth(elementWidth)
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize() // Initial measurement
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  return (
+    <div>
+      <div id="my-element">Hello, World!</div>
+      <p>Width: {width}px</p>
+    </div>
+  )
+}
+
+export default MeasureElement
+```
+
+In this example, we have a `MeasureElement` component that uses the `useLayoutEffect` hook to measure the width of a specific element. We initialize the `width` state to `0` and provide an empty dependency array `[]` to ensure the effect runs only once.
+
+Within the `useLayoutEffect` callback, we define the `handleResize` function that calculates the width of the element with the ID `'my-element'` using the `offsetWidth` property. We update the `width` state with the measured width.
+
+Additionally, we attach the `handleResize` function to the `resize` event of the `window` object using `addEventListener` to track any changes in the window size. We call `handleResize` initially to get the initial width measurement.
+
+Finally, we return a cleanup function that removes the `handleResize` function from the `resize` event listener using `removeEventListener`.
+
+The measured width is then displayed in the JSX code below the element.
+
+In this example, we're not directly manipulating the DOM, but we're using the `useLayoutEffect` hook to access layout-related information (i.e., the width of the element) and update the state accordingly.
+
+Remember that it's important to use `useLayoutEffect` judiciously and be aware of potential performance implications, as it runs synchronously and can impact rendering performance if not used properly.
+
 </Answer>
 </Question>
 
-<Question value='other'>
-<QuestionText>Other useful hooks</QuestionText>
-<Answer>
-- <Resource url='https://react.dev/reference/react/useDeferredValue'>`useDeferredValue`</Resource> - lets you defer updating a part of the UI
-- <Resource url='https://react.dev/reference/react/useId'>`useId`</Resource> - for generating unique IDs
-- <Resource url='https://react.dev/reference/react/useSyncExternalStore'>`useSyncExternalStore`</Resource> - lets you subscribe to an <Resource url='https://thisweekinreact.com/articles/useSyncExternalStore-the-underrated-react-api'>external store</Resource>
-  - Read more on <Resource url='https://blog.saeloun.com/2021/12/30/react-18-useSyncExternalStore-api/'>how to use this hook in your own code</Resource>
-- <Resource url='https://react.dev/reference/react/useTransition'>`useTransition`</Resource> - lets you update the state without blocking the UI
+<Question value="useImperativeHandle">
+  <QuestionText>`useImperativeHandle`</QuestionText>
+  <Answer>
+    The `useImperativeHandle` hook is a built-in hook in React that allows you to customize the instance value that is exposed to parent components when using the `ref` prop. It is typically used in conjunction with the `forwardRef` function to provide a more controlled and specific API to parent components.
+
+    Here's the basic syntax of using the `useImperativeHandle` hook:
+
+    ```jsx
+    import React, { useRef, useImperativeHandle } from 'react';
+
+    const Component = React.forwardRef((props, ref) => {
+      const internalRef = useRef();
+
+      useImperativeHandle(ref, () => ({
+        // Custom instance value or API
+        // Expose specific functions or properties to parent components
+        // Example: focus() or getData()
+      }));
+
+      // Rest of the component code
+    });
+    ```
+
+    In this example, we import the `useRef`, `useImperativeHandle`, and `forwardRef` functions from the `react` package. We define a functional component called `Component` and use the `forwardRef` function to forward the `ref` prop.
+
+    Inside the component, we create an internal `ref` using the `useRef` hook. The `useImperativeHandle` hook is then called within the component and takes two arguments:
+
+    1. The `ref` object: This is the `ref` prop passed from the parent component.
+
+    2. A callback function: This function allows you to define the custom instance value or API that you want to expose to the parent component.
+
+
+    By using `useImperativeHandle`, you can control what functions or properties of the component instance are accessible through the `ref` prop. This helps provide a more explicit and controlled interface to parent components.
+
+    Here's an example that demonstrates the usage of the `useImperativeHandle` hook:
+
+    ```jsx
+    import React, { useRef, useImperativeHandle } from 'react';
+
+    const TextInput = React.forwardRef((props, ref) => {
+      const inputRef = useRef();
+
+      useImperativeHandle(ref, () => ({
+        focus: () => {
+          inputRef.current.focus();
+        },
+        clear: () => {
+          inputRef.current.value = '';
+        }
+      }));
+
+      return <input type="text" ref={inputRef} />;
+    });
+
+    export default TextInput
+    ```
+
+In this example, we have a `TextInput` component that forwards the `ref` prop using the `forwardRef` function. Inside the component, we create an internal `ref` called `inputRef` using the `useRef` hook.
+
+Using the `useImperativeHandle` hook, we define the custom instance value or API that we want to expose to the parent component. In this case, we expose the `focus` and `clear` functions. The `focus` function sets the focus on the input element, while the `clear` function clears the input value.
+
+When using the `TextInput` component, we can access these functions through the `ref` prop, as shown in the following example:
+
+```jsx
+import React, { useRef } from 'react'
+import TextInput from './TextInput'
+
+const App = () => {
+  const textInputRef = useRef()
+
+  const handleButtonClick = () => {
+    textInputRef.current.focus()
+  }
+
+  return (
+    <div>
+      <TextInput ref={textInputRef} />
+      <button onClick={handleButtonClick}>Focus Input</button>
+    </div>
+  )
+}
+
+export default App
+```
+
+In this example, we create a parent component called `App`. We use the `useRef` hook to create a `ref` called `textInputRef`. We pass this `ref` to the `TextInput` component through the `ref` prop.
+
+The `handleButtonClick` function is called when the button is clicked, and it invokes the `focus` function on the `textInputRef.current`, which triggers the `focus` function defined within the `useImperativeHandle` hook of the `TextInput` component.
+
+By using `useImperativeHandle`, you have more control over the instance value or API exposed to parent components, allowing for a more explicit and controlled interaction between components.
+
 </Answer>
 </Question>
 
+<Question value="useDebugValue">
+  <QuestionText>`useDebugValue`</QuestionText>
+  <Answer>
+    The `useDebugValue` hook is a built-in hook in React that is primarily used for debugging purposes. It allows you to provide a custom label or value that will be displayed in [[React DevTools]] when inspecting a component.
+
+    Here's the basic syntax of using the `useDebugValue` hook:
+
+    ```jsx
+    import { useDebugValue } from 'react';
+
+    const Component = () => {
+      // Custom logic
+
+      useDebugValue(value, formatFn);
+
+      // Rest of the component code
+    };
+    ```
+
+    In this example, we import the `useDebugValue` hook from the `react` package and call it within the component. The `useDebugValue` hook takes two arguments:
+
+    1. `value`: This argument represents the value that you want to display in React DevTools for the component.
+
+    2. `formatFn` (optional): This argument is an optional formatting function that allows you to transform the value before it is displayed in React DevTools.
+
+
+    By using `useDebugValue`, you can provide additional information or custom labels to aid in debugging and understanding the state of your components.
+
+    Here's an example that demonstrates the usage of the `useDebugValue` hook:
+
+    ```jsx
+    import { useState, useDebugValue } from 'react';
+
+    const Counter = () => {
+      const [count, setCount] = useState(0);
+
+      useDebugValue(count, (count) => `Current Count: ${count}`);
+
+      const increment = () => {
+        setCount((prevCount) => prevCount + 1);
+      };
+
+      return (
+        <div>
+          <h1>Count: {count}</h1>
+          <button onClick={increment}>Increment</button>
+        </div>
+      );
+    };
+
+    export default Counter;
+    ```
+
+    In this example, we have a `Counter` component that uses the `useDebugValue` hook to provide a custom label for the `count` state. Whenever the component is inspected in React DevTools, it will display the label "Current Count" followed by the actual value of `count`.
+
+    The `formatFn` is an optional function that can be used to transform the value before it is displayed. In this case, we pass a formatting function `(count) => Current Count: ${count}` to prepend the label "Current Count" to the value of `count`.
+
+    The `useDebugValue` hook is useful for providing additional information or custom labels to components in React DevTools, making it easier to debug and understand the state of your application.
+
+    It's important to note that the `useDebugValue` hook has no impact on the actual functionality or behavior of the component. It is solely intended for debugging and development purposes.
+
+  </Answer>
+</Question>
+
+<Question value="useId">
+  <QuestionText>`useId`</QuestionText>
+  <Answer>
+    The `useId()` is a hook in React for generating unique IDs. It delivers a unique ID string tied to specific usages i.e., if you call it twice at the top level of your component, it returns two different ID strings. This hook is handy for generating IDs for various related elements or for accessibility attributes such as aria-describedby.
+
+    Here's how you can use it:
+    ```jsx
+    import { useId } from 'react';
+
+    const MyComponent = () => {
+      const componentId = useId();
+      // componentId is a unique id on each render
+    }
+
+    export default MyComponent
+    ```
+
+    The generated ID via useId persists across rerenders of the component where it's used. Thus, even if a component containing a `useId` call gets rendered multiple times, the IDs won't clash. This works perfectly when you require a unique ID for elements like inputs that need to be linked with labels or another element.
+
+    For instance, consider generating IDs for accessibility attributes in a PasswordField component:
+    ```jsx
+    import { useId } from 'react';
+
+    const PasswordField = () => {
+      const passwordHintId = useId(); // Generate a unique id
+
+      return (
+        <div>
+          <input type="password" aria-describedby={passwordHintId} />
+          <p id={passwordHintId}>
+            The password needs to be at least 14 characters long
+          </p>
+        </div>
+      );
+    }
+
+    export default PasswordField
+    ```
+
+In the example above, the `useId` hook generates a unique ID for the password hint, which is tied to the password input field through the aria-describedby attribute.
+
+Furthermore, useId allows you to generate shared prefixes when you need to give IDs to several related elements, by adding a unique suffix to the generated id:
+
+```jsx
+import { useId } from 'react'
+
+const Form = () => {
+  const id = useId()
+
+  return (
+    <form>
+      <label htmlFor={`${id}-firstName`}>First Name:</label>
+      <input id={`${id}-firstName`} type="text" />
+      <label htmlFor={`${id}-lastName`}>Last Name:</label>
+      <input id={`${id}-lastName`} type="text" />
+    </form>
+  )
+}
+
+export default Form
+```
+
+Please note, `useId` should not be used to generate keys for a list. Keys should be derived from your data. Additionally, with server rendering, `useId` requires an equivalent component tree on both server and client. If they don't match, the generated IDs won't match either.
+
+This way, with `useId`, you can ensure unique identifiers for elements while avoiding potential ID clashes, thereby obeying the HTML constraint that element IDs must be unique within the document's life-cycle.
+
+Remember, the `useId` hook is expected to be used at the top level of your component or your custom Hooks following the [[Rules Of Hooks]] — you can't call it within loops or conditions. If you need that, extract a new component, and move the state into it.
+
+  </Answer>
+</Question>
+
+<Question value="useDefferedValue">
+  <QuestionText>`useDefferedValue`</QuestionText>
+  <Answer>
+
+    The `useDeferredValue` hook is a valuable addition to React that allows you to defer the updating of a part of your user interface (UI). It's particularly useful in scenarios where you want to prioritize the responsiveness of certain UI elements over others, making your application feel more fluid.
+
+    Here's the basic usage of the `useDeferredValue` hook:
+    ```jsx
+    import { useState, useDeferredValue } from 'react';
+
+    const Component = () => {
+      const [value, setValue] = useState('');
+
+      const deferredValue = useDeferredValue(value);
+
+      // ...
+      return (
+        // Component JSX
+      );
+    }
+
+    export default Component
+    ```
+
+    In this example, we import the `useDeferredValue` hook from the `react` package and use it within a functional component. Here are the key points to understand:
+
+    1. **`useDeferredValue` Hook**: We declare two variables, `value` and `deferredValue`. `value` represents the actual state value that can change in response to user actions. `deferredValue` represents a deferred version of that value.<br/><br/>
+    2. **Deferred UI Updates**: The `useDeferredValue` hook allows you to prioritize UI updates for other parts of your component over the part that depends on `deferredValue`. This means that while `value` may update immediately, `deferredValue` lags behind and only updates after other tasks have been prioritized. This helps maintain the responsiveness of your application.<br/><br/>
+    3. **Component JSX**: The rest of the component contains your JSX code and user interface elements.
+
+    Now, let's explore a practical example of how `useDeferredValue` can be beneficial:
+    ```jsx
+    import { useState, useDeferredValue } from 'react';
+
+    import SearchResults from './SearchResults';
+
+    const SearchPage = () => {
+      const [query, setQuery] = useState('');
+
+      const deferredQuery = useDeferredValue(query);
+
+      return (
+        <div>
+          <label>
+            Search albums:
+            <input value={query} onChange={(e) => setQuery(e.target.value)} />
+          </label>
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <SearchResults query={deferredQuery} />
+          </Suspense>
+        </div>
+      );
+    }
+      ```
+
+In this example, we have a `SearchPage` component that uses `useState`, `useDeferredValue`, and `Suspense`. Here's how it works:
+
+- We have an input field for entering a search query. The `query` state represents the current search query.
+- We use `useDeferredValue` to create `deferredQuery`, which is a deferred version of the `query`. This means that while the user types, `query` updates immediately, but `deferredQuery` lags behind.
+- We use `Suspense` to display a loading message while fetching search results. The key part here is that we pass `deferredQuery` to the `SearchResults` component, ensuring that the search results update only after other tasks have been prioritized. This keeps the UI responsive even during data loading.
+
+By using `useDeferredValue`, you can optimize your UI performance by allowing certain parts of your UI to update at a slower pace, ensuring a smoother user experience. This is especially useful in scenarios where you want to avoid blocking the UI during resource-intensive tasks or data fetching operations.
+
+  </Answer>
+</Question>
+
+<Question value="useSyncExternalStore">
+  <QuestionText>`useSyncExternalStore`</QuestionText>
+  <Answer>
+    The `useSyncExternalStore` hook is a powerful addition to React that enables you to seamlessly subscribe to an external data store, which can be particularly useful when integrating with third-party state management libraries, browser APIs, or other external data sources.
+
+    Here's the basic usage of the `useSyncExternalStore` hook:
+    ```jsx
+    import { useSyncExternalStore } from 'react';
+
+    const MyComponent = () => {
+      const dataFromStore = useSyncExternalStore(subscribeFunction, getSnapshotFunction, getServerSnapshotFunction);
+      // ...
+    }
+
+    export default MyComponent
+    ```
+
+    Let's explain key points:
+
+    1. **Hook Arguments**: The `useSyncExternalStore` hook expects three functions as arguments:
+    - `subscribeFunction`: This function is responsible for subscribing to the external data store and returning another function to unsubscribe when needed.
+    - `getSnapshotFunction`: This function retrieves a snapshot of the data from the external store.
+    - `getServerSnapshotFunction` (optional): This function provides the initial snapshot of the data during server rendering and client-side hydration.<br/><br/>
+    2. **Data Synchronization**: React uses these functions to manage data synchronization and ensure that your component stays updated with the latest data from the external store.
+
+    Now, let's explore practical examples to illustrate how you can use `useSyncExternalStore`:
+
+    #### Subscribing to an External Store:
+    ```jsx
+    import { useSyncExternalStore } from 'react';
+    import { todosStore } from './todoStore.js';
+
+    const TodosApp = () =>  {
+      const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
+      // ...
+    }
+
+    export default TodosApp
+    ```
+
+    In this example, the `TodosApp` component connects to an external data store represented by `todosStore`. It uses the `useSyncExternalStore` hook to subscribe to changes and fetch a snapshot of the data.
+
+    #### Subscribing to a Browser API:
+    ```jsx
+    import { useSyncExternalStore } from 'react';
+
+    const NetworkStatusIndicator = () => {
+      const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+
+      const getSnapshot = () => {
+        return navigator.onLine;
+      }
+
+      const subscribe = (callback) => {
+        window.addEventListener('online', callback);
+        window.addEventListener('offline', callback);
+
+        return () => {
+          window.removeEventListener('online', callback);
+          window.removeEventListener('offline', callback);
+        };
+      }
+      // ...
+    }
+
+    export default NetworkStatusIndicator
+    ```
+
+    In this example, the `NetworkStatusIndicator` component subscribes to the browser's `navigator.onLine` property to display whether the network connection is active. It uses `useSyncExternalStore` to manage the subscription and data retrieval.
+
+    #### Extracting Logic to a Custom Hook:
+
+    ```jsx
+    import { useSyncExternalStore } from 'react';
+
+    const useOnlineStatus = () => {
+      const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+
+      const getSnapshot = () => {
+        return navigator.onLine;
+      }
+
+      const subscribe = (callback) => {
+        window.addEventListener('online', callback);
+        window.addEventListener('offline', callback);
+
+        return () => {
+          window.removeEventListener('online', callback);
+          window.removeEventListener('offline', callback);
+        };
+      }
+
+      return isOnline;
+    }
+
+    export default useOnlineStatus
+    ```
+
+    In this example, we create a custom hook called `useOnlineStatus` to encapsulate the logic for checking online status. Other components can then use this hook without duplicating the subscription logic.
+
+    #### Adding Support for Server Rendering:
+    ```jsx
+    import { useSyncExternalStore } from 'react';
+
+    const useOnlineStatus = () => {
+      const isOnline = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+      cosnt getSnapshot = () => {
+       return navigator.onLine;
+      }
+
+      const getServerSnapshot = () => {
+        return true; // Always show "Online" for server-generated HTML
+      }
+
+      const subscribe = (callback) => {
+        window.addEventListener('online', callback);
+        window.addEventListener('offline', callback);
+
+        return () => {
+          window.removeEventListener('online', callback);
+          window.removeEventListener('offline', callback);
+        };
+      }
+
+      return isOnline;
+    }
+    ```
+
+    In this example, we enhance the `useOnlineStatus` hook to support server rendering. The `getServerSnapshot` function provides an initial snapshot of the data during server rendering, ensuring consistency between server and client.
+
+    **Troubleshooting**:
+
+    - **Error: "The result of getSnapshot should be cached"**: This error occurs when your `getSnapshot` function returns a new object every time it's called. To resolve this, ensure that your `getSnapshot` function returns the same object unless the data in the store has actually changed.<br/><br/>
+    - **Subscribe Function Called After Every Re-render**: If your subscribe function is defined inside a component, it can change with every re-render, causing React to resubscribe. To prevent this, define the subscribe function outside the component or use `useCallback` to memoize it.
+
+
+    The `useSyncExternalStore` hook empowers you to seamlessly connect your React components to external data sources, making it easier to integrate with various data providers and browser APIs while ensuring efficient data synchronization and server rendering support.
+
+  </Answer>
+</Question>
+
+<Question value="useTransition">
+  <QuestionText>`useTransition`</QuestionText>
+  <Answer>
+    The `useTransition` hook is a powerful tool introduced in React that enables you to manage and control state updates without blocking the user interface. It's especially valuable in scenarios where you want to keep your UI responsive and non-blocking during state transitions.
+
+    Let's break down the basics of using the `useTransition` hook:
+    ```jsx
+    import React, { useTransition } from 'react';
+
+    const Component = () => {
+      const [isPending, startTransition] = useTransition();
+
+      // ...
+
+      const handleStateUpdate = () => {
+        startTransition(() => {
+        // State update logic goes here
+        });
+      };
+
+      // ...
+
+      return (
+        // Component JSX
+      );
+    };
+    ```
+
+    In this example, we import the `useTransition` hook from the `react` package and use it within a functional component.
+
+    Here's what you need to know:
+    1. **`useTransition` Hook**: We declare two variables, `isPending` and `startTransition`, by invoking the `useTransition` hook. `isPending` is a flag that indicates whether there's a pending transition, while `startTransition` is a function that allows us to mark a state update as a transition.<br/><br/>
+    2. **State Update Inside `startTransition`**: We use the `startTransition` function to wrap our state update logic. This indicates that the state update should be treated as a non-blocking transition. It allows your UI to remain responsive, even during potentially lengthy state updates.<br/><br/>
+    3. **Component JSX**: The rest of the component contains your JSX code and user interface elements.
+    Here's an example that illustrates the usage of the `useTransition` hook:
+    ```jsx
+    import React, { useState, useTransition } from 'react';
+
+    const ContentLoader = () => {
+      const [isLoading, setIsLoading] = useState(false);
+      const [data, setData] = useState(null);
+      const [isPending, startTransition] = useTransition();
+
+      const fetchData = () => {
+        startTransition(() => {
+          setIsLoading(true);
+
+          fetch('https://api.example.com/data')
+            .then((response) => response.json())
+            .then((result) => {
+              setData(result);
+              setIsLoading(false);
+            });
+        });
+      };
+
+      return (
+        <div>
+          {isLoading ? <p>Loading...</p> : <button onClick={fetchData}>Fetch Data</button>}
+
+          {data && <p>Data: {data}</p>}
+        </div>
+      );
+    };
+
+    export default ContentLoader;
+    ```
+
+In this example, we have a `ContentLoader` component that uses `useState` and `useTransition`. The `useTransition` hook is employed to ensure that the state updates triggered by data fetching are treated as non-blocking transitions, keeping the UI responsive.
+
+The component's JSX includes a loading message when data is being fetched, and a "Fetch Data" button to initiate the fetch. Once the data is loaded, it's displayed in the UI.
+
+The `useTransition` hook is a valuable addition to React's arsenal of tools, allowing you to maintain a responsive user interface, even in the presence of potentially time-consuming state updates. Additionally, it eliminates the need for manual management of loading indicators or complex asynchronous state update handling. Remember to use it appropriately to enhance the user experience in your React applications.
+
+  </Answer>
+</Question>
 </FAQ>
-
 
 ## Custom Hook Examples
 
 You can also copy+paste hooks from the websites below into your own projects. If you prefer to keep npm dependencies as light as possible, you could copy over only the ones you need.
 
-- <Resource url='https://usehooks.com/'>usehooks.com</Resource>
-- <Resource url='https://usehooks-ts.com/'>usehooks-ts.com</Resource>
+- <Resource url="https://usehooks.com/">usehooks.com</Resource>
+- <Resource url="https://usehooks-ts.com/">usehooks-ts.com</Resource>
