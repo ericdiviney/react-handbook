@@ -18,8 +18,6 @@ export const description = 'React hooks and all their happy little nuances.'
 
 The new React <Resource url='https://react.dev/reference/react'>docs</Resource> are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
 
-In my experience, the use of hooks follows the 80/20 rule (assuming you are importing a UI library): approximately `80%` of the time your components will only need the mixed use of `useState` / `useEffect` to solve your problems (maybe more, this isn't a bad thing). When components get large/complex enough (the remaining `20%` of the time), you'll start to bring in `useRef`, `useMemo`, `useCallback`, and `useLayoutEffect` to help with the problems in your components.
-
 <Expand parent="Functional Component Lifecycle Diagram">
   ![hook flow
   chart](https://raw.githubusercontent.com/donavon/hook-flow/master/hook-flow.png)
