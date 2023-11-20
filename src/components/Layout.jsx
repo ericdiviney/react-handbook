@@ -60,7 +60,7 @@ export function Layout({ children, sections = [] }) {
                   className={clsx(
                     'relative hidden h-6 w-6 lg:block transition-all text-zinc-800 dark:text-white'
                   )}
-                  onClick={() => toggleNavOpen()}
+                  onClick={toggleNavOpen}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

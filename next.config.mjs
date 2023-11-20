@@ -19,6 +19,9 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
   async redirects() {
     return [
       {

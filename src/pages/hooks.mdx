@@ -7,8 +7,8 @@ export const description = 'React hooks and all their happy little nuances.'
   <ul>
     <li>How to properly think about each of the hooks</li>
     <li>
-      When to reach for more specific hooks (useRef, useMemo, useCallback,
-      useLayoutEffect)
+      {'When to reach for more specific hooks (useRef, useMemo, useCallback, useLayoutEffect)'}
+
     </li>
     <li>What exactly is memoization and what is it solving</li>
     <li>Examples of custom hooks</li>
@@ -18,8 +18,6 @@ export const description = 'React hooks and all their happy little nuances.'
 ## Hooks at a High-Level
 
 The new React <Resource url='https://react.dev/reference/react'>docs</Resource> are great material for understanding hooks and how to use them in your code. The flow diagram below can also help build your mental model around when certain hook actions are "running" during the component lifecycle.
-
-In my experience, the use of hooks follows the 80/20 rule (assuming you are importing a UI library): approximately `80%` of the time your components will only need the mixed use of `useState` / `useEffect` to solve your problems (maybe more, this isn't a bad thing). When components get large/complex enough (the remaining `20%` of the time), you'll start to bring in `useRef`, `useMemo`, `useCallback`, and `useLayoutEffect` to help with the problems in your components.
 
 <Expand parent="Functional Component Lifecycle Diagram">
   ![hook flow
@@ -38,7 +36,7 @@ In my experience, the use of hooks follows the 80/20 rule (assuming you are impo
 <QuestionText>`useState`</QuestionText>
 <Answer>
 The `useState` hook is a built-in hook in React that allows you to add state to functional components. It provides a way to manage stateful values within a component without the need for external state management libraries.
-
+  
 Here's the basic syntax of using the `useState` hook:
 
 ```jsx
