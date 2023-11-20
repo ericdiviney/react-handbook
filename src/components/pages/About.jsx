@@ -7,6 +7,7 @@ const core = [
     description: 'Software Engineer | IBM Consulting',
     socials: {
       twitter: 'https://twitter.com/EricDiviney',
+      linkedin: 'https://www.linkedin.com/in/eric-diviney/',
       github: 'https://github.com/ericdiviney',
       site: 'https://ericdiviney.com/',
     },
@@ -16,12 +17,12 @@ const core = [
     name: 'Mileta Dulovic',
     description: 'CTO | Optinian',
     socials: {
-      twitter: 'https://twitter.com/DulovicMileta',
-      github: 'https://www.linkedin.com/in/mileta-dulovic/overlay/photo/',
+      github: 'https://github.com/M1ck0',
+      linkedin: 'https://www.linkedin.com/in/mileta-dulovic',
       site: 'https://miletadulovic.me/',
     },
     image: '/mileta-dulovic.jpg',
-  }
+  },
 ]
 
 export function Contributors() {
@@ -38,7 +39,7 @@ export function Contributors() {
             <MemberCard key={person.image} person={person} large />
           ))}
         </div>
-        <div className='mt-6'>
+        <div className="mt-6">
           <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
             Special thanks to:
           </span>
@@ -54,7 +55,10 @@ export function Contributors() {
               <Resource url='https://github.com/Theo-flux'>Theo-Flux</Resource> for being the first person to contribute to the project besides myself, giving us hope that we&apos;re working on something worthwhile
             </li>
             <li>
-              <Resource url='https://www.linkedin.com/in/anogueras/'>Tono Nogueras  </Resource> for significant contributions to the React Native guide
+              <Resource url="https://www.linkedin.com/in/anogueras/">
+                Tono Nogueras{' '}
+              </Resource>{' '}
+              for significant contributions to the React Native guide
             </li>
           </ul>
         </div>
@@ -120,6 +124,16 @@ function MemberCard({ person, large = false }) {
                       className="m-0 text-sm leading-[1.5]"
                     >
                       Twitter
+                    </Resource>
+                  </>
+                )}
+                {socials.linkedin && (
+                  <>
+                    <Resource
+                      url={socials.linkedin}
+                      className="m-0 text-sm leading-[1.5]"
+                    >
+                      Linkedin
                     </Resource>
                   </>
                 )}
