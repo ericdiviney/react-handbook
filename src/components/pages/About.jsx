@@ -7,6 +7,7 @@ const core = [
     description: 'Software Engineer | IBM Consulting',
     socials: {
       twitter: 'https://twitter.com/EricDiviney',
+      linkedin: 'https://www.linkedin.com/in/eric-diviney/',
       github: 'https://github.com/ericdiviney',
       site: 'https://ericdiviney.com/',
     },
@@ -29,21 +30,21 @@ export function Contributors() {
     <div className="my-6">
       <div className="my-16">
         <div>
-          <span className="mb-6 block text-xs font-semibold uppercase tracking-wide text-zinc-900 dark:text-white">
+          <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
             Core Team
           </span>
         </div>
-        <div className="not-prose isolate flex -space-x-2 overflow-hidden">
+        <div className="flex -space-x-2 overflow-hidden not-prose isolate">
           {core.map((person) => (
             <MemberCard key={person.image} person={person} large />
           ))}
         </div>
         <div className="mt-6">
-          <span className="mb-6 block text-xs font-semibold uppercase tracking-wide text-zinc-900 dark:text-white">
+          <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
             Special thanks to:
           </span>
 
-          <ul className="list-disc space-y-2">
+          <ul className="space-y-2 list-disc">
             <li>
               <Resource url='https://twitter.com/josh_claunch'>Josh Claunch</Resource> - someone we repeatedly go to for feedback/advice on things I&apos;m writing, and for having very advanced knowledge of state management in React applications
             </li>
@@ -85,7 +86,7 @@ function MemberCard({ person, large = false }) {
       <HoverCard.Trigger asChild>
         <div>
           <Resource
-            className="inline-block cursor-pointer rounded-full outline-none"
+            className="inline-block rounded-full outline-none cursor-pointer"
             url={socials.site}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
