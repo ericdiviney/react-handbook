@@ -16,12 +16,12 @@ const core = [
     name: 'Mileta Dulovic',
     description: 'CTO | Optinian',
     socials: {
-      twitter: 'https://twitter.com/DulovicMileta',
-      github: 'https://www.linkedin.com/in/mileta-dulovic/overlay/photo/',
+      github: 'https://github.com/M1ck0',
+      linkedin: 'https://www.linkedin.com/in/mileta-dulovic',
       site: 'https://miletadulovic.me/',
     },
     image: '/mileta-dulovic.jpg',
-  }
+  },
 ]
 
 export function Contributors() {
@@ -29,32 +29,47 @@ export function Contributors() {
     <div className="my-6">
       <div className="my-16">
         <div>
-          <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
+          <span className="mb-6 block text-xs font-semibold uppercase tracking-wide text-zinc-900 dark:text-white">
             Core Team
           </span>
         </div>
-        <div className="flex -space-x-2 overflow-hidden not-prose isolate">
+        <div className="not-prose isolate flex -space-x-2 overflow-hidden">
           {core.map((person) => (
             <MemberCard key={person.image} person={person} large />
           ))}
         </div>
-        <div className='mt-6'>
-          <span className="block mb-6 text-xs font-semibold tracking-wide uppercase text-zinc-900 dark:text-white">
+        <div className="mt-6">
+          <span className="mb-6 block text-xs font-semibold uppercase tracking-wide text-zinc-900 dark:text-white">
             Special thanks to:
           </span>
 
-          <ul className="space-y-2 list-disc">
+          <ul className="list-disc space-y-2">
             <li>
-              <Resource url='https://twitter.com/josh_claunch'>Josh Claunch</Resource> - someone I repeatedly go to for feedback/advice on things I&apos;m writing, and for having very advanced knowledge of state management in React applications
+              <Resource url="https://twitter.com/josh_claunch">
+                Josh Claunch
+              </Resource>{' '}
+              - someone I repeatedly go to for feedback/advice on things
+              I&apos;m writing, and for having very advanced knowledge of state
+              management in React applications
             </li>
             <li>
-              <Resource url='https://www.linkedin.com/in/conklin-anthony/'>Anthony Conklin</Resource> - someone else I can always rely on for fresh feedback on any web project I start
+              <Resource url="https://www.linkedin.com/in/conklin-anthony/">
+                Anthony Conklin
+              </Resource>{' '}
+              - someone else I can always rely on for fresh feedback on any web
+              project I start
             </li>
             <li>
-              <Resource url='https://github.com/Theo-flux'>Theo-Flux</Resource> for being the first person to contribute to the project besides myself, giving me hope that I&apos;m working on something worthwhile
+              <Resource url="https://github.com/Theo-flux">Theo-Flux</Resource>{' '}
+              for being the first person to contribute to the project besides
+              myself, giving me hope that I&apos;m working on something
+              worthwhile
             </li>
             <li>
-              <Resource url='https://www.linkedin.com/in/anogueras/'>Tono Nogueras  </Resource> for significant contributions to the React Native guide
+              <Resource url="https://www.linkedin.com/in/anogueras/">
+                Tono Nogueras{' '}
+              </Resource>{' '}
+              for significant contributions to the React Native guide
             </li>
           </ul>
         </div>
@@ -82,7 +97,7 @@ function MemberCard({ person, large = false }) {
       <HoverCard.Trigger asChild>
         <div>
           <Resource
-            className="inline-block rounded-full outline-none cursor-pointer"
+            className="inline-block cursor-pointer rounded-full outline-none"
             url={socials.site}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -120,6 +135,16 @@ function MemberCard({ person, large = false }) {
                       className="m-0 text-sm leading-[1.5]"
                     >
                       Twitter
+                    </Resource>
+                  </>
+                )}
+                {socials.linkedin && (
+                  <>
+                    <Resource
+                      url={socials.linkedin}
+                      className="m-0 text-sm leading-[1.5]"
+                    >
+                      Linkedin
                     </Resource>
                   </>
                 )}
