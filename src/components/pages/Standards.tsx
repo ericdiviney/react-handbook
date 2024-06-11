@@ -18,7 +18,12 @@ export function DirectoryExplorerTabs() {
           <PillTabsTrigger value="bulletproof">
             bulletproof-react
           </PillTabsTrigger>
-          <PillTabsTrigger value="simple">simple</PillTabsTrigger>
+          <PillTabsTrigger value="simple">
+            simple
+          </PillTabsTrigger>
+          <PillTabsTrigger value="scale">
+            scale-up
+          </PillTabsTrigger>
         </PillTabsList>
         <PillTabsContent value="bulletproof">
           This directory structure is based on the{' '}
@@ -37,6 +42,18 @@ export function DirectoryExplorerTabs() {
           - a very talented author of educational material in the webdev
           community. Read more of his React articles{' '}
           <Resource url="https://www.joshwcomeau.com/tutorials/react/">
+            here
+          </Resource>
+          .
+          <DirectoryExplorer structure={simpleStructure} />
+        </PillTabsContent>
+        <PillTabsContent value="scale">
+          This structure comes from{' '}
+          <Resource url="https://www.robinwieruch.de/react-folder-structure/">
+            Robin Wieruch
+          </Resource>{' '}
+          - a high quality educator and content creator for in-depth tutorials and articles. Visit his blog{' '}
+          <Resource url="https://www.robinwieruch.de/blog/">
             here
           </Resource>
           .
