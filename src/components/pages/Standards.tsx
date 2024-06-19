@@ -7,7 +7,7 @@ import {
   PillTabsTrigger,
   PillTabsContent,
 } from '@/components/PillTab'
-import { bulletproofStructure, simpleStructure } from './Standards-Config';
+import { bulletproofStructure, scaleStructure, simpleStructure } from './Standards-Config';
 import type { DirectoryExplorerProps, DirectoryItemType, DirectoryItemProps } from './Standards-Config';
 
 export function DirectoryExplorerTabs() {
@@ -48,7 +48,7 @@ export function DirectoryExplorerTabs() {
           <DirectoryExplorer structure={simpleStructure} />
         </PillTabsContent>
         <PillTabsContent value="scale">
-          This structure comes from{' '}
+          This structure can be used for medium to large React applications, adapted from{' '}
           <Resource url="https://www.robinwieruch.de/react-folder-structure/">
             Robin Wieruch
           </Resource>{' '}
@@ -57,7 +57,7 @@ export function DirectoryExplorerTabs() {
             here
           </Resource>
           .
-          <DirectoryExplorer structure={simpleStructure} />
+          <DirectoryExplorer structure={scaleStructure} />
         </PillTabsContent>
       </PillTabs>
     </div>
