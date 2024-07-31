@@ -102,7 +102,7 @@ export function GreenfieldContent() {
           <Step last>
             For extremely complex state, consider state machines like{' '}
             <Resource url="https://www.npmjs.com/package/xstate">
-              xState
+              xState (or the simpler @xState/xStore)
             </Resource>
           </Step>
         </StepList>
